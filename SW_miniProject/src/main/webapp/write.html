@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+
+<style>
+	#title {
+		text-align:center;
+	}
+	
+	#formRegister {
+		padding: 20px;
+	}
+	#btnRegister {
+		float: right;
+		margin-top: 30px;
+		margin-right: 20px;
+	}
+	
+	#btnRegister {
+		border: none;
+	  background-color: #7fccde;
+	  box-shadow: 0 0 0 1px #7fccde inset,
+	        0 0 0 2px rgba(255,255,255,0.15) inset,
+	        0 8px 0 0 rgba(102, 164, 178, .6),
+	        0 8px 0 1px rgba(0,0,0,.4),
+	        0 8px 8px 1px rgba(0,0,0,0.5);
+	}
+	#btnRegister:active {
+	  box-shadow: 0 0 0 1px #7fccde inset,
+	        0 0 0 2px rgba(255,255,255,0.15) inset,
+	        0 0 0 1px rgba(0,0,0,0.4);
+	}
+	
+	#userid {
+		margin-top: 40px;
+		width: 200px;
+		height: 30px;
+		margin-bottom: 20px;
+	}
+	#name {
+		width: 200px;
+		height: 30px;
+		margin-bottom: 20px;
+	}
+	#age {
+		width: 200px;
+		height: 30px;
+	}
+	
+	.out {
+		width: 100%;
+		text-align: center;
+	}
+	
+	.in {
+		display: inline-block;
+		justify-content: center;
+		align-items: center;
+		width : 400px;
+ 		height: 300px;
+  		border: 1px solid #7fccde;
+	}
+
+
+</style>
+
+<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
+<title>입력 테스트</title>
+<script>
+$(document).ready(function() {
+     $("#btnRegister").on("click", function(){
+	if($("#userid").val() == "") { alert("아이디를 입력하세요"); $("#userid").focus(); return false; }
+	if($("#name").val() == "") { alert("이름을 입력하세요"); $("#name").focus(); return false; }
+	if($("#age").val() == "") { alert("나이를 입력하세요"); $("#age").focus(); return false; }
+	$("#formRegister").attr("action","/insertTBL").submit(); 
+	})
+})
+</script>
+</head>
+
+<body>
+
+<h1 id="title">폼 양식 데이터 입력 예제</h1>
+<br />
+<hr/>
+<br />
+<div class="out">
+	<div class="in">
+		<form id="formRegister" method="post">
+			아이디 : <input type="text" id="userid" name="userid"><br>
+			이름 : <input type="text" id="name" name="name"><br>
+			나이 : <input type="text" id="age" name="age"><br>
+		</form>
+		<button id="btnRegister">CLICK</button>
+	</div>
+</div>
+
+
+
+</body>
+</html>
