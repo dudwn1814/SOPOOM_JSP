@@ -40,7 +40,7 @@ public class miniBoardReg extends HttpServlet {
 
     Connection con = null;
     String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
-    String userid = "webmaster";
+    String userid = "root";
     String userpw = "1234";
 
     String p_name = req.getParameter("p_name");
