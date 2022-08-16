@@ -20,7 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-@WebServlet(name = "inventoryManagement", urlPatterns = {"/board/memberManagement"})
+@WebServlet(name = "/board/memberManagement", urlPatterns = {"/board/memberManagement"})
 public class miniBoardMemberList extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
@@ -60,14 +60,15 @@ public class miniBoardMemberList extends HttpServlet {
 
       while (rs.next()) {
 
-        map = new HashMap<String, Object>();
-        map.put("userid", rs.getInt("userid"));
-        map.put("username", rs.getString("username"));
-        map.put("password", rs.getInt("password"));
-        map.put("telno", rs.getInt("telno"));
-        map.put("age", rs.getInt("age"));
-        map.put("address", rs.getInt("address"));
-        list.add(map);
+	  map = new HashMap<String, Object>();
+      map.put("userid", rs.getString("userid"));
+      map.put("username", rs.getString("username"));
+      map.put("password", rs.getString("password"));
+      map.put("telno", rs.getString("telno"));
+      map.put("age", rs.getInt("age"));
+      map.put("address", rs.getString("address"));
+      list.add(map);
+
 
       }
 

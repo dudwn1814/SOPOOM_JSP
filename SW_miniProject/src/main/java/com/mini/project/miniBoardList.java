@@ -20,7 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-@WebServlet(name = "inventoryManagement", urlPatterns = {"/board/inventoryManagement"})
+@WebServlet(name = "/board/inventoryManagement", urlPatterns = {"/board/inventoryManagement"})
 public class miniBoardList extends HttpServlet {
   private static final long serialVersionUID = 1L;
 

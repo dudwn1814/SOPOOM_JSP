@@ -65,13 +65,17 @@ a:active { color: red; }
   		<tr>
    			<th>회원아이디</th>
    			<th>회원명</th>
+   			<th>비밀번호</th>
+   			<th>나이</th>
+   			<th>전화번호</th>
+   			<th>주소</th>
   		</tr>
 
  		<tbody>
 			<c:forEach items="${list}" var="list">
  				<tr onMouseover="this.style.background='#46D2D2';" onmouseout="this.style.background='white';">
   					<td>${list.userid}</td>
-  					<td style="text-align:left;"><a id="hypertext" href="/board/mModify?p_id=${list.userid}" onMouseover='this.style.textDecoration="underline"'  
+  					<td style="text-align:left;"><a id="hypertext" href="/board/memberModify.jsp?userid=${list.userid}" onMouseover='this.style.textDecoration="underline"'  
   							onmouseout="this.style.textDecoration='none';">${list.username}</a></td>
   					<td>${list.password}</td>
   					<td>${list.age}</td> 
