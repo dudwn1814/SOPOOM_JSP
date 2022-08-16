@@ -11,7 +11,7 @@
 
 <h1>미니프로젝트</h1><br>
 <li><a href="/board/inventoryManagement">재고관리</a></li>
-
+<li><a href="/board/mWrite">상품등록</a></li>
 
 </body>
 </html>
