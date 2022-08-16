@@ -20,8 +20,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-@WebServlet(name = "inventoryManagement", urlPatterns = {"/board/inventoryManagement"})
-public class miniBoardList extends HttpServlet {
+@WebServlet(name = "inventoryManagement", urlPatterns = {"/board/memberManagement"})
+public class miniBoardMemberList extends HttpServlet {
+
   private static final long serialVersionUID = 1L;
 
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -29,7 +30,7 @@ public class miniBoardList extends HttpServlet {
 
     final Logger logger = LoggerFactory.getLogger(miniBoardList.class);
 
-    logger.info("===== inventoryManagement start =====");
+    logger.info("===== memberManagement start =====");
     resp.setContentType("text/html; charset=UTF-8");
 
     Connection con = null;
@@ -43,7 +44,7 @@ public class miniBoardList extends HttpServlet {
     List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
     Map<String, Object> map = null;
 
-    String query = "select p_id, p_name, p_price, p_amount from inventory_management";
+    String query = "select * from member";
 
     logger.info("게시물 목록 보기 실행 쿼리문 : {}", query);
 
@@ -60,10 +61,12 @@ public class miniBoardList extends HttpServlet {
       while (rs.next()) {
 
         map = new HashMap<String, Object>();
-        map.put("p_id", rs.getInt("p_id"));
-        map.put("p_name", rs.getString("p_name"));
-        map.put("p_price", rs.getInt("p_price"));
-        map.put("p_amount", rs.getInt("p_amount"));
+        map.put("userid", rs.getInt("userid"));
+        map.put("username", rs.getString("username"));
+        map.put("password", rs.getInt("password"));
+        map.put("telno", rs.getInt("telno"));
+        map.put("age", rs.getInt("age"));
+        map.put("address", rs.getInt("address"));
         list.add(map);
 
       }
@@ -74,7 +77,7 @@ public class miniBoardList extends HttpServlet {
 
       logger.info("list : {}", list);
       req.setAttribute("list", list);
-      RequestDispatcher dispatcher = req.getRequestDispatcher("/board/inventoryManagement.jsp");
+      RequestDispatcher dispatcher = req.getRequestDispatcher("/board/memberManagement.jsp");
       dispatcher.forward(req, resp);
 
 

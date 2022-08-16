@@ -30,7 +30,7 @@ public class miniBoardModify extends HttpServlet {
     resp.setContentType("text/html; charset=UTF-8");
 
     String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
-    String userid = "webmaster";
+    String userid = "root";
     String userpw = "1234";
 
     Connection con = null;
