@@ -61,8 +61,8 @@ public class miniBoardReg extends HttpServlet {
     LocalDateTime now = LocalDateTime.now();
     String mregdate = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
-    String query = "insert into product_registration (p_name, mtitle, mcontent, mregdate) values "
-        + "('" + p_name + "', '" + mtitle + "', '" + mcontent + "', '" + mregdate + "')";
+    String query = "insert into inventory_management (p_name, p_price, p_amount) values " + "('"
+        + p_name + "', '" + mtitle + "', '" + mcontent + "')";
 
     logger.info("게시물 등록 쿼리문 : {}", query);
 

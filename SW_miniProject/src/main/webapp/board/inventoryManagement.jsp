@@ -24,31 +24,31 @@ a:active { color: red; }
 	text-align: center;
 }
 
-.InfoTable {
+.InventoryInfoTable {
       border-collapse: collapse;
       border-top: 3px solid #168;
       width: 800px;  
       margin-left: auto; margin-right: auto;
     }  
-    .InfoTable th {
+    .InventoryInfoTable th {
       color: #168;
       background: #f0f6f9;
       text-align: center;
     }
-    .InfoTable th, .InfoTable td {
+    .InventoryInfoTable th, .InventoryInfoTable td {
       padding: 10px;
       border: 1px solid #ddd;
     }
-    .InfoTable th:first-child, .InfoTable td:first-child {
+    .InventoryInfoTable th:first-child, .InventoryInfoTable td:first-child {
       border-left: 0;
     }
-    .InfoTable th:last-child, .InfoTable td:last-child {
+    .InventoryInfoTable th:last-child, .InventoryInfoTable td:last-child {
       border-right: 0;
     }
-    .InfoTable tr td:first-child{
+    .InventoryInfoTable tr td:first-child{
       text-align: center;
     }
-    .InfoTable caption{caption-side: top; }
+    .InventoryInfoTable caption{caption-side: top; }
 
 .navi_top {	width: 1350px; text-align: right; }
 .navi_bottom { text-align: center; }
@@ -58,11 +58,9 @@ a:active { color: red; }
 </head>
 
 <body>
-
 <div class="tableDiv">
-
 	<h1>상품 재고</h1>
-	<table class="InfoTable">
+	<table class="InventoryInfoTable">
   		<tr>
    			<th>상품 ID</th>
    			<th>상품명</th>
@@ -74,7 +72,7 @@ a:active { color: red; }
 			<c:forEach items="${list}" var="list">
  				<tr onMouseover="this.style.background='#46D2D2';" onmouseout="this.style.background='white';">
   					<td>${list.p_id}</td>
-  					<td style="text-align:left;"><a id="hypertext" href="/board/mView?p_id=${list.p_id}" onMouseover='this.style.textDecoration="underline"'  
+  					<td style="text-align:left;"><a id="hypertext" href="/board/mModify?p_id=${list.p_id}" onMouseover='this.style.textDecoration="underline"'  
   							onmouseout="this.style.textDecoration='none';">${list.p_name}</a></td>
   					<td>${list.p_price}</td>
   					<td>${list.p_amount}</td> 
