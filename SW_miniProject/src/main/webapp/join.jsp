@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 
@@ -28,7 +29,7 @@
 		 	var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 		 	if($("#email").val() == '') {	alert("이메일주소를 입력하세요."); $("#email").focus(); return false; }
 		 	else if (!regEmail.test(eMail)) {
-		          alert('이메일 형식이 올바르지 않습니다.');
+		 		$("#msg_email").css('display', 'block');
 		          return false;
 		      }
 			
@@ -111,7 +112,7 @@
 	font-size:12px;
 }
 
-#msg_pwchk{
+#msg_pwchk, #msg_email, #msg_id{
 	display : none;
 }
 
@@ -128,7 +129,9 @@
 	<table style="border: 1px solid black" width="600px" align="center">
 			<tr>
 				<td class="field">아이디</td>
-				<td><input type="text" id="id" name="id" maxlength="50"></td>
+				<td><input type="text" id="id" name="id" maxlength="50">
+				<div id="msg_id" class="msg">아이디를 입력해주세요.</div>
+				</td>
 			</tr>
 			<tr>
 				<td class="field">비밀번호</td>
@@ -161,11 +164,12 @@
 			<tr><td class="field">이메일</td>
 			<td>
 				<input type="text" id="email" name="email" />
+				<div id="msg_email" class="msg">이메일 형식이 올바르지 않습니다.</div>
 			</td></tr>
 	</table>
 	<br>
 	<div align="center">
-		<input type="button" id="btn_register" class="btn_register" value="사용자 등록">
+		<input type="button" id="btn_register" class="btn_register" value="회원가입">
 	</div>
 	</form>
 	<%@include file="footer.jsp"%>
