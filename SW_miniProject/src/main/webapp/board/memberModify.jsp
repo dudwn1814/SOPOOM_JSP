@@ -12,7 +12,7 @@ $(document).ready(function(){
 		
 		if($("#p_amount").val() <= 0) { alert("수량을 입력하세요!!!"); $("#p_amount").focus(); return false;  }
 	
-		$("#ModifyForm").attr("action", "/board/mModify?p_id=${list.p_id}").submit();
+		$("#ModifyForm").attr("action", "/board/memberModify.jsp?userid=${list.userid}").submit();
 	
 	}) //End of $("btn_write")
 
@@ -92,7 +92,7 @@ a:active { color: red; }
 </head>   
 <body>
 
-	<h1>회원정보 페이지</h1>
+	<h1>회원정보</h1>
 	<br>
 
 <form id="ModifyForm" class="ModifyForm" method="POST">

@@ -10,7 +10,7 @@
 <head>
 <script src="http://code.jquery.com/jquery-1.11.3.js"></script>
 
-<title>회원 목록</title>
+<title>회원 정보</title>
 
 <style>
 body { font-family: "나눔고딕", "맑은고딕" }
@@ -60,23 +60,26 @@ a:active { color: red; }
 
 <body>
 <div class="tableDiv">
-	<h1>회원 목록</h1>
+	<h1>회원 정보</h1>
 	<table class="InventoryInfoTable">
   		<tr>
-  			<th>순서</th>
    			<th>회원아이디</th>
    			<th>회원명</th>
+   			<th>비밀번호</th>
    			<th>전화번호</th>
+   			<th>나이</th>
+   			<th>주소</th>
   		</tr>
 
  		<tbody>
 			<c:forEach items="${list}" var="list">
  				<tr onMouseover="this.style.background='#46D2D2';" onmouseout="this.style.background='white';">
- 					<td>1</td>
-  					<td style="text-align:center;"><a id="hypertext" href="/board/memberInfo.jsp" onMouseover='this.style.textDecoration="underline"'  
-  							onmouseout="this.style.textDecoration='none';">${list.userid}</a></td>
-   					<td>${list.username}</td>
+  					<td>${list.userid}</td>
+  					<td>${list.username}</td> 
+  					<td>${list.password}</td> 
   					<td>${list.telno}</td> 
+  					<td>${list.age}</td>
+  					<td>${list.address}</td> 
  				</tr>
 			</c:forEach>
 		</tbody>
