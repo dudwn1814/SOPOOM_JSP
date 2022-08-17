@@ -14,6 +14,7 @@
 <li><a href="/board/inventoryManagement">재고관리 (상품이름 누르면 발주 페이지로 이동)</a></li>
 <li><a href="/board/mWrite">상품등록</a></li>
 <li><a href="/board/memberManagement">회원관리</a></li>
+<li><a href="/board/shippingManagement">배송관리</a></li>
 <hr><br>
 </body>
 </html>

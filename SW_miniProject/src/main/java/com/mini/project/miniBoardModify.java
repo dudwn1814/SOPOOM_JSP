@@ -98,7 +98,7 @@ public class miniBoardModify extends HttpServlet {
     String p_amount = req.getParameter("p_amount");
 
     String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
-    String userid = "webmaster";
+    String userid = "root";
     String userpw = "1234";
 
     String query =
