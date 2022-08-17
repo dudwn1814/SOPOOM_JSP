@@ -26,7 +26,7 @@ public class miniBoardModify extends HttpServlet {
 
     final Logger logger = LoggerFactory.getLogger(miniBoardModify.class);
 
-    logger.info("===== mModify Start =====");
+    logger.info("===== mModify_select Start =====");
     resp.setContentType("text/html; charset=UTF-8");
 
     String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
@@ -90,7 +90,7 @@ public class miniBoardModify extends HttpServlet {
 
     final Logger logger = LoggerFactory.getLogger(miniBoardModify.class);
 
-    logger.info("===== mModify start =====");
+    logger.info("===== mModify_update start =====");
 
     req.setCharacterEncoding("UTF-8");
 

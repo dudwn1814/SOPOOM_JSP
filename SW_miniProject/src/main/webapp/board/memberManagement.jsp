@@ -73,7 +73,7 @@ a:active { color: red; }
 			<c:forEach items="${list}" var="list">
  				<tr onMouseover="this.style.background='#46D2D2';" onmouseout="this.style.background='white';">
  					<td>1</td>
-  					<td style="text-align:center;"><a id="hypertext" href="/board/memberInfo.jsp" onMouseover='this.style.textDecoration="underline"'  
+  					<td style="text-align:center;"><a id="hypertext" href="/board/memberInfo?userid=${list.userid}" onMouseover='this.style.textDecoration="underline"'  
   							onmouseout="this.style.textDecoration='none';">${list.userid}</a></td>
    					<td>${list.username}</td>
   					<td>${list.telno}</td> 

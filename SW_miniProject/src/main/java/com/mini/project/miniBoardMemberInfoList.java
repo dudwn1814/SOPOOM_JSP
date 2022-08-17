@@ -30,7 +30,7 @@ public class miniBoardMemberInfoList extends HttpServlet {
 
     final Logger logger = LoggerFactory.getLogger(miniBoardMemberInfoList.class);
 
-    logger.info("===== memberInfo start =====");
+    logger.info("===== memberInfo-detail start =====");
     resp.setContentType("text/html; charset=UTF-8");
 
     Connection con = null;
@@ -38,36 +38,40 @@ public class miniBoardMemberInfoList extends HttpServlet {
     ResultSet rs = null;
 
     String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
-    String userid = "root";
+    String uid = "root";
     String userpw = "1234";
 
     List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
     Map<String, Object> map = null;
 
-    String query = "select * from member";
+    String userid = req.getParameter("userid");
 
-    logger.info("게시물 목록 보기 실행 쿼리문 : {}", query);
+    logger.info("userid : {}", userid);
+
+    String query = "select userid, username, password, telno, age, address from member "
+        + "where userid = '" + userid + "'";
+
 
     try {
       // DataSource ds = (DataSource) this.getServletContext().getAttribute("dataSource");
       // con = ds.getConnection();
 
       Class.forName("org.mariadb.jdbc.Driver");
-      con = DriverManager.getConnection(uri, userid, userpw);
+      con = DriverManager.getConnection(uri, uid, userpw);
 
       stmt = con.createStatement();
       rs = stmt.executeQuery(query);
 
       while (rs.next()) {
 
-	  map = new HashMap<String, Object>();
-      map.put("userid", rs.getString("userid"));
-      map.put("username", rs.getString("username"));
-      map.put("password", rs.getString("password"));
-      map.put("telno", rs.getString("telno"));
-      map.put("age", rs.getInt("age"));
-      map.put("address", rs.getString("address"));
-      list.add(map);
+        map = new HashMap<String, Object>();
+        map.put("userid", rs.getString("userid"));
+        map.put("username", rs.getString("username"));
+        map.put("password", rs.getString("password"));
+        map.put("telno", rs.getString("telno"));
+        map.put("age", rs.getInt("age"));
+        map.put("address", rs.getString("address"));
+        list.add(map);
 
 
       }
