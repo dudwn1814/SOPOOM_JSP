@@ -1,8 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
+
+	$(document).ready(function(){
+		$("#btn_register").click(function(){
+			if($("#id").val() == '') { alert("아이디를 입력하세요."); $("#id").focus();  return false; }
+			if($("#name").val() == '') { alert("이름을 입력하세요."); $("#name").focus(); return false; }
+			var Pass = $("#password").val();
+			var Pass1 = $("#passwordchk").val();
+			if(Pass == '') { alert("암호를 입력하세요."); $("#password").focus(); return false; }
+			if(Pass1 == '') { alert("암호를 입력하세요."); $("#passwordchk").focus(); return false; }
+			if(Pass != Pass1) {	$("#msg_pwchk").css('display', 'block');	return false; }
+			
+			// 암호유효성 검사
+			var num = Pass.search(/[0-9]/g);
+		 	var eng = Pass.search(/[a-z]/ig);
+		 	var spe = Pass.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);	
+			if(Pass.length < 8 || Pass.length > 20) { alert("비밀번호의 길이는 8~20로 입력해주세요."); return false; }
+			else if(Pass.search(/\s/) != -1){ alert("비밀번호는 공백 없이 입력해주세요."); return false; }
+			else if(num < 0 || eng < 0 || spe < 0 ){ alert("비밀번호는 영문/숫자/특수문자를 혼합해야 합니다."); return false; }
+			
+		 	if($("#telno").val() == '') { alert("전화번호를 입력하세요."); $("#telno").focus(); return false; }
+		 	
+		 	var eMail = $("#email").val();
+		 	var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+		 	if($("#email").val() == '') {	alert("이메일주소를 입력하세요."); $("#email").focus(); return false; }
+		 	else if (!regEmail.test(eMail)) {
+		          alert('이메일 형식이 올바르지 않습니다.');
+		          return false;
+		      }
+			
+			$("#registerForm").attr("action","memberRegistry.jsp").submit();	
+		});
+	});
+	
+	
     function execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -54,9 +88,9 @@
        function onlyNumber() {
     	        if ((event.keyCode < 48) || (event.keyCode > 57))	event.returnValue = false;
     	}
-    
-    
+
 </script>
+
 
 
 <style>
@@ -67,10 +101,18 @@
 	margin: 5px;
 }
 
-.button{
+.btn_register{
 	padding: 5px;
 	width : 180px;
 	margin : 5px
+}
+
+.msg{
+	font-size:12px;
+}
+
+#msg_pwchk{
+	display : none;
 }
 
 
@@ -82,49 +124,49 @@
 <body>
 	<%@include file="top.jsp"%>
 	<h1 align="center">회원가입</h1>
-	<form method="post" action="join_verify.jsp">
-	<table style="border: 1px solid black" width="75%" align="center">
+	<form name="registerForm" id="registerForm" method="post"> 
+	<table style="border: 1px solid black" width="600px" align="center">
 			<tr>
 				<td class="field">아이디</td>
-				<td><input type="text" name="id" maxlength="50"></td>
+				<td><input type="text" id="id" name="id" maxlength="50"></td>
 			</tr>
 			<tr>
 				<td class="field">비밀번호</td>
-				<td><input type="password" name="password" maxlength="50"></td>
+				<td><input type="password" id="password" name="password" maxlength="50">
+				<div class="msg">(영문/숫자/특수문자 모두 포함, 8-20자리)</div>
+				</td>
 			</tr>
 			<tr>
 				<td class="field">비밀번호 확인</td>
-				<td><input type="password" name="passwordchk" maxlength="50"></td>
+				<td><input type="password" id="passwordchk" name="passwordchk" maxlength="50">
+				<div id="msg_pwchk" class="msg">비밀번호가 일치하지 않습니다.</div>
+				</td>
 			</tr>
 			<tr><td class="field">이름</td>
-				<td><input type="text" name="name" maxlength="50"></td></tr>
+				<td><input type="text" id="name" name="name" maxlength="50"></td></tr>
 			<tr>
 				<td class="field">주소</td>
 				<td>
-				<input type="text" id="postcode" placeholder="우편번호" disabled>
+				<input type="text" id="postcode" name="postcode" placeholder="우편번호" disabled>
 				<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-				<input type="text" id="address" placeholder="주소" disabled><br>
-				<input type="text" id="detailAddress" placeholder="상세주소">
-				<input type="text" id="extraAddress" placeholder="참고항목" disabled></td>
+				<input type="text" id="address" name="address" placeholder="주소" disabled><br>
+				<input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소">
+				<input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목" disabled></td>
 			</tr>
 			<tr>
 			<tr><td class="field">전화번호</td>
 			<td>
-				<select id="txtMobile1">
-					<option value="010">010</option>
-				    <option value="011">011</option>
-				    <option value="016">016</option>
-				    <option value="017">017</option>
-				    <option value="019">019</option>
-				</select>-
-				<input type="text" id="txtMobile2" size="4" onkeypress="onlyNumber();" />-
-				<input type="text" id="txtMobile3" size="4" onkeypress="onlyNumber();" />
-
+				<input type="text" id="telno" name="telno" maxlength="11" onkeypress="onlyNumber();" />
+			</td></tr>
+			<tr><td class="field">이메일</td>
+			<td>
+				<input type="text" id="email" name="email" />
 			</td></tr>
 	</table>
 	<br>
 	<div align="center">
-		<INPUT TYPE="SUBMIT" NAME="Submit" class="button" VALUE="회원가입">
+		<input type="button" id="btn_register" class="btn_register" value="사용자 등록">
+	</div>
 	</form>
 	<%@include file="footer.jsp"%>
 </body>

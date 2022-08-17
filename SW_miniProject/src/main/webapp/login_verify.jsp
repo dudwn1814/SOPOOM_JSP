@@ -21,8 +21,7 @@ String url ="jdbc:mariadb://127.0.0.1:3306/webdev";
 String user = "webmaster";
 String pwd = "0000";
 
-Connection con1 = null;
-Connection con2 = null;
+Connection con = null;
 Statement stmt1 = null;
 Statement stmt2 = null; 
 ResultSet rs1 = null;
@@ -33,16 +32,15 @@ int pwd_count = 0;
 try{
 	
 	Class.forName("org.mariadb.jdbc.Driver");
-	con1 = DriverManager.getConnection(url, user, pwd);
-	con2 = DriverManager.getConnection(url, user, pwd);
+	con = DriverManager.getConnection(url, user, pwd);
 	
 	//존재하는 아이디인지 확인
 	String query1 = "select count(*) as id_count from tbl_member where userid='"+userID+"'";
 	//패스워드가 틀렸는지 확인
 	String query2 = "select count(*) as id_count from tbl_member where userid='"+userID+"' and password='"+userPW+"'";
 	
-	stmt1 = con1.createStatement();
-	stmt2 = con2.createStatement();
+	stmt1 = con.createStatement();
+	stmt2 = con.createStatement();
 	
 	rs1 = stmt1.executeQuery(query1);
 	rs2 = stmt2.executeQuery(query1);
@@ -59,8 +57,7 @@ try{
 		stmt2.close();
 		rs1.close();
 		rs2.close();
-		con1.close();
-		con2.close();
+		con.close();
 		
 		response.sendRedirect("index.jsp");
 		
@@ -70,8 +67,8 @@ try{
 		stmt2.close();
 		rs1.close();
 		rs2.close();
-		con1.close();
-		con2.close();
+		con.close();
+
 %>
 <script>
 	alert("사용자가 존재하지 않습니다.");
@@ -84,8 +81,8 @@ try{
 		stmt2.close();
 		rs1.close();
 		rs2.close();
-		con1.close();
-		con2.close();
+		con.close();
+		
 %>
 <script>
 	alert("패스워드를 잘못 입력했습니다.");
@@ -102,8 +99,8 @@ stmt1.close();
 stmt2.close();
 rs1.close();
 rs2.close();
-con1.close();
-con2.close();
+con.close();
+
 
 response.sendRedirect("login.jsp");
 
