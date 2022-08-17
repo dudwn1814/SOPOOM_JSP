@@ -8,10 +8,10 @@
 <title>미니프로젝트</title>
 </head>
 <body>
-
+<%@include file="top.jsp"%>
 <h1>미니프로젝트</h1><br>
 <li><a href="/board/inventoryManagement">재고관리</a></li>
-
+<%@include file="footer.jsp"%>
 
 </body>
 </html>
