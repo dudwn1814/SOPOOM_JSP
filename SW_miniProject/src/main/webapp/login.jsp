@@ -1,6 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+		
+		$("#btn_login").click(function(){
+	
+			if($("#userID").val() =='') {
+				alert("아이디를 입력하세요");
+				return false;
+			}
+			if($("#userPW").val() =='') {
+				alert("패스워드를 입력하세요");
+				return false;
+			}
+			$("#loginForm").attr("action","login_verify.jsp").submit();
+		});
+		
+});
+
+</script>
+
 <style>
 .button{
 	padding: 5px;
@@ -14,6 +35,7 @@
 	margin : 5px
 }
 </style>
+
 <head>
 <meta charset="UTF-8">
 <title>JSP미니 프로젝트</title>
@@ -21,14 +43,14 @@
 <body>
 	<%@include file="top.jsp"%>
 	<h1 align="center">로그인</h1>
-		<form method="post" action="login_verify.jsp" align="center">
+		<form method="post" id="loginForm" align="center">
 		<div style="margin: 5px">
-			<input type="text" class="field" name="userID" placeholder="아이디">
+			<input type="text" class="field" id="userID" name="userID" placeholder="아이디">
 			<br>
-			<input type="password" class="field" name="userPassword" placeholder="비밀번호">
+			<input type="password" class="field" id="userPW" name="userPW" placeholder="비밀번호">
 		</div>
 		<div style="margin: 5px">
-			<INPUT TYPE="SUBMIT" class="button" NAME="Submit" VALUE="로그인">
+			<INPUT TYPE="SUBMIT" class="button" id="btn_login" NAME="Submit" VALUE="로그인">
 			<br>
 			<INPUT TYPE="button" class="button" VALUE="회원가입" onclick="location.href='join.jsp'">
 		</div>

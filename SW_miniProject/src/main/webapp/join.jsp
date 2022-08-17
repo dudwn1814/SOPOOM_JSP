@@ -118,7 +118,7 @@
 				    <option value="019">019</option>
 				</select>-
 				<input type="text" id="txtMobile2" size="4" onkeypress="onlyNumber();" />-
-				<input type="text" id="txtMobile3" size="4" />
+				<input type="text" id="txtMobile3" size="4" onkeypress="onlyNumber();" />
 
 			</td></tr>
 	</table>
