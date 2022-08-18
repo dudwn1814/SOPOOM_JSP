@@ -17,7 +17,7 @@ String userID=request.getParameter("userID");
 String userPW=request.getParameter("userPW");
 
 //DB에서 사용자 정보(아이디, password) 가져오기
-String url ="jdbc:mariadb://127.0.0.1:3306/webdev";
+String url = "jdbc:mariadb://127.0.0.1:3306/sw_miniproject";
 String user = "webmaster";
 String pwd = "0000";
 
@@ -35,15 +35,15 @@ try{
 	con = DriverManager.getConnection(url, user, pwd);
 	
 	//존재하는 아이디인지 확인
-	String query1 = "select count(*) as id_count from tbl_member where userid='"+userID+"'";
+	String query1 = "select count(*) as id_count from user where userID='"+userID+"'";
 	//패스워드가 틀렸는지 확인
-	String query2 = "select count(*) as id_count from tbl_member where userid='"+userID+"' and password='"+userPW+"'";
+	String query2 = "select count(*) as id_count from user where userID='"+userID+"' and password='"+userPW+"'";
 	
 	stmt1 = con.createStatement();
 	stmt2 = con.createStatement();
 	
 	rs1 = stmt1.executeQuery(query1);
-	rs2 = stmt2.executeQuery(query1);
+	rs2 = stmt2.executeQuery(query2);
 	
 	while(rs1.next()) id_count = rs1.getInt("id_count");
 	while(rs2.next()) pwd_count = rs2.getInt("id_count");
@@ -52,43 +52,38 @@ try{
 	if(pwd_count != 0){
 		//session.setAttribute("세션 변수", );
 		session.setAttribute("userID", userID);
+		stmt1.close();
+		stmt2.close();
+		rs1.close();
+		rs2.close();
+		con.close();	
+		response.sendRedirect("index.jsp");	
+	} else if(id_count == 0){
 		
 		stmt1.close();
 		stmt2.close();
 		rs1.close();
 		rs2.close();
-		con.close();
-		
-		response.sendRedirect("index.jsp");
-		
-	}else if(id_count == 0){
+		con.close();	
+		%>
+		<script>
+		alert("사용자가 존재하지 않습니다.");
+		location.href = "login.jsp";
+		</script>
+		<% 				
+	} else if(id_count!=0){ 	// 아이디는 있으나 패스워드가 틀린 사용자
 		
 		stmt1.close();
 		stmt2.close();
 		rs1.close();
 		rs2.close();
-		con.close();
-
-%>
-<script>
-	alert("사용자가 존재하지 않습니다.");
-	document.location.href = "login.jsp";
-</script>
-<% 				
-	}else if(id_count!=0 && pwd_count ==0){ 	// 아이디는 있으나 패스워드가 틀린 사용자
-	
-		stmt1.close();
-		stmt2.close();
-		rs1.close();
-		rs2.close();
-		con.close();
-		
-%>
-<script>
-	alert("패스워드를 잘못 입력했습니다.");
-	document.location.href = "login.jsp";
-</script>
-<%			
+		con.close();	
+		%>
+		<script>
+		alert("패스워드를 잘못 입력했습니다.");
+		location.href = "login.jsp";
+		</script>
+		<%			
 	}
 	
 } catch(Exception e){
@@ -100,9 +95,6 @@ stmt2.close();
 rs1.close();
 rs2.close();
 con.close();
-
-
-response.sendRedirect("login.jsp");
 
 %>
 </body>

@@ -25,23 +25,37 @@
 	Class.forName("org.mariadb.jdbc.Driver");
 	con = DriverManager.getConnection(url, user, pwd);
 	
-	PreparedStatement pstmt = con.prepareStatement("INSERT INTO system_user VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+	PreparedStatement pstmt = con.prepareStatement("INSERT INTO user VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
 	pstmt.setString(1, id);
 	pstmt.setString(2, password);
+	pstmt.setString(3, name);
+	pstmt.setString(4, postcode);
+	pstmt.setString(5, address);
+	pstmt.setString(6, detailAddress);
+	pstmt.setString(7, extraAddress);
+	pstmt.setString(8, telno);
+	pstmt.setString(9, email);
 
 	try{
 		pstmt.execute();
-		stmt.close();
+		pstmt.close();
+		con.close();
+	%>
+		<script>
+		alert("회원가입이 완료되었습니다.");
+		<% session.invalidate();%>
+		location.href = "index.jsp";
+		</script>
+		<%		
+	}catch(Exception e){
+		e.printStackTrace();
+		pstmt.close();
 		con.close();
 		%>
 		<script>
-		alert("회원가입이 완료되었습니다.");
-		location.href = "index.jsp";
+		alert("잠시후 다시 시도하세요.");
+		location.href = "join.jsp";
 		</script>
-		<%
-	}catch(Exception e){
-		e.printStackTrace();
-		stmt.close();
-		con.close();
+		<%		
 	}
 %>

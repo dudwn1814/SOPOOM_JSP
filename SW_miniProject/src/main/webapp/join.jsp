@@ -7,37 +7,104 @@
 
 	$(document).ready(function(){
 		$("#btn_register").click(function(){
-			if($("#id").val() == '') { alert("아이디를 입력하세요."); $("#id").focus();  return false; }
-			if($("#name").val() == '') { alert("이름을 입력하세요."); $("#name").focus(); return false; }
+			console.log($("id_chk".val));
+			//아이디
+			if($("#id").val() == '') { $("#msg_id").text("아이디를 입력해주세요."); $("#msg_id").css('display', 'block'); $("#id").focus(); return false;}
+			else if	($("#id_chk").val() == "false"){ $("#msg_id").text("중복체크를 해주세요"); $("#msg_id").css('display', 'block'); $("#id").focus(); return false;}
+			else{	$("#msg_id").css('display', 'none');}
+						
+			//비밀번호 
 			var Pass = $("#password").val();
 			var Pass1 = $("#passwordchk").val();
-			if(Pass == '') { alert("암호를 입력하세요."); $("#password").focus(); return false; }
-			if(Pass1 == '') { alert("암호를 입력하세요."); $("#passwordchk").focus(); return false; }
-			if(Pass != Pass1) {	$("#msg_pwchk").css('display', 'block');	return false; }
 			
 			// 암호유효성 검사
 			var num = Pass.search(/[0-9]/g);
 		 	var eng = Pass.search(/[a-z]/ig);
 		 	var spe = Pass.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);	
-			if(Pass.length < 8 || Pass.length > 20) { alert("비밀번호의 길이는 8~20로 입력해주세요."); return false; }
-			else if(Pass.search(/\s/) != -1){ alert("비밀번호는 공백 없이 입력해주세요."); return false; }
-			else if(num < 0 || eng < 0 || spe < 0 ){ alert("비밀번호는 영문/숫자/특수문자를 혼합해야 합니다."); return false; }
 			
-		 	if($("#telno").val() == '') { alert("전화번호를 입력하세요."); $("#telno").focus(); return false; }
-		 	
+		 	if(Pass == '') {
+				$("#msg_pw").text("비밀번호를 입력하세요."); 
+		 		$("#msg_pw").css('display', 'block'); 
+				$("#password").focus();
+				if(Pass1 == ''){
+					$("#msg_pwchk").css('display', 'none');
+				}
+				return false;
+			}
+
+		 	else if(Pass.length < 8 || Pass.length > 20) {
+				$("#msg_pw").text("비밀번호의 길이는 8~20로 입력해주세요."); 
+		 		$("#msg_pw").css('display', 'block');
+		 		return false;
+				}
+			else if(Pass.search(/\s/) != -1){
+				$("#msg_pw").text("비밀번호는 공백 없이 입력해주세요."); 
+ 				$("#msg_pw").css('display', 'block'); 
+ 				return false;
+				}
+			else if(num < 0 || eng < 0 || spe < 0 ){
+				$("#msg_pw").text("비밀번호는 영문/숫자/특수문자를 혼합해야 합니다."); 
+		 		$("#msg_pw").css('display', 'block');
+		 		return false;
+			}
+			else{
+				$("#msg_pw").css('display', 'none');
+			}
+			
+			//비밀번호 재입력
+			
+			if(Pass != Pass1) { 
+				$("#msg_pwchk").text("비밀번호가 일치하지 않습니다."); 	
+				$("#msg_pwchk").css('display', 'block'); 
+				$("#passwordchk").focus(); 
+				return false;
+			}
+			else{	$("#msg_pwchk").css('display', 'none');}
+			
+			//이름
+			if($("#name").val() == '') { $("#msg_name").css('display', 'block'); $("#name").focus(); return false; }
+			else{	$("#msg_name").css('display', 'none');}
+			
+			
+			//주소
+			if($("#detailAddress").val() == ''){ $("#msg_address").css('display', 'block'); $("#detailAddress").focus(); return false; }
+			else{	$("#msg_address").css('display', 'none');}
+			
+			//전화번호
+		 	if($("#telno").val() == '') { $("#msg_telno").css('display', 'block'); $("#telno").focus(); return false;}
+		 	else{	$("#msg_telno").css('display', 'none');}
+			
+			//이메일
 		 	var eMail = $("#email").val();
 		 	var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
-		 	if($("#email").val() == '') {	alert("이메일주소를 입력하세요."); $("#email").focus(); return false; }
+		 	
+		 	if($("#email").val() == '') {
+		 		$("msg_email").text("이메일주소를 입력하세요."); 
+		 		$("#msg_email").css('display', 'block'); 
+		 		$("#email").focus();
+		 		return false;
+		 	}
+		 	
 		 	else if (!regEmail.test(eMail)) {
+		 		$("msg_email").text("이메일 형식이 올바르지 않습니다.");
 		 		$("#msg_email").css('display', 'block');
-		          return false;
+		 		$("#email").focus();
+		 		return false;
 		      }
-			
-			$("#registerForm").attr("action","memberRegistry.jsp").submit();	
+		 	else{
+		 		$("#msg_email").css('display', 'none');
+		 		}
+		 	
+		 	$("#postcode").attr("disabled", false);
+		 	$("#address").attr("disabled", false);
+		 	$("#extraAddress").attr("disabled", false);
+		 	
+			$("#registerForm").attr("action","join_verify.jsp").submit();	
 		});
-	});
-	
-	
+	});	
+</script>
+
+<script>	
     function execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -86,9 +153,22 @@
         }).open();
     }
     
-       function onlyNumber() {
-    	        if ((event.keyCode < 48) || (event.keyCode > 57))	event.returnValue = false;
+	function onlyNumber() {
+    	if ((event.keyCode < 48) || (event.keyCode > 57))	event.returnValue = false;
     	}
+    
+    function validCheck(){
+	   	var idInput = document.getElementById("id");
+	   	if(idInput.value == ''){
+	   		var msg_id = document.getElementById("msg_id");
+	   		msg_id.innerHTML="아이디를 입력해주세요.";
+	   		msg_id.style.display='block';
+	   		idInput.focus();
+	   	}
+	   	else{
+	   		window.open("idCheck.jsp?id="+idInput.value,"","width=300, height=50");
+	   	}
+    }
 
 </script>
 
@@ -112,8 +192,9 @@
 	font-size:12px;
 }
 
-#msg_pwchk, #msg_email, #msg_id{
+#msg_pwchk, #msg_email, #msg_id, #msg_address, #msg_telno, #msg_name, #msg_pw{
 	display : none;
+	color: red;
 }
 
 
@@ -130,23 +211,28 @@
 			<tr>
 				<td class="field">아이디</td>
 				<td><input type="text" id="id" name="id" maxlength="50">
-				<div id="msg_id" class="msg">아이디를 입력해주세요.</div>
+				<input type="hidden" id="id_chk" value="false">
+				<input type="button" onclick="validCheck()" value="중복확인"><br>
+				<div id="msg_id" class="msg"></div>
 				</td>
 			</tr>
 			<tr>
 				<td class="field">비밀번호</td>
 				<td><input type="password" id="password" name="password" maxlength="50">
 				<div class="msg">(영문/숫자/특수문자 모두 포함, 8-20자리)</div>
+				<div id="msg_pw" class="msg"></div>
 				</td>
 			</tr>
 			<tr>
 				<td class="field">비밀번호 확인</td>
 				<td><input type="password" id="passwordchk" name="passwordchk" maxlength="50">
-				<div id="msg_pwchk" class="msg">비밀번호가 일치하지 않습니다.</div>
+				<div id="msg_pwchk" class="msg"></div>
 				</td>
 			</tr>
 			<tr><td class="field">이름</td>
-				<td><input type="text" id="name" name="name" maxlength="50"></td></tr>
+				<td><input type="text" id="name" name="name" maxlength="50">
+				<div id="msg_name" class="msg">이름을 입력해주세요.</div>
+				</td></tr>
 			<tr>
 				<td class="field">주소</td>
 				<td>
@@ -154,17 +240,19 @@
 				<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
 				<input type="text" id="address" name="address" placeholder="주소" disabled><br>
 				<input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소">
-				<input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목" disabled></td>
+				<input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목" disabled>
+				<div id="msg_address" class="msg">주소지를 입력해주세요.</div></td>
 			</tr>
 			<tr>
 			<tr><td class="field">전화번호</td>
 			<td>
 				<input type="text" id="telno" name="telno" maxlength="11" onkeypress="onlyNumber();" />
+				<div id="msg_telno" class="msg">전화번호를 입력해주세요.</div>
 			</td></tr>
 			<tr><td class="field">이메일</td>
 			<td>
 				<input type="text" id="email" name="email" />
-				<div id="msg_email" class="msg">이메일 형식이 올바르지 않습니다.</div>
+				<div id="msg_email" class="msg"></div>
 			</td></tr>
 	</table>
 	<br>
