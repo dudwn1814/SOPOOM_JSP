@@ -1,74 +1,10 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<style>
-#productTbl{
-	border: 1px solid black;
-	margin : auto;
-	width:100%;
-	min-width : 700px;
-	padding : 10px;
-}
-.infoTbl{
-	border: 2px solid black;
-	margin : auto;
-	width:100%;
-	min-width : 700px;
-	padding : 10px;
 
-}
-
-.infoTbl td{
-	text-align : left;
-}
-
-.tblLabel{
-	font-weight : bold;
-	width : 100px;
-}
-
-form{
-	margin:auto;
-	width : 70%;
-	min-width : 700px;
-}
-.detailForm{
-	width : 100%;
-	margin : auto;
-}
-
-.td{
-	width : 120px;
-	margin : auto;
-}
-
-.tdPname{
-	text-align : left;
-}
-
-
-#msg_address, #msg_telno, #msg_name{
-	font-size:12px;
-	display : none;
-	color: red;
-}
-
-
-
-#totalPrice{
-	font-size : 2em;
-	font-weight : bold;
-}
-</style>
-
-<head>
-<meta charset="UTF-8">
-<title>JSP미니 프로젝트</title>
-</head>
-<body>
 <%
+	//user 정보 받아오기
 	//String userid = (String)session.getAttribute("userid");	
 	String userid =  "noori";
 	String userName = "김누리";
@@ -79,15 +15,21 @@ form{
 	String detailAddress = "어쩌구 동 어쩌구 호";
 	String extraAddress = "";
 	
+	
+	//상품정보 받아오기
+	DecimalFormat df = new DecimalFormat("###,###");
+	
 	String pName = "상품명";
-	String pPrice = "1000";
-	String count = "1";
-	int pTotal = Integer.parseInt(pPrice) * Integer.parseInt(count);
-	String strPTotal = pTotal +"";
+	int intPrice = 1000;
+	String strPrice = df.format(intPrice);
+	String strCount = "1";
+	int count = Integer.parseInt(strCount);
+	int pTotal =  intPrice * count;
+	String strPTotal = df.format(pTotal);
 	
 	int total = 0;
 	total += pTotal;
-	String strTotal = total+"";
+	String strTotal = df.format(pTotal);
 	
 	if(userid == null){
 		%>
@@ -99,6 +41,9 @@ form{
 	}
 %>
 
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 	$(document).ready(function(){
 		
@@ -202,6 +147,72 @@ function onlyNumber() {
 	}
 </script>
 
+<style>
+#productTbl{
+	border: 1px solid black;
+	margin : auto;
+	width:100%;
+	min-width : 700px;
+	padding : 10px;
+}
+.infoTbl{
+	border: 2px solid black;
+	margin : auto;
+	width:100%;
+	min-width : 700px;
+	padding : 10px;
+
+}
+
+.infoTbl td{
+	text-align : left;
+}
+
+.tblLabel{
+	font-weight : bold;
+	width : 100px;
+}
+
+form{
+	margin:auto;
+	width : 70%;
+	min-width : 700px;
+}
+.detailForm{
+	width : 100%;
+	margin : auto;
+}
+
+.td{
+	width : 120px;
+	margin : auto;
+}
+
+.tdPname{
+	text-align : left;
+}
+
+
+#msg_address, #msg_telno, #msg_name{
+	font-size:12px;
+	display : none;
+	color: red;
+}
+
+
+
+#totalPrice{
+	font-size : 2em;
+	font-weight : bold;
+}
+</style>
+
+<head>
+<meta charset="UTF-8">
+<title>JSP미니 프로젝트</title>
+</head>
+<body>
+
 
 	<%@include file="top.jsp"%>
 	<form name="purchaseForm" id="purchaseForm" method="post">
@@ -210,7 +221,7 @@ function onlyNumber() {
 	<h3>상품 확인</h3>
 	<table id="productTbl">
 	<tr><th class="td"></th><th>상품명</th><th class="td">판매가</th><th class="td">수량</th><th class="td">합계</th></tr>
-	<tr><td><img src="/img/sample.png" alt="productImg" width="90" height="120"></td><td class="tdPname"><%= pName%></td><td><%= pPrice%></td><td><%= count%></td><td><%= strPTotal%></td></tr>
+	<tr><td><img src="/img/sample.png" alt="productImg" width="90" height="120"></td><td class="tdPname"><%= pName%></td><td><%= strPrice%></td><td><%= count%></td><td><%= strPTotal%></td></tr>
 	</table>
 	</div>
 	
