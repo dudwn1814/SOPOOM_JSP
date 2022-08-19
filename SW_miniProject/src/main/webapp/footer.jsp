@@ -2,6 +2,7 @@
 <style>
 	#footer{
 	text-align : center;
+	min-width : 700px;
 	}
 </style>
 <footer>

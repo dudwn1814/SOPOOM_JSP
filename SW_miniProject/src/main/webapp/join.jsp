@@ -175,6 +175,12 @@
 
 
 <style>
+#joinForm{
+	border: 1px solid black;
+	width:600px;
+	align:center;
+}
+
 .field{
 	border: 1px white solid;
 	text-align: center;
@@ -207,7 +213,7 @@
 	<%@include file="top.jsp"%>
 	<h1 align="center">회원가입</h1>
 	<form name="registerForm" id="registerForm" method="post"> 
-	<table style="border: 1px solid black" width="600px" align="center">
+	<table id="joinForm">
 			<tr>
 				<td class="field">아이디</td>
 				<td><input type="text" id="id" name="id" maxlength="50">

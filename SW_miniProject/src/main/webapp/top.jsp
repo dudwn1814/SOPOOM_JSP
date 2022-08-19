@@ -13,6 +13,9 @@ else {
 }
 %>
 <style>
+  header{
+ 	min-width : 700px;
+  }
   a { text-decoration: none; color: black; }
   a:visited { text-decoration: none; }
   a:hover { text-decoration: none;}
