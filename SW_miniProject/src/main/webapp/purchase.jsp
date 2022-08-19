@@ -7,6 +7,16 @@
 	//user 정보 받아오기
 	//String userid = (String)session.getAttribute("userid");	
 	String userid =  "noori";
+	
+	if(userid == null){
+		%>
+		<script>
+		alert("로그인이 필요한 서비스입니다.");
+		location.href = "login.jsp";
+		</script>
+		<%
+	}
+	
 	String userName = "김누리";
 	String userTelno = "01000000000";
 	String userMail = "giants@giants.giants";
@@ -14,7 +24,6 @@
 	String address = "서울특별시 용산구";
 	String detailAddress = "어쩌구 동 어쩌구 호";
 	String extraAddress = "";
-	
 	
 	//상품정보 받아오기
 	DecimalFormat df = new DecimalFormat("###,###");
@@ -31,14 +40,7 @@
 	total += pTotal;
 	String strTotal = df.format(pTotal);
 	
-	if(userid == null){
-		%>
-		<script>
-		alert("로그인이 필요한 서비스입니다.");
-		location.href = "login.jsp";
-		</script>
-		<%
-	}
+	session.setAttribute("totalPrice", strPrice);
 %>
 
 
@@ -67,7 +69,7 @@
 			
 		});		
 		
-		$("#btn_register").click(function(){
+		$("#btn_purchase").click(function(){
 			
 			//이름
 			if($("#name").val() == '') { $("#msg_name").css('display', 'block'); $("#name").focus(); return false; }
@@ -85,9 +87,7 @@
 		 	$("#postcode").attr("disabled", false);
 		 	$("#address").attr("disabled", false);
 		 	$("#extraAddress").attr("disabled", false);
-			
-			
-			$("#registerForm").attr("action","").submit();	
+			$("#purchaseForm").attr("action","purchase_verify.jsp").submit();	
 		});
 	});
 	
@@ -156,7 +156,7 @@ function onlyNumber() {
 	padding : 10px;
 }
 .infoTbl{
-	border: 2px solid black;
+	border: 1px solid black;
 	margin : auto;
 	width:100%;
 	min-width : 700px;
@@ -238,7 +238,7 @@ form{
 	<h3 class="label">배송지 입력</h3>
 	<table class="infoTbl">
 	<tr>
-	<td colspan='2'><input type="radio" name="delivery" value="default" checked="checked">기존 정보와 동일
+	<td colspan='2'><input type="radio" name="delivery" value="default" checked="checked">기존 정보와 동일&nbsp;&nbsp;
 	<input type="radio" name="delivery" value="new">새로운 배송지</td>
 	</tr>
 	<tr id="deliveryForm">
@@ -267,7 +267,7 @@ form{
 	
 	<div>
 	<h3 class="label">최종 결제 금액</h3>
-	<span id="totalPrice"><%=strTotal %></span> 원
+	<span id="totalPrice" name="totalPrice"><%=strTotal %></span> 원
 	</div>
 	<br>
 	
