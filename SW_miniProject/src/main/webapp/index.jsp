@@ -11,10 +11,12 @@
 
 <h1>미니프로젝트</h1><br><br>
 <h3>관리자 페이지</h3>
-<li><a href="/board/inventoryManagement">재고관리 (상품이름 누르면 발주 페이지로 이동)</a></li>
-<li><a href="/board/mWrite">상품등록</a></li>
-<li><a href="/board/memberManagement">회원관리</a></li>
-<li><a href="/board/shippingManagement">배송관리</a></li>
+<ul>
+	<li><a href="/Admin/Inventory/inventory">재고관리 (상품이름 누르면 발주 페이지로 이동)</a></li>
+	<li><a href="/Admin/Product/productReg">상품등록</a></li>
+	<li><a href="/Admin/Member/member">회원관리</a></li>
+	<li><a href="/Admin/Shipping/shipping">배송관리</a></li>
+</ul>
 <hr><br>
 </body>
 </html>

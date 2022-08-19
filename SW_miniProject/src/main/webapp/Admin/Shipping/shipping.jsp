@@ -14,11 +14,6 @@
 <style>
 body { font-family: "나눔고딕", "맑은고딕" }
 h1 { font-family: "HY견고딕" }
-a:link { color: black; }
-a:visited { color: black; }
-a:hover { color: red; }
-a:active { color: red; }
-#hypertext { text-decoration-line: none; cursor: hand; }
 
 .tableDiv {
 	text-align: center;
@@ -50,8 +45,6 @@ a:active { color: red; }
     }
     .InventoryInfoTable caption{caption-side: top; }
 
-.navi_top {	width: 1350px; text-align: right; }
-.navi_bottom { text-align: center; }
 
 </style>
 
@@ -67,16 +60,18 @@ a:active { color: red; }
    			<th>주문자 이름</th>
    			<th>주문자 전화번호</th>
    			<th>주문자 주소</th>
+   			<th>배송상태</th>
   		</tr>
 
  		<tbody>
 			<c:forEach items="${list}" var="list">
- 				<tr onMouseover="this.style.background='#46D2D2';" onmouseout="this.style.background='white';">
+ 				<tr>
   					<td>${list.p_id}</td>
 					<td>${list.u_id}</td>
   					<td>${list.username}</td>
   					<td>${list.telno}</td> 
   					<td>${list.address}</td> 
+  					<td>${list.status}</td> 
  				</tr>
 			</c:forEach>
 		</tbody>

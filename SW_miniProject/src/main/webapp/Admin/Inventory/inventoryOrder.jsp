@@ -12,29 +12,17 @@ $(document).ready(function(){
 		
 		if($("#p_amount").val() <= 0) { alert("수량을 입력하세요!!!"); $("#p_amount").focus(); return false;  }
 	
-		$("#ModifyForm").attr("action", "/board/mModify?p_id=${list.p_id}").submit();
+		$("#ModifyForm").attr("action", "/Admin/Inventory/inventoryOrder?p_id=${list.p_id}").submit();
 	
-	}) //End of $("btn_write")
+	})
 
-}) //End of $(document).ready(function)
+})
 
 </script>
 
 <style>
 body { font-family: "나눔고딕", "맑은고딕" }
 h1 { font-family: "HY견고딕" }
-a:link { color: black; }
-a:visited { color: black; }
-a:hover { color: red; }
-a:active { color: red; }
-#hypertext { text-decoration-line: none; cursor: hand; }
-#topBanner {
-       margin-top:10px;
-       margin-bottom:10px;
-       max-width: 500px;
-       height: auto;
-       display: block; margin: 0 auto;
-}
 
 .ModifyForm {
   width:900px;
@@ -46,7 +34,7 @@ a:active { color: red; }
   border-radius: 30px;
 }
 
-#mwriter, #mtitle {
+.p_id, .p_name, .p_price, .p_amount {
   width: 90%;
   border:none;
   border-bottom: 2px solid #adadad;
@@ -57,16 +45,6 @@ a:active { color: red; }
   font-size:16px;
   height:25px;
   background: none;
-}
-
-#mcontent{
-  width: 850px;
-  height: 300px;
-  padding: 10px;
-  box-sizing: border-box;
-  border: solid #adadad;
-  font-size: 16px;
-  resize: both;
 }
 
 .btn_modify  {
@@ -100,8 +78,8 @@ a:active { color: red; }
 		<div class="p_id">상품번호 : ${list.p_id}</div>
 		<div class="p_name">상품이름 : ${list.p_name}</div>
 		<div class="p_price">상품가격 : ${list.p_price}</div>
-		<div class="mAmount">상품수량 :  
-				 <input type="number" id="p_amount" name='p_amount' placeholder="수량">
+		<div class="p_amount">상품수량 :  
+				 <input type="number" id="p_amount" name='p_amount' value=${list.p_amount}>
 		</div>
 	<button id="btn_modify" class="btn_modify">수정</button>
 </form>

@@ -20,16 +20,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-@WebServlet(name = "/board/shippingManagement", urlPatterns = {"/board/shippingManagement"})
+@WebServlet("/Admin/Shipping/shipping")
 public class ShippingList extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 
-    final Logger logger = LoggerFactory.getLogger(miniBoardList.class);
+    final Logger logger = LoggerFactory.getLogger(InventoryList.class);
 
-    logger.info("===== shippingManagement start =====");
+    logger.info("===== shippin gManagement start =====");
     resp.setContentType("text/html; charset=UTF-8");
 
     Connection con = null;
@@ -44,15 +44,12 @@ public class ShippingList extends HttpServlet {
     Map<String, Object> map = null;
 
     String query =
-        "select s.p_id, s.u_id, m.username, m.telno, m.address from shipping s, member m "
+        "select s.p_id, s.u_id, m.username, m.telno, m.address, s.status from shipping s, member m "
             + "where s.u_id = m.userid";
 
-    logger.info("게시물 목록 보기 실행 쿼리문 : {}", query);
+    logger.info("배송 관리 실행 쿼리문 : {}", query);
 
     try {
-      // DataSource ds = (DataSource) this.getServletContext().getAttribute("dataSource");
-      // con = ds.getConnection();
-
       Class.forName("org.mariadb.jdbc.Driver");
       con = DriverManager.getConnection(uri, userid, userpw);
 
@@ -67,8 +64,8 @@ public class ShippingList extends HttpServlet {
         map.put("username", rs.getString("username"));
         map.put("telno", rs.getString("telno"));
         map.put("address", rs.getString("address"));
+        map.put("status", rs.getString("status"));
         list.add(map);
-
       }
 
       rs.close();
@@ -77,7 +74,7 @@ public class ShippingList extends HttpServlet {
 
       logger.info("list : {}", list);
       req.setAttribute("list", list);
-      RequestDispatcher dispatcher = req.getRequestDispatcher("/board/shippingManagement.jsp");
+      RequestDispatcher dispatcher = req.getRequestDispatcher("/Admin/Shipping/shipping.jsp");
       dispatcher.forward(req, resp);
 
 
@@ -85,6 +82,4 @@ public class ShippingList extends HttpServlet {
       e.printStackTrace();
     }
   }
-
-
 }

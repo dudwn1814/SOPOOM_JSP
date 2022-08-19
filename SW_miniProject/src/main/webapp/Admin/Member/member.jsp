@@ -8,9 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
 <head>
-<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
 
-<title>회원 정보</title>
+<title>회원 목록</title>
 
 <style>
 body { font-family: "나눔고딕", "맑은고딕" }
@@ -51,36 +50,36 @@ a:active { color: red; }
     }
     .InventoryInfoTable caption{caption-side: top; }
 
-.navi_top {	width: 1350px; text-align: right; }
-.navi_bottom { text-align: center; }
 
 </style>
 
 </head>
 
 <body>
+
+<%
+	int idx = 1;
+%>
+
 <div class="tableDiv">
-	<h1>회원 정보</h1>
+	<h1>회원 목록</h1>
 	<table class="InventoryInfoTable">
   		<tr>
+  			<th>순서</th>
    			<th>회원아이디</th>
    			<th>회원명</th>
-   			<th>비밀번호</th>
    			<th>전화번호</th>
-   			<th>나이</th>
-   			<th>주소</th>
   		</tr>
 
  		<tbody>
 			<c:forEach items="${list}" var="list">
  				<tr onMouseover="this.style.background='#46D2D2';" onmouseout="this.style.background='white';">
-  					<td>${list.userid}</td>
-  					<td>${list.username}</td> 
-  					<td>${list.password}</td> 
+ 					<td><%=idx++ %></td>
+  					<td style="text-align:center;"><a id="hypertext" href="/Admin/Member/memberInfo?userid=${list.userid}" onMouseover='this.style.textDecoration="underline"'  
+  							onmouseout="this.style.textDecoration='none';">${list.userid}</a></td>
+   					<td>${list.username}</td>
   					<td>${list.telno}</td> 
-  					<td>${list.age}</td>
-  					<td>${list.address}</td> 
- 				</tr>
+ 				</tr>				
 			</c:forEach>
 		</tbody>
 

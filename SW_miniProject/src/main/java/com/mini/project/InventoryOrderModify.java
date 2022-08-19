@@ -17,16 +17,16 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@WebServlet("/board/mModify")
-public class miniBoardModify extends HttpServlet {
+@WebServlet("/Admin/Inventory/inventoryOrder")
+public class InventoryOrderModify extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 
-    final Logger logger = LoggerFactory.getLogger(miniBoardModify.class);
+    final Logger logger = LoggerFactory.getLogger(InventoryOrderModify.class);
 
-    logger.info("===== mModify_select Start =====");
+    logger.info("===== inventoryOrder select Start =====");
     resp.setContentType("text/html; charset=UTF-8");
 
     String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
@@ -41,15 +41,11 @@ public class miniBoardModify extends HttpServlet {
 
     String p_id = req.getParameter("p_id");
 
-    String query = "select p_id, p_name, p_price, p_amount from inventory_management "
-        + "where p_id = " + p_id;
+    String query = "select * from inventory_management where p_id = " + p_id;
 
-    logger.info("게시물 수정 내용 보기 실행 쿼리문 : {}", query);
+    logger.info("재고 발주 페이지 내용 보기 실행 쿼리문 : {}", query);
 
     try {
-      // DataSource ds = (DataSource) this.getServletContext().getAttribute("dataSource");
-      // con = ds.getConnection();
-
       Class.forName("org.mariadb.jdbc.Driver");
       con = DriverManager.getConnection(uri, userid, userpw);
 
@@ -66,31 +62,25 @@ public class miniBoardModify extends HttpServlet {
       req.setAttribute("list", map);
       logger.info("list : {}", map);
 
-      RequestDispatcher dispatcher = req.getRequestDispatcher("/board/mModify.jsp");
+      RequestDispatcher dispatcher =
+          req.getRequestDispatcher("/Admin/Inventory/inventoryOrder.jsp");
       dispatcher.forward(req, resp);
 
-      if (rs != null) {
-        rs.close();
-      }
-      if (stmt != null) {
-        stmt.close();
-      }
-      if (con != null) {
-        con.close();
-      }
+      rs.close();
+      stmt.close();
+      con.close();
 
     } catch (Exception e) {
       e.printStackTrace();
     }
-
   }
 
   protected void doPost(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 
-    final Logger logger = LoggerFactory.getLogger(miniBoardModify.class);
+    final Logger logger = LoggerFactory.getLogger(InventoryOrderModify.class);
 
-    logger.info("===== mModify_update start =====");
+    logger.info("===== inventoryOrder update start =====");
 
     req.setCharacterEncoding("UTF-8");
 
@@ -104,11 +94,9 @@ public class miniBoardModify extends HttpServlet {
     String query =
         "update inventory_management set p_amount = '" + p_amount + "' where p_id = " + p_id;
 
-    logger.info("게시물 수정 쿼리문 : {}", query);
+    logger.info("재고 발주 수정 쿼리문 : {}", query);
 
     try {
-      // DataSource ds = (DataSource) this.getServletContext().getAttribute("dataSource");
-      // Connection con = ds.getConnection();
       Class.forName("org.mariadb.jdbc.Driver");
       Connection con = DriverManager.getConnection(uri, userid, userpw);
 
@@ -116,17 +104,13 @@ public class miniBoardModify extends HttpServlet {
       stmt.executeUpdate(query);
       con.commit();
 
-      if (stmt != null)
-        stmt.close();
-      if (con != null)
-        con.close();
+      stmt.close();
+      con.close();
 
-      resp.sendRedirect("/board/inventoryManagement");
+      resp.sendRedirect("/Admin/Inventory/inventory");
 
     } catch (SQLException | ClassNotFoundException e) {
       e.printStackTrace();
     }
-
   }
-
 }

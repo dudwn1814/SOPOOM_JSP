@@ -1,7 +1,6 @@
 package com.mini.project;
 
 import java.io.IOException;
-// import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -20,16 +19,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-@WebServlet(name = "/board/inventoryManagement", urlPatterns = {"/board/inventoryManagement"})
-public class miniBoardList extends HttpServlet {
+@WebServlet("/Admin/Inventory/inventory")
+public class InventoryList extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 
-    final Logger logger = LoggerFactory.getLogger(miniBoardList.class);
+    final Logger logger = LoggerFactory.getLogger(InventoryList.class);
 
-    logger.info("===== inventoryManagement start =====");
+    logger.info("===== inventoryList start =====");
     resp.setContentType("text/html; charset=UTF-8");
 
     Connection con = null;
@@ -43,14 +42,12 @@ public class miniBoardList extends HttpServlet {
     List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
     Map<String, Object> map = null;
 
-    String query = "select p_id, p_name, p_price, p_amount from inventory_management";
+    String query =
+        "select p_id, p_name, FORMAT(p_price, 0) as p_price, p_amount from inventory_management";
 
-    logger.info("게시물 목록 보기 실행 쿼리문 : {}", query);
+    logger.info("재고 목록 보기 실행 쿼리문 : {}", query);
 
     try {
-      // DataSource ds = (DataSource) this.getServletContext().getAttribute("dataSource");
-      // con = ds.getConnection();
-
       Class.forName("org.mariadb.jdbc.Driver");
       con = DriverManager.getConnection(uri, userid, userpw);
 
@@ -58,14 +55,12 @@ public class miniBoardList extends HttpServlet {
       rs = stmt.executeQuery(query);
 
       while (rs.next()) {
-
         map = new HashMap<String, Object>();
         map.put("p_id", rs.getInt("p_id"));
         map.put("p_name", rs.getString("p_name"));
-        map.put("p_price", rs.getInt("p_price"));
+        map.put("p_price", rs.getString("p_price"));
         map.put("p_amount", rs.getInt("p_amount"));
         list.add(map);
-
       }
 
       rs.close();
@@ -74,14 +69,11 @@ public class miniBoardList extends HttpServlet {
 
       logger.info("list : {}", list);
       req.setAttribute("list", list);
-      RequestDispatcher dispatcher = req.getRequestDispatcher("/board/inventoryManagement.jsp");
+      RequestDispatcher dispatcher = req.getRequestDispatcher("/Admin/Inventory/inventory.jsp");
       dispatcher.forward(req, resp);
-
 
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
-
-
 }

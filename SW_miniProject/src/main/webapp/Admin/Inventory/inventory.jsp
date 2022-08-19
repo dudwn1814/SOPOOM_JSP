@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -7,8 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
 <head>
-<script src="http://code.jquery.com/jquery-1.11.3.js"></script>
-
 <title>게시물 목록</title>
 
 <style>
@@ -49,10 +46,6 @@ a:active { color: red; }
       text-align: center;
     }
     .InventoryInfoTable caption{caption-side: top; }
-
-.navi_top {	width: 1350px; text-align: right; }
-.navi_bottom { text-align: center; }
-
 </style>
 
 </head>
@@ -65,16 +58,16 @@ a:active { color: red; }
    			<th>상품 ID</th>
    			<th>상품명</th>
    			<th>가격</th>
-   			<th>개수</th>
+   			<th>수량</th>
   		</tr>
 
  		<tbody>
 			<c:forEach items="${list}" var="list">
  				<tr onMouseover="this.style.background='#46D2D2';" onmouseout="this.style.background='white';">
   					<td>${list.p_id}</td>
-  					<td style="text-align:left;"><a id="hypertext" href="/board/mModify?p_id=${list.p_id}" onMouseover='this.style.textDecoration="underline"'  
+  					<td style="text-align:left;"><a id="hypertext" href="/Admin/Inventory/inventoryOrder?p_id=${list.p_id}" onMouseover='this.style.textDecoration="underline"'  
   							onmouseout="this.style.textDecoration='none';">${list.p_name}</a></td>
-  					<td>${list.p_price}</td>
+  					<td>${list.p_price} \</td>
   					<td>${list.p_amount}</td> 
  				</tr>
 			</c:forEach>

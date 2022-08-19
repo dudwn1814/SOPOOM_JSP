@@ -20,15 +20,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-@WebServlet(name = "/board/memberInfo", urlPatterns = {"/board/memberInfo"})
-public class miniBoardMemberInfoList extends HttpServlet {
+@WebServlet("/Admin/Member/memberInfo")
+public class MemberInfoList extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
 
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 
-    final Logger logger = LoggerFactory.getLogger(miniBoardMemberInfoList.class);
+    final Logger logger = LoggerFactory.getLogger(MemberInfoList.class);
 
     logger.info("===== memberInfo-detail start =====");
     resp.setContentType("text/html; charset=UTF-8");
@@ -48,14 +48,10 @@ public class miniBoardMemberInfoList extends HttpServlet {
 
     logger.info("userid : {}", userid);
 
-    String query = "select userid, username, password, telno, age, address from member "
-        + "where userid = '" + userid + "'";
+    String query = "select * from member where userid = '" + userid + "'";
 
 
     try {
-      // DataSource ds = (DataSource) this.getServletContext().getAttribute("dataSource");
-      // con = ds.getConnection();
-
       Class.forName("org.mariadb.jdbc.Driver");
       con = DriverManager.getConnection(uri, uid, userpw);
 
@@ -72,8 +68,6 @@ public class miniBoardMemberInfoList extends HttpServlet {
         map.put("age", rs.getInt("age"));
         map.put("address", rs.getString("address"));
         list.add(map);
-
-
       }
 
       rs.close();
@@ -82,7 +76,7 @@ public class miniBoardMemberInfoList extends HttpServlet {
 
       logger.info("list : {}", list);
       req.setAttribute("list", list);
-      RequestDispatcher dispatcher = req.getRequestDispatcher("/board/memberInfo.jsp");
+      RequestDispatcher dispatcher = req.getRequestDispatcher("/Admin/Member/memberInfo.jsp");
       dispatcher.forward(req, resp);
 
 

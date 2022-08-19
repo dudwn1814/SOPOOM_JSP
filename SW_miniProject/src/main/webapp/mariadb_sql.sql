@@ -33,13 +33,11 @@ CREATE TABLE shipping (
 	ship_id INT(8) PRIMARY KEY AUTO_INCREMENT,
 	p_id INT(8),  
 	u_id VARCHAR(50),
+	status char(5) default "배송전",
 
 	FOREIGN KEY(p_id) REFERENCES inventory_management(p_id), 
 	FOREIGN KEY(u_id) REFERENCES member(userid)
 );
 
-INSERT INTO shipping VALUES (NULL, '1', 'testID');
+INSERT INTO shipping VALUES (NULL, '1', 'testID', '배송전');
 
-select s.p_id, s.u_id, m.username, m.telno, m.address 
-from shipping s, member m 
-where s.u_id = m.userid;

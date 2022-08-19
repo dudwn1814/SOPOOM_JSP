@@ -20,17 +20,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-@WebServlet(name = "/board/memberManagement", urlPatterns = {"/board/memberManagement"})
-public class miniBoardMemberList extends HttpServlet {
+@WebServlet("/Admin/Member/member")
+public class MemberList extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
 
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 
-    final Logger logger = LoggerFactory.getLogger(miniBoardList.class);
+    final Logger logger = LoggerFactory.getLogger(InventoryList.class);
 
-    logger.info("===== memberManagement start =====");
+    logger.info("===== memberList start =====");
     resp.setContentType("text/html; charset=UTF-8");
 
     Connection con = null;
@@ -46,12 +46,9 @@ public class miniBoardMemberList extends HttpServlet {
 
     String query = "select * from member";
 
-    logger.info("게시물 목록 보기 실행 쿼리문 : {}", query);
+    logger.info("회원 목록 보기 실행 쿼리문 : {}", query);
 
     try {
-      // DataSource ds = (DataSource) this.getServletContext().getAttribute("dataSource");
-      // con = ds.getConnection();
-
       Class.forName("org.mariadb.jdbc.Driver");
       con = DriverManager.getConnection(uri, userid, userpw);
 
@@ -60,16 +57,11 @@ public class miniBoardMemberList extends HttpServlet {
 
       while (rs.next()) {
 
-	  map = new HashMap<String, Object>();
-      map.put("userid", rs.getString("userid"));
-      map.put("username", rs.getString("username"));
-      map.put("password", rs.getString("password"));
-      map.put("telno", rs.getString("telno"));
-      map.put("age", rs.getInt("age"));
-      map.put("address", rs.getString("address"));
-      list.add(map);
-
-
+        map = new HashMap<String, Object>();
+        map.put("userid", rs.getString("userid"));
+        map.put("username", rs.getString("username"));
+        map.put("telno", rs.getString("telno"));
+        list.add(map);
       }
 
       rs.close();
@@ -78,7 +70,7 @@ public class miniBoardMemberList extends HttpServlet {
 
       logger.info("list : {}", list);
       req.setAttribute("list", list);
-      RequestDispatcher dispatcher = req.getRequestDispatcher("/board/memberManagement.jsp");
+      RequestDispatcher dispatcher = req.getRequestDispatcher("/Admin/Member/member.jsp");
       dispatcher.forward(req, resp);
 
 
