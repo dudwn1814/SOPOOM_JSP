@@ -16,7 +16,7 @@ public class ApplicationConfig implements ServletContextListener {
    * 
    * HikariConfig hikariConfig = new HikariConfig();
    * 
-   * hikariConfig.setUsername("webmaster"); hikariConfig.setPassword("1234");
+   * hikariConfig.setUsername("root"); hikariConfig.setPassword("1234");
    * hikariConfig.setJdbcUrl("jdbc:mariadb://127.0.0.1:3306/webdev");
    * hikariConfig.setConnectionTestQuery("select now() from dual");
    * hikariConfig.setMaximumPoolSize(10); // Connection Pool에서 갖고있을 Connection의 갯수

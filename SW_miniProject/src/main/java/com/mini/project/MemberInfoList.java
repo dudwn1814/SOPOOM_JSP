@@ -34,8 +34,8 @@ public class MemberInfoList extends HttpServlet {
     resp.setContentType("text/html; charset=UTF-8");
 
     Connection con = null;
-    Statement stmt = null;
-    ResultSet rs = null;
+    Statement stmt1 = null;
+    ResultSet rs1 = null;
 
     String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
     String uid = "root";
@@ -48,30 +48,30 @@ public class MemberInfoList extends HttpServlet {
 
     logger.info("userid : {}", userid);
 
-    String query = "select * from member where userid = '" + userid + "'";
+    String query1 = "select * from member where userid = '" + userid + "'";
 
 
     try {
       Class.forName("org.mariadb.jdbc.Driver");
       con = DriverManager.getConnection(uri, uid, userpw);
 
-      stmt = con.createStatement();
-      rs = stmt.executeQuery(query);
+      stmt1 = con.createStatement();
+      rs1 = stmt1.executeQuery(query1);
 
-      while (rs.next()) {
+      while (rs1.next()) {
 
         map = new HashMap<String, Object>();
-        map.put("userid", rs.getString("userid"));
-        map.put("username", rs.getString("username"));
-        map.put("password", rs.getString("password"));
-        map.put("telno", rs.getString("telno"));
-        map.put("age", rs.getInt("age"));
-        map.put("address", rs.getString("address"));
+        map.put("userid", rs1.getString("userid"));
+        map.put("username", rs1.getString("username"));
+        map.put("password", rs1.getString("password"));
+        map.put("telno", rs1.getString("telno"));
+        map.put("age", rs1.getInt("age"));
+        map.put("address", rs1.getString("address"));
         list.add(map);
       }
 
-      rs.close();
-      stmt.close();
+      rs1.close();
+      stmt1.close();
       con.close();
 
       logger.info("list : {}", list);

@@ -42,6 +42,21 @@ h1 { font-family: "HY견고딕" }
       text-align: center;
     }
     .InventoryInfoTable caption{caption-side: top; }
+    
+    .bottom_menu { margin-top: 20px; }
+
+	.bottom_menu > a:link, .bottom_menu > a:visited {
+				background-color: #FFA500;
+				color: maroon;
+				padding: 15px 25px;
+				text-align: center;	
+				display: inline-block;
+				text-decoration : none; 
+	}
+	.bottom_menu > a:hover, .bottom_menu > a:active { 
+		background-color: #1E90FF;
+		text-decoration : none; 
+}
 
 </style>
 
@@ -74,6 +89,13 @@ h1 { font-family: "HY견고딕" }
 		</tbody>
 
 	</table>
+
+
+<div class="bottom_menu">
+	<a href="edit_memberInfo.jsp">회원정보 수정</a>&nbsp;&nbsp;
+	<a href="delete_memberInfo.jsp">회원 강제 탈퇴</a>&nbsp;&nbsp;
 </div>
+</div>
+	
 </body>
 </html>
