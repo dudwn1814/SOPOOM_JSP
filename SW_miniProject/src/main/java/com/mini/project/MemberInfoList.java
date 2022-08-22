@@ -20,61 +20,63 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-@WebServlet(name = "inventoryManagement", urlPatterns = {"/board/inventoryManagement"})
-public class miniBoardList extends HttpServlet {
+@WebServlet("/Admin/Member/memberInfo")
+public class MemberInfoList extends HttpServlet {
+
   private static final long serialVersionUID = 1L;
 
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 
-    final Logger logger = LoggerFactory.getLogger(miniBoardList.class);
+    final Logger logger = LoggerFactory.getLogger(MemberInfoList.class);
 
-    logger.info("===== inventoryManagement start =====");
+    logger.info("===== memberInfo-detail start =====");
     resp.setContentType("text/html; charset=UTF-8");
 
     Connection con = null;
-    Statement stmt = null;
-    ResultSet rs = null;
+    Statement stmt1 = null;
+    ResultSet rs1 = null;
 
     String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
-    String userid = "webmaster";
+    String uid = "root";
     String userpw = "1234";
 
     List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
     Map<String, Object> map = null;
 
-    String query = "select p_id, p_name, p_price, p_amount from inventory_management";
+    String userid = req.getParameter("userid");
 
-    logger.info("게시물 목록 보기 실행 쿼리문 : {}", query);
+    logger.info("userid : {}", userid);
+
+    String query1 = "select * from member where userid = '" + userid + "'";
+
 
     try {
-      // DataSource ds = (DataSource) this.getServletContext().getAttribute("dataSource");
-      // con = ds.getConnection();
-
       Class.forName("org.mariadb.jdbc.Driver");
-      con = DriverManager.getConnection(uri, userid, userpw);
+      con = DriverManager.getConnection(uri, uid, userpw);
 
-      stmt = con.createStatement();
-      rs = stmt.executeQuery(query);
+      stmt1 = con.createStatement();
+      rs1 = stmt1.executeQuery(query1);
 
-      while (rs.next()) {
+      while (rs1.next()) {
 
         map = new HashMap<String, Object>();
-        map.put("p_id", rs.getInt("p_id"));
-        map.put("p_name", rs.getString("p_name"));
-        map.put("p_price", rs.getInt("p_price"));
-        map.put("p_amount", rs.getInt("p_amount"));
+        map.put("userid", rs1.getString("userid"));
+        map.put("username", rs1.getString("username"));
+        map.put("password", rs1.getString("password"));
+        map.put("telno", rs1.getString("telno"));
+        map.put("age", rs1.getInt("age"));
+        map.put("address", rs1.getString("address"));
         list.add(map);
-
       }
 
-      rs.close();
-      stmt.close();
+      rs1.close();
+      stmt1.close();
       con.close();
 
       logger.info("list : {}", list);
       req.setAttribute("list", list);
-      RequestDispatcher dispatcher = req.getRequestDispatcher("/board/inventoryManagement.jsp");
+      RequestDispatcher dispatcher = req.getRequestDispatcher("/Admin/Member/memberInfo.jsp");
       dispatcher.forward(req, resp);
 
 
