@@ -12,7 +12,7 @@ function register(){
 	
 		if($("#p_name").val()=="") { alert("상품명을 입력하세요!!!"); $("#p_name").focus(); return false;  }
 		if($("#p_price").val()=="") { alert("가격을 입력하세요!!!");  $("#p_price").focus(); return false;  }
-		if($("#p_amount").val()=="") { alert("수량을 입력하세요!!!");  $("#p_amount").focus(); return false;  }
+		if($("#p_amount").val() <= 0) { alert("수량을 입력하세요!!!");  $("#p_amount").focus(); return false;  }
 		
 		$('#WriteForm').attr('action', '/Admin/Product/productReg').submit();
 }

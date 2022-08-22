@@ -6,6 +6,16 @@
 <script>
 
 	$(document).ready(function(){
+		
+		$("#telno").keypress(function(){
+			if ((event.keyCode < 48) || (event.keyCode > 57))	event.returnValue = false;
+		});
+		
+		
+		$("#telno").keyup(function(){
+			$(this).val( $(this).val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") );
+		});
+		
 		$("#btn_register").click(function(){
 			console.log($("id_chk".val));
 			//아이디
@@ -79,14 +89,14 @@
 		 	var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 		 	
 		 	if($("#email").val() == '') {
-		 		$("msg_email").text("이메일주소를 입력하세요."); 
+		 		$("#msg_email").text("이메일주소를 입력하세요."); 
 		 		$("#msg_email").css('display', 'block'); 
 		 		$("#email").focus();
 		 		return false;
 		 	}
 		 	
 		 	else if (!regEmail.test(eMail)) {
-		 		$("msg_email").text("이메일 형식이 올바르지 않습니다.");
+		 		$("#msg_email").text("이메일 형식이 올바르지 않습니다.");
 		 		$("#msg_email").css('display', 'block');
 		 		$("#email").focus();
 		 		return false;
@@ -153,10 +163,6 @@
         }).open();
     }
     
-	function onlyNumber() {
-    	if ((event.keyCode < 48) || (event.keyCode > 57))	event.returnValue = false;
-    	}
-    
     function validCheck(){
 	   	var idInput = document.getElementById("id");
 	   	if(idInput.value == ''){
@@ -178,7 +184,7 @@
 #joinForm{
 	border: 1px solid black;
 	width:600px;
-	align:center;
+	margin:auto;
 }
 
 .field{
@@ -252,7 +258,7 @@
 			<tr>
 			<tr><td class="field">전화번호</td>
 			<td>
-				<input type="text" id="telno" name="telno" maxlength="11" onkeypress="onlyNumber();" />
+				<input type="text" id="telno" name="telno" maxlength="13"  />
 				<div id="msg_telno" class="msg">전화번호를 입력해주세요.</div>
 			</td></tr>
 			<tr><td class="field">이메일</td>

@@ -1,3 +1,4 @@
+<%@page import="java.sql.*"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -5,8 +6,53 @@
 
 <%
 	//user 정보 받아오기
-	//String userid = (String)session.getAttribute("userid");	
-	String userid =  "noori";
+	//String userid = (String)session.getAttribute("userid");
+	String userid = "dudwn1814";
+	String userName = "";
+	String userTelno = "";
+	String userMail = "";
+	String postCode = "";
+	String address = "";
+	String detailAddress = "";
+	String extraAddress = "";
+
+
+	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
+	String user = "root";
+	String pwd = "1234";
+	
+	Connection con = null;
+	Statement stmt = null;
+	ResultSet rs = null;
+	
+	try{
+		
+		Class.forName("org.mariadb.jdbc.Driver");
+		con = DriverManager.getConnection(url, user, pwd);
+		
+		//존재하는 아이디인지 확인
+		String query = "select * from user where userID='"+userid+"'";
+		
+		stmt = con.createStatement();
+		
+		rs = stmt.executeQuery(query);
+		
+		while(rs.next()){
+			userName = rs.getString("username");
+			userTelno = rs.getString("telno");
+			userMail = rs.getString("email");
+			postCode = rs.getString("postcode");
+			address = rs.getString("address");
+			detailAddress = rs.getString("detailAddress");
+			extraAddress = rs.getString("extraAddress");
+		}		
+	} catch(Exception e){
+		e.printStackTrace();
+	} finally{
+		stmt.close();
+		rs.close();
+		con.close();
+	}
 	
 	if(userid == null){
 		%>
@@ -17,20 +63,13 @@
 		<%
 	}
 	
-	String userName = "김누리";
-	String userTelno = "01000000000";
-	String userMail = "giants@giants.giants";
-	String postCode = "55555";
-	String address = "서울특별시 용산구";
-	String detailAddress = "어쩌구 동 어쩌구 호";
-	String extraAddress = "";
-	
 	//상품정보 받아오기
 	DecimalFormat df = new DecimalFormat("###,###");
 	
 	String pName = "상품명";
 	int intPrice = 1000;
 	String strPrice = df.format(intPrice);
+	
 	String strCount = "1";
 	int count = Integer.parseInt(strCount);
 	int pTotal =  intPrice * count;
@@ -38,9 +77,12 @@
 	
 	int total = 0;
 	total += pTotal;
-	String strTotal = df.format(pTotal);
 	
-	session.setAttribute("totalPrice", strPrice);
+	String strTotal = df.format(total);
+	
+	System.out.println(total);
+	//request.setAttribute("totalPrice", total);
+	session.setAttribute("strTotal", strTotal);
 %>
 
 
@@ -68,6 +110,16 @@
 			}
 			
 		});		
+		
+		$("#telno").keypress(function(){
+			if ((event.keyCode < 48) || (event.keyCode > 57))	event.returnValue = false;
+		});
+		
+		
+		$("#telno").keyup(function(){
+			$(this).val( $(this).val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") );
+		});
+		
 		
 		$("#btn_purchase").click(function(){
 			
@@ -141,10 +193,6 @@ function execDaumPostcode() {
         }
     }).open();
 }
-
-function onlyNumber() {
-	if ((event.keyCode < 48) || (event.keyCode > 57))	event.returnValue = false;
-	}
 </script>
 
 <style>
@@ -201,7 +249,7 @@ form{
 
 
 
-#totalPrice{
+#strTotal{
 	font-size : 2em;
 	font-weight : bold;
 }
@@ -258,7 +306,8 @@ form{
 		</tr>
 			<tr><td class="field">전화번호</td>
 			<td>
-				<input type="text" id="telno" name="telno" maxlength="11" onkeypress="onlyNumber();" value="<%=userTelno %>" />
+				<input type="text" id="telno" name="telno" maxlength="13" value="<%=userTelno %>" />
+				
 				<div id="msg_telno" class="msg">전화번호를 입력해주세요.</div>
 			</td>
 			</tr>
@@ -267,7 +316,8 @@ form{
 	
 	<div>
 	<h3 class="label">최종 결제 금액</h3>
-	<span id="totalPrice" name="totalPrice"><%=strTotal %></span> 원
+	<span id="strTotal"><%=strTotal %></span> 원
+	<input type="hidden" name="totalPrice" value="<%=total %>" />
 	</div>
 	<br>
 	
