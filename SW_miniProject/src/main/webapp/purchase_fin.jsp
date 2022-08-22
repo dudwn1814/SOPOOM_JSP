@@ -42,7 +42,7 @@ String orderCode = (String)session.getAttribute("orderCode");
 	<tr class="label"><td>주문 번호</td></tr>
 	<tr><td><%=orderCode %></td></tr>
 	<tr class="label"><td>입금 계좌</td></tr>
-	<tr><td>새싹은행 000000-00-000000 (예금주 : 소품샵 )</td></tr>
+	<tr><td>새싹은행 000000-00-000000 (예금주 : 소품샵)</td></tr>
 	<tr class="label"><td>결제 금액</td></tr>
 	<tr><td><%=totalPrice %> 원</td></tr>
 	</table>
