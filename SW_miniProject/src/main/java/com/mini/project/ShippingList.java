@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 @WebServlet("/Admin/Shipping/shipping")
 public class ShippingList extends HttpServlet {
   private static final long serialVersionUID = 1L;
@@ -27,7 +27,7 @@ public class ShippingList extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 
-    final Logger logger = LoggerFactory.getLogger(InventoryList.class);
+    final Logger logger = LoggerFactory.getLogger(ShippingList.class);
 
     logger.info("===== shippin gManagement start =====");
     resp.setContentType("text/html; charset=UTF-8");
@@ -44,7 +44,7 @@ public class ShippingList extends HttpServlet {
     Map<String, Object> map = null;
 
     String query =
-        "select s.p_id, s.u_id, m.username, m.telno, m.address, s.status from shipping s, member m "
+        "select s.ship_id, s.p_id, s.u_id, m.username, m.telno, m.address, s.status from shipping s, member m "
             + "where s.u_id = m.userid";
 
     logger.info("배송 관리 실행 쿼리문 : {}", query);
@@ -59,6 +59,7 @@ public class ShippingList extends HttpServlet {
       while (rs.next()) {
 
         map = new HashMap<String, Object>();
+        map.put("ship_id", rs.getInt("ship_id"));
         map.put("p_id", rs.getInt("p_id"));
         map.put("u_id", rs.getString("u_id"));
         map.put("username", rs.getString("username"));
@@ -79,6 +80,45 @@ public class ShippingList extends HttpServlet {
 
 
     } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
+
+    final Logger logger = LoggerFactory.getLogger(ShippingList.class);
+
+    logger.info("===== shipping status update start =====");
+
+    req.setCharacterEncoding("UTF-8");
+
+    String ship_id = req.getParameter("ship_id");
+    logger.info("===== ship_id ===== : " + ship_id);
+    String status = req.getParameter("statusSelect");
+
+    String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
+    String userid = "root";
+    String userpw = "1234";
+
+    String query = "update shipping set status = '" + status + "' where ship_id = " + ship_id;
+
+    logger.info("배송상태 수정 쿼리문 : {}", query);
+
+    try {
+      Class.forName("org.mariadb.jdbc.Driver");
+      Connection con = DriverManager.getConnection(uri, userid, userpw);
+
+      Statement stmt = con.createStatement();
+      stmt.executeUpdate(query);
+      con.commit();
+
+      stmt.close();
+      con.close();
+
+      resp.sendRedirect("/Admin/Shipping/shipping");
+
+    } catch (SQLException | ClassNotFoundException e) {
       e.printStackTrace();
     }
   }

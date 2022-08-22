@@ -27,24 +27,31 @@ function register(){
       </div>
    </div>
    <div class="container">
-      <form id="WriteForm" class="form-horizontal" method="POST">
+      <form id="WriteForm" class="form-horizontal" method="POST" enctype="multipart/form-data">
+      
+      	<div class="form-group row">
+            <label class="col-sm-3"> * 상품 이미지 </label>
+            <div class="col-sm-3">
+               <input type="file" name="uploadFile">
+            </div>
+         </div>
 
          <div class="form-group row">
-            <label class="col-sm-2"> * 상품명 </label>
+            <label class="col-sm-3"> * 상품명 </label>
             <div class="col-sm-3">
                <input type="text" id="p_name" name="p_name" placeholder="여기에 이름을 입력하세요" class="form-control">
             </div>
          </div>
          
          <div class="form-group row">
-            <label class="col-sm-2">* 가격(숫자)</label>
+            <label class="col-sm-3">* 가격(숫자) </label>
             <div class="col-sm3">
               <input type="text" id="p_price" name="p_price" placeholder="여기에 가격을 입력하세요" class="form-control">
             </div>
          </div>
          
          <div class="form-group row">
-            <label class="col-sm-2">* 수량(숫자)</label>
+            <label class="col-sm-3">* 수량(숫자) </label>
             <div class="col-sm3">
               <input type="number" id="p_amount" name="p_amount" class="form-control"></input>
             </div>

@@ -63,6 +63,9 @@ h1 { font-family: "HY견고딕" }
 </head>
 
 <body>
+
+<%String userID = request.getParameter("userid"); %>
+
 <div class="tableDiv">
 	<h1>회원 정보</h1>
 	<table class="InventoryInfoTable">
@@ -76,8 +79,8 @@ h1 { font-family: "HY견고딕" }
   		</tr>
 
  		<tbody>
-			<c:forEach items="${list}" var="list">
- 				<tr>
+			<c:forEach items="${list}" var="list">			
+			<tr>
   					<td>${list.userid}</td>
   					<td>${list.username}</td> 
   					<td>${list.password}</td> 
@@ -93,7 +96,7 @@ h1 { font-family: "HY견고딕" }
 
 <div class="bottom_menu">
 	<a href="edit_memberInfo.jsp">회원정보 수정</a>&nbsp;&nbsp;
-	<a href="delete_memberInfo.jsp">회원 강제 탈퇴</a>&nbsp;&nbsp;
+	<a href="delete_memberInfo.jsp?userid=<%=userID%>">회원 강제 탈퇴</a>&nbsp;&nbsp;
 </div>
 </div>
 	

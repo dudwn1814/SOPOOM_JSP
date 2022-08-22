@@ -15,6 +15,12 @@ $(document).ready(function(){
 		$("#ModifyForm").attr("action", "/Admin/Inventory/inventoryOrder?p_id=${list.p_id}").submit();
 	
 	})
+	
+	$("#btn_delete").click(function(){
+		
+		$("#ModifyForm").attr("action", "/Admin/Inventory/inventoryDelete?p_id=${list.p_id}").submit();
+	
+	})
 
 })
 
@@ -34,7 +40,7 @@ h1 { font-family: "HY견고딕" }
   border-radius: 30px;
 }
 
-.p_id, .p_name, .p_price, .p_amount {
+.p_id, .p_name, .p_price, .p_amount, .p_image {
   width: 90%;
   border:none;
   border-bottom: 2px solid #adadad;
@@ -47,7 +53,7 @@ h1 { font-family: "HY견고딕" }
   background: none;
 }
 
-.btn_modify  {
+.btn_modify, .btn_delete {
   position:relative;
   left:20%;
   transform: translateX(-50%);
@@ -74,14 +80,15 @@ h1 { font-family: "HY견고딕" }
 	<br>
 
 <form id="ModifyForm" class="ModifyForm" method="POST">
-
+		<div class="p_image">상품이미지 : ${list.filename}</div>
 		<div class="p_id">상품번호 : ${list.p_id}</div>
 		<div class="p_name">상품이름 : ${list.p_name}</div>
-		<div class="p_price">상품가격 : ${list.p_price}</div>
+		<div class="p_price">상품가격 : ${list.p_price} \</div>
 		<div class="p_amount">상품수량 :  
 				 <input type="number" id="p_amount" name='p_amount' value=${list.p_amount}>
 		</div>
 	<button id="btn_modify" class="btn_modify">수정</button>
+	<button id="btn_delete" class="btn_delete">삭제</button>
 </form>
 
 </body>

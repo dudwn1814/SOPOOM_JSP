@@ -1,7 +1,5 @@
 <%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
@@ -10,10 +8,8 @@
 <title>회원 강제 탈퇴</title>
 </head>
 <body>
-회원 강제 탈퇴
 
 <%
-
 	String userid = request.getParameter("userid");
 
 	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
@@ -21,11 +17,9 @@
 	String pwd = "1234";
 	
 	Connection con = null;
-	
 	Statement stmt = null;
-	ResultSet rs = null;
 		
-	String query = "delete from member where userid = " + userid;
+	String query = "delete from member where userid = '" + userid + "'";
 	
 	try{
 		
@@ -34,13 +28,13 @@
 	
 		stmt = con.createStatement();
 		stmt.executeUpdate(query);
-
+		
 		stmt.close();
 		con.close();
 %>
 		<script>
-			alert("탈퇴처리가 완료 되었습니다.");
-			document.location.href='member.jsp';
+			alert("<%=userid %>의 탈퇴처리가 완료 되었습니다.");
+			document.location.href='member';
 		</script>
 		
 <% 

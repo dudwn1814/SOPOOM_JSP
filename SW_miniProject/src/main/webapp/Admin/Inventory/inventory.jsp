@@ -67,7 +67,7 @@ a:active { color: red; }
   					<td>${list.p_id}</td>
   					<td style="text-align:center;"><a id="hypertext" href="/Admin/Inventory/inventoryOrder?p_id=${list.p_id}" onMouseover='this.style.textDecoration="underline"'  
   							onmouseout="this.style.textDecoration='none';">${list.p_name}</a></td>
-  					<td>${list.p_price} \</td>
+  					<td style="text-align:right;">${list.p_price} \</td>
   					<td>${list.p_amount}</td> 
  				</tr>
 			</c:forEach>

@@ -57,6 +57,7 @@ public class InventoryOrderModify extends HttpServlet {
         map.put("p_name", rs.getString("p_name"));
         map.put("p_price", rs.getInt("p_price"));
         map.put("p_amount", rs.getInt("p_amount"));
+        map.put("filename", rs.getString("filename"));
       }
 
       req.setAttribute("list", map);

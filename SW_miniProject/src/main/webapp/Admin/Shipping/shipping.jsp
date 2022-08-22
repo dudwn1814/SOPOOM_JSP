@@ -9,6 +9,25 @@
 <head>
 <script src="http://code.jquery.com/jquery-1.11.3.js"></script>
 
+<script>
+$(document).ready(function(){
+	var ship_id = "";
+	
+	//확인용
+	$("#statusSelect").change(function(){
+		ship_id = $("#tr").find("td:eq(0)").text();
+		alert(this.value + " " + ship_id);
+	})
+
+	$("#statusBtn").click(function(){
+		$("#statusForm").attr("action", "/Admin/Shipping/shipping?ship_id="+ship_id).submit();
+	})
+		
+})	
+	
+
+</script>
+
 <title>배송관리 페이지</title>
 
 <style>
@@ -53,8 +72,9 @@ h1 { font-family: "HY견고딕" }
 <body>
 <div class="tableDiv">
 	<h1>배송관리</h1>
-	<table class="InventoryInfoTable">
+	<table class="InventoryInfoTable" id="InventoryInfoTable">
   		<tr>
+  			<th>배송 아이디</th>
   			<th>주문상품 아이디</th>
    			<th>주문자 ID</th>
    			<th>주문자 이름</th>
@@ -65,13 +85,25 @@ h1 { font-family: "HY견고딕" }
 
  		<tbody>
 			<c:forEach items="${list}" var="list">
- 				<tr>
+ 				<tr id="tr">
+ 					<td>${list.ship_id}</td>
   					<td>${list.p_id}</td>
 					<td>${list.u_id}</td>
   					<td>${list.username}</td>
   					<td>${list.telno}</td> 
   					<td>${list.address}</td> 
-  					<td>${list.status}</td> 
+  					<td>
+  						<form name="statusForm" id="statusForm" method="post">
+						  <select id="statusSelect" name="statusSelect" class="statusSelect">
+						    <option value="none" disabled selected>${list.status}</option>
+						    <option value="배송전">배송전</option>
+						    <option value="배송중">배송중</option>
+						    <option value="배송완료">배송완료</option>
+						    <option value="배송취소">배송취소</option>
+						  </select>
+						</form>
+  					</td> 
+  					<td><input type="button" name="statusBtn" id="statusBtn" value="변경"/><td>
  				</tr>
 			</c:forEach>
 		</tbody>

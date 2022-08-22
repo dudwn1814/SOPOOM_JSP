@@ -5,10 +5,13 @@ create table inventory_management (
 	p_id int(8) auto_increment primary key,
 	p_name varchar(20) not null,
 	p_price int(10) UNSIGNED not null,
-	p_amount smallint(5) UNSIGNED not null
+	p_amount smallint(5) UNSIGNED not null,
+	filename varchar(50),
+	filesize int(100) UNSIGNED
 )
 
-INSERT INTO inventory_management VALUES(null, '조명', 50000, 3);
+INSERT INTO inventory_management(p_id, p_name, p_price, p_amount) VALUES(null, '조명', 50000, 3);
+
 
 -- 회원 테이블
 CREATE TABLE member (
