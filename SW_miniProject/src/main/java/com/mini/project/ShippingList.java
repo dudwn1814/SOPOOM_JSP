@@ -44,8 +44,8 @@ public class ShippingList extends HttpServlet {
     Map<String, Object> map = null;
 
     String query =
-        "select s.ship_id, s.p_id, s.u_id, m.username, m.telno, m.address, s.status from shipping s, member m "
-            + "where s.u_id = m.userid";
+        "select s.ship_id, s.p_id, s.u_id, u.username, u.telno, u.address, s.status from shipping s, user u "
+            + "where s.u_id = u.userID";
 
     logger.info("배송 관리 실행 쿼리문 : {}", query);
 

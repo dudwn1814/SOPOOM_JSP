@@ -74,8 +74,8 @@ h1 { font-family: "HY견고딕" }
    			<th>회원명</th>
    			<th>비밀번호</th>
    			<th>전화번호</th>
-   			<th>나이</th>
    			<th>주소</th>
+   			<th>세부주소</th>
   		</tr>
 
  		<tbody>
@@ -85,8 +85,8 @@ h1 { font-family: "HY견고딕" }
   					<td>${list.username}</td> 
   					<td>${list.password}</td> 
   					<td>${list.telno}</td> 
-  					<td>${list.age}</td>
-  					<td>${list.address}</td> 
+  					<td>${list.address}</td>
+  					<td>${list.detailAddress}</td> 
  				</tr>
 			</c:forEach>
 		</tbody>

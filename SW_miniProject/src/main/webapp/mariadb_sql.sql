@@ -14,22 +14,18 @@ INSERT INTO inventory_management(p_id, p_name, p_price, p_amount) VALUES(null, '
 
 
 -- 회원 테이블
-CREATE TABLE member (
-	userid VARCHAR(50) NOT NULL COLLATE 'utf8mb4_general_ci',
-	username VARCHAR(200) NOT NULL COLLATE 'utf8mb4_general_ci',
-	password VARCHAR(200) NOT NULL COLLATE 'utf8mb4_general_ci',
-	telno VARCHAR(20) NOT NULL COLLATE 'utf8mb4_general_ci',
-	age INT(11) NULL DEFAULT NULL,
-	address VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+CREATE TABLE user(
+	userID VARCHAR(50) NOT NULL PRIMARY KEY,
+	password VARCHAR(200) NOT NULL,
+	username VARCHAR(200) NOT NULL,
+	postcode VARCHAR(20) NOT NULL,
+	address VARCHAR(50),
+	detailAddress VARCHAR(50) NOT NULL,
+	extraAddress VARCHAR(50),
+	telno VARCHAR(20) NOT NULL,
+	email VARCHAR(50) NOT NULL
+);
 
-	PRIMARY KEY (`userid`) USING BTREE
-)
-
-COLLATE='utf8mb4_general_ci'
-ENGINE=InnoDB
-;
-
-INSERT INTO member VALUES ('testId', 'testName', 'PASSWORD!','01022225555', 13, '서울시');
 
 -- 배송 테이블
 CREATE TABLE shipping (
@@ -43,4 +39,5 @@ CREATE TABLE shipping (
 );
 
 INSERT INTO shipping VALUES (NULL, '1', 'testID', '배송전');
+
 

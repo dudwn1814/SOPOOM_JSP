@@ -5,10 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
 <head>
+
 <title>미니프로젝트</title>
 </head>
 <body>
-
+<%@include file="top.jsp"%>
 <h1>미니프로젝트</h1><br><br>
 <h3>관리자 페이지</h3>
 <ul>
@@ -18,5 +19,7 @@
 	<li><a href="/Admin/Shipping/shipping">배송관리</a></li>
 </ul>
 <hr><br>
+<%@include file="footer.jsp"%>
+
 </body>
 </html>
