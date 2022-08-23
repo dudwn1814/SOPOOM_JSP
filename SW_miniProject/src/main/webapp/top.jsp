@@ -14,7 +14,7 @@ if (session_id == null){
 else if(session_id.equals("admin")){
 	innerTbl ="<td align='center'><b><a href=/index.jsp>홈</a></b></td>"
 	    	 + "<td align='center'><b><a href=logout.jsp>로그아웃</a></b></td>"
-			 + "<td align='center'><b><a href=products.jsp'>전체상품</a></b></td>"
+			 + "<td align='center'><b><a href=products.jsp>전체상품</a></b></td>"
 	 		 + "<td align='center'><b><a href='/Admin/Product/productReg'>상품등록</a></b></td>"
 			 + "<td align='center'><b><a href='/Admin/Inventory/inventory'>재고관리</a></b></td>"
 	 		 + "<td align='center'><b><a href='/Admin/Member/member'>회원관리</a></b></td>"
