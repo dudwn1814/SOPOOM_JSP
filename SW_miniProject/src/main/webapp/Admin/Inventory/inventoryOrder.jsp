@@ -75,7 +75,7 @@ h1 { font-family: "HY견고딕" }
 
 </head>   
 <body>
-
+	<%@include file="/top.jsp"%>
 	<h1>발주 페이지</h1>
 	<br>
 
@@ -90,6 +90,6 @@ h1 { font-family: "HY견고딕" }
 	<button id="btn_modify" class="btn_modify">수정</button>
 	<button id="btn_delete" class="btn_delete">삭제</button>
 </form>
-
+<%@include file="/footer.jsp"%>
 </body>
 </html>

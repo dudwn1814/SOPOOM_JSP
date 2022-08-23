@@ -63,7 +63,7 @@ h1 { font-family: "HY견고딕" }
 </head>
 
 <body>
-
+	<%@include file="/top.jsp"%>
 <%String userID = request.getParameter("userid"); %>
 
 <div class="tableDiv">
@@ -99,6 +99,6 @@ h1 { font-family: "HY견고딕" }
 	<a href="delete_memberInfo.jsp?userid=<%=userID%>">회원 강제 탈퇴</a>&nbsp;&nbsp;
 </div>
 </div>
-	
+	<%@include file="/footer.jsp"%>
 </body>
 </html>

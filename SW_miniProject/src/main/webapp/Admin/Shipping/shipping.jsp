@@ -70,6 +70,7 @@ h1 { font-family: "HY견고딕" }
 </head>
 
 <body>
+	<%@include file="/top.jsp"%>
 <div class="tableDiv">
 	<h1>배송관리</h1>
 	<table class="InventoryInfoTable" id="InventoryInfoTable">
@@ -110,5 +111,6 @@ h1 { font-family: "HY견고딕" }
 
 	</table>
 </div>
+<%@include file="/footer.jsp"%>
 </body>
 </html>

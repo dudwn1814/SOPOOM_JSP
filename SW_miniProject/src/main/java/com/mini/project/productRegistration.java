@@ -35,6 +35,8 @@ public class productRegistration extends HttpServlet {
 
     logger.info("===== product registration start =====");
 
+    System.out.println("test");
+
     req.setCharacterEncoding("UTF-8");
 
     Connection con = null;

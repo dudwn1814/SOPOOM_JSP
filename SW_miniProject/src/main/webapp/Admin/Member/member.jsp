@@ -56,7 +56,7 @@ a:active { color: red; }
 </head>
 
 <body>
-
+	<%@include file="/top.jsp"%>
 <%
 	int idx = 1;
 %>
@@ -85,5 +85,6 @@ a:active { color: red; }
 
 	</table>
 </div>
+<%@include file="/footer.jsp"%>
 </body>
 </html>

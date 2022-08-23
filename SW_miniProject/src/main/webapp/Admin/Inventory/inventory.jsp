@@ -51,6 +51,7 @@ a:active { color: red; }
 </head>
 
 <body>
+	<%@include file="/top.jsp"%>
 <div class="tableDiv">
 	<h1>상품 재고</h1>
 	<table class="InventoryInfoTable">
@@ -75,5 +76,6 @@ a:active { color: red; }
 
 	</table>
 </div>
+<%@include file="/footer.jsp"%>
 </body>
 </html>
