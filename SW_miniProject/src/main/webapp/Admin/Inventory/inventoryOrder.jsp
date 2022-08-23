@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>게시물 수정</title>
+<title>발주 페이지</title>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
