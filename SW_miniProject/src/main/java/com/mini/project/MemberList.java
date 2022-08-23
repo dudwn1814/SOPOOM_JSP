@@ -44,7 +44,7 @@ public class MemberList extends HttpServlet {
     List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
     Map<String, Object> map = null;
 
-    String query = "select * from member";
+    String query = "select * from user";
 
     logger.info("회원 목록 보기 실행 쿼리문 : {}", query);
 
@@ -58,7 +58,7 @@ public class MemberList extends HttpServlet {
       while (rs.next()) {
 
         map = new HashMap<String, Object>();
-        map.put("userid", rs.getString("userid"));
+        map.put("userid", rs.getString("userID"));
         map.put("username", rs.getString("username"));
         map.put("telno", rs.getString("telno"));
         list.add(map);

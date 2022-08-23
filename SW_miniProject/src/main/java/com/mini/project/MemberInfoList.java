@@ -48,7 +48,7 @@ public class MemberInfoList extends HttpServlet {
 
     logger.info("userid : {}", userid);
 
-    String query1 = "select * from member where userid = '" + userid + "'";
+    String query1 = "select * from user where userID = '" + userid + "'";
 
 
     try {
@@ -61,12 +61,12 @@ public class MemberInfoList extends HttpServlet {
       while (rs1.next()) {
 
         map = new HashMap<String, Object>();
-        map.put("userid", rs1.getString("userid"));
+        map.put("userid", rs1.getString("userID"));
         map.put("username", rs1.getString("username"));
         map.put("password", rs1.getString("password"));
         map.put("telno", rs1.getString("telno"));
-        map.put("age", rs1.getInt("age"));
         map.put("address", rs1.getString("address"));
+        map.put("detailAddress", rs1.getString("detailAddress"));
         list.add(map);
       }
 

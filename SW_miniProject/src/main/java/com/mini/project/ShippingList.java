@@ -44,8 +44,8 @@ public class ShippingList extends HttpServlet {
     Map<String, Object> map = null;
 
     String query =
-        "select s.ship_id, s.p_id, s.u_id, m.username, m.telno, m.address, s.status from shipping s, member m "
-            + "where s.u_id = m.userid";
+        "select s.shipID, o.orderID, u.userID, u.username, u.telno, s.address, s.status from shipping s, `order` o, user u "
+            + "where s.orderID = o.orderID AND u.userID = o.userID";
 
     logger.info("배송 관리 실행 쿼리문 : {}", query);
 
@@ -59,9 +59,9 @@ public class ShippingList extends HttpServlet {
       while (rs.next()) {
 
         map = new HashMap<String, Object>();
-        map.put("ship_id", rs.getInt("ship_id"));
-        map.put("p_id", rs.getInt("p_id"));
-        map.put("u_id", rs.getString("u_id"));
+        map.put("shipID", rs.getString("shipID"));
+        map.put("orderID", rs.getString("orderID"));
+        map.put("userID", rs.getString("userID"));
         map.put("username", rs.getString("username"));
         map.put("telno", rs.getString("telno"));
         map.put("address", rs.getString("address"));
@@ -101,7 +101,7 @@ public class ShippingList extends HttpServlet {
     String userid = "root";
     String userpw = "1234";
 
-    String query = "update shipping set status = '" + status + "' where ship_id = " + ship_id;
+    String query = "update shipping set status = '" + status + "' where shipID = " + ship_id;
 
     logger.info("배송상태 수정 쿼리문 : {}", query);
 

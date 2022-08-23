@@ -5,7 +5,7 @@
 <%@ page import="java.sql.*"%>
 <%
 	//String userid = (String)session.getAttribute("userid");
-	String userid = "noori";
+	String userid = "dudwn1814";
 	request.setCharacterEncoding("utf-8");
 
 	String name = request.getParameter("name");
@@ -17,9 +17,9 @@
 	String totalPrice = request.getParameter("totalPrice");
 	
 	
-	String url = "jdbc:mariadb://127.0.0.1:3306/sw_miniproject";
-	String user = "webmaster";
-	String pwd = "0000";
+	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
+	String user = "root";
+	String pwd = "1234";
 	
 	Connection con = null;
 	Statement stmt1 = null;

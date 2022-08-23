@@ -75,20 +75,20 @@ h1 { font-family: "HY견고딕" }
 	<table class="InventoryInfoTable" id="InventoryInfoTable">
   		<tr>
   			<th>배송 아이디</th>
-  			<th>주문상품 아이디</th>
+  			<th>주문번호</th>
    			<th>주문자 ID</th>
    			<th>주문자 이름</th>
    			<th>주문자 전화번호</th>
-   			<th>주문자 주소</th>
+   			<th>배송지</th>
    			<th>배송상태</th>
   		</tr>
 
  		<tbody>
 			<c:forEach items="${list}" var="list">
  				<tr id="tr">
- 					<td>${list.ship_id}</td>
-  					<td>${list.p_id}</td>
-					<td>${list.u_id}</td>
+ 					<td>${list.shipID}</td>
+  					<td>${list.orderID}</td>
+					<td>${list.userID}</td>
   					<td>${list.username}</td>
   					<td>${list.telno}</td> 
   					<td>${list.address}</td> 

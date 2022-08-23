@@ -19,7 +19,7 @@
 	Connection con = null;
 	Statement stmt = null;
 		
-	String query = "delete from member where userid = '" + userid + "'";
+	String query = "delete from user where userID = '" + userid + "'";
 	
 	try{
 		

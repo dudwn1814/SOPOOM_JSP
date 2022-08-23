@@ -16,6 +16,32 @@ INSERT INTO inventory_management(p_id, p_name, p_price, p_amount) VALUES(null, '
 
 
 -- 회원 테이블
+<<<<<<< HEAD
+CREATE TABLE member (
+	userid VARCHAR(50) NOT NULL COLLATE 'utf8mb4_general_ci',
+	username VARCHAR(200) NOT NULL COLLATE 'utf8mb4_general_ci',
+	password VARCHAR(200) NOT NULL COLLATE 'utf8mb4_general_ci',
+	telno VARCHAR(20) NOT NULL COLLATE 'utf8mb4_general_ci',
+	age INT(11) NULL DEFAULT NULL,
+	address VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
+
+	PRIMARY KEY (`userid`) USING BTREE
+);
+
+INSERT INTO member VALUES ('testId', 'testName', 'PASSWORD!','01022225555', 13, '서울시');
+--관리자 계정
+INSERT INTO user(userID, password, username, postcode, detailAddress, telno, email) VALUES("admin", "admin123!", "관리자", "00000", "관리자", "000-0000-0000", "admin@admin.com");
+
+-- 배송 테이블
+CREATE TABLE shipping (
+	ship_id INT(8) PRIMARY KEY AUTO_INCREMENT,
+	p_id INT(8),  
+	u_id VARCHAR(50),
+	status char(5) default "배송전",
+
+	FOREIGN KEY(p_id) REFERENCES inventory_management(p_id), 
+	FOREIGN KEY(u_id) REFERENCES member(userid)
+=======
 CREATE TABLE user(
 	userID VARCHAR(50) NOT NULL PRIMARY KEY,
 	password VARCHAR(200) NOT NULL,
@@ -27,8 +53,6 @@ CREATE TABLE user(
 	telno VARCHAR(20) NOT NULL,
 	email VARCHAR(50) NOT NULL
 );
---관리자 계정
-INSERT INTO user(userID, password, username, postcode, detailAddress, telno, email) VALUES("admin", "admin123!", "관리자", "00000", "관리자", "000-0000-0000", "admin@admin.com");
 
 
 -- 배송 테이블
@@ -63,6 +87,7 @@ CREATE TABLE orderedItem (
 	count INT(100) NOT NULL DEFAULT 1,
 	CONSTRAINT orderID_nn FOREIGN KEY (orderID) REFERENCES `order`(orderID) ON UPDATE CASCADE ON DELETE CASCADE
 	-- CONSTRAINT pID_nn FOREIGN KEY (pID) REFERENCES product(pID) ON UPDATE NO ACTION ON DELETE NO ACTION
+>>>>>>> d870baf59f5b078dd4e9888be0365166d90b9e08
 );
 
 

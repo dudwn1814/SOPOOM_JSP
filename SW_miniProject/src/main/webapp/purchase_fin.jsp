@@ -4,7 +4,7 @@
 <html>
 
 <%
-String totalPrice = (String)session.getAttribute("totalPrice");
+String totalPrice = (String)session.getAttribute("strTotal");
 String orderCode = (String)session.getAttribute("orderCode");
 
 %>

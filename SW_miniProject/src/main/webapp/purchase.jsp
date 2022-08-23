@@ -7,7 +7,7 @@
 <%
 	//user 정보 받아오기
 	//String userid = (String)session.getAttribute("userid");
-	String userid = "noori";
+	String userid = "dudwn1814";
 	String userName = "";
 	String userTelno = "";
 	String userMail = "";
@@ -17,9 +17,9 @@
 	String extraAddress = "";
 
 
-	String url = "jdbc:mariadb://127.0.0.1:3306/sw_miniproject";
-	String user = "webmaster";
-	String pwd = "0000";
+	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
+	String user = "root";
+	String pwd = "1234";
 	
 	Connection con = null;
 	Statement stmt = null;
