@@ -9,6 +9,8 @@ CREATE TABLE user(
 	telno VARCHAR(20) NOT NULL,
 	email VARCHAR(50) NOT NULL
 );
+--관리자 계정
+INSERT INTO user(userID, password, username, postcode, detailAddress, telno, email) VALUES("admin", "admin123!", "관리자", "00000", "관리자", "000-0000-0000", "admin@admin.com");
 
 CREATE TABLE `order` (
 	orderID VARCHAR(30) NOT NULL PRIMARY KEY,

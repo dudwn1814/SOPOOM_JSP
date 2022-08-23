@@ -23,13 +23,11 @@ CREATE TABLE member (
 	address VARCHAR(200) NULL DEFAULT NULL COLLATE 'utf8mb4_general_ci',
 
 	PRIMARY KEY (`userid`) USING BTREE
-)
-
-COLLATE='utf8mb4_general_ci'
-ENGINE=InnoDB
-;
+);
 
 INSERT INTO member VALUES ('testId', 'testName', 'PASSWORD!','01022225555', 13, '서울시');
+--관리자 계정
+INSERT INTO user(userID, password, username, postcode, detailAddress, telno, email) VALUES("admin", "admin123!", "관리자", "00000", "관리자", "000-0000-0000", "admin@admin.com");
 
 -- 배송 테이블
 CREATE TABLE shipping (

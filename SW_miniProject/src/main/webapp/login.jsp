@@ -42,6 +42,9 @@
 </head>
 <body>
 	<%@include file="top.jsp"%>
+	<% //로그인 된 상태에서 로그인 창으로 넘어가기 방지
+	if (session_id != null)	response.sendRedirect("index.jsp");
+	%>
 	<h1 align="center">로그인</h1>
 		<form method="post" id="loginForm" align="center">
 		<div style="margin: 5px">

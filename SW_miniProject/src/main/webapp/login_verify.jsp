@@ -29,6 +29,7 @@ ResultSet rs2 = null;
 int id_count = 0;
 int pwd_count = 0;
 
+
 try{
 	
 	Class.forName("org.mariadb.jdbc.Driver");
