@@ -46,11 +46,27 @@ a:active { color: red; }
       text-align: center;
     }
     .InventoryInfoTable caption{caption-side: top; }
+    
+    .bottom_menu { margin-top: 20px; }
+
+	.bottom_menu > a:link, .bottom_menu > a:visited {
+				background-color: #FFA500;
+				color: maroon;
+				padding: 15px 25px;
+				text-align: center;	
+				display: inline-block;
+				text-decoration : none; 
+	}
+	.bottom_menu > a:hover, .bottom_menu > a:active { 
+		background-color: #1E90FF;
+		text-decoration : none; 
+}
 </style>
 
 </head>
 
 <body>
+	<%@include file="/top.jsp"%>
 <div class="tableDiv">
 	<h1>상품 재고</h1>
 	<table class="InventoryInfoTable">
@@ -67,13 +83,19 @@ a:active { color: red; }
   					<td>${list.p_id}</td>
   					<td style="text-align:center;"><a id="hypertext" href="/Admin/Inventory/inventoryOrder?p_id=${list.p_id}" onMouseover='this.style.textDecoration="underline"'  
   							onmouseout="this.style.textDecoration='none';">${list.p_name}</a></td>
-  					<td style="text-align:right;">${list.p_price} \</td>
+  					<td style="text-align:right;">\ ${list.p_price} </td>
   					<td>${list.p_amount}</td> 
  				</tr>
 			</c:forEach>
 		</tbody>
 
 	</table>
+	
+	<div class="bottom_menu">
+	<a href="/index.jsp">홈으로</a>&nbsp;&nbsp;
+	</div>
 </div>
+
+<%@include file="/footer.jsp"%>
 </body>
 </html>

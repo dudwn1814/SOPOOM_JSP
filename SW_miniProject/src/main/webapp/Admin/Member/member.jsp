@@ -24,46 +24,60 @@ a:active { color: red; }
 	text-align: center;
 }
 
-.InventoryInfoTable {
+.InfoTable {
       border-collapse: collapse;
       border-top: 3px solid #168;
       width: 800px;  
       margin-left: auto; margin-right: auto;
     }  
-    .InventoryInfoTable th {
+    .InfoTable th {
       color: #168;
       background: #f0f6f9;
       text-align: center;
     }
-    .InventoryInfoTable th, .InventoryInfoTable td {
+    .InfoTable th, .InfoTable td {
       padding: 10px;
       border: 1px solid #ddd;
     }
-    .InventoryInfoTable th:first-child, .InventoryInfoTable td:first-child {
+    .InfoTable th:first-child, .InfoTable td:first-child {
       border-left: 0;
     }
-    .InventoryInfoTable th:last-child, .InventoryInfoTable td:last-child {
+    .InfoTable th:last-child, .InfoTable td:last-child {
       border-right: 0;
     }
-    .InventoryInfoTable tr td:first-child{
+    .InfoTable tr td:first-child{
       text-align: center;
     }
-    .InventoryInfoTable caption{caption-side: top; }
+    .InfoTable caption{caption-side: top; }
 
+    .bottom_menu { margin-top: 20px; }
+
+	.bottom_menu > a:link, .bottom_menu > a:visited {
+				background-color: #FFA500;
+				color: maroon;
+				padding: 15px 25px;
+				text-align: center;	
+				display: inline-block;
+				text-decoration : none; 
+	}
+	.bottom_menu > a:hover, .bottom_menu > a:active { 
+		background-color: #1E90FF;
+		text-decoration : none; 
+}
 
 </style>
 
 </head>
 
 <body>
-
+	<%@include file="/top.jsp"%>
 <%
 	int idx = 1;
 %>
 
 <div class="tableDiv">
 	<h1>회원 목록</h1>
-	<table class="InventoryInfoTable">
+	<table class="InfoTable">
   		<tr>
   			<th>순서</th>
    			<th>회원아이디</th>
@@ -84,6 +98,11 @@ a:active { color: red; }
 		</tbody>
 
 	</table>
+	
+	<div class="bottom_menu">
+	<a href="/index.jsp">홈으로</a>&nbsp;&nbsp;
+	</div>
 </div>
+<%@include file="/footer.jsp"%>
 </body>
 </html>

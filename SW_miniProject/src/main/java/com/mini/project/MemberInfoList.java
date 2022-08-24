@@ -65,8 +65,11 @@ public class MemberInfoList extends HttpServlet {
         map.put("username", rs1.getString("username"));
         map.put("password", rs1.getString("password"));
         map.put("telno", rs1.getString("telno"));
+        map.put("postcode", rs1.getString("postcode"));
         map.put("address", rs1.getString("address"));
         map.put("detailAddress", rs1.getString("detailAddress"));
+        map.put("extraAddress", rs1.getString("extraAddress"));
+        map.put("email", rs1.getString("email"));
         list.add(map);
       }
 

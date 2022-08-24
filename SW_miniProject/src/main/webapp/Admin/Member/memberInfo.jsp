@@ -17,31 +17,31 @@ h1 { font-family: "HY견고딕" }
 	text-align: center;
 }
 
-.InventoryInfoTable {
+.InfoTable {
       border-collapse: collapse;
       border-top: 3px solid #168;
       width: 800px;  
       margin-left: auto; margin-right: auto;
     }  
-    .InventoryInfoTable th {
+    .InfoTable th {
       color: #168;
       background: #f0f6f9;
       text-align: center;
     }
-    .InventoryInfoTable th, .InventoryInfoTable td {
+    .InfoTable th, .InfoTable td {
       padding: 10px;
       border: 1px solid #ddd;
     }
-    .InventoryInfoTable th:first-child, .InventoryInfoTable td:first-child {
+    .InfoTable th:first-child, .InfoTable td:first-child {
       border-left: 0;
     }
-    .InventoryInfoTable th:last-child, .InventoryInfoTable td:last-child {
+    .InfoTable th:last-child, .InfoTable td:last-child {
       border-right: 0;
     }
-    .InventoryInfoTable tr td:first-child{
+    .InfoTable tr td:first-child{
       text-align: center;
     }
-    .InventoryInfoTable caption{caption-side: top; }
+    .InfoTable caption{caption-side: top; }
     
     .bottom_menu { margin-top: 20px; }
 
@@ -63,19 +63,23 @@ h1 { font-family: "HY견고딕" }
 </head>
 
 <body>
-
+	<%@include file="/top.jsp"%>
 <%String userID = request.getParameter("userid"); %>
 
 <div class="tableDiv">
 	<h1>회원 정보</h1>
-	<table class="InventoryInfoTable">
+	<table class="InfoTable">
   		<tr>
    			<th>회원아이디</th>
    			<th>회원명</th>
    			<th>비밀번호</th>
    			<th>전화번호</th>
+   			<th>이메일</th>
+   			<th>우편번호</th>
    			<th>주소</th>
    			<th>세부주소</th>
+   			<th>추가주소</th>
+   			
   		</tr>
 
  		<tbody>
@@ -85,8 +89,12 @@ h1 { font-family: "HY견고딕" }
   					<td>${list.username}</td> 
   					<td>${list.password}</td> 
   					<td>${list.telno}</td> 
+  					<td>${list.email}</td> 
+  					<td>${list.postcode}</td> 
   					<td>${list.address}</td>
   					<td>${list.detailAddress}</td> 
+  					<td>${list.extraAddress}</td> 
+  					
  				</tr>
 			</c:forEach>
 		</tbody>
@@ -95,10 +103,11 @@ h1 { font-family: "HY견고딕" }
 
 
 <div class="bottom_menu">
-	<a href="edit_memberInfo.jsp">회원정보 수정</a>&nbsp;&nbsp;
+	<a href="member">목록으로</a>&nbsp;&nbsp;
+	<a href="edit_memberInfo.jsp?userid=<%=userID%>">회원정보 수정</a>&nbsp;&nbsp;
 	<a href="delete_memberInfo.jsp?userid=<%=userID%>">회원 강제 탈퇴</a>&nbsp;&nbsp;
 </div>
 </div>
-	
+	<%@include file="/footer.jsp"%>
 </body>
 </html>

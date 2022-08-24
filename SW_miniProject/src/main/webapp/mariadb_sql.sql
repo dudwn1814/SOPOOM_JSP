@@ -1,4 +1,3 @@
-
 create database inventory;
 USE inventory;
 
@@ -10,7 +9,7 @@ create table inventory_management (
 	p_amount smallint(5) UNSIGNED not null,
 	filename varchar(50),
 	filesize int(100) UNSIGNED
-)
+);
 
 INSERT INTO inventory_management(p_id, p_name, p_price, p_amount) VALUES(null, '조명', 50000, 3);
 
@@ -29,21 +28,6 @@ CREATE TABLE user(
 );
 --관리자 계정
 INSERT INTO user(userID, password, username, postcode, detailAddress, telno, email) VALUES("admin", "admin123!", "관리자", "00000", "관리자", "000-0000-0000", "admin@admin.com");
-
-
--- 배송 테이블
-CREATE TABLE shipping(
-	shipID VARCHAR(30) NOT NULL PRIMARY KEY,
-	orderID VARCHAR(50) NOT NULL,
-	`name` VARCHAR(200) NOT NULL,
-	postcode VARCHAR(20) NOT NULL,
-	address VARCHAR(50),
-	detailAddress VARCHAR(50) NOT NULL,
-	extraAddress VARCHAR(50),
-	telno VARCHAR(20) NOT NULL,
-	`status` VARCHAR(10) NOT NULL DEFAULT '주문 완료',
-	CONSTRAINT FK__order FOREIGN KEY (orderID) REFERENCES `order`(orderID) ON UPDATE CASCADE ON DELETE CASCADE
-);
 
 
 -- 주문 테이블
@@ -66,3 +50,16 @@ CREATE TABLE orderedItem (
 );
 
 
+-- 배송 테이블
+CREATE TABLE shipping(
+	shipID VARCHAR(30) NOT NULL PRIMARY KEY,
+	orderID VARCHAR(50) NOT NULL,
+	`name` VARCHAR(200) NOT NULL,
+	postcode VARCHAR(20) NOT NULL,
+	address VARCHAR(50),
+	detailAddress VARCHAR(50) NOT NULL,
+	extraAddress VARCHAR(50),
+	telno VARCHAR(20) NOT NULL,
+	`status` VARCHAR(10) NOT NULL DEFAULT '주문 완료',
+	CONSTRAINT FK__order FOREIGN KEY (orderID) REFERENCES `order`(orderID) ON UPDATE CASCADE ON DELETE CASCADE
+);
