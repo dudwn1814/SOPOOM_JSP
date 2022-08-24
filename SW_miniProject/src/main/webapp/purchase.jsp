@@ -17,9 +17,9 @@
 	String extraAddress = "";
 
 
-	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
+	String url = "jdbc:mariadb://127.0.0.1:3306/SW_miniProject";
 	String user = "root";
-	String pwd = "1234";
+	String pwd = "0000";
 	
 	Connection con = null;
 	Statement stmt = null;
@@ -328,4 +328,3 @@ form{
 	</form>
 	<%@include file="footer.jsp"%>
 </body>
-</html>

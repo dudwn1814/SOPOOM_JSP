@@ -12,9 +12,9 @@
 	String telno = request.getParameter("telno");
 	String email = request.getParameter("email");
 	
-	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
+	String url = "jdbc:mariadb://127.0.0.1:3306/SW_miniProject";
 	String user = "root";
-	String pwd = "1234";
+	String pwd = "0000";
 
 	Connection con = null;
 	Statement stmt = null;
@@ -25,7 +25,10 @@
 	Class.forName("org.mariadb.jdbc.Driver");
 	con = DriverManager.getConnection(url, user, pwd);
 	
+	//role 없는 경우
 	PreparedStatement pstmt = con.prepareStatement("INSERT INTO user VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+	//role 지정 시
+	//PreparedStatement pstmt = con.prepareStatement("INSERT INTO user VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, 'user')");
 	pstmt.setString(1, id);
 	pstmt.setString(2, password);
 	pstmt.setString(3, name);

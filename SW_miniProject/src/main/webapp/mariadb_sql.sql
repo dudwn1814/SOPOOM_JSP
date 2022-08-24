@@ -24,10 +24,14 @@ CREATE TABLE user(
 	detailAddress VARCHAR(50) NOT NULL,
 	extraAddress VARCHAR(50),
 	telno VARCHAR(20) NOT NULL,
-	email VARCHAR(50) NOT NULL
+	email VARCHAR(50) NOT NULL,
+	--role VARCHAR(20) NOT NULL
 );
 --관리자 계정
+-- role 없는 경우
 INSERT INTO user(userID, password, username, postcode, detailAddress, telno, email) VALUES("admin", "admin123!", "관리자", "00000", "관리자", "000-0000-0000", "admin@admin.com");
+-- role 지정 시
+-- INSERT INTO user(userID, password, username, postcode, detailAddress, telno, email, role) VALUES("admin", "admin123!", "관리자", "00000", "관리자", "000-0000-0000", "admin@admin.com", "admin");
 
 
 -- 주문 테이블
@@ -45,8 +49,8 @@ CREATE TABLE orderedItem (
 	orderID VARCHAR(30) NOT NULL, 
 	pID VARCHAR(30) NOT NULL,
 	count INT(100) NOT NULL DEFAULT 1,
-	CONSTRAINT orderID_nn FOREIGN KEY (orderID) REFERENCES `order`(orderID) ON UPDATE CASCADE ON DELETE CASCADE
-	-- CONSTRAINT pID_nn FOREIGN KEY (pID) REFERENCES product(pID) ON UPDATE NO ACTION ON DELETE NO ACTION
+	CONSTRAINT orderID_FK FOREIGN KEY (orderID) REFERENCES `order`(orderID) ON UPDATE CASCADE ON DELETE CASCADE
+	-- CONSTRAINT pID_FK FOREIGN KEY (pID) REFERENCES product(pID) ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
 

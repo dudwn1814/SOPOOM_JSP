@@ -36,9 +36,9 @@ public class ShippingList extends HttpServlet {
     Statement stmt = null;
     ResultSet rs = null;
 
-    String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
+    String uri = "jdbc:mariadb://127.0.0.1:3306/SW_miniProject";
     String userid = "root";
-    String userpw = "1234";
+    String userpw = "0000";
 
     List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
     Map<String, Object> map = null;
@@ -97,9 +97,9 @@ public class ShippingList extends HttpServlet {
     logger.info("===== ship_id ===== : " + ship_id);
     String status = req.getParameter("statusSelect");
 
-    String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
+    String uri = "jdbc:mariadb://127.0.0.1:3306/SW_miniProject";
     String userid = "root";
-    String userpw = "1234";
+    String userpw = "0000";
 
     String query = "update shipping set status = '" + status + "' where shipID = " + ship_id;
 

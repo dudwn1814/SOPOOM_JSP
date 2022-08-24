@@ -29,9 +29,9 @@ public class InventoryOrderModify extends HttpServlet {
     logger.info("===== inventoryOrder select Start =====");
     resp.setContentType("text/html; charset=UTF-8");
 
-    String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
+    String uri = "jdbc:mariadb://127.0.0.1:3306/SW_miniProject";
     String userid = "root";
-    String userpw = "1234";
+    String userpw = "0000";
 
     Connection con = null;
     Statement stmt = null;
@@ -88,9 +88,9 @@ public class InventoryOrderModify extends HttpServlet {
     String p_id = req.getParameter("p_id");
     String p_amount = req.getParameter("p_amount");
 
-    String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
+    String uri = "jdbc:mariadb://127.0.0.1:3306/SW_miniProject";
     String userid = "root";
-    String userpw = "1234";
+    String userpw = "0000";
 
     String query =
         "update inventory_management set p_amount = '" + p_amount + "' where p_id = " + p_id;

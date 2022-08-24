@@ -35,9 +35,9 @@ public class InventoryList extends HttpServlet {
     Statement stmt = null;
     ResultSet rs = null;
 
-    String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
+    String uri = "jdbc:mariadb://127.0.0.1:3306/SW_miniProject";
     String userid = "root";
-    String userpw = "1234";
+    String userpw = "0000";
 
     List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
     Map<String, Object> map = null;
