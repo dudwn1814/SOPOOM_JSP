@@ -18,15 +18,15 @@ public class ProductRepository {
 		phone.setDescription("4.7-inch, 1334X750 Renina HD display, 8-megapixel iSight Camera");
 		phone.setCategory("Smart Phone");
 		phone.setManufacturer("Apple");
-		phone.setUnitsInStock(1000);
+		phone.setP_amount(1000);
 		phone.setCondition("New");
 		phone.setFilename("P1234.png");
 
-		Product notebook = new Product("P1235", "LG PC �׷�", 1500000);
+		Product notebook = new Product("P1235", "LG PC 그램", 1500000);
 		notebook.setDescription("13.3-inch, IPS LED display, 5rd Generation Intel Core processors");
 		notebook.setCategory("Notebook");
 		notebook.setManufacturer("LG");
-		notebook.setUnitsInStock(1000);
+		notebook.setP_amount(1000);
 		notebook.setCondition("Refurbished");
 		notebook.setFilename("P1235.png");
 
@@ -34,7 +34,7 @@ public class ProductRepository {
 		tablet.setDescription("212.8*125.6*6.6mm,  Super AMOLED display, Octa-Core processor");
 		tablet.setCategory("Tablet");
 		tablet.setManufacturer("Samsung");
-		tablet.setUnitsInStock(1000);
+		tablet.setP_amount(1000);
 		tablet.setCondition("Old");
 		tablet.setFilename("P1236.png");
 
@@ -52,7 +52,7 @@ public class ProductRepository {
 
 		for (int i = 0; i < listOfProducts.size(); i++) {
 			Product product = listOfProducts.get(i);
-			if (product != null && product.getProductId() != null && product.getProductId().equals(productId)) {
+			if (product != null && product.getP_id() != null && product.getP_id().equals(productId)) {
 				productById = product;
 				break;
 			}

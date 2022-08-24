@@ -6,49 +6,75 @@ public class Product implements Serializable {
 
 	private static final long serialVersionUID = -4274700572038677000L;
 
-	private String productId;
-	private String pname;
-	private Integer unitPrice;
-	private String description;
-	private String manufacturer;
-	private String category;
-	private long unitsInStock; 
-	private String condition;
-	private String filename;
-	private int quantity;
+	private String p_id; // 상품 아이디
+	private String p_name; // 상품명
+	private Integer p_price; // 상품 가격
+	private int p_amount; // 재고 수
+	private String filename; // 이미지 파일 이름
+	private Integer filesize; // 이미지 파일 사이즈
+	private String description; // 상품 설명
+	private String manufacturer; // 제조사
+	private String category; // 분류
+	private String condition; // 신상품 or 중고품 or 재생품
+	
+	
 
 	public Product() {
 		super();
 	}
 
-	public Product(String productId, String pname, Integer unitPrice) {
-		this.productId = productId;
-		this.pname = pname;
-		this.unitPrice = unitPrice;
+	public Product(String p_id, String p_name, Integer p_price) {
+		this.p_id = p_id;
+		this.p_name = p_name;
+		this.p_price = p_price;
 	}
 
-	public String getProductId() {
-		return productId;
+	public String getP_id() {
+		return p_id;
 	}
 
-	public String getPname() {
-		return pname;
+	public void setP_id(String p_id) {
+		this.p_id = p_id;
 	}
 
-	public void setPname(String pname) {
-		this.pname = pname;
+	public String getP_name() {
+		return p_name;
 	}
 
-	public void setProductId(String productId) {
-		this.productId = productId;
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
 	}
 
-	public Integer getUnitPrice() {
-		return unitPrice;
+	public Integer getP_price() {
+		return p_price;
 	}
 
-	public void setUnitPrice(Integer unitPrice) {
-		this.unitPrice = unitPrice;
+	public void setP_price(Integer p_price) {
+		this.p_price = p_price;
+	}
+
+	public int getP_amount() {
+		return p_amount;
+	}
+
+	public void setP_amount(int p_amount) {
+		this.p_amount = p_amount;
+	}
+
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
+	public Integer getFilesize() {
+		return filesize;
+	}
+
+	public void setFilesize(Integer filesize) {
+		this.filesize = filesize;
 	}
 
 	public String getDescription() {
@@ -75,36 +101,12 @@ public class Product implements Serializable {
 		this.category = category;
 	}
 
-	public long getUnitsInStock() {
-		return unitsInStock;
-	}
-
-	public void setUnitsInStock(long unitsInStock) {
-		this.unitsInStock = unitsInStock;
-	}
-
 	public String getCondition() {
 		return condition;
 	}
 
 	public void setCondition(String condition) {
 		this.condition = condition;
-	}
-
-	public String getFilename() {
-		return filename;
-	}
-
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}			
+	}		
 	
 }
