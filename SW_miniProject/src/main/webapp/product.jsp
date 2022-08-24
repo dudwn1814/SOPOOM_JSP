@@ -1,10 +1,10 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="com.mini.client.Product"%>
 <%@ page import="com.mini.client.ProductRepository"%>
-<%@ page errorPage ="exceptionNoProductId.jsp"%>
+<%@ page errorPage="exceptionNoProductId.jsp"%>
 <html>
 <head>
-<link rel ="stylesheet" href ="./resources/css/bootstrap.min.css" />
+<link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
 <title>상품 상세 정보</title>
 <script type="text/javascript">
 	function addToCart() {
@@ -24,14 +24,14 @@
 		</div>
 	</div>
 	<%
-		String id = request.getParameter("id");
+		String id = request.getParameter("p_id");
 		ProductRepository client = ProductRepository.getInstance();
 		Product product = client.getProductById(id);
 	%>
 	<div class="container">
 		<div class="row">
-			<div class ="col-md-5">
-				<img src="resources/images/<%=product.getFilename()%>" style="width: 100%" />
+			<div class="col-md-5">
+				<img src="c:/upload/<%=product.getFilename()%>" style="width: 100%" />
 			</div>
 			<div class="col-md-6">
 				<h3><%=product.getP_name()%></h3>
@@ -42,9 +42,9 @@
 				<p><b>재고 수</b> : <%=product.getP_amount()%>
 				<h4><%=product.getP_price()%>원</h4>
 				<p><form name="addForm" action="./addCart.jsp?id=<%=product.getP_id()%>" method="post">
-					<a href="#" class="btn btn-info" onclick="addToCart()"> 상품 주문 &raquo;</a> 
-					<a href="./cart.jsp" class="btn btn-warning"> 장바구니 &raquo;</a>
-					<a href="./products.jsp" class="btn btn-secondary"> 상품 목록 &raquo;</a>
+					<a href="#" class="btn btn-info" onclick="addToCart()"> 상품 주문 &raquo;</a>
+					<a href="./cart.jsp" class="btn btn-warning"> 장바구니 &raquo;</a> 
+					<a href="./index.jsp" class="btn btn-secondary"> 상품 목록 &raquo;</a>
 				</form>
 			</div>
 		</div>

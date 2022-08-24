@@ -10,7 +10,7 @@ public class Product implements Serializable {
 	private String p_name; // 상품명
 	private Integer p_price; // 상품 가격
 	private int p_amount; // 재고 수
-	private String filename; // 이미지 파일 이름
+	private String p_filename; // 이미지 파일 이름
 	private Integer filesize; // 이미지 파일 사이즈
 	private String description; // 상품 설명
 	private String manufacturer; // 제조사
@@ -62,11 +62,11 @@ public class Product implements Serializable {
 	}
 
 	public String getFilename() {
-		return filename;
+		return p_filename;
 	}
 
-	public void setFilename(String filename) {
-		this.filename = filename;
+	public void setFilename(String p_filename) {
+		this.p_filename = p_filename;
 	}
 
 	public Integer getFilesize() {

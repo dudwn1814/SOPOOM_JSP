@@ -14,29 +14,29 @@ public class ProductRepository {
 
 
 	public ProductRepository() {
-		Product phone = new Product("P1234", "iPhone 6s", 800000);
+		Product phone = new Product("2", "iPhone 6s", 800000);
 		phone.setDescription("4.7-inch, 1334X750 Renina HD display, 8-megapixel iSight Camera");
 		phone.setCategory("Smart Phone");
 		phone.setManufacturer("Apple");
 		phone.setP_amount(1000);
 		phone.setCondition("New");
-		phone.setFilename("P1234.png");
+		phone.setFilename("2.png");
 
-		Product notebook = new Product("P1235", "LG PC 그램", 1500000);
+		Product notebook = new Product("3", "LG PC 그램", 1500000);
 		notebook.setDescription("13.3-inch, IPS LED display, 5rd Generation Intel Core processors");
 		notebook.setCategory("Notebook");
 		notebook.setManufacturer("LG");
 		notebook.setP_amount(1000);
 		notebook.setCondition("Refurbished");
-		notebook.setFilename("P1235.png");
+		notebook.setFilename("3.png");
 
-		Product tablet = new Product("P1236", "Galaxy Tab S", 900000);
+		Product tablet = new Product("4", "Galaxy Tab S", 900000);
 		tablet.setDescription("212.8*125.6*6.6mm,  Super AMOLED display, Octa-Core processor");
 		tablet.setCategory("Tablet");
 		tablet.setManufacturer("Samsung");
 		tablet.setP_amount(1000);
 		tablet.setCondition("Old");
-		tablet.setFilename("P1236.png");
+		tablet.setFilename("4.png");
 
 		listOfProducts.add(phone);
 		listOfProducts.add(notebook);
