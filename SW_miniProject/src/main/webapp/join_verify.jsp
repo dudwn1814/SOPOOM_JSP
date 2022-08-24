@@ -25,7 +25,10 @@
 	Class.forName("org.mariadb.jdbc.Driver");
 	con = DriverManager.getConnection(url, user, pwd);
 	
+	//role 없는 경우
 	PreparedStatement pstmt = con.prepareStatement("INSERT INTO user VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+	//role 지정 시
+	//PreparedStatement pstmt = con.prepareStatement("INSERT INTO user VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, 'user')");
 	pstmt.setString(1, id);
 	pstmt.setString(2, password);
 	pstmt.setString(3, name);
