@@ -2,6 +2,7 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="com.mini.client.Product"%>
 <%@ page import="com.mini.client.ProductRepository"%>
+<%@page import = "java.sql.*"%>
 
 <html>
 <head>
@@ -22,6 +23,7 @@
 
 	<div class="container">
 		<div class="row" align="center">
+			<%@ include file = "dbconn.jsp" %>
 			<%
 				for (int i = 0; i < listOfProducts.size(); i++) {
 					Product product = listOfProducts.get(i);
