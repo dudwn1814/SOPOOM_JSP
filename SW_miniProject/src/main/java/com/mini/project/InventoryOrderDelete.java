@@ -36,9 +36,9 @@ public class InventoryOrderDelete extends HttpServlet {
 
     String p_id = req.getParameter("p_id");
 
-    String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
+    String uri = "jdbc:mariadb://127.0.0.1:3306/SW_miniProject";
     String userid = "root";
-    String userpw = "1234";
+    String userpw = "0000";
 
     String query = "delete from inventory_management where p_id = " + p_id;
 

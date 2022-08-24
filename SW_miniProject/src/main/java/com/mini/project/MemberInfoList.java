@@ -37,9 +37,9 @@ public class MemberInfoList extends HttpServlet {
     Statement stmt1 = null;
     ResultSet rs1 = null;
 
-    String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
+    String uri = "jdbc:mariadb://127.0.0.1:3306/SW_miniProject";
     String uid = "root";
-    String userpw = "1234";
+    String userpw = "0000";
 
     List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
     Map<String, Object> map = null;

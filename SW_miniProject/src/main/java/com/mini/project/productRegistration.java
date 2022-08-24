@@ -38,9 +38,9 @@ public class productRegistration extends HttpServlet {
     req.setCharacterEncoding("UTF-8");
 
     Connection con = null;
-    String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
+    String uri = "jdbc:mariadb://127.0.0.1:3306/SW_miniProject";
     String userid = "root";
-    String userpw = "1234";
+    String userpw = "0000";
 
     String p_name = req.getParameter("p_name");
     int p_price = Integer.parseInt(req.getParameter("p_price"));
