@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>Error</title>
 </head>
 <body>
 <h1>에러페이지 입니다.</h1>

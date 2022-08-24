@@ -6,16 +6,16 @@ public class Product implements Serializable {
 
 	private static final long serialVersionUID = -4274700572038677000L;
 
-	private String productId;	//��ǰ ���̵�
-	private String pname;		//��ǰ��
-	private Integer unitPrice; //��ǰ ����
-	private String description; //��ǰ ����
-	private String manufacturer;//������
-	private String category; 	//�з�
-	private long unitsInStock; //���� 
-	private String condition; 	//�Ż�ǰ or �߰�ǰ or ���ǰ
-	private String filename; 	//�̹��� ���ϸ�
-	private int quantity;		 //��ٱ��Ͽ� ���� ����
+	private String productId;
+	private String pname;
+	private Integer unitPrice;
+	private String description;
+	private String manufacturer;
+	private String category;
+	private long unitsInStock; 
+	private String condition;
+	private String filename;
+	private int quantity;
 
 	public Product() {
 		super();
