@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="com.mini.client.Product"%>
 <%@ page import="com.mini.client.ProductRepository"%>
-<%@ page errorPage="exceptionNoProductId.jsp"%>
+
 <html>
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
@@ -24,14 +24,14 @@
 		</div>
 	</div>
 	<%
-		String id = request.getParameter("p_id");
+		String id = request.getParameter("id");
 		ProductRepository client = ProductRepository.getInstance();
 		Product product = client.getProductById(id);
 	%>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-5">
-				<img src="c:/upload/<%=product.getFilename()%>" style="width: 100%" />
+				<img src="C:\JavaStudy\Eclipse\MiniProject\SW_miniProject\src\main\webapp\img\<%=product.getFilename()%>" alt="뭔가 잘못됨" style="width: 100%" />
 			</div>
 			<div class="col-md-6">
 				<h3><%=product.getP_name()%></h3>

@@ -2,7 +2,7 @@
 <%@ page import="java.sql.*"%>
 <html>
 <head>
-<link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
+<!-- <link rel="stylesheet" href="./resources/css/bootstrap.min.css" /> -->
 <title>상품 목록</title>
 </head>
 <body>
@@ -22,7 +22,7 @@
 				while (rs.next()) {
 			%>
 			<div class="col-md-4">
-				<img src="c:/upload/<%=rs.getString("p_filename")%>" style="width: 100%">
+				<img src="C:\JavaStudy\Eclipse\MiniProject\SW_miniProject\src\main\webapp\img\<%=rs.getString("p_filename")%>" style="width: 100%">
 				<h3><%=rs.getString("p_name")%></h3>
 				<p><%=rs.getString("description")%>
 				<p><%=rs.getString("p_price")%>원
