@@ -24,7 +24,7 @@ List<ProductDTO> productList = new ArrayList<ProductDTO>();
 List<Integer> qtyList = new ArrayList<Integer>();
 
 for (CartDTO cart : cartList) {
-   int p_id = cart.getp_id();
+   String p_id = cart.getp_id();
    ProductDTO product = ProductDAO.getDAO().selectProduct(p_id);
    productList.add(product);
    qtyList.add(cart.getQuantitiy());

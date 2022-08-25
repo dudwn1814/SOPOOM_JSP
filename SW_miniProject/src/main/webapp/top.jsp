@@ -4,6 +4,7 @@ String session_id = (String) session.getAttribute("userID");
 String innerTbl;
 
 if (session_id == null){
+
    innerTbl ="<td align='center'><b><a href=/index.jsp>홈</a></b></td>"
            + "<td align='center'><b><a href=/login.jsp>로그인</a></b></td>"
           + "<td align='center'><b><a href=/join.jsp>회원가입</a></b></td>"
@@ -22,8 +23,8 @@ else {
    
    innerTbl ="<td align='center'><b><a href=/index.jsp>홈</a></b></td>"
            + "<td align='center'><b><a href=/logout.jsp>로그아웃</a></b></td>"
-          + "<td align='center'><b><a href=''>마이페이지</a></b></td>"
-          + "<td align='center'><b><a href=''>장바구니</a></b></td>";
+          + "<td align='center'><b><a href=/Mypage/userMain.jsp>마이페이지</a></b></td>"
+          + "<td align='center'><b><a href=http://localhost:8080/ShopC/shoppingCart.jsp>장바구니</a></b></td>";
 
 }
 %>

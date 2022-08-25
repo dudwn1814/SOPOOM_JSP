@@ -382,7 +382,7 @@ form{
 	</table>
 	</div>
 	
-	<div>
+<div>
 			<h3 class="label">최종 결제 금액</h3>
 			<span id="strTotal"><%=df.format(inttotal)%></span> 원
 			<input type="hidden" name="totalPrice" value="<%=total%>" />

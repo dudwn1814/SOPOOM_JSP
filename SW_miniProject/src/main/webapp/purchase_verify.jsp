@@ -43,6 +43,7 @@
 		}
 		System.out.println("PRODUCT ID 입니다: " + Arrays.toString(pID));
 		System.out.println("count 입니다: " + Arrays.toString(count));
+		
 	//db연결
 	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
 	String user = "root";

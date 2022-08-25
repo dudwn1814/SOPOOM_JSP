@@ -14,20 +14,21 @@
 <body>
 
 <script>
+	<% String userid = (String)session.getAttribute("userID");
+	if(userid == null){%>
+		alert("로그인이 필요한 서비스입니다.");
+		location.href = "./login.jsp";
+	<%}%>
+
+function pwConfig() {
 	
-	function pwConfig() {
-		
-		if(document.userbasic.password.value ==''){
-			alert("패스워드를 입력하세요."); 
-		 	return false; 
-		}
-		
-		 document.userbasic.action = 'pwCheck.jsp';
-		 document.userbasic.submit(); 
+	if(document.userbasic.password.value ==''){
+		alert("패스워드를 입력하세요."); 
+	 	return false; 
 	}
-	
-	function press() {
-		if(event.keyCode == 13){ pwConfig();}
+	 const form =  document.form;
+	 form.action = "pwCheck.jsp";
+	 form.userbasic.action.submit(); 
 	}
 	
 	
@@ -39,7 +40,7 @@
 	String pwd = "1234";
 	
 	//String lastLogindate = (String)session.getAttribute("lastlogin"); //세션 값 형변환
-	String userid = (String)session.getAttribute("userID");
+	
 	String username = "select username from user where userid='"+userid+"'";
 
 	Connection con = null;
@@ -80,9 +81,6 @@
 		회원 이름: <%=username %><br>
 		회원 정보 확인/수정: <input type="password" id="password" name="password" class="password"  placeholder="비밀번호를 입력하세요.">
 		<button id="button" id="password" onclick="pwConfig()">비밀번호 확인</button>
-		<%
-		
-		%>
 	</form>
 	<form action=""></form>
 	<%@include file="/footer.jsp"%>
