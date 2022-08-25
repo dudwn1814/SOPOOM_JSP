@@ -107,8 +107,8 @@
 			</div>
 			<div class="form-group row">
 				<div class="col-offset-2 col-sm-10">
-					<input type="button" onclick="register()" class="btm btm-primary"
-						value="등록">
+					<input type="button" onclick="register()" class="btm btm-primary" value="등록">
+					<input type="button" class="btn_cancel" value="취소" onclick="history.back()" />
 				</div>
 			</div>
 		</form>

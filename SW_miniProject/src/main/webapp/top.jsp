@@ -5,23 +5,23 @@ String innerTbl;
 
 if (session_id == null){
    innerTbl ="<td align='center'><b><a href=/index.jsp>홈</a></b></td>"
-           + "<td align='center'><b><a href=login.jsp>로그인</a></b></td>"
-          + "<td align='center'><b><a href=join.jsp>회원가입</a></b></td>"
-            + "<td align='center'><b><a href=login.jsp>장바구니</a></b></td>";
+           + "<td align='center'><b><a href=/login.jsp>로그인</a></b></td>"
+          + "<td align='center'><b><a href=/join.jsp>회원가입</a></b></td>"
+            + "<td align='center'><b><a href=/login.jsp>장바구니</a></b></td>";
 
 }
 else if(session_id.equals("admin")){
    innerTbl ="<td align='center'><b><a href=/index.jsp>홈</a></b></td>"
-           + "<td align='center'><b><a href=logout.jsp>로그아웃</a></b></td>"
-           + "<td align='center'><b><a href='/Admin/Product/productReg.jsp'>상품등록</a></b></td>"
-          + "<td align='center'><b><a href='/Admin/Inventory/inventory.jsp'>재고관리</a></b></td>"
-           + "<td align='center'><b><a href='/Admin/Member/member.jsp'>회원관리</a></b></td>"
-          + "<td align='center'><b><a href='/Admin/Shipping/shipping.jsp'>배송관리</a></b></td>";
+           + "<td align='center'><b><a href=/logout.jsp>로그아웃</a></b></td>"
+           + "<td align='center'><b><a href=/Admin/Product/productReg.jsp>상품등록</a></b></td>"
+          + "<td align='center'><b><a href=/Admin/Inventory/inventory.jsp>재고관리</a></b></td>"
+           + "<td align='center'><b><a href=/Admin/Member/member.jsp>회원관리</a></b></td>"
+          + "<td align='center'><b><a href=/Admin/Shipping/shipping.jsp>배송관리</a></b></td>";
 }
 else {
    
    innerTbl ="<td align='center'><b><a href=/index.jsp>홈</a></b></td>"
-           + "<td align='center'><b><a href=logout.jsp>로그아웃</a></b></td>"
+           + "<td align='center'><b><a href=/logout.jsp>로그아웃</a></b></td>"
           + "<td align='center'><b><a href=''>마이페이지</a></b></td>"
           + "<td align='center'><b><a href=''>장바구니</a></b></td>";
 
