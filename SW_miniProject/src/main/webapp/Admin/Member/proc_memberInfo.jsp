@@ -20,7 +20,7 @@
  
 	request.setCharacterEncoding("utf-8");
 	
-	String userid =request.getParameter("userid");
+	String userID =request.getParameter("userID");
 	String username = request.getParameter("username");
 	String password = request.getParameter("password");
 	String telno = request.getParameter("telno");
@@ -51,10 +51,10 @@
 					+ "address = '" + address + "',"
 					+ "detailAddress = '" + detailAddress + "',"
 					+ "extraAddress = '" + extraAddress + "',"
-   					+ "email = '" + email + "' where userID = '" + userid + "'";
+   					+ "email = '" + email + "' where userID = '" + userID + "'";
 		
 		System.out.println("[회원정보 수정 쿼리 ] : " + query);
-		System.out.println(userid);
+		System.out.println(userID);
 	
 		stmt = con.createStatement();
 		stmt.executeUpdate(query);
@@ -62,7 +62,7 @@
 		stmt.close();
 		con.close();
 		
-		response.sendRedirect("member");
+		response.sendRedirect("member.jsp");
 
 	}catch(Exception e){
 		e.printStackTrace();

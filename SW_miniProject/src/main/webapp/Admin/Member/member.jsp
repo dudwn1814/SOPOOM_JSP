@@ -1,3 +1,4 @@
+<%@page import="com.mini.page.Page"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -70,8 +71,20 @@ a:active { color: red; }
 </head>
 
 <body>
-	<%@include file="/top.jsp"%>
+
+<%@include file="/top.jsp"%>
 <%
+	request.setCharacterEncoding("utf-8");
+	
+	//로그인 창에서 파리미터로 받은 값
+	//String userID = request.getParameter("userID");
+	//String password = request.getParameter("password");
+	
+	//DB에서 사용자 정보(아이디랑 패스워드 가져 오기)
+	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
+	String uid = "root";
+	String pwd = "1234";
+
 	int idx = 1;
 %>
 
@@ -86,18 +99,91 @@ a:active { color: red; }
   		</tr>
 
  		<tbody>
-			<c:forEach items="${list}" var="list">
+ 		
+ <%  
+ 	
+	//int pageNum = Integer.parseInt(request.getParameter("page"));
+
+	//int postNum = 5; //한 페이지에 보여질 게시물 갯수 
+	//int displayPost = (pageNum -1)*postNum; //테이블에서 읽어 올 행의 위치
+
+	String query = "select * from user";
+	//limit "+ displayPost + "," + postNum;
+	
+	Connection con = null;
+    Statement stmt = null;
+    ResultSet rs = null;
+        
+	try{
+		
+		Class.forName("org.mariadb.jdbc.Driver");
+		con = DriverManager.getConnection(url, uid, pwd);
+
+		stmt = con.createStatement();
+		rs = stmt.executeQuery(query);
+		
+		while(rs.next()) {
+			 
+%>
  				<tr onMouseover="this.style.background='#46D2D2';" onmouseout="this.style.background='white';">
  					<td><%=idx++ %></td>
-  					<td style="text-align:center;"><a id="hypertext" href="/Admin/Member/memberInfo?userid=${list.userid}" onMouseover='this.style.textDecoration="underline"'  
-  							onmouseout="this.style.textDecoration='none';">${list.userid}</a></td>
-   					<td>${list.username}</td>
-  					<td>${list.telno}</td> 
- 				</tr>				
-			</c:forEach>
+  					<td style="text-align:center;"><a id="hypertext" href="/Admin/Member/memberInfo.jsp?userID=<%=rs.getString("userID") %>" onMouseover='this.style.textDecoration="underline"'  
+  							onmouseout="this.style.textDecoration='none';"><%=rs.getString("userID") %></a></td>
+   					<td><%=rs.getString("username") %></td>
+  					<td><%=rs.getString("telno") %></td> 
+ 				</tr>	
+ 				
+ <% 
+		}
+	}catch(Exception e)	 {
+		e.printStackTrace();
+	}
+	
+	if(stmt != null) stmt.close();
+	if(rs != null) rs.close();
+	if(con != null) con.close();
+	
+%>			
 		</tbody>
 
 	</table>
+	<br>
+	
+	<div>
+	
+<%
+/*
+	int listCount = 5; //한 화면에 보여질 페이지 갯수
+	int totalCount = 0; //전체 게시물 갯수
+	
+	try{
+
+		String query_totalCount = "select count(*) as totalCount from member";
+		
+		DataSource ds = (DataSource) this.getServletContext().getAttribute("dataSource");
+		con = ds.getConnection();
+		
+		stmt = con.createStatement();
+		rs = stmt.executeQuery(query_totalCount);
+		
+		while(rs.next()) totalCount = rs.getInt("totalCount");
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+	
+	Page pageList = new Page();
+	
+	String pageListView = pageList.getPageList(pageNum, postNum, listCount, totalCount);
+
+	if(stmt != null) stmt.close();
+	if(rs != null) rs.close();
+	if(con != null) con.close();
+	
+	pageListView 
+	
+	*/
+%>
+	</div>
 	
 	<div class="bottom_menu">
 	<a href="/index.jsp">홈으로</a>&nbsp;&nbsp;

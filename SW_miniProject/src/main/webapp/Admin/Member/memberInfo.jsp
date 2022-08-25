@@ -1,3 +1,7 @@
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
@@ -63,8 +67,18 @@ h1 { font-family: "HY견고딕" }
 </head>
 
 <body>
-	<%@include file="/top.jsp"%>
-<%String userID = request.getParameter("userid"); %>
+
+<%@include file="/top.jsp"%>
+<%
+	request.setCharacterEncoding("utf-8");
+	String userID = request.getParameter("userID");
+	
+	//DB에서 사용자 정보(아이디랑 패스워드 가져 오기)
+	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
+	String uid = "root";
+	String pwd = "1234";
+
+%>
 
 <div class="tableDiv">
 	<h1>회원 정보</h1>
@@ -83,29 +97,66 @@ h1 { font-family: "HY견고딕" }
   		</tr>
 
  		<tbody>
-			<c:forEach items="${list}" var="list">			
+ 		
+<%  
+ 	
+	//int pageNum = Integer.parseInt(request.getParameter("page"));
+
+	//int postNum = 5; //한 페이지에 보여질 게시물 갯수 
+	//int displayPost = (pageNum -1)*postNum; //테이블에서 읽어 올 행의 위치
+
+	String query = "select * from user where userID= '" + userID + "'"; 
+	//limit "+ displayPost + "," + postNum;
+	
+	Connection con = null;
+    Statement stmt = null;
+    ResultSet rs = null;
+        
+	try{
+		
+		Class.forName("org.mariadb.jdbc.Driver");
+		con = DriverManager.getConnection(url, uid, pwd);
+
+		stmt = con.createStatement();
+		rs = stmt.executeQuery(query);
+		
+		while(rs.next()) {
+			 
+%>
+			
 			<tr>
-  					<td>${list.userid}</td>
-  					<td>${list.username}</td> 
-  					<td>${list.password}</td> 
-  					<td>${list.telno}</td> 
-  					<td>${list.email}</td> 
-  					<td>${list.postcode}</td> 
-  					<td>${list.address}</td>
-  					<td>${list.detailAddress}</td> 
-  					<td>${list.extraAddress}</td> 
+  					<td><%=rs.getString("userID") %></td>
+  					<td><%=rs.getString("username") %></td> 
+  					<td><%=rs.getString("password") %></td> 
+  					<td><%=rs.getString("telno") %></td> 
+  					<td><%=rs.getString("email") %></td> 
+  					<td><%=rs.getString("postcode") %></td> 
+  					<td><%=rs.getString("address") %></td>
+  					<td><%=rs.getString("detailAddress") %></td> 
+  					<td><%=rs.getString("extraAddress") %></td> 
   					
  				</tr>
-			</c:forEach>
+ 				
+ <% 
+		}
+	}catch(Exception e)	 {
+		e.printStackTrace();
+	}
+	
+	if(stmt != null) stmt.close();
+	if(rs != null) rs.close();
+	if(con != null) con.close();
+	
+%>		
 		</tbody>
 
 	</table>
 
 
 <div class="bottom_menu">
-	<a href="member">목록으로</a>&nbsp;&nbsp;
-	<a href="edit_memberInfo.jsp?userid=<%=userID%>">회원정보 수정</a>&nbsp;&nbsp;
-	<a href="delete_memberInfo.jsp?userid=<%=userID%>">회원 강제 탈퇴</a>&nbsp;&nbsp;
+	<a href="member.jsp">목록으로</a>&nbsp;&nbsp;
+	<a href="edit_memberInfo.jsp?userID=<%=userID%>">회원정보 수정</a>&nbsp;&nbsp;
+	<a href="delete_memberInfo.jsp?userID=<%=userID%>">회원 강제 탈퇴</a>&nbsp;&nbsp;
 </div>
 </div>
 	<%@include file="/footer.jsp"%>

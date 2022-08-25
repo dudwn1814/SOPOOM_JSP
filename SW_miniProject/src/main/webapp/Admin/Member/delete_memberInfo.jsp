@@ -10,7 +10,7 @@
 <body>
 
 <%
-	String userid = request.getParameter("userid");
+	String userID = request.getParameter("userID");
 
 	String url = "jdbc:mariadb://127.0.0.1:3306/SW_miniProject";
 	String uid = "root";
@@ -19,7 +19,7 @@
 	Connection con = null;
 	Statement stmt = null;
 		
-	String query = "delete from user where userID = '" + userid + "'";
+	String query = "delete from user where userID = '" + userID + "'";
 	
 	try{
 		
@@ -33,8 +33,8 @@
 		con.close();
 %>
 		<script>
-			alert("<%=userid %>의 탈퇴처리가 완료 되었습니다.");
-			document.location.href='member';
+			alert("<%=userID %>의 탈퇴처리가 완료 되었습니다.");
+			document.location.href='member.jsp';
 		</script>
 		
 <% 
@@ -47,7 +47,7 @@
 
 		<script>
 			alert("에러가 발생하였습니다.");
-			document.location.href='memberInfo.jsp?userid=' + <%=userid %>;
+			document.location.href='memberInfo.jsp?userID=' + <%=userID %>;
 		</script>
 
 <% 
