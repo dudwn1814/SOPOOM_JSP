@@ -11,9 +11,9 @@
 <%
 	request.setCharacterEncoding("utf-8");
 
-	String p_id = (String)request.getParameter("p_id");
+	String p_id = request.getParameter("p_id");
 
-	String modifyAmount = request.getParameter("p_amount_value");
+	int modifyAmount = Integer.parseInt(request.getParameter("p_amount_value"));
 	
     Connection con = null;
     Statement stmt = null;
@@ -21,7 +21,7 @@
     String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
    	String uid = "root";
     String upw = "1234";
-    String query = "update inventory_management set p_amount = '" + modifyAmount + "' where p_id = " + p_id;
+    String query = "update product set p_unitsInStock = '" + modifyAmount + "' where p_id = " + p_id;
 
     try {
       Class.forName("org.mariadb.jdbc.Driver");

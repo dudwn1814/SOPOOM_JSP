@@ -28,18 +28,20 @@
 
 	Integer price;
 
-	if (p_price.isEmpty())
-		price = 0;
-	else
-		price = Integer.valueOf(p_price);
 
-	long stock;
+	if (p_name == null) p_name = null;
+	if (p_price == null) p_price = "0";
+	if (p_amount == null) p_amount = "0";
 
-	if (p_amount.isEmpty())
- 		stock = 0;
- 	else
- 		stock = Long.valueOf(p_amount);
+	if (p_filename == null) p_filename =  null;
+	if (description == null) description =  null;
+	
+	if (manufacturer == null) manufacturer = null;
+	if (category == null) category = null;
+	if (condition == null) condition = null;
 
+
+	
 	Enumeration files = multi.getFileNames();
 	String fname = (String) files.nextElement();
 	String fileName = multi.getFilesystemName(fname);
@@ -49,12 +51,12 @@
 	pstmt.setString(1, p_id);
 	pstmt.setString(2, p_name);
 	pstmt.setInt(3, Integer.parseInt(p_price));
-	pstmt.setInt(4, Integer.parseInt(p_amount));
-	pstmt.setString(5, p_filename);
-	pstmt.setString(6, description);
-	pstmt.setString(7, manufacturer);
-	pstmt.setString(8, category);
-	pstmt.setString(9, condition);
+	pstmt.setString(4, description);
+	pstmt.setString(5, category);
+	pstmt.setString(6, manufacturer);
+	pstmt.setInt(7, Integer.parseInt(p_amount));
+	pstmt.setString(8, condition);
+	pstmt.setString(9, p_filename);
 	
 	pstmt.executeUpdate();
 	
@@ -63,5 +65,5 @@
  	if (conn != null)
 		conn.close();
 	
- 	response.sendRedirect("index.jsp");
+ 	response.sendRedirect("/Admin/Inventory/inventory.jsp");
 %>

@@ -82,9 +82,11 @@ h1 {
 <body>
 	<%
 	request.setCharacterEncoding("utf-8");
+	
+	String p_id = (String)request.getParameter("p_id");
 
 	String query =
-	    "select p_id, p_name, FORMAT(p_price, 0) as p_price, p_amount from inventory_management";
+	    "select p_id, p_name, p_unitPrice, p_unitsInStock from product where p_id = '" + p_id + "'";
 
 	Connection con = null;
 	Statement stmt = null;
@@ -115,25 +117,25 @@ h1 {
 	<form id="ModifyForm" class="ModifyForm" method="POST">
 		<div class="p_image" id="p_image">
 			상품이미지 :
-			<%=rs.getInt("p_id")%></div>
+			<%=rs.getString("p_id")%></div>
 		<div class="p_id" id="p_id" name='p_id'>
-			상품번호 :
-			<%=rs.getInt("p_id")%></div>
+			상품코드 :
+			<%=rs.getString("p_id")%></div>
 		<div class="p_name" id="p_name">
 			상품이름 :
 			<%=rs.getString("p_name")%></div>
 		<div class="p_price" id="p_price">
 			상품가격 :
-			<%=rs.getString("p_price")%>\
+			<%=rs.getString("p_unitPrice")%>\
 		</div>
 		<div class="p_amount" id="p_amount">
 			상품수량 : <input type="number" id="p_amount_value" name='p_amount_value'
-				value=<%=rs.getInt("p_amount")%>>
+				value=<%=rs.getInt("p_unitsInStock")%>>
 		</div>
 		<button id="btn_modify" class="btn_modify"
-			onclick="modify(<%=rs.getInt("p_id")%>)">수정</button>
+			onclick="modify(<%=rs.getString("p_id")%>)">수정</button>
 		<button id="btn_delete" class="btn_delete"
-			onclick="deleteInventory(<%=rs.getInt("p_id")%>)">삭제</button>
+			onclick="deleteInventory(<%=rs.getString("p_id")%>)">삭제</button>
 	</form>
 	<%
 	}

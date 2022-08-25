@@ -105,7 +105,7 @@ a:active {
 	request.setCharacterEncoding("utf-8");
 
 	String query =
-	    "select p_id, p_name, FORMAT(p_price, 0) as p_price, p_amount from inventory_management";
+	    "select p_id, p_name, p_unitPrice, p_unitsInStock from product";
 
 	Connection con = null;
 	Statement stmt = null;
@@ -121,7 +121,7 @@ a:active {
 		<h1>상품 재고</h1>
 		<table class="InventoryInfoTable">
 			<tr>
-				<th>상품 ID</th>
+				<th>상품코드</th>
 				<th>상품명</th>
 				<th>가격</th>
 				<th>수량</th>
@@ -143,14 +143,14 @@ a:active {
 					%>
 					<tr onMouseover="this.style.background='#46D2D2';"
 						onmouseout="this.style.background='white';">
-						<td><%=rs.getInt("p_id")%></td>
+						<td><%=rs.getString("p_id")%></td>
 						<td style="text-align: center;"><a id="hypertext"
-							href="/Admin/Inventory/inventoryInfo.jsp?p_id=<%=rs.getInt("p_id")%>"
+							href="/Admin/Inventory/inventoryInfo.jsp?p_id=<%=rs.getString("p_id")%>"
 							onMouseover="this.style.textDecoration='
 							underline'"
 							onmouseout="this.style.textDecoration='none'"><%=rs.getString("p_name")%></a></td>
-						<td style="text-align: right;">\ <%=rs.getString("p_price")%></td>
-						<td><%=rs.getInt("p_amount")%></td>
+						<td style="text-align: right;">\ <%=rs.getInt("p_unitPrice")%></td>
+						<td><%=rs.getInt("p_unitsInStock")%></td>
 					</tr>
 					<%
 					}
