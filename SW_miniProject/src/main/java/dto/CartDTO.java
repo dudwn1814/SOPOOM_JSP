@@ -2,7 +2,7 @@ package dto;
 
 public class CartDTO {
 	private String userid; //유저 아이디
-	private int p_id; //제품 아이디
+	private String p_id; //제품 아이디
 	private int quantitiy; //수량
 
 	
@@ -10,7 +10,7 @@ public class CartDTO {
 		
 	}
 	
-	public CartDTO(String userid, int p_id,  int quantitiy) {
+	public CartDTO(String userid, String p_id,  int quantitiy) {
 		super();
 		this.userid = userid;
 		this.p_id = p_id;
@@ -35,11 +35,11 @@ public class CartDTO {
 		this.quantitiy = quantitiy;
 	}
 
-	public int getp_id() {
+	public String getp_id() {
 		return p_id;
 	}
 
-	public void setp_id(int p_id) {		
+	public void setp_id(String p_id) {		
 		this.p_id = p_id;
 	}
 	

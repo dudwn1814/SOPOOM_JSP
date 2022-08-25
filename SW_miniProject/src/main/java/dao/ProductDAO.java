@@ -27,7 +27,7 @@ public class ProductDAO {
 	String pwd = "1234";
 	
 	
-	public ProductDTO selectProduct(int p_id) {	
+	public ProductDTO selectProduct(String p_id) {	
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -40,13 +40,13 @@ public class ProductDAO {
 			
 			String sql = "select * from inventory_management where p_id = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, p_id);
+			pstmt.setString(1, p_id);
 			
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
 				product = new ProductDTO();
-				product.setp_id(rs.getInt("p_id"));
+				product.setp_id(rs.getString("p_id"));
 				product.setp_name(rs.getString("p_name"));
 				product.setp_price(rs.getInt("p_price"));
 				product.setp_amount(rs.getInt("p_amount"));

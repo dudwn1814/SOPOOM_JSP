@@ -45,7 +45,7 @@ public class CartDAO {
 			pstmt = con.prepareStatement(sql);
 
 			pstmt.setString(1, cart.getUserid());
-			pstmt.setInt(2, cart.getp_id());
+			pstmt.setString(2, cart.getp_id());
 			pstmt.setInt(3, cart.getQuantitiy());
 
 			rows = pstmt.executeUpdate();
@@ -77,7 +77,7 @@ public class CartDAO {
 			
 			pstmt.setString(1, cart.getUserid());
 			pstmt.setInt(2, cart.getQuantitiy());
-			pstmt.setInt(3, cart.getp_id());
+			pstmt.setString(3, cart.getp_id());
 			
 			rows= pstmt.executeUpdate(); 
 			
@@ -154,7 +154,7 @@ public class CartDAO {
 	 * con.prepareStatement(sql); rs = pstmt.executeQuery();
 	 * 
 	 * if(rs.next()) { cart = new CartDTO(); pstmt.setInt(1, p_id);
-	 * cart.setUserid(rs.getString("userid")); cart.setp_id(rs.getInt("p_id"));
+	 * cart.setUserid(rs.getString("userid")); cart.setp_id(rs.getString("p_id"));
 	 * cart.setQuantitiy(rs.getInt("quantity")); }
 	 * 
 	 * pstmt.close(); con.close();
@@ -187,7 +187,7 @@ public class CartDAO {
 				
 				CartDTO cart = new CartDTO();
 				cart.setUserid(rs.getString("userid"));
-				cart.setp_id(rs.getInt("p_id"));
+				cart.setp_id(rs.getString("p_id"));
 				cart.setQuantitiy(rs.getInt("quantity"));
 		
 				list.add(cart);

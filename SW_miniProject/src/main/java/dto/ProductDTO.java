@@ -1,7 +1,7 @@
 package dto;
 
 public class ProductDTO {
-	private int p_id; // 상품 아이디
+	private String p_id; // 상품 아이디
 	private String p_name; // 상품 이름
 	private int p_price; //가격
 	private int p_amount; //재고
@@ -10,7 +10,7 @@ public class ProductDTO {
 		
 	}
 	
-	public ProductDTO(int p_id, String p_name, int p_price, int p_amount) {
+	public ProductDTO(String p_id, String p_name, int p_price, int p_amount) {
 		super();
 		this.p_id = p_id;
 		this.p_name = p_name;
@@ -18,10 +18,10 @@ public class ProductDTO {
 		this.p_amount = p_amount;
 	}
 	
-	public int getp_id() {
+	public String getp_id() {
 		return p_id;
 	}
-	public void setp_id(int p_id) {
+	public void setp_id(String p_id) {
 		this.p_id = p_id;
 	}
 	public String getp_name() {
