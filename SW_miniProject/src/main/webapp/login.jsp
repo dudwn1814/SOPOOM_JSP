@@ -23,12 +23,6 @@
 </script>
 
 <style>
-.button{
-	padding: 5px;
-	width : 180px;
-	margin : 5px
-}
-
 #loginForm{
 	margin : auto;
 	min-width : 700px;
@@ -76,6 +70,7 @@ input:focus{
 }
 
 .button{
+	padding: 5px;
 	margin : auto;
 	cursor : pointer;
 	border-radius : 50px;

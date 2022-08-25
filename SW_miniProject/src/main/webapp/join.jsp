@@ -182,22 +182,110 @@
 
 <style>
 #joinForm{
-	border: 1px solid black;
-	width:600px;
-	margin:auto;
+	margin : auto;
+	min-width : 700px;
+}
+
+#innerForm{
+	margin : auto;
+	width : 400px;
+}
+h3{
+	text-align :left;
+	margin : 30px 5px;
+}
+
+.title{
+	display : block;
+	margin-bottom : 12px;
+	line-height : 17px;
+	letter-spacing : -0.1em;
 }
 
 .field{
-	border: 1px white solid;
-	text-align: center;
-	padding: 5px;
-	margin: 5px;
+	font-size : 14px;
+	line-height:23px;
+	width : 100%;
+	border : 1px solid #BFBFBF;
+	padding : 10px 15px;
+	box-sizing : border-box;
 }
 
-.btn_register{
+#id{
+	width : 81%;
+}
+
+#postcode{
+	width : 70%;
+}
+
+#address{
+	margin-bottom : 10px;
+}
+
+#btn_idChk{
+	font-size : 14px;
+	margin-left : -5px;
+	padding : 10px 7px;
+	line-height: 23px;
+	display:inline;
+	border : 1px solid  #313131;
+	background-color :  #313131;
+	color : #FFFFFF;
+	cursor : pointer;
+	transition-duration: 0.4s;
+}
+
+ #btn_address{
+	font-size : 14px;
+	margin-left : 8px;
+	margin-bottom : 18px;
+	padding : 10px 7px;
+	line-height: 23px;
+	display:inline;
+	border : 1px solid  #313131;
+	background-color :  #313131;
+	color : #FFFFFF;
+	cursor : pointer;
+	transition-duration: 0.4s;
+}
+
+input:focus{
+    outline: none;
+}
+
+.row{
+	margin : 0px 5px;
+	font-size : 14px;
+	line-height : 17px;
+	margin-bottom : 20px;
+}
+
+.button{
 	padding: 5px;
-	width : 180px;
-	margin : 5px
+	margin : auto;
+	cursor : pointer;
+	border-radius : 50px;
+	width : 100%;
+	max-width : 240px;
+	min-width : 160px;
+	height : 54px ! important;
+	min-height : 54px;
+	font-size : 14px !important;
+	font-weight : 700;
+}
+
+#btn_register{
+	color: #FFFFFF !important;
+    background-color: #313131 !important;
+    border-color: #313131 !important;
+    border-width : 1px;
+    transition-duration: 0.4s;
+}
+
+
+#btn_register:hover, #btn_idChk:hover, #btn_address:hover{
+ 	opacity : 0.7;
 }
 
 .msg{
@@ -217,59 +305,54 @@
 </head>
 <body>
 	<%@include file="top.jsp"%>
-	<h1 align="center">회원가입</h1>
 	<form name="registerForm" id="registerForm" method="post"> 
-	<table id="joinForm">
-			<tr>
-				<td class="field">아이디</td>
-				<td><input type="text" id="id" name="id" maxlength="50">
-				<input type="hidden" id="id_chk" value="false">
-				<input type="button" onclick="validCheck()" value="중복확인"><br>
-				<div id="msg_id" class="msg"></div>
-				</td>
-			</tr>
-			<tr>
-				<td class="field">비밀번호</td>
-				<td><input type="password" id="password" name="password" maxlength="50">
-				<div class="msg">(영문/숫자/특수문자 모두 포함, 8-20자리)</div>
-				<div id="msg_pw" class="msg"></div>
-				</td>
-			</tr>
-			<tr>
-				<td class="field">비밀번호 확인</td>
-				<td><input type="password" id="passwordchk" name="passwordchk" maxlength="50">
-				<div id="msg_pwchk" class="msg"></div>
-				</td>
-			</tr>
-			<tr><td class="field">이름</td>
-				<td><input type="text" id="name" name="name" maxlength="50">
-				<div id="msg_name" class="msg">이름을 입력해주세요.</div>
-				</td></tr>
-			<tr>
-				<td class="field">주소</td>
-				<td>
-				<input type="text" id="postcode" name="postcode" placeholder="우편번호" disabled>
-				<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-				<input type="text" id="address" name="address" placeholder="주소" disabled><br>
-				<input type="text" id="detailAddress" name="detailAddress" placeholder="상세주소">
-				<input type="text" id="extraAddress" name="extraAddress" placeholder="참고항목" disabled>
-				<div id="msg_address" class="msg">주소지를 입력해주세요.</div></td>
-			</tr>
-			<tr>
-			<tr><td class="field">전화번호</td>
-			<td>
-				<input type="text" id="telno" name="telno" maxlength="13"  />
-				<div id="msg_telno" class="msg">전화번호를 입력해주세요.</div>
-			</td></tr>
-			<tr><td class="field">이메일</td>
-			<td>
-				<input type="text" id="email" name="email" />
+	<div id="innerForm">
+	<h3>회원가입</h3>
+	<div class="row">
+		<label class="title">아이디</label>
+		<input type="text" class="field" id="id" name="id" maxlength="50" autofocus autoComplete="off">
+		<input type="hidden" id="id_chk" value="false">
+		<input type="button" id="btn_idChk" onclick="validCheck()" value="중복확인"><br>
+		<div id="msg_id" class="msg"></div>
+	</div>
+	<div class="row">
+		<label class="title">비밀번호</label>
+		<input type="password" class="field" id="password" name="password" maxlength="50" placeholder="영문/숫자/특수문자 모두 포함, 8-20자리">
+		<div id="msg_pw" class="msg"></div>
+	</div>
+	<div class="row">
+		<label class="title">비밀번호 확인</label>
+		<input type="password" class="field" id="passwordchk" name="passwordchk" maxlength="50">
+		<div id="msg_pwchk" class="msg"></div>
+	</div>
+	<div class="row">
+		<label class="title">이름</label>
+		<input type="text" class="field" id="name" name="name" maxlength="50" autoComplete="off">
+		<div id="msg_name" class="msg">이름을 입력해주세요.</div>
+	</div>
+	<div class="row">
+		<label class="title">주소</label>
+		<input type="text" class="field" id="postcode" name="postcode" placeholder="우편번호" disabled>
+		<input type="button" id="btn_address" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+		<input type="text" class="field" id="address" name="address" placeholder="기본주소" disabled><br>
+		<input type="text" class="field" id="detailAddress" name="detailAddress" placeholder="상세주소" autoComplete="off">
+		<input type="hidden" class="field" id="extraAddress" name="extraAddress" placeholder="참고항목" disabled>
+		<div id="msg_address" class="msg">주소지를 입력해주세요.</div>
+	</div>
+	<div class="row">
+		<label class="title">전화번호</label>
+		<input type="text" class="field" id="telno" name="telno" maxlength="13" autoComplete="off"  />
+		<div id="msg_telno" class="msg">전화번호를 입력해주세요.</div>
+	</div>
+	<div class="row">
+		<label class="title">이메일</label>
+		<input type="text" class="field" id="email" name="email" autoComplete="off" />
 				<div id="msg_email" class="msg"></div>
-			</td></tr>
-	</table>
+	</div>
 	<br>
 	<div align="center">
-		<input type="button" id="btn_register" class="btn_register" value="회원가입">
+		<input type="button" id="btn_register" class="button" value="회원가입">
+	</div>
 	</div>
 	</form>
 	<%@include file="footer.jsp"%>
