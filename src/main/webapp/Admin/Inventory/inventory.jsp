@@ -1,0 +1,111 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<head>
+<title>게시물 목록</title>
+
+<style>
+body { font-family: "나눔고딕", "맑은고딕" }
+h1 { font-family: "HY견고딕" }
+a:link { color: black; }
+a:visited { color: black; }
+a:hover { color: red; }
+a:active { color: red; }
+#hypertext { text-decoration-line: none; cursor: hand; }
+
+.tableDiv {
+	text-align: center;
+}
+
+.InventoryInfoTable {
+      border-collapse: collapse;
+      border-top: 3px solid #168;
+      width: 800px;  
+      margin-left: auto; margin-right: auto;
+    }  
+    .InventoryInfoTable th {
+      color: #168;
+      background: #f0f6f9;
+      text-align: center;
+    }
+    .InventoryInfoTable th, .InventoryInfoTable td {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+    .InventoryInfoTable th:first-child, .InventoryInfoTable td:first-child {
+      border-left: 0;
+    }
+    .InventoryInfoTable th:last-child, .InventoryInfoTable td:last-child {
+      border-right: 0;
+    }
+    .InventoryInfoTable tr td:first-child{
+      text-align: center;
+    }
+    .InventoryInfoTable caption{caption-side: top; }
+<<<<<<< HEAD:SW_miniProject/src/main/webapp/Admin/Inventory/inventory.jsp
+    
+    .bottom_menu { margin-top: 20px; }
+
+	.bottom_menu > a:link, .bottom_menu > a:visited {
+				background-color: #FFA500;
+				color: maroon;
+				padding: 15px 25px;
+				text-align: center;	
+				display: inline-block;
+				text-decoration : none; 
+	}
+	.bottom_menu > a:hover, .bottom_menu > a:active { 
+		background-color: #1E90FF;
+		text-decoration : none; 
+}
+=======
+>>>>>>> b3fedd22fbba6d0ed3fddc75570f9461d1f05f94:src/main/webapp/Admin/Inventory/inventory.jsp
+</style>
+
+</head>
+
+<body>
+	<%@include file="/top.jsp"%>
+<div class="tableDiv">
+	<h1>상품 재고</h1>
+	<table class="InventoryInfoTable">
+  		<tr>
+   			<th>상품 ID</th>
+   			<th>상품명</th>
+   			<th>가격</th>
+   			<th>수량</th>
+  		</tr>
+
+ 		<tbody>
+			<c:forEach items="${list}" var="list">
+ 				<tr onMouseover="this.style.background='#46D2D2';" onmouseout="this.style.background='white';">
+  					<td>${list.p_id}</td>
+  					<td style="text-align:center;"><a id="hypertext" href="/Admin/Inventory/inventoryOrder?p_id=${list.p_id}" onMouseover='this.style.textDecoration="underline"'  
+  							onmouseout="this.style.textDecoration='none';">${list.p_name}</a></td>
+<<<<<<< HEAD:SW_miniProject/src/main/webapp/Admin/Inventory/inventory.jsp
+  					<td style="text-align:right;">\ ${list.p_price} </td>
+=======
+  					<td style="text-align:right;">${list.p_price} \</td>
+>>>>>>> b3fedd22fbba6d0ed3fddc75570f9461d1f05f94:src/main/webapp/Admin/Inventory/inventory.jsp
+  					<td>${list.p_amount}</td> 
+ 				</tr>
+			</c:forEach>
+		</tbody>
+
+	</table>
+	
+	<div class="bottom_menu">
+	<a href="/index.jsp">홈으로</a>&nbsp;&nbsp;
+	</div>
+</div>
+<<<<<<< HEAD:SW_miniProject/src/main/webapp/Admin/Inventory/inventory.jsp
+
+=======
+>>>>>>> b3fedd22fbba6d0ed3fddc75570f9461d1f05f94:src/main/webapp/Admin/Inventory/inventory.jsp
+<%@include file="/footer.jsp"%>
+</body>
+</html>
