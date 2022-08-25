@@ -28,7 +28,7 @@ public class MemberList extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 
-    final Logger logger = LoggerFactory.getLogger(InventoryList.class);
+    final Logger logger = LoggerFactory.getLogger(MemberList.class);
 
     logger.info("===== memberList start =====");
     resp.setContentType("text/html; charset=UTF-8");
