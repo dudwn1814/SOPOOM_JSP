@@ -24,15 +24,13 @@
 			$("#p_price").focus();
 			return false;
 		}
-		if ($("p_amount").val() == "") {
+		if ($("#p_amount").val() == "") {
 			alert("수량을 입력하세요");
 			$("#p_amount").focus();
 			return false;
 		}
-
-
-		$('#WriteForm').attr('action', '/Admin/Product/processAddProduct.jsp')
-				.submit();
+		
+		$('#WriteForm').attr('action', '/Admin/Product/processAddProduct.jsp').submit();
 	}
 </script>
 

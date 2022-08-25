@@ -21,7 +21,7 @@
     String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
    	String uid = "root";
     String upw = "1234";
-    String query = "update product set p_unitsInStock = '" + modifyAmount + "' where p_id = " + p_id;
+    String query = "update product set p_unitsInStock = '" + modifyAmount + "' where p_id = '" + p_id + "'";
 
     try {
       Class.forName("org.mariadb.jdbc.Driver");

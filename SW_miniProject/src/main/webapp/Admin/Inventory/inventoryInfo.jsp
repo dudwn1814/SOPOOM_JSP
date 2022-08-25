@@ -10,6 +10,7 @@
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 
+
 function modify(PID){
 	if($("#p_amount_value").val() <= 0) { 
 		alert("올바른 수량을 입력해주세요");  
@@ -17,6 +18,7 @@ function modify(PID){
 		return false;  
 	}
 	$("#ModifyForm").attr("action", "/Admin/Inventory/modify_proc.jsp?p_id="+PID).submit();
+
 }
 
 function deleteInventory(PID){
@@ -112,7 +114,7 @@ h1 {
 	  stmt = con.createStatement();
 	  rs = stmt.executeQuery(query);
 
-	  while (rs.next()) {
+	  if (rs.next()) {
 	%>
 	<form id="ModifyForm" class="ModifyForm" method="POST">
 		<div class="p_image" id="p_image">
@@ -129,13 +131,13 @@ h1 {
 			<%=rs.getString("p_unitPrice")%>\
 		</div>
 		<div class="p_amount" id="p_amount">
-			상품수량 : <input type="number" id="p_amount_value" name='p_amount_value'
+			상품수량 : <input type="number" id="p_amount_value" name="p_amount_value"
 				value=<%=rs.getInt("p_unitsInStock")%>>
 		</div>
 		<button id="btn_modify" class="btn_modify"
-			onclick="modify(<%=rs.getString("p_id")%>)">수정</button>
+			onclick="modify('<%=rs.getString("p_id")%>')">수정</button>
 		<button id="btn_delete" class="btn_delete"
-			onclick="deleteInventory(<%=rs.getString("p_id")%>)">삭제</button>
+			onclick="deleteInventory('<%=rs.getString("p_id")%>')">삭제</button>
 	</form>
 	<%
 	}

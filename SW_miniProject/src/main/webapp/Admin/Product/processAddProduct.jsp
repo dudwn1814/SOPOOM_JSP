@@ -30,8 +30,6 @@
 
 
 	if (p_name == null) p_name = null;
-	if (p_price == null) p_price = "0";
-	if (p_amount == null) p_amount = "0";
 
 	if (p_filename == null) p_filename =  null;
 	if (description == null) description =  null;

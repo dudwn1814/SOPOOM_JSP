@@ -19,7 +19,7 @@
     String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
    	String uid = "root";
     String upw = "1234";
-    String query = "delete from product where p_id = " + p_id;
+    String query = "delete from product where p_id = '" + p_id + "'";
 
 
     try {
