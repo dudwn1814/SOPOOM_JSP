@@ -14,15 +14,15 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	//String userID = (String)session.getAttribute("userID");
-	//if(userid == null) response.sendRedirect("index.jsp");
+	//if(userID == null) response.sendRedirect("index.jsp");
 	
-	String userid = request.getParameter("userid");
-	System.out.println(userid);
+	String userID = request.getParameter("userID");
+	System.out.println(userID);
 %>
 
 function registerForm(){
 	
-	$("#WriteForm").attr("action", "proc_memberInfo.jsp?userid=<%=userid%>").submit();
+	$("#WriteForm").attr("action", "proc_memberInfo.jsp?userID=<%=userID%>").submit();
 	
 }
 
@@ -82,7 +82,7 @@ h1 { font-family: "HY견고딕" }
  	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
 	String uid = "root";
 	String pwd = "1234";
-	String query = "select * from user where userID= '" + userid + "'"; 
+	String query = "select * from user where userID= '" + userID + "'"; 
 	System.out.println("[수정 보기 쿼리] : " + query);
 	
 	Connection con = null;
@@ -136,7 +136,7 @@ h1 { font-family: "HY견고딕" }
 	<br>
 	
 	<form id="WriteForm" class="WriteForm" method="POST">
-		<div class="textbox">아이디 : <input type="text" id="userid" value="<%=userid %>" disabled></div>
+		<div class="textbox">아이디 : <input type="text" id="userID" value="<%=userID %>" disabled></div>
 		<div class="textbox">이름 : <input type="text" name="username" value="<%=username %>"></div>
 		<div class="textbox">비밀번호 : <input type="text" name="password" value="<%=password%>"></div>
 		<div class="textbox">전화번호 : <input type="text" id="telno" name="telno" value="<%=telno %>"></div>
