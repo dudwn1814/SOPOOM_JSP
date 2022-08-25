@@ -17,7 +17,7 @@
 </script>
 </head>
 <body>
-	<jsp:include page="menu.jsp" />
+	<jsp:include page="top.jsp" />
 	<div class="jumbotron">
 		<div class="container">
 			<h1 class="display-3">상품 정보</h1>
@@ -25,8 +25,8 @@
 	</div>
 	<%
 		String id = request.getParameter("id");
-		ProductRepository dao = ProductRepository.getInstance();
-		Product product = dao.getProductById(id);
+		ProductRepository client = ProductRepository.getInstance();
+		Product product = client.getProductById(id);
 	%>
 	<div class="container">
 		<div class="row">

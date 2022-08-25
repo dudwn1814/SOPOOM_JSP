@@ -2,16 +2,22 @@ create database inventory;
 USE inventory;
 
 -- 재고 테이블  
-create table inventory_management (
-	p_id int(8) auto_increment primary key,
-	p_name varchar(20) not null,
-	p_price int(10) UNSIGNED not null,
-	p_amount smallint(5) UNSIGNED not null,
-	filename varchar(50),
-	filesize int(100) UNSIGNED
-);
+CREATE TABLE IF NOT EXISTS product(
+	p_id VARCHAR(10) NOT NULL,
+	p_name VARCHAR(20),
+	p_unitPrice  INTEGER,
+	p_description TEXT,
+   	p_category VARCHAR(20),
+	p_manufacturer VARCHAR(20),
+	p_unitsInStock INTEGER,
+	p_condition VARCHAR(20),
+	p_fileName  VARCHAR(20),
+	PRIMARY KEY (p_id)
+)default CHARSET=utf8;
 
-INSERT INTO inventory_management(p_id, p_name, p_price, p_amount) VALUES(null, '조명', 50000, 3);
+INSERT INTO product VALUES('P1234', 'iPhone 6s', 800000, '1334X750 Renina HD display, 8-megapixel iSight Camera','Smart Phone', 'Apple', 1000, 'new', 'P1234.png');
+INSERT INTO product VALUES('P1235', 'LG PC gram', 1500000, '3.3-inch,IPS LED display, 5rd Generation Intel Core processors', 'Notebook', 'LG', 1000, 'new', 'P1235.png');
+INSERT INTO product VALUES('P1236', 'Galaxy Tab S', 900000, '3.3-inch, 212.8*125.6*6.6mm,  Super AMOLED display, Octa-Core processor', 'Tablet', 'Samsung', 1000, 'new', 'P1236.png');
 
 
 -- 회원 테이블
@@ -24,14 +30,10 @@ CREATE TABLE user(
 	detailAddress VARCHAR(50) NOT NULL,
 	extraAddress VARCHAR(50),
 	telno VARCHAR(20) NOT NULL,
-	email VARCHAR(50) NOT NULL,
-	--role VARCHAR(20) NOT NULL
+	email VARCHAR(50) NOT NULL
 );
 --관리자 계정
--- role 없는 경우
 INSERT INTO user(userID, password, username, postcode, detailAddress, telno, email) VALUES("admin", "admin123!", "관리자", "00000", "관리자", "000-0000-0000", "admin@admin.com");
--- role 지정 시
--- INSERT INTO user(userID, password, username, postcode, detailAddress, telno, email, role) VALUES("admin", "admin123!", "관리자", "00000", "관리자", "000-0000-0000", "admin@admin.com", "admin");
 
 
 -- 주문 테이블
@@ -49,8 +51,8 @@ CREATE TABLE orderedItem (
 	orderID VARCHAR(30) NOT NULL, 
 	pID VARCHAR(30) NOT NULL,
 	count INT(100) NOT NULL DEFAULT 1,
-	CONSTRAINT orderID_FK FOREIGN KEY (orderID) REFERENCES `order`(orderID) ON UPDATE CASCADE ON DELETE CASCADE
-	-- CONSTRAINT pID_FK FOREIGN KEY (pID) REFERENCES product(pID) ON UPDATE NO ACTION ON DELETE NO ACTION
+	CONSTRAINT orderID_nn FOREIGN KEY (orderID) REFERENCES `order`(orderID) ON UPDATE CASCADE ON DELETE CASCADE
+	-- CONSTRAINT pID_nn FOREIGN KEY (pID) REFERENCES product(pID) ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
 

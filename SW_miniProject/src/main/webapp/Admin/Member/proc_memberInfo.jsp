@@ -1,13 +1,6 @@
-<%@page import="javax.sql.DataSource"%>
-<%@page import="java.io.File"%>
-<%@page import="java.util.*"%>
 <%@page import="java.sql.*"%>
-<%@page import="java.util.Enumeration"%>
-<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
-<%@page import="com.oreilly.servlet.MultipartRequest"%>
-<%@page import="java.time.LocalDateTime"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,11 +9,10 @@
 </head>
 <body>
 
-<%
- 
+	<%
 	request.setCharacterEncoding("utf-8");
-	
-	String userid =request.getParameter("userid");
+
+	String userID = request.getParameter("userID");
 	String username = request.getParameter("username");
 	String password = request.getParameter("password");
 	String telno = request.getParameter("telno");
@@ -37,40 +29,36 @@
 	Connection con = null;
 	Statement stmt = null;
 
-	try{
-		
-		Class.forName("org.mariadb.jdbc.Driver");
-		con = DriverManager.getConnection(url, user, pwd);
-	
-		//DataSource ds = (DataSource) this.getServletContext().getAttribute("dataSource");
-		//con = ds.getConnection();
-		
-		String query = "update user set username = '" + username + "',"
-					+ "password = '" + password + "' ," + "telno = '" + telno + "',"
-					+ "postcode = '" + postcode + "',"
-					+ "address = '" + address + "',"
-					+ "detailAddress = '" + detailAddress + "',"
-					+ "extraAddress = '" + extraAddress + "',"
-   					+ "email = '" + email + "' where userID = '" + userid + "'";
-		
-		System.out.println("[회원정보 수정 쿼리 ] : " + query);
-		System.out.println(userid);
-	
-		stmt = con.createStatement();
-		stmt.executeUpdate(query);
-		
-		stmt.close();
-		con.close();
-		
-		response.sendRedirect("member");
+	try {
 
-	}catch(Exception e){
-		e.printStackTrace();
-		stmt.close();
-		con.close();
+	  Class.forName("org.mariadb.jdbc.Driver");
+	  con = DriverManager.getConnection(url, user, pwd);
+
+	  //DataSource ds = (DataSource) this.getServletContext().getAttribute("dataSource");
+	  //con = ds.getConnection();
+
+	  String query = "update user set username = '" + username + "'," + "password = '" + password
+	  + "' ," + "telno = '" + telno + "'," + "postcode = '" + postcode + "'," + "address = '"
+	  + address + "'," + "detailAddress = '" + detailAddress + "'," + "extraAddress = '"
+	  + extraAddress + "'," + "email = '" + email + "' where userID = '" + userID + "'";
+
+	  System.out.println("[회원정보 수정 쿼리 ] : " + query);
+	  System.out.println(userID);
+
+	  stmt = con.createStatement();
+	  stmt.executeUpdate(query);
+
+	  stmt.close();
+	  con.close();
+
+	  response.sendRedirect("member.jsp");
+
+	} catch (Exception e) {
+	  e.printStackTrace();
+	  stmt.close();
+	  con.close();
 	}
-
-%>
+	%>
 
 </body>
 </html>
