@@ -172,7 +172,7 @@
 	   		idInput.focus();
 	   	}
 	   	else{
-	   		window.open("idCheck.jsp?id="+idInput.value,"","width=300, height=50");
+	   		window.open("idCheck.jsp?id="+idInput.value,"","width=400, height=200");
 	   	}
     }
 

@@ -18,7 +18,7 @@
 	Connection con = null;
 	Statement stmt = null;
 
-	String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
+	String uri = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
 	String uid = "root";
 	String upw = "1234";
 

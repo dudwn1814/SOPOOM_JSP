@@ -5,8 +5,26 @@
 <style>
 .msg{
 	text-align:center;
-	font-size:15px;
+	font-size:14px;
+	margin-bottom : 40px
 }
+
+.msg_block{
+	margin-top : 60px;
+}
+
+span{
+	font-weight : bold;
+}
+
+.btn_register{
+	padding : 5px;
+	border : 1px solid  #313131;
+	background-color :  #313131;
+	color : #FFFFFF;
+	cursor : pointer;
+}
+
 </style>
 <script>
 	function windowClose(){
@@ -34,14 +52,14 @@
 <title>아이디 중복 확인</title>
 </head>
 <body>
-
+<div class="msg_block">
 <%
 request.setCharacterEncoding("utf-8");
 String userid = request.getParameter("id");
 //DB에서 사용자 정보(아이디, password) 가져오기
-String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
+String url = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
 String user = "root";
-String pwd = "1234";
+String pwd = "0000";
 
 Connection con = null;
 Statement stmt1 = null;
@@ -68,13 +86,13 @@ try{
 		rs1.close();
 		con.close();
 %>
-		<div class ="msg" style="color:red"> '<%=userid %>' 는 이미 존재하는 아이디입니다. </div>
+		<div class ="msg" >'<span style="color:red"><%=userid %></span>' 는 이미 존재하는 아이디입니다. </div>
 		<input type="hidden" id="id_chk" value="false"> 
 <%
 	}
 	else{
 %>
-	<div class ="msg" style="color:blue"> '<%=userid %>' 는 사용 가능한 아이디입니다. </div>
+	<div class ="msg" > '<span style="color:blue"><%=userid %></span>' 는 사용 가능한 아이디입니다. </div>
 	<input type="hidden" id="id_chk" value="true"> 
 <%
 	}
@@ -87,10 +105,10 @@ rs1.close();
 con.close();
 
 %>
-<br>
 
 <div align="center">
-	<input type="button" class="btn_register" onClick="windowClose();" value="확인">
+<input type="button" class="btn_register" onClick="windowClose();" value="확인">
+</div>
 </div>
 </body>
 </html>
