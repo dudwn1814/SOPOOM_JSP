@@ -1,7 +1,7 @@
 create database inventory;
 USE inventory;
 
--- 재고 테이블  
+--재고 테이블  
 CREATE TABLE IF NOT EXISTS product(
 	p_id VARCHAR(10) NOT NULL,
 	p_name VARCHAR(20),
@@ -32,6 +32,7 @@ CREATE TABLE user(
 	telno VARCHAR(20) NOT NULL,
 	email VARCHAR(50) NOT NULL
 );
+
 --관리자 계정
 INSERT INTO user(userID, password, username, postcode, detailAddress, telno, email) VALUES("admin", "admin123!", "관리자", "00000", "관리자", "000-0000-0000", "admin@admin.com");
 
@@ -68,4 +69,16 @@ CREATE TABLE shipping(
 	telno VARCHAR(20) NOT NULL,
 	`status` VARCHAR(10) NOT NULL DEFAULT '주문 완료',
 	CONSTRAINT FK__order FOREIGN KEY (orderID) REFERENCES `order`(orderID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+--7.카트 테이블
+--제품 테이블의 productid, 유저 테이블의 userid와 join
+CREATE TABLE `cart` (
+	`userID` VARCHAR(50) NOT NULL ,
+	`QUANTITY` INT(11) NOT NULL COMMENT '주문수량',
+	`p_id` VARCHAR(10) NOT NULL ,
+	INDEX `FK_pid` (`p_id`) USING BTREE,
+	INDEX `FK_userID` (`userID`) USING BTREE,
+	CONSTRAINT `FK_pid` FOREIGN KEY (`p_id`) REFERENCES `inventory`.`product` (`p_id`) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT `FK_userID` FOREIGN KEY (`userID`) REFERENCES `inventory`.`user` (`userID`) ON UPDATE CASCADE ON DELETE CASCADE
 );
