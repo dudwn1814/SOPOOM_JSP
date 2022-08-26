@@ -38,6 +38,7 @@
 
 	<br>
 	<h1>회원 목록</h1>
+	<hr>
 	<div>
 		<select id="searchType" name="searchType">
 			<option value="userID">회원아이디</option>
@@ -168,10 +169,6 @@
 			<%=pageListView%>
 		</div>
 		<br>
-		<div class="bottom_menu">
-			<a href="/Admin/Member/member.jsp?page=1">목록으로</a>&nbsp;&nbsp; <a
-				href="/index.jsp">홈으로</a>&nbsp;&nbsp;
-		</div>
 	</div>
 
 	<%@include file="/footer.jsp"%>
