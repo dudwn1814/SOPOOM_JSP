@@ -1,0 +1,81 @@
+
+/* productreg */
+.editTitle {
+	text-align :center;
+   margin : 30px 5px;
+
+}
+
+#WriteForm {
+	width: 100%;
+	max-width: 450px;
+}
+
+
+h3 {
+	text-align: left;
+	margin: 30px 5px;
+}
+
+.title {
+	display: block;
+	margin-bottom: 12px;
+	line-height: 17px;
+	letter-spacing: -0.1em;
+}
+
+.p_id, .p_name, .p_price, .p_amount, .p_manufacturer, .p_category {
+	text-align:center;
+	font-size: 14px;
+	line-height: 23px;
+	width: 100%;
+	border: 1px solid #BFBFBF;
+	padding: 10px 15px;
+	box-sizing: border-box;
+}
+
+.p_description{
+		text-align:center;
+	font-size: 14px;
+	line-height: 400px;
+	width: 100%;
+	border: 1px solid #BFBFBF;
+	padding: 10px 15px;
+	box-sizing: border-box;
+}
+
+.p_image {
+	text-align:center;
+	font-size: 14px;
+	line-height: 400px;
+	width: 100%;
+	border: 1px solid #BFBFBF;
+	padding: 10px 15px;
+	box-sizing: border-box;
+}
+
+input:focus {
+	outline: none;
+}
+
+.row {
+	margin: 0px 5px;
+	font-size: 14px;
+	line-height: 17px;
+	margin-bottom: 20px;
+}
+
+.btn_registry, .btn_cancel {
+	margin-right: 10px; 
+	width : 30%;
+	height: 40px;
+	background-color: black;
+	color: white;
+	border-radius: 50px;
+	text-align: center;
+	cursor: pointer;
+	transition: 0.4s;
+	display: inline;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}

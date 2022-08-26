@@ -70,19 +70,19 @@ function deleteInventory(PID){
 	<form id="ModifyForm" class="ModifyForm" method="POST">
 		<div class="row">
 				<label class="title">상품이미지</label> 
-				<input type="image" src="../img/1.png" alt="상품이미지" class="p_image" id="p_image" value="<%=rs.getString("p_id")%>">
+				<input type="image" src="../img/1.png" alt="상품이미지" class="p_image" id="p_image" value="<%=rs.getString("p_id")%>" disabled>
 		</div>
 		<div class="row">
 				<label class="title">상품코드</label> 
-				<input type="text" class="p_id" id="p_id" value="<%=rs.getString("p_id")%>">
+				<input type="text" class="p_id" id="p_id" value="<%=rs.getString("p_id")%>" disabled>
 		</div>
 		<div class="row">
 				<label class="title">상품이름</label> 
-				<input type="text" class="p_name" id="p_name" value="<%=rs.getString("p_name")%>">
+				<input type="text" class="p_name" id="p_name" value="<%=rs.getString("p_name")%>" disabled>
 		</div>
 		<div class="row">
 				<label class="title">상품가격</label> 
-				<input type="text" class="p_price" id="p_price" value="<%=rs.getString("p_unitPrice")%> \">
+				<input type="text" class="p_price" id="p_price" value="<%=rs.getString("p_unitPrice")%> ￦" disabled>
 		</div>
 		<div class="row">
 				<label class="title">상품수량</label> 
@@ -111,6 +111,7 @@ function deleteInventory(PID){
 	e.printStackTrace();
 	}
 	%>
+	</div>
 
 	<%@include file="/footer.jsp"%>
 </body>
