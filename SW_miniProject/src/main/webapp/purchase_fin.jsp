@@ -36,7 +36,7 @@ String orderCode = (String)session.getAttribute("orderCode");
 <title>JSP미니 프로젝트</title>
 </head>
 <body>
-	<%@include file="top.jsp"%>
+	<%@include file="/top.jsp"%>
 	<table id='infoTbl'>
 	<tr id="infoMsg"><td>주문이 완료되었습니다.</td></tr>
 	<tr class="label"><td>주문 번호</td></tr>
@@ -48,7 +48,7 @@ String orderCode = (String)session.getAttribute("orderCode");
 	</table>
 	<div align="center">
 	<br>
-	<input type="button" value="HOME" onClick="location.href='index.jsp'">
+	<input type="button" value="HOME" onClick="location.href='/index.jsp'">
 	<br>
 	</div>
 	<%@include file="footer.jsp"%>

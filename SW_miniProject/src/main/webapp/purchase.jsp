@@ -6,8 +6,9 @@
 
 <%
 	//user 정보 받아오기
-	//String userid = (String)session.getAttribute("userid");
-	String userid = "dudwn1814";
+	String userid = (String)session.getAttribute("userid");
+
+	String userid = userid;
 	String userName = "";
 	String userTelno = "";
 	String userMail = "";
@@ -64,26 +65,73 @@
 	}
 	
 	//상품정보 받아오기
+	request.setCharacterEncoding("UTF-8");
+
 	DecimalFormat df = new DecimalFormat("###,###");
-	
-	String pName = "상품명";
-	int intPrice = 1000;
-	String strPrice = df.format(intPrice);
-	
-	String strCount = "1";
-	int count = Integer.parseInt(strCount);
-	int pTotal =  intPrice * count;
-	String strPTotal = df.format(pTotal);
-	
-	int total = 0;
-	total += pTotal;
-	
-	String strTotal = df.format(total);
-	
-	System.out.println(total);
-	//request.setAttribute("totalPrice", total);
-	session.setAttribute("strTotal", strTotal);
-%>
+
+	//shopping.jsp 에서 받아온 값들
+	String[] pName = request.getParameterValues("pname"); //제품이름
+	String[] pPrice = request.getParameterValues("price"); //제품 개수에 따른 가격
+	String[] count = request.getParameterValues("countInput");//제품 수량
+	String[] pPriceTotal = request.getParameterValues("total");// 1개 가격 x 수량 = 제품 총 주문 가격
+	String[] pID = request.getParameterValues("p_id"); //product id
+
+	String total = request.getParameter("selectedTotal");// 최종 결제 금액
+
+	//getParameterValues NULL보정 부분	
+	String dummy1 = "";
+	String dummy2 = "";
+	String dummy3 = "";
+	String dummy4 = "";
+	String dummy5 = "";
+
+	if (pName == null) {
+	pName = new String[0];
+	}
+	for (int i = 0; i < pName.length; i++) {
+	dummy1 += pName[i] + "&nbsp";
+	}
+
+	if (pPrice == null) {
+	pPrice = new String[0];
+	}
+	for (int i = 0; i < pName.length; i++) {
+	dummy2 += pPrice[i] + "&nbsp";
+	}
+	if (count == null) {
+	count = new String[0];
+	}
+	for (int i = 0; i < pName.length; i++) {
+	dummy3 += count[i] + "&nbsp";
+	}
+
+	if (pPriceTotal == null) {
+	pPriceTotal = new String[0];
+	}
+	for (int i = 0; i < pName.length; i++) {
+	dummy4 += pPriceTotal[i] + "&nbsp";
+	}
+
+	if (pID == null) {
+		pID = new String[0];
+	}
+	for (int i = 0; i < pName.length; i++) {
+	dummy5 += pID[i] + "&nbsp";
+	}
+
+	//Stirng -> int
+	int[] intpPrinc = new int[pPrice.length];
+	int[] intpPriceTotal = new int[pPriceTotal.length];
+	int inttotal = Integer.parseInt(total);
+
+	for (int i=0; i<pName.length; i++){
+		intpPrinc[i] = Integer.parseInt(pPrice[i]);
+		intpPriceTotal[i] = Integer.parseInt(pPriceTotal[i]);
+	}
+
+	request.setAttribute("totalPrice", inttotal);
+	session.setAttribute("strTotal", total);
+	%>
 
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -266,12 +314,32 @@ form{
 	<form name="purchaseForm" id="purchaseForm" method="post">
 	
 	<div id="productChk" class="detailForm">
-	<h3>상품 확인</h3>
-	<table id="productTbl">
-	<tr><th class="td"></th><th>상품명</th><th class="td">판매가</th><th class="td">수량</th><th class="td">합계</th></tr>
-	<tr><td><img src="/img/sample.png" alt="productImg" width="90" height="120"></td><td class="tdPname"><%= pName%></td><td><%= strPrice%></td><td><%= count%></td><td><%= strPTotal%></td></tr>
-	</table>
-	</div>
+			<h3>상품 확인</h3>
+			<%
+			//이전 페이지에서 값 받아오는 방식으로 작성.
+			//상품 항목이 늘어날때마다 동적으로 변화.
+			int i = 0;
+			for (; i < pName.length; i++) {
+			%>
+			<table id="productTbl">
+				<tr>
+					<th class="td"></th>
+					<th>상품명</th>
+					<th class="td">판매가</th>
+					<th class="td">수량</th>
+					<th class="td">합계</th>
+				</tr>
+				<tr>
+					<td><img src="/img/sample.png" alt="productImg" width="90" height="120"></td>
+					<td class="tdPname"><%=pName[i]%>
+						<input type="hidden" name="p_id" value="<%=pID[i]%>"></td>
+					<td><%=df.format(intpPrinc[i]) %></td> 
+					<td ><%=count[i]%>
+						<input type="hidden" name = "count" value="<%=count[i]%>"></td>
+					<td><%=df.format(intpPriceTotal[i]) %></td>
+				</tr>
+			</table>
+		</div>
 	
 	<div>
 	<h3 class="label">주문 정보</h3>
@@ -314,12 +382,12 @@ form{
 	</table>
 	</div>
 	
-	<div>
-	<h3 class="label">최종 결제 금액</h3>
-	<span id="strTotal"><%=strTotal %></span> 원
-	<input type="hidden" name="totalPrice" value="<%=total %>" />
-	</div>
-	<br>
+<div>
+			<h3 class="label">최종 결제 금액</h3>
+			<span id="strTotal"><%=df.format(inttotal)%></span> 원
+			<input type="hidden" name="totalPrice" value="<%=total%>" />
+		</div>
+		<br>
 	
 	<div align="center">
 		<input type="button" id="btn_purchase" class="btn_purchase" value="결제하기">

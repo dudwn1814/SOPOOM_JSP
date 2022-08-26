@@ -40,7 +40,7 @@
 	  if (con != null) {
 	    con.close();
 	  }
-	  response.sendRedirect("/Admin/Shipping/shipping.jsp");
+	  response.sendRedirect("/Admin/Shipping/shipping.jsp?page=1");
 	} catch (Exception e) {
 	  e.printStackTrace();
 	}
