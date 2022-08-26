@@ -12,93 +12,10 @@
 <script src="http://code.jquery.com/jquery-1.11.3.js"></script>
 
 <title>재고 목록</title>
-
-<style>
-body {
-	font-family: "나눔고딕", "맑은고딕"
-}
-
-h1 {
-	font-family: "HY견고딕"
-}
-
-a:link {
-	color: black;
-}
-
-a:visited {
-	color: black;
-}
-
-a:hover {
-	color: red;
-}
-
-a:active {
-	color: red;
-}
-
-#hypertext {
-	text-decoration-line: none;
-	cursor: hand;
-}
-
-.tableDiv {
-	text-align: center;
-}
-
-.InventoryInfoTable {
-	border-collapse: collapse;
-	border-top: 3px solid #168;
-	width: 800px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.InventoryInfoTable th {
-	color: #168;
-	background: #f0f6f9;
-	text-align: center;
-}
-
-.InventoryInfoTable th, .InventoryInfoTable td {
-	padding: 10px;
-	border: 1px solid #ddd;
-}
-
-.InventoryInfoTable th:first-child, .InventoryInfoTable td:first-child {
-	border-left: 0;
-}
-
-.InventoryInfoTable th:last-child, .InventoryInfoTable td:last-child {
-	border-right: 0;
-}
-
-.InventoryInfoTable tr td:first-child {
-	text-align: center;
-}
-
-.InventoryInfoTable caption {
-	caption-side: top;
-}
-
-.bottom_menu {
-	margin-top: 20px;
-}
-
-.bottom_menu>a:link, .bottom_menu>a:visited {
-	background-color: #FFA500;
-	color: maroon;
-	padding: 15px 25px;
-	text-align: center;
-	display: inline-block;
-	text-decoration: none;
-}
-
-.bottom_menu>a:hover, .bottom_menu>a:active {
-	background-color: #1E90FF;
-	text-decoration: none;
-}
+<link href="https://fonts.googleapis.com/css?family=Inter&display=swap"
+	rel="stylesheet" />
+<link rel="stylesheet" href="inventory.css">
+ 
 <%
 	int pageNum = Integer.parseInt(request.getParameter("page"));
 	String searchType = request.getParameter("searchType")==null?"":request.getParameter("searchType");
@@ -106,7 +23,6 @@ a:active {
 
 	request.setCharacterEncoding("utf-8");
 %>
-</style>
 <script>
 
 function search(){
@@ -189,14 +105,14 @@ function search(){
 %>
 	<tr onMouseover="this.style.background='#46D2D2';"
 		onmouseout="this.style.background='white';">
-		<td><%=rs.getString("p_id")%></td>
-		<td style="text-align: center;"><a id="hypertext"
+		<td class="tdId"><%=rs.getString("p_id")%></td>
+		<td class="tdName"><a id="hypertext"
 			href="/Admin/Inventory/inventoryInfo.jsp?p_id=<%=rs.getString("p_id")%>"
 			onMouseover="this.style.textDecoration='
 			underline'"
 			onmouseout="this.style.textDecoration='none'"><%=rs.getString("p_name")%></a></td>
-		<td style="text-align: right;">\ <%=rs.getInt("p_unitPrice")%></td>
-		<td><%=rs.getInt("p_unitsInStock")%></td>
+		<td class="tdPrice">\ <%=rs.getInt("p_unitPrice")%></td>
+		<td class="tdStock"><%=rs.getInt("p_unitsInStock")%></td>
 	</tr>
 <%
 	  }

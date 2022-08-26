@@ -13,7 +13,7 @@
 
 	String p_id = request.getParameter("p_id");
 
-	int modifyAmount = Integer.parseInt(request.getParameter("p_amount_value"));
+	String modifyAmount = request.getParameter("p_amount_value");
 	
     Connection con = null;
     Statement stmt = null;

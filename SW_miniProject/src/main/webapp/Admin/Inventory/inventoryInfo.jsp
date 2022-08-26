@@ -6,19 +6,21 @@
 <head>
 <meta charset="utf-8">
 <title>발주 페이지</title>
+<link href="https://fonts.googleapis.com/css?family=Inter&display=swap"
+	rel="stylesheet" />
+<link rel="stylesheet" href="inventory.css">
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 
 
 function modify(PID){
-	if($("#p_amount_value").val() <= 0) { 
+	if(parseInt(document.getElementById('p_amount_value').value) <= 0) { 
 		alert("올바른 수량을 입력해주세요");  
-		$("#p_amount_value").focus(); 
+		document.getElementById('p_amount_value').focus(); 
 		return false;  
 	}
 	$("#ModifyForm").attr("action", "/Admin/Inventory/modify_proc.jsp?p_id="+PID).submit();
-
 }
 
 function deleteInventory(PID){
@@ -27,58 +29,6 @@ function deleteInventory(PID){
 	}
 }
 </script>
-
-<style>
-body {
-	font-family: "나눔고딕", "맑은고딕"
-}
-
-h1 {
-	font-family: "HY견고딕"
-}
-
-.ModifyForm {
-	width: 900px;
-	height: auto;
-	padding: 20px, 20px;
-	background-color: #FFFFFF;
-	text-align: center;
-	border: 4px solid gray;
-	border-radius: 30px;
-}
-
-.p_id, .p_name, .p_price, .p_amount, .p_image {
-	width: 90%;
-	border: none;
-	border-bottom: 2px solid #adadad;
-	margin: 20px;
-	padding: 10px 10px;
-	outline: none;
-	color: #636e72;
-	font-size: 16px;
-	height: 25px;
-	background: none;
-}
-
-.btn_modify, .btn_delete {
-	position: relative;
-	left: 20%;
-	transform: translateX(-50%);
-	margin-top: 20px;
-	margin-bottom: 10px;
-	width: 40%;
-	height: 40px;
-	background: red;
-	background-position: left;
-	background-size: 200%;
-	color: white;
-	font-weight: bold;
-	border: none;
-	cursor: pointer;
-	transition: 0.4s;
-	display: inline;
-}
-</style>
 
 </head>
 <body>
@@ -100,8 +50,9 @@ h1 {
 	%>
 
 	<%@include file="/top.jsp"%>
-	<h1>발주 페이지</h1>
-	<br>
+	<div align="center">
+		<h1 class="editTitle">상품 발주</h1>
+		<br>
 
 	<%
 	try {
@@ -117,23 +68,27 @@ h1 {
 	  if (rs.next()) {
 	%>
 	<form id="ModifyForm" class="ModifyForm" method="POST">
-		<div class="p_image" id="p_image">
-			상품이미지 :
-			<%=rs.getString("p_id")%></div>
-		<div class="p_id" id="p_id" name='p_id'>
-			상품코드 :
-			<%=rs.getString("p_id")%></div>
-		<div class="p_name" id="p_name">
-			상품이름 :
-			<%=rs.getString("p_name")%></div>
-		<div class="p_price" id="p_price">
-			상품가격 :
-			<%=rs.getString("p_unitPrice")%>\
+		<div class="row">
+				<label class="title">상품이미지</label> 
+				<input type="image" src="../img/1.png" alt="상품이미지" class="p_image" id="p_image" value="<%=rs.getString("p_id")%>">
 		</div>
-		<div class="p_amount" id="p_amount">
-			상품수량 : <input type="number" id="p_amount_value" name="p_amount_value"
-				value=<%=rs.getInt("p_unitsInStock")%>>
+		<div class="row">
+				<label class="title">상품코드</label> 
+				<input type="text" class="p_id" id="p_id" value="<%=rs.getString("p_id")%>">
 		</div>
+		<div class="row">
+				<label class="title">상품이름</label> 
+				<input type="text" class="p_name" id="p_name" value="<%=rs.getString("p_name")%>">
+		</div>
+		<div class="row">
+				<label class="title">상품가격</label> 
+				<input type="text" class="p_price" id="p_price" value="<%=rs.getString("p_unitPrice")%> \">
+		</div>
+		<div class="row">
+				<label class="title">상품수량</label> 
+				<input type="number" class="p_amount_value" id="p_amount_value" name="p_amount_value" value="<%=rs.getInt("p_unitsInStock")%>">
+		</div>
+
 		<button id="btn_modify" class="btn_modify"
 			onclick="modify('<%=rs.getString("p_id")%>')">수정</button>
 		<button id="btn_delete" class="btn_delete"
