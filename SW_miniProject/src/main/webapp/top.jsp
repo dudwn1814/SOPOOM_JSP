@@ -5,9 +5,9 @@ String innerMenu, innerUser;
 
 if (session_id == null){
 	innerMenu = "<li class='menuItem' align='center'><a href=/index.jsp>[HOME]</a></li>";
-	innerUser = "<li class='userItem' align='center'><a href=login.jsp>로그인</a></li>"
-          + "<li class='userItem' align='center'><a href=join.jsp>회원가입</a></li>"
-            + "<li class='userItem' align='center'><a href=login.jsp>장바구니</a></li>";
+	innerUser = "<li class='userItem' align='center'><a href=login.jsp><span class='material-symbols-outlined'>login</span></a></li>"
+          + "<li class='userItem' align='center'><a href=join.jsp><span class='material-symbols-outlined'>person_add_alt</span></a></li>"
+            + "<li class='userItem' align='center'><a href=login.jsp><span class='material-symbols-outlined'>shopping_cart</span></a></li>";
 
 }
 else if(session_id.equals("admin")){
@@ -17,19 +17,20 @@ else if(session_id.equals("admin")){
 	           + "<li class='menuItem' align='center'><a href='/Admin/Member/member.jsp'>회원관리</a></li>"
 	           + "<li class='menuItem' align='center'><a href='/Admin/Shipping/shipping.jsp'>배송관리</a></li>";
 	           
-   	innerUser = "<li class='userItem' align='center'><a href=logout.jsp>로그아웃</a></li>"
-	          + "<li class='userItem' align='center'><a href=''>마이페이지</a></li>"
-	          + "<li class='userItem' align='center'><a href=''>장바구니</a></li>";
+   	innerUser = "<li class='userItem' align='center'><a href=logout.jsp><span class='material-symbols-outlined'>logout</span></a></li>"
+	          + "<li class='userItem' align='center'><a href=''><span class='material-symbols-outlined'>person</span></a></li>"
+	          + "<li class='userItem' align='center'><a href=''><span class='material-symbols-outlined'>shopping_cart</span></a></li>";
 
 }
 else {
 	innerMenu = "<li class='menuItem' align='center'><a href=/index.jsp>[HOME]</a></li>";
-   innerUser =  "<li class='userItem' align='center'><a href=logout.jsp>로그아웃</a></li>"
-          + "<li class='userItem' align='center'><a href=''>마이페이지</a></li>"
-          + "<li class='userItem' align='center'><a href=''>장바구니</a></li>";
+   innerUser =  "<li class='userItem' align='center'><a href=logout.jsp><span class='material-symbols-outlined'>logout</span></a></li>"
+          + "<li class='userItem' align='center'><a href=''><span class='material-symbols-outlined'>person</span></a></li>"
+          + "<li class='userItem' align='center'><a href=''><span class='material-symbols-outlined'>shopping_cart</span></a></li>";
 
 }
 %>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
  header{
  	width : 100%;
@@ -52,6 +53,7 @@ else {
  ul{
  	list-style : none;
  	display : inline-block;
+ 	margin-left : 25px;
  }
  
  ul li{
@@ -64,13 +66,8 @@ else {
  	
  }
  
- .menu{
- 	padding-right : 16px;
- }
- 
  .user{
  	text-align : right;
- 	margin-left : auto;
  }
  
  .left, .center, .right{
@@ -89,6 +86,7 @@ else {
  }
  
  .menuItem a{
+ 	margin-left : 20px;
  	font-size : 16px;
  	font-weight : 600;
  	color : #919191;
@@ -107,6 +105,14 @@ else {
  .userItem a:hover{
  	color : #313131;
  }
+ 
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
  
 </style>
 <header>
