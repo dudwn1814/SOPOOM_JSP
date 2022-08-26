@@ -18,11 +18,19 @@ span{
 }
 
 .btn_register{
+	width : 70px;
+	height : 30px;
 	padding : 5px;
+	border-radius : 15px;
 	border : 1px solid  #313131;
 	background-color :  #313131;
 	color : #FFFFFF;
 	cursor : pointer;
+	transition-duration: 0.4s;
+}
+
+.btn_register:hover{
+ 	opacity : 0.7;
 }
 
 </style>
