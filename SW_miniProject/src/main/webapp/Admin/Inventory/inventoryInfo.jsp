@@ -12,7 +12,9 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-
+window.onload = function() {
+	$("#p_price").val($("#p_price").val().replace(/\B(?=(\d{3})+(?!\d))/g, ","));					
+};
 
 function modify(PID){
 	if(parseInt(document.getElementById('p_amount_value').value) <= 0) { 

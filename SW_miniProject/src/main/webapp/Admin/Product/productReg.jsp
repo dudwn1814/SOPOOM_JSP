@@ -14,6 +14,16 @@
 </script>
 
 <script>
+$(document).ready(function(){
+	$("#p_price").focusout(function(){
+		$(this).val( $(this).val().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+	});									
+	
+	$("#p_price").focusin(function(){
+		$(this).val( $(this).val().replace(",", ""));
+	});
+});
+
 	function register() {
 
 		if ($("#p_id").val() == "") {
@@ -96,7 +106,7 @@
 			</div>
 
 			<button id="btn_registry" class="btn_registry" onclick="register()">등록</button>
-			<button id="btn_cancel" class="btn_cancel" onclick="history.back()">취소</button>
+			<button id="btn_cancel" class="btn_cancel" onclick="history.back(); return false;">취소</button>
 
 		</form>
 	</div>
