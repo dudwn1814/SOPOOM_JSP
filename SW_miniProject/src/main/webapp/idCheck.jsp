@@ -65,9 +65,9 @@ span{
 request.setCharacterEncoding("utf-8");
 String userid = request.getParameter("id");
 //DB에서 사용자 정보(아이디, password) 가져오기
-String url = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
+String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
 String user = "root";
-String pwd = "0000";
+String pwd = "1234";
 
 Connection con = null;
 Statement stmt1 = null;

@@ -23,9 +23,9 @@
 	String userID = request.getParameter("userID");
 
 	//DB에서 사용자 정보(아이디랑 패스워드 가져 오기)
-	String url = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
+	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
 	String uid = "root";
-	String pwd = "0000";
+	String pwd = "1234";
 	%>
 
 	<div class="tableDiv">

@@ -129,7 +129,7 @@ function search(){
 	Statement stmt = null;
 	ResultSet rs = null;
 
-	String uri = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
+	String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
 	String uid = "root";
 	String pwd = "1234";
 	
@@ -163,7 +163,6 @@ function search(){
   		<button type="button" onclick="search()">검색</button>
  </div>
 <br><br>
->>>>>>> 5ab01712e5398b3436d3ef0a29f084bc1c3f1ff2
 
 	<div class="tableDiv">
 		<table class="InventoryInfoTable">
