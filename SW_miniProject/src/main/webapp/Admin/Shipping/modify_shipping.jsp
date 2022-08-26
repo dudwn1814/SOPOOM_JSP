@@ -20,7 +20,7 @@
 
 	String uri = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
 	String uid = "root";
-	String upw = "1234";
+	String upw = "0000";
 
 	String query = "update shipping set status = '" + status + "' where shipID = '" + ship_id + "'";
 
