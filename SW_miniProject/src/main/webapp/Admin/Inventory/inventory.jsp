@@ -99,21 +99,31 @@ a:active {
 	background-color: #1E90FF;
 	text-decoration: none;
 }
-</style>
-
-</head>
-
-<body>
-
-	<%
+<%
 	int pageNum = Integer.parseInt(request.getParameter("page"));
 	String searchType = request.getParameter("searchType")==null?"":request.getParameter("searchType");
 	String keyword = request.getParameter("keyword")==null?"":request.getParameter("keyword");
 
 	request.setCharacterEncoding("utf-8");
+%>
+</style>
+<script>
 
-	String query =
-	    "select p_id, p_name, p_unitPrice, p_unitsInStock from product";
+function search(){
+	
+	var searchType = $("#searchType").val();
+	var keyword =  $("#keyword").val();
+	location.href = 'inventory.jsp?page=<%= pageNum %>&searchType=' + searchType + '&keyword=' + keyword;
+}
+
+</script>
+</head>
+
+<body>
+	
+<%@include file="/top.jsp"%>
+<%
+	String query = "select p_id, p_name, p_unitPrice, p_unitsInStock from product";
 
 	Connection con = null;
 	Statement stmt = null;
@@ -138,23 +148,23 @@ a:active {
 	
 	
 	System.out.println("[게시판 목록 보기 쿼리] : " + query);
-	%>
-	
-<script>
+%>
+<br>
+<h1>상품 재고</h1>
+<div>
+  		<select id="searchType" name="searchType">
+      		<option value="p_id">상품코드</option>
+      		<option value="p_name">상품명</option>
+      		<option value="p_unitPrice">가격</option>
+      		<option value="p_unitsInStock">수량</option>
+  		</select>
+  		
+    	<input type="text" id="keyword" name="keyword" />
+  		<button type="button" onclick="search()">검색</button>
+ </div>
+<br><br>
 
-function search(){
-	
-	var searchType = $("#searchType").val();
-	var keyword =  $("#keyword").val();
-	location.href = 'inventory.jsp?page=<%= pageNum %>&searchType=' + searchType + '&keyword=' + keyword;
-}
-
-</script>
-
-<%@include file="/top.jsp"%>
-	
 	<div class="tableDiv">
-		<h1>상품 재고</h1>
 		<table class="InventoryInfoTable">
 			<tr>
 				<th>상품코드</th>
@@ -163,7 +173,7 @@ function search(){
 				<th>수량</th>
 			</tr>
 
-			<tbody>
+<tbody>
 <%
 	try {
 	  //DataSource ds = (DataSource) this.getServletContext().getAttribute("dataSource");
@@ -198,69 +208,55 @@ function search(){
 		if (rs != null) rs.close();
 		if (con != null) con.close();
 %>
-	</tbody>
-
+</tbody>
 </table>
 <br>
-
 <div>
-
-	<%
+<%
 	int listCount = 5; //한 화면에 보여질 페이지 갯수
-		int totalCount = 0; //전체 게시물 갯수
-		
-		try{
+	int totalCount = 0; //전체 게시물 갯수
+	
+	try{
 
-			String query_totalCount = "select count(*) as totalCount from product";
-			
-			if(searchType.equals("p_id")) 
-				query_totalCount += " where p_id like concat('%','" + URLDecoder.decode(keyword,"UTF-8") + "','%')";
-			else if(searchType.equals("p_name"))
-				query_totalCount += " where p_name like concat('%','" + URLDecoder.decode(keyword,"UTF-8") + "','%')";
-			else if(searchType.equals("p_unitPrice"))
-				query_totalCount += " where p_unitPrice like concat('%','" + URLDecoder.decode(keyword,"UTF-8") + "','%')";
-			else if(searchType.equals("p_unitsInStock"))
-				query_totalCount += " where p_unitsInStock like concat('%','" + URLDecoder.decode(keyword,"UTF-8") + "','%')";
-			
-			Class.forName("org.mariadb.jdbc.Driver");
-			con = DriverManager.getConnection(uri, uid, pwd);
-			  
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(query_totalCount);
-			
-			while(rs.next()) totalCount = rs.getInt("totalCount");
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+		String query_totalCount = "select count(*) as totalCount from product";
 		
-		inventoryPage pageList = new inventoryPage();
+		if(searchType.equals("p_id")) 
+			query_totalCount += " where p_id like concat('%','" + URLDecoder.decode(keyword,"UTF-8") + "','%')";
+		else if(searchType.equals("p_name"))
+			query_totalCount += " where p_name like concat('%','" + URLDecoder.decode(keyword,"UTF-8") + "','%')";
+		else if(searchType.equals("p_unitPrice"))
+			query_totalCount += " where p_unitPrice like concat('%','" + URLDecoder.decode(keyword,"UTF-8") + "','%')";
+		else if(searchType.equals("p_unitsInStock"))
+			query_totalCount += " where p_unitsInStock like concat('%','" + URLDecoder.decode(keyword,"UTF-8") + "','%')";
 		
-		String pageListView = pageList.getPageList(pageNum, postNum, listCount, totalCount, searchType, keyword);
+		Class.forName("org.mariadb.jdbc.Driver");
+		con = DriverManager.getConnection(uri, uid, pwd);
+		  
+		stmt = con.createStatement();
+		rs = stmt.executeQuery(query_totalCount);
+		
+		while(rs.next()) totalCount = rs.getInt("totalCount");
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+	
+	inventoryPage pageList = new inventoryPage();
+	
+	String pageListView = pageList.getPageList(pageNum, postNum, listCount, totalCount, searchType, keyword);
 
-		if(stmt != null) stmt.close();
-		if(rs != null) rs.close();
-		if(con != null) con.close();
-	%>
-	<%=pageListView %>
-		</div>
-		<br>
-	<div>
-  		<select id="searchType" name="searchType">
-      		<option value="p_id">상품코드</option>
-      		<option value="p_name">상품명</option>
-      		<option value="p_unitPrice">가격</option>
-      		<option value="p_unitsInStock">수량</option>
-  		</select>
-    	<input type="text" id="keyword" name="keyword" />
-  		<button type="button" onclick="search()">검색</button>
- 	</div>
-<br><br>
+	if(stmt != null) stmt.close();
+	if(rs != null) rs.close();
+	if(con != null) con.close();
+%>
+<%=pageListView %>
+</div>
+<br>
 		<div class="bottom_menu">
 		<a href="/Admin/Inventory/inventory.jsp?page=1">목록으로</a>&nbsp;&nbsp;
 			<a href="/index.jsp">홈으로</a>&nbsp;&nbsp;
 		</div>
 	</div>
 
-	<%@include file="/footer.jsp"%>
+<%@include file="/footer.jsp"%>
 </body>
 </html>

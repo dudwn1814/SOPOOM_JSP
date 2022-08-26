@@ -132,9 +132,22 @@ function search(){
 
 	int idx = 1;
 %>
+<br>
+<h1>회원 목록</h1>
+<div>
+  		<select id="searchType" name="searchType">
+      		<option value="userID">회원아이디</option>
+      		<option value="username">회원명</option>
+      		<option value="telno">전화번호</option>
+      		<option value="username_telno">이름+번호</option>
+  		</select>
+    	<input type="text" id="keyword" name="keyword" />
+  		<button type="button" onclick="search()">검색</button>
+ 	</div>
+<br><br>
 
 	<div class="tableDiv">
-		<h1>회원 목록</h1>
+
 		<table class="InfoTable">
 			<tr>
 				<th>순서</th>
@@ -143,7 +156,7 @@ function search(){
 				<th>전화번호</th>
 			</tr>
 
-			<tbody>
+<tbody>
 <%
 	int postNum = 5; //한 페이지에 보여질 게시물 갯수 
 	int displayPost = (pageNum -1)*postNum; //테이블에서 읽어 올 행의 위치
@@ -200,14 +213,11 @@ function search(){
 		if (rs != null) rs.close();
 		if (con != null) con.close();
 %>
-	</tbody>
-
+</tbody>
 </table>
 <br>
-
 <div>
-
-	<%
+<%
 	int listCount = 5; //한 화면에 보여질 페이지 갯수
 		int totalCount = 0; //전체 게시물 갯수
 		
@@ -216,13 +226,13 @@ function search(){
 			String query_totalCount = "select count(*) as totalCount from user";
 			
 			if(searchType.equals("username")) 
-		query_totalCount += " where username like concat('%','" + URLDecoder.decode(keyword,"UTF-8") + "','%')";
+				query_totalCount += " where username like concat('%','" + URLDecoder.decode(keyword,"UTF-8") + "','%')";
 			else if(searchType.equals("telno"))
-		query_totalCount += " where telno like concat('%','" + URLDecoder.decode(keyword,"UTF-8") + "','%')";
+				query_totalCount += " where telno like concat('%','" + URLDecoder.decode(keyword,"UTF-8") + "','%')";
 			else if(searchType.equals("username_telno"))
-		query_totalCount += " where username like concat('%','" + URLDecoder.decode(keyword,"UTF-8") + "','%') or telno like concat('%','" + keyword + "','%')"; 
+				query_totalCount += " where username like concat('%','" + URLDecoder.decode(keyword,"UTF-8") + "','%') or telno like concat('%','" + keyword + "','%')"; 
 			else if(searchType.equals("userID"))
-		query_totalCount += " where userID like concat('%','" + URLDecoder.decode(keyword,"UTF-8") + "','%')";
+				query_totalCount += " where userID like concat('%','" + URLDecoder.decode(keyword,"UTF-8") + "','%')";
 			
 			Class.forName("org.mariadb.jdbc.Driver");
 			con = DriverManager.getConnection(url, uid, pwd);
@@ -242,22 +252,10 @@ function search(){
 		if(stmt != null) stmt.close();
 		if(rs != null) rs.close();
 		if(con != null) con.close();
-	%>
-	<%=pageListView %>
-		</div>
-		<br>
-	<div>
-  		<select id="searchType" name="searchType">
-      		<option value="username">회원이름</option>
-      		<option value="telno">전화번호</option>
-      		<option value="username_telno">이름+번호</option>
-      		<option value="userID">회원아이디</option>
-  		</select>
-    	<input type="text" id="keyword" name="keyword" />
-  		<button type="button" onclick="search()">검색</button>
- 	</div>
-<br><br>
-
+%>
+<%=pageListView %>
+</div>
+<br>
 		<div class="bottom_menu">		
 			<a href="/Admin/Member/member.jsp?page=1">목록으로</a>&nbsp;&nbsp;
 			<a href="/index.jsp">홈으로</a>&nbsp;&nbsp;
@@ -265,6 +263,5 @@ function search(){
 	</div>
 	
 <%@include file="/footer.jsp"%>
-
 </body>
 </html>

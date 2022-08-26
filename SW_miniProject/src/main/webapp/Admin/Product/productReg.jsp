@@ -25,7 +25,7 @@
 			return false;
 		}
 		if ($("#p_amount").val() == "") {
-			alert("수량을 입력하세요");
+			alert("재고 수량을 입력하세요");
 			$("#p_amount").focus();
 			return false;
 		}
@@ -46,28 +46,28 @@
 			enctype="multipart/form-data">
 
 			<div class="form-group row">
-				<label class="col-sm-3"> * 상품 이미지 </label>
+				<label class="col-sm-3"> 상품 이미지 </label>
 				<div class="col-sm-3">
 					<input type="file" name="p_filename">
 				</div>
 			</div>
 
 			<div class="form-group row">
-				<label class="col-sm-3"> * 상품명 </label>
+				<label class="col-sm-3"> 상품명 </label>
 				<div class="col-sm-3">
 					<input type="text" name="p_name" class="form-control">
 				</div>
 			</div>
 
 			<div class="form-group row">
-				<label class="col-sm-2"> 상품 코드 </label>
+				<label class="col-sm-2"> * 상품 코드 </label>
 				<div class="col-sm-3">
 					<input type="text" name="p_id" id="p_id" class="form-control">
 				</div>
 			</div>
 
 			<div class="form-group row">
-				<label class="col-sm-2">가격</label>
+				<label class="col-sm-2"> * 가격</label>
 				<div class="col-sm3">
 					<input type="text" name="p_price" id="p_price" class="form-control">
 				</div>
@@ -92,7 +92,7 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2">재고 수</label>
+				<label class="col-sm-2"> * 재고 수</label>
 				<div class="col-sm3">
 					<input type="text" name="p_amount" id="p_amount"  class="form-control">
 				</div>

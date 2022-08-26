@@ -38,7 +38,7 @@
       if (con != null) {
         con.close();
       }
-      response.sendRedirect("/Admin/Inventory/inventory.jsp");
+      response.sendRedirect("/Admin/Inventory/inventory.jsp?page=1");
 	}catch(Exception e){
 		e.printStackTrace();
 	}

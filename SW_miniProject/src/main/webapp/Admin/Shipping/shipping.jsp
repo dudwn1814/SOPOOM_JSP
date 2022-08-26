@@ -67,6 +67,24 @@ h1 {
 	caption-side: top;
 }
 
+.bottom_menu {
+	margin-top: 20px;
+}
+
+.bottom_menu>a:link, .bottom_menu>a:visited {
+	background-color: #FFA500;
+	color: maroon;
+	padding: 15px 25px;
+	text-align: center;
+	display: inline-block;
+	text-decoration: none;
+}
+
+.bottom_menu>a:hover, .bottom_menu>a:active {
+	background-color: #1E90FF;
+	text-decoration: none;
+}
+
 <%
 	int pageNum = Integer.parseInt(request.getParameter("page"));
 	String searchType = request.getParameter("searchType")==null?"":request.getParameter("searchType");
@@ -104,8 +122,22 @@ function search(){
 	String uid = "root";
 	String pwd = "1234";
 %>
+<br>
+<h1>배송관리</h1>
+	<div>
+  		<select id="searchType" name="searchType">
+  			<option value="orderID">주문번호</option>
+  			<option value="userID">주문자ID</option>
+      		<option value="status">배송상태</option>
+     	</select>
+     	
+    	<input type="text" id="keyword" name="keyword" />
+  		<button type="button" onclick="search()">검색</button>
+ 	</div>
+<br><br>
+
 	<div class="tableDiv">
-		<h1>배송관리</h1>
+
 		<table class="InfoTable" id="InfoTable">
 			<tr>
 				<th>배송 아이디</th>
@@ -117,7 +149,7 @@ function search(){
 				<th>배송상태</th>
 			</tr>
 
-			<tbody>
+<tbody>
 <%
 	int postNum = 5; //한 페이지에 보여질 게시물 갯수 
 	int displayPost = (pageNum -1)*postNum; //테이블에서 읽어 올 행의 위치
@@ -227,17 +259,7 @@ try {
 <%=pageListView %>
 		</div>
 		<br>
-	<div>
-  		<select id="searchType" name="searchType">
-  			<option value="orderID">주문번호</option>
-  			<option value="userID">주문자ID</option>
-      		<option value="status">배송상태</option>
-      		
-  		</select>
-    	<input type="text" id="keyword" name="keyword" />
-  		<button type="button" onclick="search()">검색</button>
- 	</div>
-<br><br>
+
 
 		<div class="bottom_menu">		
 			<a href="/Admin/Shipping/shipping.jsp?page=1">목록으로</a>&nbsp;&nbsp;
