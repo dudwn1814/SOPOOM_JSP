@@ -1,8 +1,7 @@
 <%@page import="com.mini.page.shippingPage"%>
 <%@page import="java.net.URLDecoder"%>
 <%@page import="java.sql.*"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -10,7 +9,6 @@
 <meta charset="UTF-8">
 <head>
 <script src="http://code.jquery.com/jquery-1.11.3.js"></script>
-
 <script>
 	function statusModify(ship_id) {
 		$("#statusForm").attr("action","/Admin/Shipping/modify_shipping.jsp?ship_id=" + ship_id).submit();
@@ -18,73 +16,14 @@
 </script>
 
 <title>배송관리 페이지</title>
+<link href="https://fonts.googleapis.com/css?family=Inter&display=swap"
+	rel="stylesheet" />
+<link rel="stylesheet" href="shipping.css">
+</head>
 
-<style>
-body {
-	font-family: "나눔고딕", "맑은고딕"
-}
-
-h1 {
-	font-family: "HY견고딕"
-}
-
-.tableDiv {
-	text-align: center;
-}
-
-.InfoTable {
-	border-collapse: collapse;
-	border-top: 3px solid #168;
-	width: 800px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.InfoTable th {
-	color: #168;
-	background: #f0f6f9;
-	text-align: center;
-}
-
-.InfoTable th, .InfoTable td {
-	padding: 10px;
-	border: 1px solid #ddd;
-}
-
-.InfoTable th:first-child, .InfoTable td:first-child {
-	border-left: 0;
-}
-
-.InfoTable th:last-child, .InfoTable td:last-child {
-	border-right: 0;
-}
-
-.InfoTable tr td:first-child {
-	text-align: center;
-}
-
-.InfoTable caption {
-	caption-side: top;
-}
-
-.bottom_menu {
-	margin-top: 20px;
-}
-
-.bottom_menu>a:link, .bottom_menu>a:visited {
-	background-color: #FFA500;
-	color: maroon;
-	padding: 15px 25px;
-	text-align: center;
-	display: inline-block;
-	text-decoration: none;
-}
-
-.bottom_menu>a:hover, .bottom_menu>a:active {
-	background-color: #1E90FF;
-	text-decoration: none;
-}
-
+<body>
+	
+<%@include file="/top.jsp"%>
 <%
 	int pageNum = Integer.parseInt(request.getParameter("page"));
 	String searchType = request.getParameter("searchType")==null?"":request.getParameter("searchType");
@@ -92,7 +31,7 @@ h1 {
 	
 	request.setCharacterEncoding("utf-8");
 %>
-</style>
+
 <script>
 
 function search(){
@@ -103,11 +42,7 @@ function search(){
 }
 
 </script>
-</head>
 
-<body>
-	
-<%@include file="/top.jsp"%>
 <%
 	String query =
 	"select s.shipID, o.orderID, u.userID, u.username, u.telno, s.address, s.status "
@@ -124,30 +59,31 @@ function search(){
 %>
 <br>
 <h1>배송관리</h1>
-	<div>
-  		<select id="searchType" name="searchType">
-  			<option value="orderID">주문번호</option>
-  			<option value="userID">주문자ID</option>
-      		<option value="status">배송상태</option>
-     	</select>
-     	
-    	<input type="text" id="keyword" name="keyword" />
-  		<button type="button" onclick="search()">검색</button>
- 	</div>
+<hr>
+<div>
+ 		<select id="searchType" name="searchType">
+ 			<option value="orderID">주문번호</option>
+ 			<option value="userID">주문자ID</option>
+     		<option value="status">배송상태</option>
+    	</select>
+    	
+   		<input type="text" id="keyword" name="keyword" />
+ 		<button type="button" onclick="search()">검색</button>
+</div>
 <br><br>
 
-	<div class="tableDiv">
+<div class="tableDiv">
 
-		<table class="InfoTable" id="InfoTable">
-			<tr>
-				<th>배송 아이디</th>
-				<th>주문번호</th>
-				<th>주문자 ID</th>
-				<th>주문자 이름</th>
-				<th>주문자 전화번호</th>
-				<th>배송지</th>
-				<th>배송상태</th>
-			</tr>
+	<table class="InfoTable" id="InfoTable">
+		<tr>
+			<th>배송 아이디</th>
+			<th>주문번호</th>
+			<th>주문자 ID</th>
+			<th>주문자 이름</th>
+			<th>주문자 전화번호</th>
+			<th>배송지</th>
+			<th>배송상태</th>
+		</tr>
 
 <tbody>
 <%
