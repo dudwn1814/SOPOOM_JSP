@@ -224,24 +224,21 @@ try {
 	
 	try{
 
-		String query_totalCount1 = "select count(*) as totalCount from shipping s";
-		String query_totalCount2 = "select count(*) as totalCount from `order` o";
-		String query_totalCount3 = "select count(*) as totalCount from user u";
+		String query_totalCount = "SELECT COUNT(*) as totalCount FROM shipping s, `order` o, user u WHERE s.orderID=o.orderID AND u.userID=o.userID";
+		
 		
 		if(searchType.equals("orderID")) 
-			query_totalCount2 += " where o.orderID like concat('%','" + URLDecoder.decode(keyword,"UTF-8") + "','%')";
+			query_totalCount += " and o.orderID like concat('%','" + URLDecoder.decode(keyword,"UTF-8") + "','%')";
 		if(searchType.equals("userID"))
-			query_totalCount3 += " where u.userID like concat('%','" + URLDecoder.decode(keyword,"UTF-8") + "','%')";
+			query_totalCount += " and u.userID like concat('%','" + URLDecoder.decode(keyword,"UTF-8") + "','%')";
 		if(searchType.equals("status"))
-			query_totalCount1 += " where s.status like concat('%','" + URLDecoder.decode(keyword,"UTF-8") + "','%')";
+			query_totalCount += " and s.status like concat('%','" + URLDecoder.decode(keyword,"UTF-8") + "','%')";
 		
 		Class.forName("org.mariadb.jdbc.Driver");
 		con = DriverManager.getConnection(uri, uid, pwd);
 		  
 		stmt = con.createStatement();
-		rs = stmt.executeQuery(query_totalCount1);
-		rs = stmt.executeQuery(query_totalCount2);
-		rs = stmt.executeQuery(query_totalCount3);
+		rs = stmt.executeQuery(query_totalCount);
 		
 		while(rs.next()) totalCount = rs.getInt("totalCount");
 	}catch(Exception e){
