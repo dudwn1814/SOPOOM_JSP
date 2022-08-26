@@ -7,6 +7,11 @@
 <head>
 <meta charset="utf-8">
 <title>회원정보 변경</title>
+
+<link href="https://fonts.googleapis.com/css?family=Inter&display=swap"
+	rel="stylesheet" />
+<link rel="stylesheet" href="member.css">
+
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -18,60 +23,10 @@ System.out.println(userID);%>
 
 function registerForm(){
 	$("#WriteForm").attr("action", "proc_memberInfo.jsp?userID=<%=userID%>").submit();
-}
+	}
 </script>
 
-<style>
-body {
-	font-family: "나눔고딕", "맑은고딕"
-}
 
-h1 {
-	font-family: "HY견고딕"
-}
-
-.ModifyForm {
-	width: 900px;
-	height: auto;
-	padding: 20px, 20px;
-	background-color: #FFFFFF;
-	text-align: center;
-	border: 4px solid gray;
-	border-radius: 30px;
-}
-
-.textbox {
-	width: 90%;
-	border: none;
-	border-bottom: 2px solid #adadad;
-	margin: 20px;
-	padding: 10px 10px;
-	outline: none;
-	color: #636e72;
-	font-size: 16px;
-	height: 25px;
-	background: none;
-}
-
-.btn_write, .btn_cancel {
-	position: relative;
-	left: 20%;
-	transform: translateX(-50%);
-	margin-top: 20px;
-	margin-bottom: 10px;
-	width: 40%;
-	height: 40px;
-	background: red;
-	background-position: left;
-	background-size: 200%;
-	color: white;
-	font-weight: bold;
-	border: none;
-	cursor: pointer;
-	transition: 0.4s;
-	display: inline;
-}
-</style>
 
 </head>
 <body>
@@ -127,41 +82,53 @@ h1 {
 	%>
 
 	<div align="center">
-		<h1>회원정보 변경</h1>
+		<h1 class="editTitle">회원정보 변경</h1>
 		<br>
-
 		<form id="WriteForm" class="WriteForm" method="POST">
-			<div class="textbox">
-				아이디 : <input type="text" id="userID" value="<%=userID%>" disabled>
+			<div class="row">
+				<label class="title">아이디</label> <input type="text" class="field"
+					id="userID" value="<%=userID%>" disabled>
 			</div>
-			<div class="textbox">
-				이름 : <input type="text" name="username" value="<%=username%>">
+			<div class="row">
+				<label class="title">비밀번호</label> <input type="text" class="field"
+					name="password" value="<%=password%>">
+
 			</div>
-			<div class="textbox">
-				비밀번호 : <input type="text" name="password" value="<%=password%>">
+			<div class="row">
+				<label class="title">이름</label> <input type="text" class="field"
+					name="username" value="<%=username%>">
 			</div>
-			<div class="textbox">
-				전화번호 : <input type="text" id="telno" name="telno"
-					value="<%=telno%>">
+			<div class="row">
+				<label class="title">우편번호</label> 
+				<input type="text" class="field" id="postcode" name="postcode" value="<%=postcode%>"> 
 			</div>
-			<div class="textbox">
-				우편번호 : <input type="text" id="postcode" name="postcode"
-					value="<%=postcode%>"> 주소 : <input type="text"
-					id="address" name="address" value="<%=address%>">
+			<div class="row">	
+				<label class="title">주소</label>
+				<input type="text" class="field" id="address" name="address" value="<%=address%>"><br> 
 			</div>
-			<div class="textbox">
-				세부주소 : <input type="text" id="detailAddress" name="detailAddress"
-					value="<%=detailAddress%>"> 추가주소 : <input type="text"
-					id="extraAddress" name="extraAddress" value="<%=extraAddress%>">
+			<div class="row">	
+				<label class="title">세부주소</label>
+				<input type="text" class="field" id="detailAddress" name="detailAddress" value="<%=detailAddress%>"> 
 			</div>
-			<div class="textbox">
-				이메일 : <input type="text" name="email" value="<%=email%>">
+			<div class="row">	
+				<label class="title">추가주소</label>
+				<input type="text" class="field" id="extraAddress" name="extraAddress" value="<%=extraAddress%>">
 			</div>
-			<br>
-			<br> <input type="button" class="btn_write" value="수정"
+			<div class="row">
+				<label class="title">전화번호</label> <input type="text" class="field"
+					id="telno" name="telno" value="<%=telno%>">
+
+			</div>
+			<div class="row">
+				<label class="title">이메일</label> <input type="text" class="field"
+					name="email" value="<%=email%>">
+
+			</div>
+			<br> <br> <input type="button" class="btn_write" value="수정"
 				onclick="registerForm()" /> <input type="button" class="btn_cancel"
 				value="취소" onclick="history.back()" />
 		</form>
 	</div>
+		<%@include file="/footer.jsp"%>
 </body>
 </html>
