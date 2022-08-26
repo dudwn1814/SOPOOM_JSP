@@ -135,6 +135,7 @@ function search(){
   		<button type="button" onclick="search()">검색</button>
  	</div>
 <br><br>
+>>>>>>> 5ab01712e5398b3436d3ef0a29f084bc1c3f1ff2
 
 	<div class="tableDiv">
 

@@ -23,17 +23,96 @@
 </script>
 
 <style>
-.button{
-	padding: 5px;
-	width : 180px;
-	margin : 5px
+#loginForm{
+	margin : auto;
+	min-width : 700px;
+}
+
+#innerForm{
+	margin : auto;
+	width : 400px;
+}
+h3{
+	text-align :left;
+	margin : 30px 5px;
 }
 
 .field{
-	padding: 5px;
-	width : 180px;
-	margin : 5px
+	font-size : 14px;
+	line-height:23px;
+	width : 100%;
+	border : 1px solid #BFBFBF;
+	padding : 10px 15px;
+	box-sizing : border-box;
 }
+
+input:focus{
+    outline: none;
+}
+
+.row{
+	margin : 0px 5px;
+	font-size : 14px;
+	line-height : 17px;
+	margin-bottom : 20px;
+}
+
+.title{
+	display : block;
+	margin-bottom : 12px;
+	line-height : 17px;
+	letter-spacing : -0.1em;
+}
+
+.btn_row{
+	text-align : center;
+	margin-bottom : 15px;
+}
+
+.button{
+	padding: 5px;
+	margin : auto;
+	cursor : pointer;
+	border-radius : 50px;
+	width : 100%;
+	max-width : 240px;
+	min-width : 160px;
+	height : 54px ! important;
+	min-height : 54px;
+	font-size : 14px !important;
+	font-weight : 700;
+}
+
+.btn_box{
+	margin-top : 40px;
+}
+
+#btn_login{
+	color: #FFFFFF !important;
+    background-color: #313131 !important;
+    border-color: #313131 !important;
+    border-width : 1px;
+    transition-duration: 0.4s;
+}
+
+#btn_join{
+	color: #313131 !important;
+    background-color: #FFFFFF !important;
+    border-color: #313131 !important;
+    border-width : 1px;
+    transition-duration: 0.4s;
+}
+
+#btn_login:hover{
+ 	opacity : 0.7;
+}
+
+#btn_join:hover{
+ 	color: #FFFFFF !important;
+ 	background-color: #313131 !important;
+}
+
+
 </style>
 
 <head>
@@ -45,17 +124,25 @@
 	<% //로그인 된 상태에서 로그인 창으로 넘어가기 방지
 	if (session_id != null)	response.sendRedirect("index.jsp");
 	%>
-	<h1 align="center">로그인</h1>
-		<form method="post" id="loginForm" align="center">
-		<div style="margin: 5px">
-			<input type="text" class="field" id="userID" name="userID" placeholder="아이디">
-			<br>
-			<input type="password" class="field" id="userPW" name="userPW" placeholder="비밀번호">
+		<form method="post" id="loginForm">
+		<div id="innerForm">
+		<h3>로그인</h3>
+		<div class="row">
+			<label class= "title">아이디</label>
+			<input type="text" class="field" id="userID" name="userID" autofocus>
 		</div>
-		<div style="margin: 5px">
-			<INPUT TYPE="SUBMIT" class="button" id="btn_login" NAME="Submit" VALUE="로그인">
-			<br>
-			<INPUT TYPE="button" class="button" VALUE="회원가입" onclick="location.href='join.jsp'">
+		<div class="row">
+			<label class= "title">비밀번호</label>
+			<input type="password" class="field" id="userPW" name="userPW">
+		</div>
+		<div class="btn_box">
+		<div class="btn_row">
+			<INPUT TYPE="SUBMIT" class="button" id="btn_login" NAME="Submit" VALUE="로그인하기">
+		</div>
+		<div class="btn_row">
+			<INPUT TYPE="button" class="button" id="btn_join" VALUE="회원 가입하기" onclick="location.href='join.jsp'">
+		</div>
+		</div>
 		</div>
 		</form>
 	<%@include file="footer.jsp"%>
