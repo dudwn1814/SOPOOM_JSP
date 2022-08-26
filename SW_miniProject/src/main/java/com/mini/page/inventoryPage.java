@@ -1,8 +1,8 @@
 package com.mini.page;
 
-public class Page {
+public class inventoryPage {
 
-	public String getPageList(int pageNum, int postNum, int listCount, int totalCount) throws Exception {
+	public String getPageList(int pageNum, int postNum, int listCount, int totalCount, String searchType, String keyword) throws Exception {
 
 	int totalPage = (int) Math.ceil(totalCount/(double)postNum); //전체 페이지 갯수
 	int totalSection = (int) Math.ceil(totalPage/(double)listCount); //전체 섹션 개수
@@ -23,13 +23,13 @@ public class Page {
 	{
 		for(int i=0; i < listCount ; i++){ 
 			if(section > 0 && i == 0) 
-				pageList +=	"<a href=list.jsp?page=" + Integer.toString((section-1)*listCount+(listCount)) + ">◀</a> ";
+				pageList +=	"<a href=inventory.jsp?page=" + Integer.toString((section-1)*listCount+(listCount)) + "&searchType=" + searchType + "&keyword=" + keyword + ">◀</a> ";
 			if(totalPage == (i+section*listCount)){  break; }
 			if(pageNum != (section*listCount + i))
-				pageList += " <a href=list.jsp?page=" + Integer.toString(i+section*listCount+1) + ">" + Integer.toString(i+section*listCount+1) + "</a> ";
+				pageList += " <a href=inventory.jsp?page=" + Integer.toString(i+section*listCount+1) + "&searchType=" + searchType + "&keyword=" + keyword +">" + Integer.toString(i+section*listCount+1) + "</a> ";
 			else pageList += " <span style='font-weight: bold'>" + Integer.toString(section*listCount+i+1) + "</span>";
 			if(totalSection >1 && i==(listCount-1) && totalPage != (i+section*listCount+1)) 
-				pageList += "<a href=list.jsp?page=" + Integer.toString((section+1)*listCount+1) + ">▶</a>";
+				pageList += "<a href=inventory.jsp?page=" + Integer.toString((section+1)*listCount+1) + "&searchType=" + searchType + "&keyword=" + keyword + ">▶</a>";
 			
 		}
  	} 

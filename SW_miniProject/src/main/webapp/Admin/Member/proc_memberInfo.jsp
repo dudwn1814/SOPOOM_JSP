@@ -51,7 +51,7 @@
 	  stmt.close();
 	  con.close();
 
-	  response.sendRedirect("member.jsp");
+	  response.sendRedirect("/Admin/Member/member.jsp?page=1");
 
 	} catch (Exception e) {
 	  e.printStackTrace();

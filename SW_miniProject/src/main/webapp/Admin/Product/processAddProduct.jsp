@@ -63,5 +63,5 @@
  	if (conn != null)
 		conn.close();
 	
- 	response.sendRedirect("/Admin/Inventory/inventory.jsp");
+ 	response.sendRedirect("/Admin/Inventory/inventory.jsp?page=1");
 %>

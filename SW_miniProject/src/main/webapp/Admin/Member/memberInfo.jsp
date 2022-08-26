@@ -158,7 +158,7 @@ h1 {
 		</table>
 
 		<div class="bottom_menu">
-			<a href="member.jsp">목록으로</a>&nbsp;&nbsp; <a
+			<a href="/Admin/Member/member.jsp?page=1">목록으로</a>&nbsp;&nbsp; <a
 				href="edit_memberInfo.jsp?userID=<%=userID%>">회원정보 수정</a>&nbsp;&nbsp;
 			<a href="delete_memberInfo.jsp?userID=<%=userID%>">회원 강제 탈퇴</a>&nbsp;&nbsp;
 		</div>
