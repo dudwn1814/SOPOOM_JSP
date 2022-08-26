@@ -14,7 +14,7 @@
 <%-- <jsp:useBean id="productDAO" class="dto.ProductDTO" />
 <jsp:useBean id="cartDAO" class="dto.CartDTO" />
  --%>
- 
+
 
 <%
 String userid = (String)session.getAttribute("userID");
@@ -37,7 +37,7 @@ for (CartDTO cart : cartList) {
 <script>
 	if (userid == null) {
 		alert("로그인이 필요한 서비스입니다.");
-		location.href = "http://localhost:8080/Login/login.jsp";}
+		location.href = "./login.jsp";}
 	</script>
 <head>
 <meta charset="UTF-8">
@@ -60,7 +60,7 @@ for (CartDTO cart : cartList) {
    } else {
    %>
    <h2>상품 목록</h2>
-   <form id = "cartForm" class="cartTable" method="post" action="/Purchase/purchase.jsp">
+   <form id = "cartForm" class="cartTable" method="post" action="/purchase.jsp">
       <div class="cartlist">
          <table border="1">
             <tr>
@@ -76,14 +76,14 @@ for (CartDTO cart : cartList) {
             for (; i < productList.size(); i++) {
             %>
             <tr>
-               <td><input type="checkbox" name="checkP<%=i%>" value="<%=cartList.get(i).getp_id() %>" class="check" checked> 
+               <td><input type="checkbox" name="checkP<%=i%>" value="<%=cartList.get(i).getp_id() %>" class="check" checked>
                <input type="hidden" name="p_id" value="<%=productList.get(i).getp_id()%>">
                </td>
                <td><input type="text" id="name<%=i%>" class="name" name="pname" value="<%=productList.get(i).getp_name()%>" readonly="readonly"></td>
                <td id="quantity<%=i%>" class="quantity">
                <span class="count-box">
-                     <button type="button" name="countBtn" class="upBtn">🔼</button> 
-                     <input type="text" class="countInput" id="quantity" <%=i%> name="countInput" 
+                     <button type="button" name="countBtn" class="upBtn">🔼</button>
+                     <input type="text" class="countInput" id="quantity" <%=i%> name="countInput"
                         value="<%=qtyList.get(i)%>" readonly="readonly" style="width: 20px; border: none;">
                      <button type="button" name="countBtn" class="downBtn">🔽</button>
                </span>
@@ -115,7 +115,7 @@ for (CartDTO cart : cartList) {
    <%
    }
    %>
-   
+
    <%@include file="/footer.jsp"%>
 
    <script>
@@ -123,7 +123,7 @@ for (CartDTO cart : cartList) {
    $("document").ready(function(){
      //selectedTotal
       var total= 0;
-        <%
+      <%
         for(int j=0;j<productList.size();j++){%>
          total += parseInt(document.getElementById("total<%=j%>").value);
         <%}%>
@@ -139,8 +139,8 @@ for (CartDTO cart : cartList) {
          let count = parseInt(countInput.val());
          let price = row.find('input[name=price]').val();
          let totalInput = row.find('input[name=total]');
-      
-         
+
+
          //upBtn 일 경우
          if($(this).hasClass("upBtn")){
             count++
@@ -149,7 +149,7 @@ for (CartDTO cart : cartList) {
          //downBtn 일 경우
          } else{
             count--;
-            if (count < 1) return;            
+            if (count < 1) return;
          }
          countInput.val(count);
          totalInput.val(count * price);
@@ -159,16 +159,16 @@ for (CartDTO cart : cartList) {
             if(checkItem.prop("checked")){
                total += Number(document.getElementsByName("total")[<%=j%>].value);
             }
-            
+
          <%}%>
          $('#selectedTotal').val(total); //#아이디 선택자
-         
-         
+
+
       });
-      
+
          //전체 체크
          $(document).on('change', '#allCheck', function(e) {
-            
+
             if($(this).prop("checked")) {
                <%for(int i=0; i<productList.size(); i++){%>
                   var checkItem = $("input[name=checkP<%=i%>]");
@@ -184,68 +184,68 @@ for (CartDTO cart : cartList) {
             }
             console.log("totalPrice : " + totalPrice);
             $('#selectedTotal').val(totalPrice); //바뀐 금액으로 결제 예정 금액 변경
-         });   
+         });
 
-      
+
       //개별 체크
       //체크박스가 선택되어 있는 부분의 전체 가격의 합계
       <%for(int i=0; i<productList.size(); i++){%>
          $(document).on('change','input[name=checkP<%=i%>]',function(e){
             let totalPrice = parseInt(document.getElementById("selectedTotal").value);
             console.log("original totalPrice : " + totalPrice + "\n");
-      
+
             if($(this).prop("checked")) {
                totalPrice += parseInt(document.getElementById("total<%=i%>").value);
                console.log("if : " + document.getElementById("total<%=i%>").value);
             } else {
                totalPrice -= parseInt(document.getElementById("total<%=i%>").value);
                console.log("else : " + document.getElementById("total<%=i%>").value);
-            } 
+            }
             //document.getElementById("sum").value = totalPrice;
-                  
+
             //totalPrice.empty();
             //totalPrice.html(p_totalPrice);
             console.log("changed totalPrice : " + totalPrice + "\n");
             $('#selectedTotal').val(totalPrice); //바뀐 금액으로 결제 예정 금액 변경
          });
       <%}%>
-   
-      
-      
+
+
+
          //개별 선택 삭제
           $("#removeSelectBtn").click(function(e) {
          	  e.stopPropagation();
               e.preventDefault();
-              
+
 			  let checkp_id = [] ;
 			  <%for(int i=0; i<productList.size(); i++){%>
             	if ($('input[name=checkP<%=i%>]').is(':checked')) {
             		checkp_id[<%=i%>]= document.getElementsByName('checkP<%=i%>')[0].value;
             		}
-            	
+
 			  	<%}%>
-          
+
                if(window.confirm("선택 상품을 삭제하시겠습니까?")) {
                   location.href="cart_delete.jsp?p_id="+checkp_id;
                }
-               
-		});      
-       
-       
+
+		});
+
+
          //전체 삭제
           $("#removeAllBtn").click(function() {
                if(window.confirm("장바구니를 비우시겠습니까?")) {
                   location.href="cart_clear.jsp";
                }
-         }); 
-         
+         });
+
          //중복 품목 들어올 시 장바구니 개수 증가.
          //1. 입력된 PRODUCT ID - 기존 장바구니의 PRODUCT ID 비교... -> PRODUCT ID가 같다면 으로 처리해도 될듯
 		 //2. 만약 입력 P ID와 기존 장바구니 P ID가 같다면 →  수량(QUANTITY) 에 입력 P ID의 QUANTITY 추가
 		 //3. 입력된 PRODUCT ID COL 삭제
-         
-         
-         
+
+
+
          //주문하기
           /* $("#submitAllBin").click(function(e) {
         	  e.stopPropagation();
@@ -255,8 +255,8 @@ for (CartDTO cart : cartList) {
                   location.href="cart_submit.jsp";
                }
          });  */
-         
-         
+
+
       });
 
 </script>

@@ -15,7 +15,7 @@ public class ApplicationConfig implements ServletContextListener {
    * HikariConfig hikariConfig = new HikariConfig();
    * 
    * hikariConfig.setUsername("root"); hikariConfig.setPassword("0000");
-   * hikariConfig.setJdbcUrl("jdbc:mariadb://127.0.0.1:3306/inventory");
+   * hikariConfig.setJdbcUrl("jdbc:mariadb://127.0.0.1:3306/sw_miniproject");
    * hikariConfig.setConnectionTestQuery("select now() from dual");
    * hikariConfig.setMaximumPoolSize(10); // Connection Pool에서 갖고있을 Connection의 갯수
    * //hikariConfig.setLeakDetectionThreshold(30000); hikariConfig.setPoolName("Mariadb-HikariCP");

@@ -26,9 +26,9 @@ function pwConfig() {
 		alert("패스워드를 입력하세요."); 
 	 	return false; 
 	}
-	 const form =  document.form;
-	 form.action = "pwCheck.jsp";
-	 form.userbasic.action.submit(); 
+	
+	 document.userbasic.action = "pwCheck.jsp";
+	 document.userbasic.userbasic.action.submit(); 
 	}
 	
 	

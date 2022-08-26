@@ -22,12 +22,14 @@
 	String username = "";
 	String password ="";
 	String telno = "";
-	String age = "";
+	String postcode = "";
 	String address = "";
-	String sex = "";
+	String detailAddress = "";
+	String extraAddress = "";
+	String email = "";
 
 	//DB에서 사용자 정보
-	String url = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
+	String url = "jdbc:mariadb://127.0.0.1:3306/sw_miniproject";
 	String uid = "root";
 	String pwd = "0000";
 	String query = "select * from user where userid ='" + userid + "'";
@@ -47,9 +49,11 @@
 			username = rs.getString("username");
 			password = rs.getString("password");
 			telno = rs.getString("telno");
-			age = rs.getString("age");
+			postcode = rs.getString("postcode");
 			address = rs.getString("address");
-			sex = rs.getString("sex");
+			detailAddress = rs.getString("detailAddress");
+			extraAddress = rs.getString("extraAddress");
+			email = rs.getString("email");
 			
 			System.out.print(username+""+password);
 			
@@ -68,13 +72,13 @@
 	<li><a> 아이디: <%=userid %> </a></li>
 	<li><a> 비밀번호: <%=password %> </a></li>
 	<li><input type="text" id="pwChange" value=""> <input type="button" id="pwChangeBt" value="비밀번호 변경"></li>
+	<li><a> 이메일: <%=email %></a></li>
+	<li><a> 비밀번호: <%=password %></a></li> <!--  회원정보 확인하기 전까지는 안뜨게 바꿀 예정입니다 -->
+	<li><a> 휴대폰 번호: <%=telno %></a></li><!--  번호 010 - 0000 - 0000 뜨게 만들 예정입니다. -->
 	<li><a> 이름: <%=username %></a></li>
-	<li><a> 나이: <%=age %></a></li>
-	<li><a> 성별: <%=sex %></a></li>
-	<li><a> 주소: <%=address %></a></li>
+	<li><a> 우편번호: <%=postcode %></a></li>
+	<li><a> 주소: <%=address %> <%=detailAddress %> <%=extraAddress %></a></li>
 </ul>
-
-<a href= "userMain.jsp"> 메인페이지로 이동 </a>
 
 <script type="text/javascript">
 

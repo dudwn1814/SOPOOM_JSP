@@ -51,6 +51,6 @@ String orderCode = (String)session.getAttribute("orderCode");
 	<input type="button" value="HOME" onClick="location.href='/index.jsp'">
 	<br>
 	</div>
-	<%@include file="footer.jsp"%>
+	<%@include file="/footer.jsp"%>
 </body>
 </html>

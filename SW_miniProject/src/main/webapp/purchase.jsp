@@ -6,9 +6,10 @@
 
 <%
 	//user 정보 받아오기
-	String userid = (String)session.getAttribute("userid");
+	
+	
 
-	String userid = userid;
+	String userid = (String)session.getAttribute("userID");
 	String userName = "";
 	String userTelno = "";
 	String userMail = "";
@@ -16,9 +17,17 @@
 	String address = "";
 	String detailAddress = "";
 	String extraAddress = "";
+	
+	if(userid == null){
+		%>
+		<script>
+		alert("로그인이 필요한 서비스입니다.");
+		location.href = "login.jsp";
+		</script>
+		<%}
 
 
-	String url = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
+	String url = "jdbc:mariadb://127.0.0.1:3306/sw_miniproject";
 	String user = "root";
 	String pwd = "0000";
 	
@@ -55,14 +64,7 @@
 		con.close();
 	}
 	
-	if(userid == null){
-		%>
-		<script>
-		alert("로그인이 필요한 서비스입니다.");
-		location.href = "login.jsp";
-		</script>
-		<%
-	}
+	
 	
 	//상품정보 받아오기
 	request.setCharacterEncoding("UTF-8");
@@ -130,7 +132,8 @@
 	}
 
 	request.setAttribute("totalPrice", inttotal);
-	session.setAttribute("strTotal", total);
+	session.setAttribute("strTotal", df.format(inttotal));
+	
 	%>
 
 
@@ -310,7 +313,7 @@ form{
 <body>
 
 
-	<%@include file="top.jsp"%>
+	<%@include file="/top.jsp"%>
 	<form name="purchaseForm" id="purchaseForm" method="post">
 	
 	<div id="productChk" class="detailForm">
@@ -340,6 +343,7 @@ form{
 				</tr>
 			</table>
 		</div>
+		<%}%>
 	
 	<div>
 	<h3 class="label">주문 정보</h3>
@@ -382,10 +386,10 @@ form{
 	</table>
 	</div>
 	
-<div>
+		<div>
 			<h3 class="label">최종 결제 금액</h3>
 			<span id="strTotal"><%=df.format(inttotal)%></span> 원
-			<input type="hidden" name="totalPrice" value="<%=total%>" />
+			<input type="hidden" name="totalPrice" value="<%=inttotal%>"/>
 		</div>
 		<br>
 	
@@ -394,5 +398,5 @@ form{
 	</div>
 	
 	</form>
-	<%@include file="footer.jsp"%>
+	<%@include file="/footer.jsp"%>
 </body>
