@@ -4,6 +4,9 @@
 	text-align : center;
 	min-width : 700px;
 	}
+	#footer p{
+ 	color : #919191;
+	}
 </style>
 <footer>
 <div id="footer">

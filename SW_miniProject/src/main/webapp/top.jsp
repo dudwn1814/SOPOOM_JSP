@@ -99,6 +99,7 @@ else {
  .userItem a{
  	font-weight : 600;
  	color : #919191;
+ 	margin : 0px 6px;
  }
  
  .userItem a:hover{
