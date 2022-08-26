@@ -14,7 +14,7 @@ h1 {
 
 hr {
 	width: 100%;
-	max-width: 960px;
+	max-width: 1440px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 52px;
@@ -135,7 +135,7 @@ a {
 	width: 5%;
 }
 
-.memberInfoTable {
+.InfoTable {
 	border-collapse: collapse;
 	width: 100%;
 	max-width: 1440px;
@@ -145,7 +145,7 @@ a {
 	padding: 60px 16px 70px
 }
 
-.memberInfoTable th {
+.InfoTable th {
 	color: black;
 	text-align: center;
 	font-size: 15px;
@@ -153,17 +153,17 @@ a {
 	border-bottom: 1px solid rgba(0, 0, 0, 1);
 }
 
-.memberInfoTable td {
+.InfoTable td {
 	font-size: 15px;
 	padding: 15px;
 	border-bottom: 1px solid rgba(0, 0, 0, 1);
 }
 
-.memberInfoTable tr td:first-child {
+.InfoTable tr td:first-child {
 	text-align: center;
 }
 
-.memberInfoTable caption {
+.InfoTable caption {
 	caption-side: top;
 }
 
