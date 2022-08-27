@@ -26,7 +26,11 @@ request.setCharacterEncoding("utf-8");
 <script>
 
 window.onload = function() {
-	document.getElementById('tdPrice').innerText = $("#tdPrice").text().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ " ￦";					
+	var rows = document.getElementsByName('tdPrice');
+	
+	for(var i=0; i<rows.length; i++){
+		rows[i].innerText = rows[i].innerText.replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ " ￦";
+	}					
 };
 
 function search(){
@@ -35,6 +39,7 @@ function search(){
 	var keyword =  $("#keyword").val();
 	location.href = 'inventory.jsp?page=<%=pageNum%>&searchType=' + searchType + '&keyword=' + keyword;
 }
+
 
 </script>
 </head>
@@ -104,15 +109,15 @@ function search(){
 					rs = stmt.executeQuery(query);
 
 					while (rs.next()) {
-				%>
+					%>
 				<tr>
 					<td class="tdId"><%=rs.getString("p_id")%></td>
 					<td class="tdName"><a id="hypertext"
 						href="/Admin/Inventory/inventoryInfo.jsp?p_id=<%=rs.getString("p_id")%>"
 						onMouseover="this.style.textDecoration='underline'"
 						onmouseout="this.style.textDecoration='none'"><%=rs.getString("p_name")%></a></td>
-					<td class="tdPrice" id="tdPrice"><%=rs.getInt("p_unitPrice")%></td>
-					<td class="tdStock"><%=rs.getInt("p_unitsInStock")%></td>
+					<td class="tdPrice" id="tdPrice" name="tdPrice"><%=rs.getInt("p_unitPrice")%></td>
+					<td class="tdStock"></td>
 				</tr>
 				<%
 				}
