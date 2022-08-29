@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS product(
 	p_manufacturer VARCHAR(20),
 	p_unitsInStock INTEGER,
 	p_condition VARCHAR(20),
-	p_fileName  VARCHAR(20),
+	p_fileName  VARCHAR(200),
 	PRIMARY KEY (p_id)
 );
 

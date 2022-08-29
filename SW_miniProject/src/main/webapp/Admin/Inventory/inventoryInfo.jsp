@@ -40,7 +40,7 @@ function deleteInventory(PID){
 	String p_id = (String)request.getParameter("p_id");
 
 	String query =
-	    "select p_id, p_name, p_unitPrice, p_unitsInStock from product where p_id = '" + p_id + "'";
+	    "select * from product where p_id = '" + p_id + "'";
 
 	Connection con = null;
 	Statement stmt = null;
@@ -68,11 +68,12 @@ function deleteInventory(PID){
 	  rs = stmt.executeQuery(query);
 
 	  if (rs.next()) {
+	    
 	%>
 	<form id="ModifyForm" class="ModifyForm" method="POST">
 		<div class="row">
 				<label class="title">상품이미지</label> 
-				<input type="image" src="../img/1.png" alt="상품이미지" class="p_image" id="p_image" value="<%=rs.getString("p_id")%>" disabled>
+				<input type="image" src="/upload/<%=rs.getString("p_fileName")%>" alt="상품이미지" class="p_image" id="p_image" disabled>
 		</div>
 		<div class="row">
 				<label class="title">상품코드</label> 
