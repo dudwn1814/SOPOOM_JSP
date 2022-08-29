@@ -14,10 +14,8 @@
 </head>
 <body>
 	<script>
-		
-	<%//String userid = (String)session.getAttribute("userID");
-//임시 id
-String userid = "sss";
+
+	<%String userid = (String)session.getAttribute("userID");
 String username = "";
 String password = "";
 String postcode = "";
@@ -109,7 +107,7 @@ if (userid == null) {%>
 							<input type="text" class="field" readonly="readonly" value="<%=email%>">
 						</div>
 						<div class="row">
-							<label class="title">비밀 번호</label>
+							<label class="title">비밀번호</label>
 							<input type="text" class="field" readonly="readonly" value="********">
 						</div>
 						<div class="row">
@@ -131,13 +129,14 @@ if (userid == null) {%>
 						<div class="row">
 							<label class="title">주소</label>
 							<input type="text" class="field " readonly="readonly" value="<%=address%>">
-							<input type="text" class="field" readonly="readonly" value="<%=detailAddress%><%=extraAddress%>">
+							<input type="text" class="field" readonly="readonly" value="<%=detailAddress%>">
+							<input type="text" class="field" readonly="readonly" value="<%=extraAddress%>">
 						</div>
 						<div class="row" id="pw-check">
 							<input type="password" name="password" id="password" class="field" placeholder="비밀번호를 입력하세요." value="">
 						</div>
 						<div class="row">
-							<input type="submit" class="field user-info-modify-btn" onclick="pwConfig()" value="회원정보 수정">
+							<input type="submit" class="field user-info-modify-btn" onclick="pwConfig()" value="비밀번호 확인">
 						</div>
 					</div>
 			</div>
