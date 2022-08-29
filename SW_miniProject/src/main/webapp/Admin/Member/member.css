@@ -20,26 +20,6 @@ hr {
 	margin-bottom: 52px;
 }
 
-.tdIndex {
-	width: 10%;
-}
-
-.tdId {
-	width: 25%;
-}
-
-.tdName {
-	width: 25%;
-}
-
-.tdEmail {
-	width: 40%;
-}
-
-.tdIndex {
-	width: 10%;
-}
-
 a {
 	color: black;
 }
@@ -68,17 +48,10 @@ a {
 }
 
 .InfoTable td {
+	text-align: center;
 	font-size: 15px;
 	padding: 15px;
 	border-bottom: 1px solid rgba(0, 0, 0, 1);
-}
-
-.InfoTable tr td:first-child {
-	text-align: center;
-}
-
-.InfoTable caption {
-	caption-side: top;
 }
 
 /* memberInfo td */
