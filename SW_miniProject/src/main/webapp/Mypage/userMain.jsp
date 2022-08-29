@@ -14,37 +14,36 @@
 </head>
 <body>
 	<script>
-	<% //String userid = (String)session.getAttribute("userID");
-	//임시 id
-	String userid = "sss";
-	String username = "";
-	String password = "";
-	String postcode = "";
-	String address = "";
-	String detailAddress = "";
-	String extraAddress = "";
-	String telno = "";
-	String email = "";
+		
+	<%//String userid = (String)session.getAttribute("userID");
+//임시 id
+String userid = "sss";
+String username = "";
+String password = "";
+String postcode = "";
+String address = "";
+String detailAddress = "";
+String extraAddress = "";
+String telno = "";
+String email = "";
 
-
-	if(userid == null){%>
+if (userid == null) {%>
 		alert("로그인이 필요한 서비스입니다.");
-		location.href = "./login.jsp";
+		location.href = "./login.jsp";s
 	<%}%>
+		function pwConfig() {
+			btn = document.getElementById('password').value;
+			console.log(btn);
 
-function pwConfig() {
+			if (btn == "") {
+				alert("패스워드를 입력하세요.");
+				return false;
+			} else {
+				document.userbasic.action = "pwCheck.jsp";
+				document.userbasic.action.submit;
+			}
 
-	if(documentuserbasic.password.value == ''){
-		alert("패스워드를 입력하세요.");
-	 	return false;
-	} else if {
-		document.userbasic.action = "pwCheck.jsp";
-		document.userbasic.action.submit();	
-	}
-	 
-	}
-
-
+		}
 	</script>
 	<%@include file="/top.jsp"%>
 	<%
@@ -52,12 +51,11 @@ function pwConfig() {
 	String uid = "root";
 	String pwd = "0000";
 
-	String sql = "select * from user where userid='"+userid+"'";
+	String sql = "select * from user where userid='" + userid + "'";
 
 	Connection con = null;
 	Statement stmt = null;
 	ResultSet rs = null;
-
 
 	try {
 
@@ -83,7 +81,6 @@ function pwConfig() {
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
-
 	%>
 
 	<!-- 회원 정보 네비게이션 바 -->
@@ -105,19 +102,19 @@ function pwConfig() {
 					<div class="left-container">
 						<div class="row">
 							<label class="title">로그인 아이디</label>
-							<input type="text" name="" id="" class="field" readonly="readonly" value=":<%=userid %>">
+							<input type="text" class="field" readonly="readonly" value="<%=userid%>">
 						</div>
 						<div class="row">
 							<label class="title">회원 이메일</label>
-							<input type="text" name="" id="" class="field" readonly="readonly" value="<%=email %>">
+							<input type="text" class="field" readonly="readonly" value="<%=email%>">
 						</div>
 						<div class="row">
 							<label class="title">비밀 번호</label>
-							<input type="text" name="" id="" class="field" readonly="readonly" value="<%=password%>">
+							<input type="text" class="field" readonly="readonly" value="********">
 						</div>
 						<div class="row">
 							<label class="title">휴대폰 번호</label>
-							<input type="text" name="" id="" class="field" readonly="readonly" value="<%=telno %>">
+							<input type="text" class="field" readonly="readonly" value="<%=telno%>">
 						</div>
 					</div>
 
@@ -125,22 +122,22 @@ function pwConfig() {
 					<div class="right-container">
 						<div class="row">
 							<label class="title">이름</label>
-							<input type="text" name="" id="" class="field" readonly="readonly" value="<%=username %>">
+							<input type="text" class="field" readonly="readonly" value="<%=username%>">
 						</div>
 						<div class="row">
 							<label class="title">우편 번호</label>
-							<input type="text" name="" id="" class="field" readonly="readonly" value="<%=postcode %>">
+							<input type="text" class="field" readonly="readonly" value="<%=postcode%>">
 						</div>
 						<div class="row">
 							<label class="title">주소</label>
-							<input type="text" name="" id="" class="field " readonly="readonly" value="<%=address %>">
-							<input type="text" name="" id="" class="field" readonly="readonly" value="<%=detailAddress %><%=extraAddress %>">
+							<input type="text" class="field " readonly="readonly" value="<%=address%>">
+							<input type="text" class="field" readonly="readonly" value="<%=detailAddress%><%=extraAddress%>">
 						</div>
 						<div class="row" id="pw-check">
-							<input type="password" name="password" id="password" class="field" placeholder="비밀번호를 입력하세요.">
+							<input type="password" name="password" id="password" class="field" placeholder="비밀번호를 입력하세요." value="">
 						</div>
 						<div class="row">
-							<input type="button" class="field user-info-modify-btn" id="button" onclick="pwConfig()" value="회원정보 수정">
+							<input type="submit" class="field user-info-modify-btn" onclick="pwConfig()" value="회원정보 수정">
 						</div>
 					</div>
 			</div>
@@ -149,25 +146,6 @@ function pwConfig() {
 	</div>
 
 
-	<%-- <div class=row>
-	<form name = userbasic id= userbasic >
-		<div class="mypage">
-		<div class="heade-title-container">
-			 <span class="mainTitle">회원 정보</span>
-		</div>
-		로그인 아이디 :<%=userid %> <br>
-		회원 이메일: <%=email %><br>
-		비밀번호: <%=password%><br>
-		휴대폰 번호: <%=telno %><br>
-		이름: <%=username %><br>
-		우편 번호: <%=postcode %><br>
-		주소: <%=address %><%=detailAddress %><%=extraAddress %> <br>
-
-		회원 정보 확인/수정: <input type="password" id="password" name="password" class="password"  placeholder="비밀번호를 입력하세요.">
-		<button id="button" id="password" onclick="pwConfig()">비밀번호 확인</button>
-		</div>
-	</form>
-	</div> --%>
 
 	<%@include file="/footer.jsp"%>
 </body>

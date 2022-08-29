@@ -10,6 +10,21 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 
+<script type="text/javascript">
+
+$(document).ready(function() {
+	$("#pwChangeBt").click(function(){
+
+		var pwChange = $('#pwChange').val();
+		
+		if( pwChange == ""){
+			alert("변경할 비밀번호를 입력 해 주세요."); }
+		//여기에 조건으로 걸러내기
+		//이후 db 수정하는 부분까지 만들기
+	}); 
+});
+</script>
+
 <body>
 <%@include file="/top.jsp"%>
 <h1>회원 정보</h1>
@@ -80,20 +95,7 @@
 	<li><a> 주소: <%=address %> <%=detailAddress %> <%=extraAddress %></a></li>
 </ul>
 
-<script type="text/javascript">
 
-$(document).ready(function() {
-	$("#pwChangeBt").click(function(){
-
-		var pwChange = $('#pwChange').val();
-		
-		if( pwChange == ""){
-			alert("변경할 비밀번호를 입력 해 주세요."); }
-		//여기에 조건으로 걸러내기
-		//이후 db 수정하는 부분까지 만들기
-	}); 
-});
-</script>
 
 <%@include file="/footer.jsp"%>
 </body>
