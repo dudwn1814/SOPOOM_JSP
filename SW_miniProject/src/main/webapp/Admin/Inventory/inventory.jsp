@@ -11,7 +11,7 @@
 <head>
 <script src="http://code.jquery.com/jquery-1.11.3.js"></script>
 
-<title>재고 목록</title>
+<title>재고관리</title>
 <link href="https://fonts.googleapis.com/css?family=Inter&display=swap"
 	rel="stylesheet" />
 <link rel="stylesheet" href="inventory.css">
@@ -29,7 +29,7 @@ window.onload = function() {
 	var rows = document.getElementsByName('tdPrice');
 	
 	for(var i=0; i<rows.length; i++){
-		rows[i].innerText = rows[i].innerText.replace(/\B(?=(\d{3})+(?!\d))/g, ",")+ " ￦";
+		rows[i].innerText = rows[i].innerText.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}					
 };
 
@@ -74,19 +74,8 @@ function search(){
 	System.out.println("[게시판 목록 보기 쿼리] : " + query);
 	%>
 	<br>
-	<h1>상품 재고</h1>
-	<div>
-		<select id="searchType" name="searchType">
-			<option value="p_id">상품코드</option>
-			<option value="p_name">상품명</option>
-			<option value="p_unitPrice">가격</option>
-			<option value="p_unitsInStock">수량</option>
-		</select> <input type="text" id="keyword" name="keyword" />
-		<button type="button" onclick="search()">검색</button>
-	</div>
-	<br>
-	<br>
-
+	<h1>재고관리</h1>
+	<hr>
 	<div class="tableDiv">
 		<table class="InventoryInfoTable">
 			<tr>
@@ -116,7 +105,7 @@ function search(){
 						href="/Admin/Inventory/inventoryInfo.jsp?p_id=<%=rs.getString("p_id")%>"
 						onMouseover="this.style.textDecoration='underline'"
 						onmouseout="this.style.textDecoration='none'"><%=rs.getString("p_name")%></a></td>
-					<td class="tdPrice" id="tdPrice" name="tdPrice"><%=rs.getInt("p_unitPrice")%></td>
+					<td class="tdPrice" id="tdPrice" name="tdPrice">￦ <%=rs.getInt("p_unitPrice")%></td>
 					<td class="tdStock"><%=rs.getInt("p_unitsInStock")%></td>
 				</tr>
 				<%
@@ -176,7 +165,20 @@ function search(){
 			if (con != null)
 				con.close();
 			%>
-			<%=pageListView%>
+			
+<div class="search">
+		<select id="searchType" name="searchType">
+			<option value="p_id">상품코드</option>
+			<option value="p_name">상품명</option>
+			<option value="p_unitPrice">가격</option>
+			<option value="p_unitsInStock">수량</option>
+		</select> <input type="text" id="keyword" name="keyword" />
+		<button type="button" onclick="search()">검색</button>
+		
+		<br>
+		<%=pageListView%>
+</div>
+<br><br>
 		</div>
 		<br>
 		<div class="bottom_menu">
