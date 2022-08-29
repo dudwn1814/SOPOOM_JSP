@@ -38,11 +38,13 @@ span{
 	function windowClose(){
 		var idChk = document.getElementById("id_chk").value;
 		if(idChk == "false"){
+			opener.document.getElementById("p_id").focus();
 			opener.document.getElementById("id_chk").value = "false";
 		}
-		else{
-			this.close();
+		else if(idChk == "true"){
+	   		opener.document.getElementById("id_chk").value = "true";
 		}
+		this.close();
 	}
 </script>
 <head>
@@ -105,7 +107,7 @@ con.close();
 %>
 
 <div align="center">
-<input type="button" class="btn_register" onClick="windowClose();" value="확인">
+<input type="button" class="btn_register" onclick="windowClose();" value="확인">
 </div>
 </div>
 </body>

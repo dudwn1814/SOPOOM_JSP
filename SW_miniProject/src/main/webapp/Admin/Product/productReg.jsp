@@ -28,14 +28,6 @@
 
 <script>
 	$(document).ready(function() {
-		
-		$("#p_id").focusout(function() {
-			var idInput = document.getElementById("p_id");
-			if(idInput.value != ''){
-				window.open("pidCheck.jsp?p_id="+idInput.value,"","width=400, height=200");
-			}  
-		});
-		
 		$("#p_price").focusout(function() {
 			$(this).val($(this).val().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		});
@@ -93,6 +85,14 @@
 			$("#p_id").focus();
 			return false;
 		}
+		if($("#id_chk").val() == "false"){
+			var idInput = document.getElementById("p_id");
+			if(idInput.value != ''){
+				window.open("pidCheck.jsp?p_id="+idInput.value,"","width=400, height=200");
+			}  
+			return false;
+		}
+		
 		if ($("#p_price").val() == "") {
 			alert("가격을 입력하세요");
 			$("#p_price").focus();
@@ -133,6 +133,7 @@
 			<div class="row">
 				<label class="title"><p class="mustIn">*</p> 상품코드</label> <input type="text" class="p_id"
 					id="p_id" name="p_id">
+					<input type="hidden" id="id_chk" value="false">
 			</div>
 
 			<div class="row">
