@@ -28,6 +28,14 @@
 
 <script>
 	$(document).ready(function() {
+		
+		$("#p_id").focusout(function() {
+			var idInput = document.getElementById("p_id");
+			if(idInput.value != ''){
+				window.open("pidCheck.jsp?p_id="+idInput.value,"","width=400, height=200");
+			}  
+		});
+		
 		$("#p_price").focusout(function() {
 			$(this).val($(this).val().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		});
@@ -39,44 +47,8 @@
 		var objDragAndDrop = $("#ImageRegistration");
 
 		//이미 등록되어져 있는 자바 스크립트의 이벤트 --> 웹브라우저가 수행하는 이벤트
-		$(document).on("dragenter", "#ImageRegistration", function(e) {
-			e.stopPropagation();
-			e.preventDefault();
-			$(this).css('border', '2px solid #BFBFBF');
-		});
-
-		$(document).on("dragover", "#ImageRegistration", function(e) {
-			e.stopPropagation();
-			e.preventDefault();
-		});
-
-		$(document).on("drop", "#ImageRegistration", function(e) {
-
-			$(this).css('border', '2px dotted #BFBFBF');
-			e.preventDefault();
-			//웹브라우저로 가져온 파일에서 정보를 얻어온다.
-			var files = e.originalEvent.dataTransfer.files;
-
-			imageView(files, objDragAndDrop);
-		});
-
-		$(document).on('dragenter', function(e) {
-			e.stopPropagation();
-			e.preventDefault();
-		});
-
-		$(document).on('dragover', function(e) {
-			e.stopPropagation();
-			e.preventDefault();
-			objDragAndDrop.css('border', '2px dotted #BFBFBF');
-		});
-
-		$(document).on('drop', function(e) {
-			e.stopPropagation();
-			e.preventDefault();
-			imageView(files, objDragAndDrop);
-		});
-
+		//드래그는 안돼서 일단 삭제
+		
 		//drag 영역 클릭시 파일 선택창
 		objDragAndDrop.on('click', function(e) {
 			$("#fileUpload").trigger('click');
@@ -111,7 +83,11 @@
 			alert("이미지를 업로드하세요."); 
 			return false; 
 		}
-
+		if ($("#p_name").val() == "") {
+			alert("상품명을 입력하세요");
+			$("#p_name").focus();
+			return false;
+		}
 		if ($("#p_id").val() == "") {
 			alert("상품 코드 입력하세요");
 			$("#p_id").focus();
@@ -146,11 +122,11 @@
 			<div class="row">
 				<label class="title">상품이미지</label> <input type="file"
 					name="fileUpload" id="fileUpload" style="display: none;" />
-					<div class="ImageRegistration" id="ImageRegistration">클릭 또는 이미지 파일을 드래그 해서 사진을 등록해 주세요.</div>
+					<div class="ImageRegistration" id="ImageRegistration">클릭해서 사진을 등록해 주세요.</div>
 			</div>
 
 			<div class="row">
-				<label class="title">상품이름</label> <input type="text" class="p_name"
+				<label class="title">* 상품이름</label> <input type="text" class="p_name"
 					id="p_name" name="p_name">
 			</div>
 

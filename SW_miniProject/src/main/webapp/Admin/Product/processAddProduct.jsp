@@ -41,16 +41,22 @@
 	if (condition == null) condition = null;
 	
 	if(originalFileName != null){
+	  
+	  System.out.println("check");
 		//변경되기 전 파일 이름에서 확장자 분리
 		String originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));	
 		//난수값을 발생시켜 파일명 생성
 		storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + originalFileExtension;	
+		System.out.println("check1 ===" + storedFileName);
+	
 	}
 
 	String changedFileName = multi.getFilesystemName(name);
 	
 
 	p_price = p_price.replace(",", "");
+	
+	System.out.println("check2 ===" + storedFileName);
 
 
 	String sql = "insert into product values(?,?,?,?,?,?,?,?,?)";
