@@ -15,7 +15,7 @@
 	}
 </script>
 
-<title>배송관리</title>
+<title>배송관리 페이지</title>
 <link href="https://fonts.googleapis.com/css?family=Inter&display=swap"
 	rel="stylesheet" />
 <link rel="stylesheet" href="shipping.css">
@@ -60,6 +60,17 @@ function search(){
 <br>
 <h1>배송관리</h1>
 <hr>
+<div>
+ 		<select id="searchType" name="searchType">
+ 			<option value="orderID">주문번호</option>
+ 			<option value="userID">주문자ID</option>
+     		<option value="status">배송상태</option>
+    	</select>
+    	
+   		<input type="text" id="keyword" name="keyword" />
+ 		<button type="button" onclick="search()">검색</button>
+</div>
+<br><br>
 
 <div class="tableDiv">
 
@@ -72,7 +83,6 @@ function search(){
 			<th>주문자 전화번호</th>
 			<th>배송지</th>
 			<th>배송상태</th>
-			<th>상태변경</th>
 		</tr>
 
 <tbody>
@@ -131,7 +141,7 @@ try {
 </tr>
 
 <%
-		}
+}
 	} catch (Exception e) {
 		e.printStackTrace();
 		}
@@ -180,30 +190,16 @@ try {
 	if(rs != null) rs.close();
 	if(con != null) con.close();
 %>
-	</div>
-</div>
-<br>
-<div class="search">
- 		<select id="searchType" name="searchType">
- 			<option value="orderID">주문번호</option>
- 			<option value="userID">주문자ID</option>
-     		<option value="status">배송상태</option>
-    	</select>
-    	
-   		<input type="text" id="keyword" name="keyword" />
- 		<button type="button" onclick="search()">검색</button>
-<br>
 <%=pageListView %>
-</div>
+		</div>
+		<br>
 
-
-<br><br>
 
 		<div class="bottom_menu">		
 			<a href="/Admin/Shipping/shipping.jsp?page=1">목록으로</a>&nbsp;&nbsp;
 			<a href="/index.jsp">홈으로</a>&nbsp;&nbsp;
 		</div>
-
+	</div>
 
 <%@include file="/footer.jsp"%>
 
