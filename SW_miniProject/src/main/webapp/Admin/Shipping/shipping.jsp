@@ -58,7 +58,7 @@ function search(){
 	String pwd = "1234";
 %>
 <br>
-<h1>배송관리</h1>
+<h1 class="shipTitle">배송관리</h1>
 <hr>
  
 <div class="tableDiv">
@@ -198,13 +198,7 @@ try {
 </div>
 
 
-<br><br>
-
-		<div class="bottom_menu">		
-			<a href="/Admin/Shipping/shipping.jsp?page=1">목록으로</a>&nbsp;&nbsp;
-			<a href="/index.jsp">홈으로</a>&nbsp;&nbsp;
-		</div>
-		
+<br><br>		
 		 
 <%@include file="/footer.jsp"%>
 

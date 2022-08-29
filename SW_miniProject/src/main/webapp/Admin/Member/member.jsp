@@ -31,7 +31,7 @@
 	%>
 	
 	<br>
-<h1>회원목록</h1>
+<h1 class="memberTitle">회원목록</h1>
 <hr>
 
 <div class="tableDiv">
@@ -40,7 +40,7 @@
 			<th>INDEX</th>
 			<th>USER ID</th>
 			<th>USER NAME</th>
-			<th>E-MAIL</th>
+			<th class="thEmail">E-MAIL</th>
 		</tr>
 
 <tbody>
@@ -79,7 +79,7 @@
 <tr>
 		<td class="tdIndex"><%=idx++%></td>
 		<td class="tdId"><a id="hypertext"
-			href="/Admin/Member/memberInfo.jsp?userID=<%=rs.getString("userID")%>"
+			href="/Admin/Member/edit_memberInfo.jsp?userID=<%=rs.getString("userID")%>"
 			onMouseover='this.style.textDecoration="underline"'
 			onmouseout="this.style.textDecoration='none';"><%=rs.getString("userID")%></a></td>
 		<td class="tdName"><%=rs.getString("username")%></td>

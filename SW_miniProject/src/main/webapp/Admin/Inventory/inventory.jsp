@@ -77,10 +77,10 @@ function search(){
 	<div class="tableDiv">
 		<table class="InventoryInfoTable">
 			<tr>
-							<th>상품코드</th>
+				<th style="text-align: left">상품코드</th>
 				<th>상품명</th>
-				<th>가격</th>
-				<th>수량</th>
+				<th style="text-align: right">가격</th>
+				<th style="text-align: right">수량</th>
 			</tr>
 
 			<tbody>
@@ -178,11 +178,6 @@ function search(){
 		<%=pageListView%>
 </div>
 <br><br>
-		</div>
-		<br>
-		<div class="bottom_menu">
-			<a href="/Admin/Inventory/inventory.jsp?page=1">목록으로</a>&nbsp;&nbsp;
-			<a href="/index.jsp">홈으로</a>&nbsp;&nbsp;
 		</div>
 	</div>
 

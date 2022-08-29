@@ -120,23 +120,23 @@
 			enctype="multipart/form-data">
 
 			<div class="row">
-				<label class="title">상품이미지</label> <input type="file"
+				<label class="title"><p class="mustIn">*</p> 상품이미지</label> <input type="file"
 					name="fileUpload" id="fileUpload" style="display: none;" />
 					<div class="ImageRegistration" id="ImageRegistration">클릭해서 사진을 등록해 주세요.</div>
 			</div>
 
 			<div class="row">
-				<label class="title">* 상품이름</label> <input type="text" class="p_name"
+				<label class="title"><p class="mustIn">*</p> 상품이름</label> <input type="text" class="p_name"
 					id="p_name" name="p_name">
 			</div>
 
 			<div class="row">
-				<label class="title">* 상품코드</label> <input type="text" class="p_id"
+				<label class="title"><p class="mustIn">*</p> 상품코드</label> <input type="text" class="p_id"
 					id="p_id" name="p_id">
 			</div>
 
 			<div class="row">
-				<label class="title">* 상품가격</label> <input type="text"
+				<label class="title"><p class="mustIn">*</p> 상품가격</label> <input type="text"
 					class="p_price" id="p_price" name="p_price">
 			</div>
 
@@ -157,7 +157,7 @@
 			</div>
 
 			<div class="row">
-				<label class="title">* 재고 수</label> <input type="text"
+				<label class="title"><p class="mustIn">*</p> 재고 수</label> <input type="text"
 					class="p_amount" id="p_amount" name="p_amount">
 			</div>
 
@@ -170,8 +170,8 @@
 				</div>
 			</div>
 
-			<button id="btn_registry" class="btn_registry" onclick="register()">등록</button>
-			<button id="btn_cancel" class="btn_cancel"
+			<button type="button" id="btn_registry" class="button" onclick="register()">등록</button>
+			<button id="btn_cancel" class="button"
 				onclick="history.back(); return false;">취소</button>
 
 		</form>

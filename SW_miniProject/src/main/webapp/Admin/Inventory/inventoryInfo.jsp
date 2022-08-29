@@ -22,7 +22,9 @@ function modify(PID){
 		document.getElementById('p_amount_value').focus(); 
 		return false;  
 	}
-	$("#ModifyForm").attr("action", "/Admin/Inventory/modify_proc.jsp?p_id="+PID).submit();
+	if(confirm('수정하시겠습니까?')){
+		$("#ModifyForm").attr("action", "/Admin/Inventory/modify_proc.jsp?p_id="+PID).submit();
+	}
 }
 
 function deleteInventory(PID){
@@ -92,10 +94,13 @@ function deleteInventory(PID){
 				<input type="number" class="p_amount_value" id="p_amount_value" name="p_amount_value" value="<%=rs.getInt("p_unitsInStock")%>">
 		</div>
 
-		<button id="btn_modify" class="btn_modify"
+		<button id="btn_modify" class="button"
 			onclick="modify('<%=rs.getString("p_id")%>')">수정</button>
-		<button id="btn_delete" class="btn_delete"
+		<button id="btn_delete" class="button"
 			onclick="deleteInventory('<%=rs.getString("p_id")%>')">삭제</button>
+		<br>
+		<button id="btn_list" class="button"
+			onclick="history.back(); return false;">목록</button>
 	</form>
 	<%
 	}

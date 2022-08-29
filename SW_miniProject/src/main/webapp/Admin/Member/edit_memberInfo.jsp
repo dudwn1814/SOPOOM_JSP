@@ -5,12 +5,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="utf-8">
 <title>회원정보 변경</title>
 
 <link href="https://fonts.googleapis.com/css?family=Inter&display=swap"
 	rel="stylesheet" />
-<link rel="stylesheet" href="member.css">
+<link rel="stylesheet" href="userMain.css">
 
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -81,54 +82,81 @@ function registerForm(){
 	con.close();
 	%>
 
-	<div align="center">
-		<h1 class="editTitle">회원정보 변경</h1>
-		<br>
-		<form id="WriteForm" class="WriteForm" method="POST">
-			<div class="row">
-				<label class="title">아이디</label> <input type="text" class="field"
-					id="userID" value="<%=userID%>" disabled>
-			</div>
-			<div class="row">
-				<label class="title">비밀번호</label> <input type="text" class="field"
-					name="password" value="<%=password%>">
+	<div id="display-canvas">
+		<div class="mypage">
+
+			<div class="container">
+
+				<div class="head-title">
+					<div class="heade-title-container">
+						<h1 class="mainTitle">회원 정보</h1>
+					</div>
+				</div>
+
+				<form id="WriteForm" class="WriteForm" method="POST">
+					<div class="left-container">
+						<div class="row">
+							<label class="title">로그인 아이디</label> <input type="text"
+								name="userID" id="userID" class="field" readonly="readonly"
+								value="<%=userID%>">
+						</div>
+						<div class="row">
+							<label class="title">회원 이메일</label> <input type="text"
+								name="email" id="email" class="field" value="<%=email%>">
+						</div>
+						<div class="row">
+							<label class="title">비밀 번호</label> <input type="text"
+								name="password" id="password" class="field"
+								value="<%=password%>">
+						</div>
+						<div class="row">
+							<label class="title">휴대폰 번호</label> <input type="text"
+								name="telno" id="telno" class="field" value="<%=telno%>">
+						</div>
+					</div>
+
+					<div class="right-container">
+						<div class="row">
+							<label class="title">이름</label> <input type="text"
+								name="username" id="username" class="field"
+								value="<%=username%>">
+						</div>
+						<div class="row">
+							<label class="title">우편 번호</label> <input type="text"
+								name="postcode" id="postcode" class="field"
+								value="<%=postcode%>">
+						</div>
+						<div class="row">
+							<label class="title">주소</label> <input type="text" name="address"
+								id="address" class="field " value="<%=address%>">
+						</div>
+						<div class="row">
+							<label class="title">세부 주소</label> <input type="text"
+								name="detailAddress" id="detailAddress" class="field"
+								value="<%=detailAddress%>">
+						</div>
+						<div class="row">
+							<label class="title">추가 주소</label> <input type="text"
+								name="extraAddress" id="extraAddress" class="field"
+								value="<%=extraAddress%>">
+						</div>
+					</div>
+
+				</form>
 
 			</div>
-			<div class="row">
-				<label class="title">이름</label> <input type="text" class="field"
-					name="username" value="<%=username%>">
-			</div>
-			<div class="row">
-				<label class="title">우편번호</label> 
-				<input type="text" class="field" id="postcode" name="postcode" value="<%=postcode%>"> 
-			</div>
-			<div class="row">	
-				<label class="title">주소</label>
-				<input type="text" class="field" id="address" name="address" value="<%=address%>"><br> 
-			</div>
-			<div class="row">	
-				<label class="title">세부주소</label>
-				<input type="text" class="field" id="detailAddress" name="detailAddress" value="<%=detailAddress%>"> 
-			</div>
-			<div class="row">	
-				<label class="title">추가주소</label>
-				<input type="text" class="field" id="extraAddress" name="extraAddress" value="<%=extraAddress%>">
-			</div>
-			<div class="row">
-				<label class="title">전화번호</label> <input type="text" class="field"
-					id="telno" name="telno" value="<%=telno%>">
 
-			</div>
-			<div class="row">
-				<label class="title">이메일</label> <input type="text" class="field"
-					name="email" value="<%=email%>">
-
-			</div>
-			<br> <br> <input type="button" class="btn_write" value="수정"
-				onclick="registerForm()" /> <input type="button" class="btn_cancel"
-				value="취소" onclick="history.back()" />
-		</form>
+		</div>
+		
+			<div style="text-align: center; width: 960px; margin:auto;">
+				<button id="btn_modify" class="button" onclick="registerForm()">수정</button>
+				<button id="btn_delete" class="button"
+					onclick="location.href='delete_memberInfo.jsp?userID=<%=userID%>'">탈퇴</button>
+				<br>
+				<button id="btn_list" class="button" id="btn_list"
+					onclick="location.href='/Admin/Member/member.jsp?page=1'">목록</button>
+			</div>		
 	</div>
-		<%@include file="/footer.jsp"%>
+	<%@include file="/footer.jsp"%>
 </body>
 </html>
