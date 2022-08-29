@@ -35,7 +35,8 @@ h3{
 	font-weight : bold;
 	font-size : 16pt;
 	text-align : center;
-	margin : 30px;
+	margin-top : 30px;
+	margin-bottom : 50px;
 }
 
 
@@ -46,7 +47,8 @@ h3{
 .label{
 	font-weight : bold;
 	color : #313131;
-}
+	margin-right : 20px;
+	}
 
 .button{
 	padding: 5px;
