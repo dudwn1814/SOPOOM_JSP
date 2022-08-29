@@ -6,9 +6,9 @@
 	ResultSet rs = null;
 	
 	try {
-		String url = "jdbc:mysql://localhost:3306/sw_miniproject";
+		String url = "jdbc:mysql://localhost:3306/inventory";
 		String user = "root";
-		String password = "0000";
+		String password = "1234";
 
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(url, user, password);

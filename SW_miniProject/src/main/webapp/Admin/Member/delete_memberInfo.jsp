@@ -12,9 +12,9 @@
 	<%
 	String userID = request.getParameter("userID");
 
-	String url = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
+	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
 	String uid = "root";
-	String pwd = "0000";
+	String pwd = "1234";
 
 	Connection con = null;
 	Statement stmt = null;
@@ -37,7 +37,7 @@
 	%>
 	<script>
 			alert("<%=userID%>의 탈퇴처리가 완료 되었습니다.");
-			document.location.href = 'member.jsp';
+			document.location.href = 'member.jsp?page=1';
 	</script>
 
 	<%

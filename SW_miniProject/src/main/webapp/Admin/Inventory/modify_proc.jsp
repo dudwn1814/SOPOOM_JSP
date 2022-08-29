@@ -13,14 +13,14 @@
 
 	String p_id = request.getParameter("p_id");
 
-	int modifyAmount = Integer.parseInt(request.getParameter("p_amount_value"));
+	String modifyAmount = request.getParameter("p_amount_value");
 	
     Connection con = null;
     Statement stmt = null;
 
-    String uri = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
+    String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
    	String uid = "root";
-    String upw = "0000";
+    String upw = "1234";
     String query = "update product set p_unitsInStock = '" + modifyAmount + "' where p_id = '" + p_id + "'";
 
     try {
