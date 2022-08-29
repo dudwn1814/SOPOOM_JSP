@@ -2,6 +2,7 @@
 <style>
 	#footer{
 	text-align : center;
+	width : auto;
 	min-width : 700px;
 	}
 	#footer p{
