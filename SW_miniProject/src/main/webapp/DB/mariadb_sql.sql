@@ -73,12 +73,15 @@ CREATE TABLE shipping(
 
 --7.카트 테이블
 --제품 테이블의 productid, 유저 테이블의 userid와 join
-CREATE TABLE cart (
-	userID VARCHAR(50) NOT NULL ,
-	QUANTITY INT(11) NOT NULL COMMENT '주문수량',
-	p_id VARCHAR(10) NOT NULL ,
-	INDEX FK_pid (p_id) USING BTREE,
-	INDEX FK_userID (userID) USING BTREE,
-	CONSTRAINT FK_pid FOREIGN KEY (p_id) REFERENCES product (p_id) ON UPDATE CASCADE ON DELETE CASCADE,
-	CONSTRAINT FK_userID FOREIGN KEY (userID) REFERENCES user (userID) ON UPDATE CASCADE ON DELETE CASCADE
-);
+CREATE TABLE `cart` (
+   `userID` VARCHAR(50) NOT NULL COLLATE 'utf8mb4_general_ci',
+   `QUANTITY` INT(11) NOT NULL COMMENT '주문수량',
+   `p_id` VARCHAR(10) NOT NULL COLLATE 'utf8mb3_general_ci',
+   INDEX `FK1 pid` (`p_id`) USING BTREE,
+   INDEX `FK2 userid` (`userID`) USING BTREE,
+   CONSTRAINT `FK1 pid` FOREIGN KEY (`p_id`) REFERENCES `inventory`.`product` (`p_id`) ON UPDATE NO ACTION ON DELETE NO ACTION,
+   CONSTRAINT `FK2 userid` FOREIGN KEY (`userID`) REFERENCES `inventory`.`user` (`userID`) ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+COLLATE='utf8mb4_general_ci'
+ENGINE=InnoDB
+;
