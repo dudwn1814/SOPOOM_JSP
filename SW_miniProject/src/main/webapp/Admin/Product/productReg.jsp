@@ -135,6 +135,7 @@
 
 </head>
 <body>
+<%@include file="/top.jsp"%>
 	<div align="center">
 		<h1 class="editTitle">상품 등록</h1>
 		<br>
@@ -199,5 +200,6 @@
 
 		</form>
 	</div>
+	<%@include file="/footer.jsp"%>
 </body>
 </html>
