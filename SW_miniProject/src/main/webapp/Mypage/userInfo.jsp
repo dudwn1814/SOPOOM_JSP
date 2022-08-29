@@ -17,6 +17,7 @@
 
 $(document).ready(function(){
 
+    /*유저 비번 변경 버튼 */
 	$("#btn_register_pw").click(function(){
 			
 			//비밀번호
@@ -67,15 +68,29 @@ $(document).ready(function(){
 			return false;
 		}
 		else{	$("#msg_pwchk").css('display', 'none');}
-		$("#pwchange").attr("action","change_pw.jsp").submit();
+		$("#pwchange").attr("action","join_verify.jsp").submit();
 	})
 	
+	
+	/* 유저 정보 변경 버튼 */
 	$("#btn_register_info").click(function(){
 		
-	})
+		var address = $("#address").val();
+		var extraAddress = $("#extraAddress").val();
+		var detailAddress = $("#detailAddress").val();
+		var postcode = $("#postcode").val();
+		
+		if ((address && extraAddress && detailAddress && postcode) == null){
+			$("#msg_pw").text("빈 칸 없이 입력 해 주세요.");
+			$("#msg_pw").css('display', 'block');
+			return false;
+		}
+		else { $("#msg_pwchk").css('display', 'none');
+		$("#infochange").attr("action","change_info.jsp").submit();
+		}
 
 })
-
+})
 
 
 </script>
@@ -127,15 +142,15 @@ function execDaumPostcode() {
 </script>
 
 <style>
-.msg{
-	font-size:12px;
+.msg {
+	font-size: 12px;
 }
 
-#msg_pwchk, #msg_email, #msg_id, #msg_address, #msg_telno, #msg_name, #msg_pw{
-	display : none;
+#msg_pwchk, #msg_email, #msg_id, #msg_address, #msg_telno, #msg_name,
+	#msg_pw {
+	display: none;
 	color: red;
 }
-
 </style>
 
 <body>
@@ -239,34 +254,37 @@ function execDaumPostcode() {
 					</div>
 				</form>
 
-				<form name=infochange id=infochange method="post"></form>
-				<div class="right-container">
-					<div class="row">
-						<label class="title">이름</label>
-						<input type="text" class="field" readonly="readonly" value="<%=username%>">
+				<form name=infochange id=infochange method="post">
+					<div class="right-container">
+						<div class="row">
+							<label class="title">이름</label>
+							<input type="text" class="field" readonly="readonly" value="<%=username%>">
+						</div>
+						<div class="row">
+							<label class="title">휴대폰 번호</label>
+							<input type="text" class="field" value="<%=telno%>">
+							<!-- 나중에 번호인증하는 api 받아와서 적용하면 더 좋을거같아요. -->
+						</div>
+						<div class="row">
+							<label class="title">우편 번호</label>
+							<input type="text" name="postcode" id="postcode" class="field" readonly="readonly" value="<%=postcode%>">
+							<input type="button" id="btn_address" onclick="execDaumPostcode()" value="우편번호 찾기">
+						</div>
+						<div class="row">
+							<label class="title">주소</label>
+							<input type="text" name="address" id="address" class="field " readonly="readonly" value="<%=address%>">
+							<input type="text" name="extraAddress" id="extraAddress" class="field" readonly="readonly" value="<%=detailAddress%>">
+							<input type="text" name="detailAddress" id="detailAddress" class="field" placeholder="<%=extraAddress%>">
+							<p id="msg_pwchk" class="msg"></p>
+						</div>
+						<div class="row">
+							<input type="submit" id="btn_register_info" class="field user-info-modify-btn" value="회원정보 수정">
+						</div>
 					</div>
-					<div class="row">
-						<label class="title">휴대폰 번호</label>
-						<input type="text" class="field" readonly="readonly" value="<%=telno%>">
-					</div>
-					<div class="row">
-						<label class="title">우편 번호</label>
-						<input type="text" name="" id="postcode" class="field" readonly="readonly" value="<%=postcode%>">
-						<input type="button" id="btn_address" onclick="execDaumPostcode()" value="우편번호 찾기">
-					</div>
-					<div class="row">
-						<label class="title">주소</label>
-						<input type="text" name="" id="address" class="field " readonly="readonly" value="<%=address%>">
-						<input type="text" name="" id="extraAddress" class="field" readonly="readonly" value="<%=detailAddress%>">
-						<input type="text" name="" id="detailAddress" class="field" placeholder="<%=extraAddress%>">
-					</div>
-					<div class="row">
-						<input type="submit" id="btn_register_info" class="field user-info-modify-btn" value="회원정보 수정">
-					</div>
-				</div>
+					</form>
 			</div>
 		</div>
-		</form>
+		
 	</div>
 
 
