@@ -117,7 +117,7 @@ function search(){
 						onMouseover="this.style.textDecoration='underline'"
 						onmouseout="this.style.textDecoration='none'"><%=rs.getString("p_name")%></a></td>
 					<td class="tdPrice" id="tdPrice" name="tdPrice"><%=rs.getInt("p_unitPrice")%></td>
-					<td class="tdStock"></td>
+					<td class="tdStock"><%=rs.getInt("p_unitsInStock")%></td>
 				</tr>
 				<%
 				}

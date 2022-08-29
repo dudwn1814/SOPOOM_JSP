@@ -127,6 +127,7 @@ try {
 			<select id="statusSelect" name="statusSelect"
 				class="statusSelect">
 				<option value="none" disabled selected><%=rs.getString("status")%></option>
+				<option value="결제완료">결제완료</option>
 				<option value="배송전">배송전</option>
 				<option value="배송중">배송중</option>
 				<option value="배송완료">배송완료</option>
