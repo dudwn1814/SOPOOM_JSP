@@ -5,10 +5,23 @@
 <html>
 
 <%
-	//user 정보 받아오기
-	
-	
 
+	//상품정보 받아오기
+	request.setCharacterEncoding("UTF-8");
+
+	DecimalFormat df = new DecimalFormat("###,###");
+
+	//shoppingCart.jsp 에서 받아온 값들
+	String[] pName = request.getParameterValues("pname"); //제품이름
+	String[] pPrice = request.getParameterValues("price"); //제품 개수에 따른 가격
+	String[] count = request.getParameterValues("countInput");//제품 수량
+	String[] pPriceTotal = request.getParameterValues("total");// 1개 가격 x 수량 = 제품 총 주문 가격
+	String[] pID = request.getParameterValues("p_id"); //product id
+
+	String total = request.getParameter("selectedTotal");// 최종 결제 금액
+	
+	
+	//user 정보 받아오기
 	String userid = (String)session.getAttribute("userID");
 	String userName = "";
 	String userTelno = "";
@@ -17,6 +30,9 @@
 	String address = "";
 	String detailAddress = "";
 	String extraAddress = "";
+	
+	// fileImage 받아오기
+	String pFileName = "";
 	
 	if(userid == null){
 		%>
@@ -28,13 +44,14 @@
 
 
 	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
-
 	String user = "root";
 	String pwd = "1234";
 	
 	Connection con = null;
 	Statement stmt = null;
+	Statement stmtFileName = null;
 	ResultSet rs = null;
+	ResultSet rsFileName = null;
 	
 	try{
 		
@@ -43,10 +60,12 @@
 		
 		//존재하는 아이디인지 확인
 		String query = "select * from user where userID='"+userid+"'";
-		
+		// 이미지 파일 불러오기
+		String imgQuery = "SELECT p_fileName FROM product where p_id='" + pID + "'";
 		stmt = con.createStatement();
-		
+		stmtFileName = con.createStatement();
 		rs = stmt.executeQuery(query);
+		rsFileName = stmtFileName.executeQuery(imgQuery);
 		
 		while(rs.next()){
 			userName = rs.getString("username");
@@ -56,7 +75,12 @@
 			address = rs.getString("address");
 			detailAddress = rs.getString("detailAddress");
 			extraAddress = rs.getString("extraAddress");
-		}		
+		}	
+		
+		while(rsFileName.next()){
+			pFileName = rsFileName.getString("p_fileName");
+		}
+		
 	} catch(Exception e){
 		e.printStackTrace();
 	} finally{
@@ -65,22 +89,6 @@
 		con.close();
 	}
 	
-	
-	
-	//상품정보 받아오기
-	request.setCharacterEncoding("UTF-8");
-
-	DecimalFormat df = new DecimalFormat("###,###");
-
-	//shopping.jsp 에서 받아온 값들
-	String[] pName = request.getParameterValues("pname"); //제품이름
-	String[] pPrice = request.getParameterValues("price"); //제품 개수에 따른 가격
-	String[] count = request.getParameterValues("countInput");//제품 수량
-	String[] pPriceTotal = request.getParameterValues("total");// 1개 가격 x 수량 = 제품 총 주문 가격
-	String[] pID = request.getParameterValues("p_id"); //product id
-
-	String total = request.getParameter("selectedTotal");// 최종 결제 금액
-
 	//getParameterValues NULL보정 부분	
 	String dummy1 = "";
 	String dummy2 = "";
@@ -122,7 +130,7 @@
 	dummy5 += pID[i] + "&nbsp";
 	}
 
-	//Stirng -> int
+	//String -> int
 	int[] intpPrinc = new int[pPrice.length];
 	int[] intpPriceTotal = new int[pPriceTotal.length];
 	int inttotal = Integer.parseInt(total);
@@ -334,7 +342,7 @@ form{
 					<th class="td">합계</th>
 				</tr>
 				<tr>
-					<td><img src="/img/sample.png" alt="productImg" width="90" height="120"></td>
+					<td><img src="/upload/<%=pFileName%>" alt="productImg" width="90" height="120"></td>
 					<td class="tdPname"><%=pName[i]%>
 						<input type="hidden" name="p_id" value="<%=pID[i]%>"></td>
 					<td><%=df.format(intpPrinc[i]) %></td> 
