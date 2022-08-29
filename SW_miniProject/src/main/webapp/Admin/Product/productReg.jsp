@@ -13,6 +13,19 @@
 	
 </script>
 
+<style>
+.ImageRegistration {
+	border: 2px solid #BFBFBF;
+    width: 450px;
+    height: 200px;
+    text-align: center;
+    vertical-align: middle;
+    margin: 30px;
+    padding: 10px 10px;
+    display: table-cell;
+}
+</style>
+
 <script>
 	$(document).ready(function() {
 		$("#p_price").focusout(function() {
@@ -29,7 +42,7 @@
 		$(document).on("dragenter", "#ImageRegistration", function(e) {
 			e.stopPropagation();
 			e.preventDefault();
-			$(this).css('border', '2px solid #0B85A1');
+			$(this).css('border', '2px solid #BFBFBF');
 		});
 
 		$(document).on("dragover", "#ImageRegistration", function(e) {
@@ -39,7 +52,7 @@
 
 		$(document).on("drop", "#ImageRegistration", function(e) {
 
-			$(this).css('border', '2px dotted #0B85A1');
+			$(this).css('border', '2px dotted #BFBFBF');
 			e.preventDefault();
 			//웹브라우저로 가져온 파일에서 정보를 얻어온다.
 			var files = e.originalEvent.dataTransfer.files;
@@ -55,7 +68,7 @@
 		$(document).on('dragover', function(e) {
 			e.stopPropagation();
 			e.preventDefault();
-			objDragAndDrop.css('border', '2px dotted #0B85A1');
+			objDragAndDrop.css('border', '2px dotted #BFBFBF');
 		});
 
 		$(document).on('drop', function(e) {
@@ -132,9 +145,7 @@
 			<div class="row">
 				<label class="title">상품이미지</label> <input type="file"
 					name="fileUpload" id="fileUpload" style="display: none;" />
-				<center>
-					<div id="ImageRegistration">클릭 또는 이미지 파일을 드래그 해서 사진을 등록해 주세요.</div>
-				</center>
+					<div class="ImageRegistration" id="ImageRegistration">클릭 또는 이미지 파일을 드래그 해서 사진을 등록해 주세요.</div>
 			</div>
 
 			<div class="row">
