@@ -27,6 +27,10 @@
 			}
 
 		}
+		
+		function press(){
+			if(event.keyCode == 13) {pwConfig();} //13은 엔터
+		}
 </script>	
 	
 	
@@ -96,9 +100,6 @@ if (userid == null) {%>
 					<div class="heade-title-container">
 						<span class="mainTitle">회원 정보</span>
 					</div>
-					<div class="logout-btn">
-						<span href="./logout.jsp">logout</span>
-					</div>
 				</div>
 
 				<form name=userbasic id=userbasic>
@@ -143,7 +144,7 @@ if (userid == null) {%>
 							<input type="text" class="field" readonly="readonly" value="<%=extraAddress%>">
 						</div>
 						<div class="row" id="pw-check">
-							<input type="password" name="password" id="password" class="field" placeholder="비밀번호를 입력하세요." value="">
+							<input type="password" name="password" id="password" class="field" placeholder="비밀번호를 입력하세요." value=""  onkeydown="press()">
 						</div>
 						<div class="row">
 							<input type="submit" class="field user-info-modify-btn" onclick="pwConfig()" value="비밀번호 확인">

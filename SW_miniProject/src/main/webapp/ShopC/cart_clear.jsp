@@ -16,6 +16,6 @@
 
 	
 	out.println("<script type='text/javascript'>");	
-	out.println("location.href= '/purchase_fin.jsp;'");
+	out.println("location.href= '/ShopC/shoppingCart.jsp'");
 	out.println("</script>");
 %>
