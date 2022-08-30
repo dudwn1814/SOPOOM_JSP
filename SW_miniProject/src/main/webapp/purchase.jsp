@@ -445,51 +445,12 @@ input:focus{
 
 	<%@include file="/top.jsp"%>
 	<form name="purchaseForm" id="purchaseForm" method="post">
-<<<<<<< HEAD
-	
-	<div id="productChk" class="detailForm">
-			<h3>상품 확인</h3>
-			<%
-			//이전 페이지에서 값 받아오는 방식으로 작성.
-			//상품 항목이 늘어날때마다 동적으로 변화.
-			int i = 0;
-			for (; i < pName.length; i++) {
-			%>
-			<table id="productTbl">
-				<tr>
-					<th class="td"></th>
-					<th>상품명</th>
-					<th class="td">판매가</th>
-					<th class="td">수량</th>
-					<th class="td">합계</th>
-				</tr>
-				<tr>
-					<td><img src="/img/sample.png" alt="productImg" width="90" height="120"></td>
-					<td class="tdPname"><%=pName[i]%>
-						<input type="hidden" name="p_id" value="<%=pID[i]%>"></td>
-					<td><%=df.format(intpPrinc[i]) %></td> 
-					<td ><%=count[i]%>
-						<input type="hidden" name = "count" value="<%=count[i]%>"></td>
-					<td><%=df.format(intpPriceTotal[i]) %></td>
-				</tr>
-			</table>
-		</div>
-		<%}%>
-	
-	<div>
-	<h3 class="label">주문 정보</h3>
-	<table class="infoTbl">
-	<tr><td class="tblLabel">주문자</td><td><%= userName %></td></tr>
-	<tr><td class="tblLabel">전화번호</td><td><%= userTelno %></td></tr>
-	<tr><td class="tblLabel">이메일</td><td><%= userMail %></td></tr>
-	</table>
-=======
 	<div id="innerForm">
 	<div id="innerForm2">
 	<div class="detailForm">
 			<div class="row">
-			<label class="title"><h3>주문 상품</h3></label>
-			<!-- 반복문 사용 시 여기부터 -->
+			<label class="title"><h3>주문 상품</h3></label> 
+			<!-- 반복문 사용 시 여기부터 / 서영 반복문 추가 -->
 			<div class="orderComponentCard">
 				<img src="/img/sample.png" alt="productImg" width="90" height="120">
 				<div class="productInfo">
@@ -516,7 +477,6 @@ input:focus{
 			<div class="totalPrice">상품전체금액 원</div>
 			</div>
 		</div>		
->>>>>>> refs/remotes/origin/yegyu
 	</div>
 	
 	<div class="detailForm">
