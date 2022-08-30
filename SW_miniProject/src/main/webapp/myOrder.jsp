@@ -90,8 +90,11 @@ function orderCancle(shipID) {
 					if(rs.getString("status").equals("주문완료")) {%>
 						<button onclick="orderCancle('<%=rs.getString("shipID")%>')" style="cursor:pointer" class="state_button qna">주문취소</button>
 					<%} 
-					else{%>
-						<button class="state_button qna" disabled="disabled">주문취소</button>
+					else if (rs.getString("status").equals("주문취소")){%>
+						
+					<% }
+					else {%>
+						<button class="state_button qna" onclick="alert('결제가 진행된 이후에는 취소할 수 없습니다.')">주문취소</button>
 					<% }%>
 				</div>
 			</div>
