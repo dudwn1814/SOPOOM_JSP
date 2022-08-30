@@ -32,7 +32,7 @@ for (CartDTO cart : cartList) {
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품을 장바구니에 담고 있습니다.</title>
+<title>주문 페이지로 이동중입니다.</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
 	function alertNoUserId() {
@@ -111,7 +111,7 @@ for (CartDTO cart : cartList) {
 	} else { %>
 	<script>
 			alertDuplicateProduct();
-			location.href="/purchase.jsp";
+			location.href = "shoppingCart.jsp";
 			</script>
 	<% 	}
 	if(con != null) {
