@@ -28,21 +28,23 @@ h3 {
 	padding: 50px;
 }
 
-#infoMsg {
-	font-weight: bold;
-	font-size: 16pt;
-	text-align: center;
-	margin: 30px;
+#infoMsg{
+	font-weight : bold;
+	font-size : 16pt;
+	text-align : center;
+	margin-top : 30px;
+	margin-bottom : 50px;
 }
 
 .row {
 	margin: 24px;
 }
 
-.label {
-	font-weight: bold;
-	color: #313131;
-}
+.label{
+	font-weight : bold;
+	color : #313131;
+	margin-right : 20px;
+	}
 
 .button {
 	padding: 5px;

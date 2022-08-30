@@ -147,7 +147,7 @@ h3{
 	</div>
 	<div align="center">
 	<br>
-	<input type="button" class="button" id="btn_home" value="HOME" onClick="location.href='/index.jsp'">
+	<input type="button" class="button" id="btn_home" value="HOME" onClick="location.href='index.jsp'">
 	<br>
 	</div>
 	</div>

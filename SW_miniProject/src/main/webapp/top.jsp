@@ -123,7 +123,7 @@ else {
 </style>
 <header>
 <div class="left">
-<a href="/index.jsp">
+<a href="index.jsp">
 <img class="logo" src="/img/logo.png" alt="logo" width="100">
 </a>
 </div>

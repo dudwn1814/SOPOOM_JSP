@@ -94,7 +94,7 @@
 				</tbody>
 				</table>
 			<div class="img">
-				<img src="/img/<%=rs.getString("p_fileName")%>" alt="" />
+				<img src="/upload/<%=rs.getString("p_fileName")%>" alt="" />
 			</div>
 			<div>
 				<form name="addForm" class="btns" action="./ShopC/addCart.jsp?id=<%=id%>" method="post">
