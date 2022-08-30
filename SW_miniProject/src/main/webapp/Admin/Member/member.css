@@ -38,7 +38,8 @@ a {
 	margin-left: auto;
 	margin-right: auto;
 	vertical-align: middle;
-	padding: 60px 16px 70px
+	padding: 60px 16px 70px;
+		word-break: keep-all;
 }
 
 .InfoTable th {
@@ -56,7 +57,7 @@ a {
 	border-bottom: 1px solid rgba(0, 0, 0, 1);
 }
 
-.tdIndex{
+.tdIndex {
 	width: 10%;
 	text-align: center;
 }
@@ -71,8 +72,31 @@ a {
 	text-align: center;
 }
 
-.tdEmail{
+.tdEmail {
 	width: 40%;
 	text-align: center;
 }
 
+.pageA {
+	text-decoration: none;
+}
+
+.search {
+	width: fit-content;
+	margin: auto;
+}
+
+.pageList {
+	padding-top: 20px;
+	width: fit-content;
+	margin: auto;
+}
+
+
+.searchBtn{
+	cursor: pointer;
+	width: 40px;
+	height: 25px ! important;
+	font-size: 12px !important;
+	font-weight: 700;
+}

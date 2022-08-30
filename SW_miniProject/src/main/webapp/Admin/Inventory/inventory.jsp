@@ -172,10 +172,11 @@ function search(){
 			<option value="p_unitPrice">가격</option>
 			<option value="p_unitsInStock">수량</option>
 		</select> <input type="text" id="keyword" name="keyword" />
-		<button type="button" onclick="search()">검색</button>
+		<button type="button" class="searchBtn" onclick="search()">검색</button>
 		
-		<br>
+		<br><div class="pageList">
 		<%=pageListView%>
+		</div>
 </div>
 <br><br>
 		</div>

@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS product(
 	p_condition VARCHAR(20),
 	p_fileName  VARCHAR(200),
 	PRIMARY KEY (p_id)
-)
+);
 
 INSERT INTO product VALUES('P1234', 'iPhone 6s', 800000, '1334X750 Renina HD display, 8-megapixel iSight Camera','Smart Phone', 'Apple', 1000, 'new', 'P1234.png');
 INSERT INTO product VALUES('P1235', 'LG PC gram', 1500000, '3.3-inch,IPS LED display, 5rd Generation Intel Core processors', 'Notebook', 'LG', 1000, 'new', 'P1235.png');
@@ -43,7 +43,7 @@ CREATE TABLE `order` (
 	userID VARCHAR(50) NOT NULL,
 	totalPrice INT(100) NOT NULL,
 	orderDate TIMESTAMP NOT NULL DEFAULT current_TIMESTAMP(),
-	CONSTRAINT FK__user FOREIGN KEY (userID) REFERENCES user(userID) ON UPDATE CASCADE ON DELETE CASCADE
+	CONSTRAINT FK__user FOREIGN KEY (userID) REFERENCES user(userID) ON UPDATE CASCADE ON DELETE NO ACTION
 );
 
 
@@ -68,7 +68,7 @@ CREATE TABLE shipping(
 	extraAddress VARCHAR(50),
 	telno VARCHAR(20) NOT NULL,
 	`status` VARCHAR(10) NOT NULL DEFAULT '주문 완료',
-	CONSTRAINT FK__order FOREIGN KEY (orderID) REFERENCES `order`(orderID) ON UPDATE CASCADE ON DELETE CASCADE
+	CONSTRAINT FK__order FOREIGN KEY (orderID) REFERENCES `order`(orderID) ON UPDATE CASCADE ON DELETE NO ACTION
 );
 
 -- 7.카트 테이블
@@ -80,5 +80,5 @@ CREATE TABLE cart (
 	INDEX FK_pid (p_id) USING BTREE,
 	INDEX FK_userID (userID) USING BTREE,
 	CONSTRAINT FK_pid FOREIGN KEY (p_id) REFERENCES product (p_id) ON UPDATE CASCADE ON DELETE CASCADE,
-	CONSTRAINT FK_userID FOREIGN KEY (userID) REFERENCES `user` (userID) ON UPDATE CASCADE ON DELETE CASCADE
+	CONSTRAINT FK_userID FOREIGN KEY (userID) REFERENCES `user` (userID) ON UPDATE CASCADE ON DELETE NO ACTION
 );

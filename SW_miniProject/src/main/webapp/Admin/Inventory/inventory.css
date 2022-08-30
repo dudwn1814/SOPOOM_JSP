@@ -62,7 +62,8 @@ a {
 	margin-left: auto;
 	margin-right: auto;
 	vertical-align: middle;
-	padding: 60px 16px 70px
+	padding: 60px 16px 70px;
+		word-break: keep-all;
 }
 
 .InventoryInfoTable th {
@@ -102,9 +103,15 @@ a {
 }
 
 .search{
-	margin-left: 800px;
-	position: relative;
+	padding-top:20px;
+	width:fit-content;
+	margin: auto;
+}
 
+.pageList {
+	padding-top:20px;
+	width:fit-content;
+	margin: auto;
 }
 
 .bottom_menu {
@@ -242,4 +249,16 @@ input:focus {
 	display: inline;
 	margin-top: 20px;
 	margin-bottom: 50px;
+}
+
+.pageA {
+	text-decoration: none;
+} 
+
+.searchBtn{
+	cursor: pointer;
+	width: 40px;
+	height: 25px ! important;
+	font-size: 12px !important;
+	font-weight: 700;
 }

@@ -28,7 +28,8 @@ hr {
 	margin-left: auto;
 	margin-right: auto;
 	vertical-align: middle;
-	padding: 60px 16px 70px
+	padding: 60px 16px 70px;
+	word-break: keep-all;
 }
 
 .InfoTable th {
@@ -46,9 +47,24 @@ hr {
 	border-bottom: 1px solid rgba(0, 0, 0, 1);
 }
 
+#statusBtn {
+	background-color: #313131;
+	color: white;
+	border: 1px solid rgba(0, 0, 0, 1);
+	font-weight: 700;
+	cursor: pointer;
+	border: 1px solid rgba(0, 0, 0, 1);
+}
+
 .search {
-	margin-left: 800px;
-	position: relative;
+	width: fit-content;
+	margin: auto;
+}
+
+.pageList {
+	padding-top: 20px;
+	width: fit-content;
+	margin: auto;
 }
 
 .bottom_menu {
@@ -72,4 +88,16 @@ hr {
 
 .bottom_menu>a:hover, .bottom_menu>a:active {
 	text-decoration: none;
+}
+
+.pageA {
+	text-decoration: none;
+}
+
+.searchBtn {
+	cursor: pointer;
+	width: 40px;
+	height: 25px ! important;
+	font-size: 12px !important;
+	font-weight: 700;
 }
