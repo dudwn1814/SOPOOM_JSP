@@ -121,7 +121,7 @@ try {
 				<option value="배송전">배송전</option>
 				<option value="배송중">배송중</option>
 				<option value="배송완료">배송완료</option>
-				<option value="배송취소">배송취소</option>
+				<option value="주문취소">주문취소</option>
 			</select>
 		</form>
 	</td>
