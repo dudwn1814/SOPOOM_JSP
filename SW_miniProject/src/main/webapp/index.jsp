@@ -10,7 +10,7 @@
 <body>
 <%@include file="top.jsp"%>
 <h1>소품샵프로젝트</h1><br><br>
-
+<a href=/myOrder.jsp?userID=agadsg><span class='material-symbols-outlined'>주문내역</span></a>
 <hr><br>
 <%@include file="footer.jsp"%>
 </body>
