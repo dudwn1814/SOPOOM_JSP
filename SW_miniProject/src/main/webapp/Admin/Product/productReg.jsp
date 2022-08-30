@@ -5,8 +5,7 @@
 <head>
 <meta charset="utf-8">
 <title>게시물 등록</title>
-<link href="https://fonts.googleapis.com/css?family=Inter&display=swap"
-	rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="product.css">
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
