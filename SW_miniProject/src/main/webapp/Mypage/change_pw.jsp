@@ -17,7 +17,7 @@
 	
 	String url = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
 	String user = "root";
-	String pwd = "1234";
+	String pwd = "0000";
 	
 	Connection con = null;
 	PreparedStatement pstmt = null;

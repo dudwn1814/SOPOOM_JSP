@@ -48,9 +48,9 @@ function deleteInventory(PID){
 	Statement stmt = null;
 	ResultSet rs = null;
 
-	String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
+	String uri = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
 	String uid = "root";
-	String pwd = "1234";
+	String pwd = "0000";
 	%>
 
 	<%@include file="/top.jsp"%>

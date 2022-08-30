@@ -52,9 +52,9 @@ function search(){
 	Statement stmt = null;
 	ResultSet rs = null;
 
-	String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
+	String uri = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
 	String uid = "root";
-	String pwd = "1234";
+	String pwd = "0000";
 
 	int postNum = 5; //한 페이지에 보여질 게시물 갯수 
 	int displayPost = (pageNum - 1) * postNum; //테이블에서 읽어 올 행의 위치

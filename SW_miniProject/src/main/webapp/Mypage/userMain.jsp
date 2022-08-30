@@ -50,7 +50,7 @@ if (userid == null) {%>
 	<% 
 	String url = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
 	String uid = "root";
-	String pwd = "1234";
+	String pwd = "0000";
 	
 	//String lastLogindate = (String)session.getAttribute("lastlogin"); //세션 값 형변환
 

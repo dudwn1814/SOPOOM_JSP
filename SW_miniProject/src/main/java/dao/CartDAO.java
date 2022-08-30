@@ -27,7 +27,7 @@ public class CartDAO {
 
 	String url = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
 	String user = "root";
-	String pwd = "1234";
+	String pwd = "0000";
 
 	//ordereditem , order table에 값 넣는 기능
 	//order 값 넣은 이후, orderitem에 값을 넣는다.
