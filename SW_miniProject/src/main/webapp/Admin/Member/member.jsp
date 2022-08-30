@@ -24,7 +24,7 @@
 	String searchType = request.getParameter("searchType") == null ? "" : request.getParameter("searchType");
 	String keyword = request.getParameter("keyword") == null ? "" : request.getParameter("keyword");
 	request.setCharacterEncoding("utf-8");
-	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
+	String url = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
 	String uid = "root";
 	String pwd = "1234";
 

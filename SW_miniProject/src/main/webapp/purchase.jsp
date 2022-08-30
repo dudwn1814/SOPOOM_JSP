@@ -26,8 +26,7 @@
 		<%}
 
 
-	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
-
+	String url = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
 	String user = "root";
 	String pwd = "1234";
 	
@@ -533,7 +532,8 @@ input:focus{
 		</div>		
 	</div>
 	</div>
-		<input type="hidden" name="totalPrice" value="<%=total%>" />
+	</div>
+			<input type="hidden" name="totalPrice" value="<%=total%>" />
 		<div class="row" id="btn_row">
 		<input type="button" id="btn_purchase" class="button" value="<%=df.format(inttotal)%>원 결제하기">
 		</div>

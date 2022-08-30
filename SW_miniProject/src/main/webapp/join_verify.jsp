@@ -12,7 +12,7 @@
 	String telno = request.getParameter("telno");
 	String email = request.getParameter("email");
 	
-	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
+	String url = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
 	String user = "root";
 	String pwd = "1234";
 
