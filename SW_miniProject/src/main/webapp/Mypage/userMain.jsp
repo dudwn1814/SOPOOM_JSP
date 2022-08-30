@@ -11,12 +11,12 @@
 <title>유저 정보 - 메인 페이지</title>
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css" />
 <link rel="stylesheet" href="userMain.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 	<script>
 		function pwConfig() {
-			btn = document.getElementById('password').value;
-			console.log(btn);
+			var btn = document.getElementById('password').value;
 
 			if (btn == "") {
 				alert("패스워드를 입력하세요.");
@@ -27,31 +27,33 @@
 			}
 
 		}
-</script>	
-	
-	
-<%
-String userid = (String)session.getAttribute("userID");
-String username = "";
-String password = "";
-String postcode = "";
-String address = "";
-String detailAddress = "";
-String extraAddress = "";
-String telno = "";
-String email = "";
+	</script>
 
-if (userid == null) {%>
-		alert("로그인이 필요한 서비스입니다.");
-		location.href = "./login.jsp";s
-	<%}%>
+
+	<%
+	String userid = (String) session.getAttribute("userID");
+	String username = "";
+	String password = "";
+	String postcode = "";
+	String address = "";
+	String detailAddress = "";
+	String extraAddress = "";
+	String telno = "";
+	String email = "";
+
+	if (userid == null) {
+	%>
+	alert("로그인이 필요한 서비스입니다."); location.href = "./login.jsp";
+	<%
+	}
+	%>
 
 	<%@include file="/top.jsp"%>
-	<% 
+	<%
 	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
 	String uid = "root";
 	String pwd = "1234";
-	
+
 	//String lastLogindate = (String)session.getAttribute("lastlogin"); //세션 값 형변환
 
 	String sql = "select * from user where userid='" + userid + "'";
@@ -100,8 +102,7 @@ if (userid == null) {%>
 						<span href="./logout.jsp">logout</span>
 					</div>
 				</div>
-
-				<form name=userbasic id=userbasic>
+				
 					<div class="left-container">
 						<div class="row">
 							<label class="title">로그인 아이디</label>
@@ -119,14 +120,15 @@ if (userid == null) {%>
 							<label class="title">휴대폰 번호</label>
 							<input type="text" class="field" readonly="readonly" value="<%=telno%>">
 						</div>
-						
+
 						<div class="row">
-							<input type="submit" class="field shipping-conf-btn" onclick="shippingConfig()" value="배송 정보">
+							<button class="field shipping-conf-btn" onclick="location.href='../myOrder.jsp'">배송 정보</button>
 						</div>
-						
+
 					</div>
 
 
+				<form name=userbasic id=userbasic>
 					<div class="right-container">
 						<div class="row">
 							<label class="title">이름</label>
@@ -146,7 +148,7 @@ if (userid == null) {%>
 							<input type="password" name="password" id="password" class="field" placeholder="비밀번호를 입력하세요." value="">
 						</div>
 						<div class="row">
-							<input type="submit" class="field user-info-modify-btn" onclick="pwConfig()" value="비밀번호 확인">
+							<input type="submit" id="pwconfigBtn" class="field user-info-modify-btn" onclick="pwConfig()" value="비밀번호 확인">
 						</div>
 					</div>
 			</div>
