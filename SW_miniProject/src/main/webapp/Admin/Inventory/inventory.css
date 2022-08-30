@@ -22,6 +22,10 @@ hr {
 	margin-bottom: 52px;
 }
 
+button{
+	background-color: white !important;
+}
+
 .tdId {
 	width: 25%;
 	text-align: left !important;
@@ -100,7 +104,7 @@ a {
 .search{
 	margin-left: 800px;
 	position: relative;
-	
+
 }
 
 .bottom_menu {
@@ -191,7 +195,7 @@ input:focus {
 	max-width: 240px;
 	min-width: 160px;
 	height: 40px ! important;
-	min-height: 40px; 
+	min-height: 40px;
 	margin-top : 30px;
 	font-size: 14px !important;
 	font-weight: 700;
@@ -226,7 +230,7 @@ input:focus {
 
 
 #btn_list {
-	margin-right: 10px; 
+	margin-right: 10px;
 	width : 30%;
 	height: 40px;
 	background-color: #313131 !important;

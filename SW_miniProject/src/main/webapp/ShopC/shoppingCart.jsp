@@ -16,6 +16,11 @@
  --%>
 
 
+
+
+<!DOCTYPE html>
+<html>
+
 <%
 String userid = (String)session.getAttribute("userID");
 
@@ -28,97 +33,177 @@ for (CartDTO cart : cartList) {
    ProductDTO product = ProductDAO.getDAO().selectProduct(p_id);
    productList.add(product);
    qtyList.add(cart.getQuantitiy());
-
-}
-%>
-
-<!DOCTYPE html>
-<html>
-<script>
-	if (userid == null) {
+	}
+	 if (userid == null) { %>
+	<script>
 		alert("로그인이 필요한 서비스입니다.");
-		location.href = "./login.jsp";}
+		location.href = "./login.jsp";
 	</script>
+	<%}%>
+	
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="shoppingCart.css">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <title>장바구니</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 </head>
 <body>
-   <%@include file="/top.jsp"%>
-	<h1>Shopping cart</h1>
-   <br>
-   <!-- 있으면 목록 출력, 없으면 비어있음 표시 -->
-   <%
+	<%@include file="/top.jsp"%>
+	<div class="mypage">
+		<div class="mypage">
+            <div class="head-title">
+                <div class="heade-title-container">
+                    <span class="mainTitle">장바구니</span>
+                </div>
+            </div>
+	<!-- 있으면 목록 출력, 없으면 비어있음 표시 -->
+	<%
    //if(cartList.isEmty()) {
    if (cartList.isEmpty()) {
    %>
-   <div class="emty">
-      <a>장바구니가 비어 있습니다.</a>
-   </div>
-   <%
+	<div class="emty">
+		<a>장바구니가 비어 있습니다.</a>
+	</div>
+	<%
    } else {
    %>
-   <h2>상품 목록</h2>
-   <form id = "cartForm" class="cartTable" method="post" action="/purchase.jsp">
-      <div class="cartlist">
-         <table border="1">
-            <tr>
-               <th><input type="checkbox" id="allCheck" name="allcheck" checked></th>
-               <th>상품명</th>
-               <th>수량</th>
-               <th>개당 가격</th>
-               <th>전체 가격</th>
-            </tr>
-            <%
+	<form id="cartForm" class="cartTable" method="post" action="/purchase.jsp">
+		<table class="cart-table-container">
+                <tr>
+                    <th input type="checkbox" id="allCheck" name="allcheck" checked class="checkabox-container" style="text-align: left" > </th>
+                    <th style="text-align: left">상품 정보</th>
+                    <th style="text-align: left"></th>
+                    <th>수량</th>
+                    <th>개별 가격</th>
+                    <th>전체 가격</th>
+                </tr>
+		<%
             /* 장바구니에 담긴 제품 수에 따라 장바구니 칸 수 증가 */
             int i = 0;
             for (; i < productList.size(); i++) {
             %>
-            <tr>
-               <td><input type="checkbox" name="checkP<%=i%>" value="<%=cartList.get(i).getp_id() %>" class="check" checked>
-               <input type="hidden" name="p_id" value="<%=productList.get(i).getp_id()%>">
-               </td>
-               <td><input type="text" id="name<%=i%>" class="name" name="pname" value="<%=productList.get(i).getp_name()%>" readonly="readonly"></td>
-               <td id="quantity<%=i%>" class="quantity">
-               <span class="count-box">
-                     <button type="button" name="countBtn" class="upBtn">🔼</button>
-                     <input type="text" class="countInput" id="quantity" <%=i%> name="countInput"
-                        value="<%=qtyList.get(i)%>" readonly="readonly" style="width: 20px; border: none;">
-                     <button type="button" name="countBtn" class="downBtn">🔽</button>
-               </span>
-               </td>
-               <td><input id="price<%=i%>" class="price" name="price" value="<%=productList.get(i).getp_price()%>" readonly="readonly"></td>
-               <td><input id="total<%=i%>" class="total" value="<%=(productList.get(i).getp_price() * qtyList.get(i))%>" name="total" readonly="readonly"></td>
-            </tr>
-            <%
+                <tbody>
+                    <td class="tdId checkabox-container">
+                        <input type="checkbox" name="checkP<%=i%>" value="<%=cartList.get(i).getp_id()%>" class="check" checked>
+                   		<input type="hidden" name="p_id" value="<%=productList.get(i).getp_id()%>">
+                    </td>
+
+                    <td class="tdId img">
+                        <image src="/upload/<%= productList.get(i).getP_fileName() %>" width="100px" />	
+                    </td>
+
+                    <td class="tdId Pname">
+                        <input type="text" id="name<%=i%>" class="name" name="pname" value="<%=productList.get(i).getp_name()%>" readonly="readonly">
+                    </td>
+
+                    <td class="tdId quantity" id="quantity<%=i%>" class="quantity">
+                        <div class="count-box">
+                            <div class="btn"> <button type="button" name="countBtn" class="upBtn">
+                            <img src="./img/+btn.png" width="30px"></button> </div>
+                            <div class="btn"><input class="countInput" type="text" class="countInput" id="quantity" <%=i%> name="countInput" value="<%=qtyList.get(i)%>" readonly="readonly"></div>
+                            <div class="btn"><button type="button" name="countBtn" class="downBtn">
+                            <img src="./img/-btn.png" width="30px"> </button></div>
+                        </div>
+                    </td>
+                    <td class="tdId P-one-price">
+                        <input id="price<%=i%>" class="price" name="price" value="<%=productList.get(i).getp_price()%>" readonly="readonly">
+                    </td>
+                    <td class="tdId  P-price">
+                        <input id="total<%=i%>" class="total" value="<%=(productList.get(i).getp_price() * qtyList.get(i))%>" name="total" readonly="readonly">
+                    </td>
+                </tbody>
+            </table>
+          <%} %>
+          
+          <div class="title-container">
+                <div>
+                    <button type="button" id="removeSelectBtn" class="check-remove-btn">선택상품 삭제</button>
+                    <button type="button" id="removeAllBtn" class="all-remove-btn">장바구니 비우기</button>
+                </div>
+
+                <div class="title"> 결제예정금액 :
+                    <input class="title-price" id="selectedTotal" name="selectedTotal" readonly="readonly"
+                        value="0원"><br>
+                    <input type="submit" id="submitAllBin" class="submit-btn" value="주문하기">
+                </div>
+            </div>
+
+            <div class="btn-container">
+
+            </div>
+        </div>
+          
+		<%-- <div class="cartlist">
+			<table border="1">
+				<tr>
+					<th><input type="checkbox" id="allCheck" name="allcheck" checked></th>
+					<th>상품명</th>
+					<th>수량</th>
+					<th>개당 가격</th>
+					<th>전체 가격</th>
+				</tr>
+				<%
+            /* 장바구니에 담긴 제품 수에 따라 장바구니 칸 수 증가 */
+            int i = 0;
+            for (; i < productList.size(); i++) {
+            %>
+				<tr>
+					<td>
+						<input type="checkbox" name="checkP<%=i%>" value="<%=cartList.get(i).getp_id() %>" class="check" checked>
+						<input type="hidden" name="p_id" value="<%=productList.get(i).getp_id()%>">
+					</td>
+					<td>
+						<input type="text" id="name<%=i%>" class="name" name="pname" value="<%=productList.get(i).getp_name()%>" readonly="readonly">
+					</td>
+					<td id="quantity<%=i%>" class="quantity">
+						<span class="count-box">
+							<button type="button" name="countBtn" class="upBtn">🔼</button> <input type="text" class="countInput" id="quantity" <%=i%> name="countInput" value="<%=qtyList.get(i)%>" readonly="readonly" style="width: 20px; border: none;">
+							<button type="button" name="countBtn" class="downBtn">🔽</button>
+						</span>
+					</td>
+					<td>
+						<input id="price<%=i%>" class="price" name="price" value="<%=productList.get(i).getp_price()%>" readonly="readonly">
+					</td>
+					<td>
+						<input id="total<%=i%>" class="total" value="<%=(productList.get(i).getp_price() * qtyList.get(i))%>" name="total" readonly="readonly">
+					</td>
+				</tr>
+				<%
             }
             %>
-            <tr>
-               <td colspan="4">결제예정금액</td>
-               <td><input id="selectedTotal" name="selectedTotal" readonly="readonly" value="0"></td>
-            </tr>
-         </table>
+				<tr>
+					<td colspan="4">결제예정금액</td>
+					<td>
+						<input id="selectedTotal" name="selectedTotal" readonly="readonly" value="0">
+					</td>
+				</tr>
+			</table>
 
-         <br>
-         <div class="removeBtn">
-            <button type="button" id="removeSelectBtn" class="textAndBtn">선택상품 삭제</button>
-            <button type="button" id="removeAllBtn">장바구니 비우기</button>
-         </div>
+			<br>
+			<div class="removeBtn">
+				<button type="button" id="removeSelectBtn" class="textAndBtn">선택상품 삭제</button>
+				<button type="button" id="removeAllBtn">장바구니 비우기</button>
+			</div>
 
-         <br>
-         <div class="basket_btn">
-            <input type="submit" id="submitAllBin" class="submitAllBtn" value="주문하기">
-         </div>
-      </div>
-   </form>
-   <%
+			<br>
+			<div class="basket_btn">
+				<input type="submit" id="submitAllBin" class="submitAllBtn" value="주문하기">
+			</div>
+		</div> --%>
+	</form>
+	<%
    }
    %>
+   
+</div>
+	<%@include file="/footer.jsp"%>
 
-   <%@include file="/footer.jsp"%>
-
-   <script>
+	<script>
 
    $("document").ready(function(){
      //selectedTotal
@@ -238,24 +323,6 @@ for (CartDTO cart : cartList) {
                   location.href="cart_clear.jsp";
                }
          });
-
-         //중복 품목 들어올 시 장바구니 개수 증가.
-         //1. 입력된 PRODUCT ID - 기존 장바구니의 PRODUCT ID 비교... -> PRODUCT ID가 같다면 으로 처리해도 될듯
-		 //2. 만약 입력 P ID와 기존 장바구니 P ID가 같다면 →  수량(QUANTITY) 에 입력 P ID의 QUANTITY 추가
-		 //3. 입력된 PRODUCT ID COL 삭제
-
-
-
-         //주문하기
-          /* $("#submitAllBin").click(function(e) {
-        	  e.stopPropagation();
-              e.preventDefault(); //버블 방지
-
-               if(window.confirm("주문하시겠습니까?")) {
-                  location.href="cart_submit.jsp";
-               }
-         });  */
-
 
       });
 

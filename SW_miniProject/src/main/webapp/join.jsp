@@ -110,7 +110,7 @@
 		 	$("#extraAddress").attr("disabled", false);
 
 			$("#registerForm").attr("action","join_verify.jsp").submit();
-			
+
 		});
 	});
 </script>

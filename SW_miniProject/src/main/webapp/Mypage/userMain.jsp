@@ -42,6 +42,7 @@ if (userid == null) {%>
 			}
 
 		}
+		
 	</script>
 	<%@include file="/top.jsp"%>
 	<% 
@@ -116,6 +117,11 @@ if (userid == null) {%>
 							<label class="title">휴대폰 번호</label>
 							<input type="text" class="field" readonly="readonly" value="<%=telno%>">
 						</div>
+						
+						<div class="row">
+							<input type="submit" class="field shipping-conf-btn" onclick="shippingConfig()" value="배송 정보">
+						</div>
+						
 					</div>
 
 
@@ -138,7 +144,7 @@ if (userid == null) {%>
 							<input type="password" name="password" id="password" class="field" placeholder="비밀번호를 입력하세요." value="">
 						</div>
 						<div class="row">
-							<input type="submit" class="field user-info-modify-btn" onclick="pwConfig()" value="비밀번호 확인">
+							<input type="submit" class="field user-info-modify-btn" href="myOrder.jsp" value="비밀번호 확인">
 						</div>
 					</div>
 			</div>

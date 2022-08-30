@@ -6,9 +6,6 @@
 
 <%
 	//user 정보 받아오기
-	
-	
-
 	String userid = (String)session.getAttribute("userID");
 	String userName = "";
 	String userTelno = "";

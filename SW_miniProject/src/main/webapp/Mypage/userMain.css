@@ -114,7 +114,7 @@ float:left;
 }
 
 
-.user-info-modify-btn {
+.user-info-modify-btn,.shipping-conf-btn {
   color: #FFFFFF !important;
   background-color: #313131 !important;
   border-color: #313131 !important;
