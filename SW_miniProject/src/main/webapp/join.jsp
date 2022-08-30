@@ -6,35 +6,35 @@
 <script>
 
 	$(document).ready(function(){
-		
+
 		$("#telno").keypress(function(){
 			if ((event.keyCode < 48) || (event.keyCode > 57))	event.returnValue = false;
 		});
-		
-		
+
+
 		$("#telno").keyup(function(){
 			$(this).val( $(this).val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") );
 		});
-		
+
 		$("#btn_register").click(function(){
 			console.log($("id_chk".val));
 			//아이디
 			if($("#id").val() == '') { $("#msg_id").text("아이디를 입력해주세요."); $("#msg_id").css('display', 'block'); $("#id").focus(); return false;}
 			else if	($("#id_chk").val() == "false"){ $("#msg_id").text("중복체크를 해주세요"); $("#msg_id").css('display', 'block'); $("#id").focus(); return false;}
 			else{	$("#msg_id").css('display', 'none');}
-						
-			//비밀번호 
+
+			//비밀번호
 			var Pass = $("#password").val();
 			var Pass1 = $("#passwordchk").val();
-			
+
 			// 암호유효성 검사
 			var num = Pass.search(/[0-9]/g);
 		 	var eng = Pass.search(/[a-z]/ig);
-		 	var spe = Pass.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);	
-			
+		 	var spe = Pass.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+
 		 	if(Pass == '') {
-				$("#msg_pw").text("비밀번호를 입력하세요."); 
-		 		$("#msg_pw").css('display', 'block'); 
+				$("#msg_pw").text("비밀번호를 입력하세요.");
+		 		$("#msg_pw").css('display', 'block');
 				$("#password").focus();
 				if(Pass1 == ''){
 					$("#msg_pwchk").css('display', 'none');
@@ -43,58 +43,58 @@
 			}
 
 		 	else if(Pass.length < 8 || Pass.length > 20) {
-				$("#msg_pw").text("비밀번호의 길이는 8~20로 입력해주세요."); 
+				$("#msg_pw").text("비밀번호의 길이는 8~20로 입력해주세요.");
 		 		$("#msg_pw").css('display', 'block');
 		 		return false;
 				}
 			else if(Pass.search(/\s/) != -1){
-				$("#msg_pw").text("비밀번호는 공백 없이 입력해주세요."); 
- 				$("#msg_pw").css('display', 'block'); 
+				$("#msg_pw").text("비밀번호는 공백 없이 입력해주세요.");
+ 				$("#msg_pw").css('display', 'block');
  				return false;
 				}
 			else if(num < 0 || eng < 0 || spe < 0 ){
-				$("#msg_pw").text("비밀번호는 영문/숫자/특수문자를 혼합해야 합니다."); 
+				$("#msg_pw").text("비밀번호는 영문/숫자/특수문자를 혼합해야 합니다.");
 		 		$("#msg_pw").css('display', 'block');
 		 		return false;
 			}
 			else{
 				$("#msg_pw").css('display', 'none');
 			}
-			
+
 			//비밀번호 재입력
-			
-			if(Pass != Pass1) { 
-				$("#msg_pwchk").text("비밀번호가 일치하지 않습니다."); 	
-				$("#msg_pwchk").css('display', 'block'); 
-				$("#passwordchk").focus(); 
+
+			if(Pass != Pass1) {
+				$("#msg_pwchk").text("비밀번호가 일치하지 않습니다.");
+				$("#msg_pwchk").css('display', 'block');
+				$("#passwordchk").focus();
 				return false;
 			}
 			else{	$("#msg_pwchk").css('display', 'none');}
-			
+
 			//이름
 			if($("#name").val() == '') { $("#msg_name").css('display', 'block'); $("#name").focus(); return false; }
 			else{	$("#msg_name").css('display', 'none');}
-			
-			
+
+
 			//주소
 			if($("#detailAddress").val() == ''){ $("#msg_address").css('display', 'block'); $("#detailAddress").focus(); return false; }
 			else{	$("#msg_address").css('display', 'none');}
-			
+
 			//전화번호
 		 	if($("#telno").val() == '') { $("#msg_telno").css('display', 'block'); $("#telno").focus(); return false;}
 		 	else{	$("#msg_telno").css('display', 'none');}
-			
+
 			//이메일
 		 	var eMail = $("#email").val();
 		 	var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
-		 	
+
 		 	if($("#email").val() == '') {
-		 		$("#msg_email").text("이메일주소를 입력하세요."); 
-		 		$("#msg_email").css('display', 'block'); 
+		 		$("#msg_email").text("이메일주소를 입력하세요.");
+		 		$("#msg_email").css('display', 'block');
 		 		$("#email").focus();
 		 		return false;
 		 	}
-		 	
+
 		 	else if (!regEmail.test(eMail)) {
 		 		$("#msg_email").text("이메일 형식이 올바르지 않습니다.");
 		 		$("#msg_email").css('display', 'block');
@@ -104,17 +104,18 @@
 		 	else{
 		 		$("#msg_email").css('display', 'none');
 		 		}
-		 	
+
 		 	$("#postcode").attr("disabled", false);
 		 	$("#address").attr("disabled", false);
 		 	$("#extraAddress").attr("disabled", false);
-		 	
-			$("#registerForm").attr("action","join_verify.jsp").submit();	
+
+			$("#registerForm").attr("action","join_verify.jsp").submit();
+
 		});
-	});	
+	});
 </script>
 
-<script>	
+<script>
     function execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -149,7 +150,7 @@
                     }
                     // 조합된 참고항목을 해당 필드에 넣는다.
                     document.getElementById("extraAddress").value = extraAddr;
-                
+
                 } else {
                     document.getElementById("extraAddress").value = '';
                 }
@@ -162,7 +163,7 @@
             }
         }).open();
     }
-    
+
     function validCheck(){
 	   	var idInput = document.getElementById("id");
 	   	if(idInput.value == ''){
@@ -178,8 +179,6 @@
 
 </script>
 
-
-
 <style>
 #joinForm{
 	margin : auto;
@@ -190,6 +189,7 @@
 	margin : auto;
 	width : 400px;
 }
+
 h3{
 	text-align :left;
 	margin : 30px 5px;
@@ -305,7 +305,7 @@ input:focus{
 </head>
 <body>
 	<%@include file="top.jsp"%>
-	<form name="registerForm" id="registerForm" method="post"> 
+	<form name="registerForm" id="registerForm" method="post">
 	<div id="innerForm">
 	<h3>회원가입</h3>
 	<div class="row">

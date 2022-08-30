@@ -6,9 +6,9 @@
 
 <%
 	//user 정보 받아오기
-	//String userid = (String)session.getAttribute("userid");
-	String userid = "noori";
-	
+
+	String userid = (String)session.getAttribute("userID");
+
 	String userName = "";
 	String userTelno = "";
 	String userMail = "";
@@ -16,11 +16,20 @@
 	String address = "";
 	String detailAddress = "";
 	String extraAddress = "";
+	
+	if(userid == null){
+		%>
+		<script>
+		alert("로그인이 필요한 서비스입니다.");
+		location.href = "login.jsp";
+		</script>
+		<%}
 
 
-	String url = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
+	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
+
 	String user = "root";
-	String pwd = "0000";
+	String pwd = "1234";
 	
 	Connection con = null;
 	Statement stmt = null;
@@ -55,14 +64,7 @@
 		con.close();
 	}
 	
-	if(userid == null){
-		%>
-		<script>
-		alert("로그인이 필요한 서비스입니다.");
-		location.href = "login.jsp";
-		</script>
-		<%
-	}
+	
 	
 	//상품정보 받아오기
 	request.setCharacterEncoding("UTF-8");
@@ -132,7 +134,8 @@
 	}
 
 	request.setAttribute("totalPrice", inttotal);
-	session.setAttribute("strTotal", total);
+	session.setAttribute("strTotal", df.format(inttotal));
+	
 	%>
 
 
@@ -440,14 +443,14 @@ input:focus{
 <body>
 
 
-	<%@include file="top.jsp"%>
+	<%@include file="/top.jsp"%>
 	<form name="purchaseForm" id="purchaseForm" method="post">
 	<div id="innerForm">
 	<div id="innerForm2">
 	<div class="detailForm">
 			<div class="row">
-			<label class="title"><h3>주문 상품</h3></label>
-			<!-- 반복문 사용 시 여기부터 -->
+			<label class="title"><h3>주문 상품</h3></label> 
+			<!-- 반복문 사용 시 여기부터 / 서영 반복문 추가 -->
 			<div class="orderComponentCard">
 				<img src="/img/sample.png" alt="productImg" width="90" height="120">
 				<div class="productInfo">
@@ -526,7 +529,6 @@ input:focus{
 				<label class="rowTitle">전화번호</label>
 				<input type="text" class="field" id="telno" name="telno" maxlength="13" value="<%=userTelno %>"  autoComplete="off"  />
 				<div id="msg_telno" class="msg">전화번호를 입력해주세요.</div>
-				</div>
 		</div>
 		</div>		
 	</div>
@@ -537,5 +539,5 @@ input:focus{
 		</div>
 	</div>
 	</form>
-	<%@include file="footer.jsp"%>
+	<%@include file="/footer.jsp"%>
 </body>

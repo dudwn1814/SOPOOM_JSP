@@ -13,7 +13,7 @@
 
 <%
 //strBase64를 db에 저장 후 img의 src로 사용하면 될듯합니다.
-String filePath = "C:\\SW_miniProject\\SW_miniProject\\src\\main\\webapp\\img\\sample.png";
+String filePath = "C:\\inventory\\inventory\\src\\main\\webapp\\img\\sample.png";
 String strBase64 = "data:image/";
 File f = new File(filePath);
 if (f.exists() && f.isFile() && f.length() > 0) {

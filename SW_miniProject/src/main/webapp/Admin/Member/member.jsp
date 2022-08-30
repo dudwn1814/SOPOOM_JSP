@@ -1,3 +1,4 @@
+
 <%@page import="java.net.URLDecoder"%>
 <%@page import="com.mini.page.memberPage"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -10,57 +11,50 @@
 <meta charset="UTF-8">
 <head>
 <script src="http://code.jquery.com/jquery-1.11.3.js"></script>
-
-<title>회원 목록</title>
+<title>회원목록</title>
 <link href="https://fonts.googleapis.com/css?family=Inter&display=swap"
 	rel="stylesheet" />
 <link rel="stylesheet" href="member.css">
 </head>
 
 <body>
-
 	<%@include file="/top.jsp"%>
 	<%
 	int pageNum = Integer.parseInt(request.getParameter("page"));
-	String searchType =
-	    request.getParameter("searchType") == null ? "" : request.getParameter("searchType");
+	String searchType = request.getParameter("searchType") == null ? "" : request.getParameter("searchType");
 	String keyword = request.getParameter("keyword") == null ? "" : request.getParameter("keyword");
-
-
 	request.setCharacterEncoding("utf-8");
-	String url = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
+	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
 	String uid = "root";
-	String pwd = "0000";
+	String pwd = "1234";
 
 	int idx = 1;
 	%>
 
+	<script>
+
+function search(){
+	
+	var searchType = $("#searchType").val();
+	var keyword =  $("#keyword").val();
+	location.href = 'member.jsp?page=<%=pageNum%>&searchType='+ searchType + '&keyword=' + keyword;
+}
+	</script>
+
 	<br>
-	<h1>회원 목록</h1>
-	<div>
-		<select id="searchType" name="searchType">
-			<option value="userID">회원아이디</option>
-			<option value="username">회원명</option>
-			<option value="telno">전화번호</option>
-			<option value="username_telno">이름+번호</option>
-		</select> <input type="text" id="keyword" name="keyword" />
-		<button type="button" onclick="search()">검색</button>
-	</div>
-	<br>
-	<br>
+	<h1 class="memberTitle">회원목록</h1>
+	<hr>
 
 	<div class="tableDiv">
-
 		<table class="InfoTable">
 			<tr>
 				<th>INDEX</th>
 				<th>USER ID</th>
 				<th>USER NAME</th>
-				<th>E-MAIL</th>
+				<th class="thEmail">E-MAIL</th>
 			</tr>
 
 			<tbody>
-
 				<%
 				int postNum = 5; //한 페이지에 보여질 게시물 갯수 
 				int displayPost = (pageNum - 1) * postNum; //테이블에서 읽어 올 행의 위치
@@ -96,7 +90,7 @@
 				<tr>
 					<td class="tdIndex"><%=idx++%></td>
 					<td class="tdId"><a id="hypertext"
-						href="/Admin/Member/memberInfo.jsp?userID=<%=rs.getString("userID")%>"
+						href="/Admin/Member/edit_memberInfo.jsp?userID=<%=rs.getString("userID")%>"
 						onMouseover='this.style.textDecoration="underline"'
 						onmouseout="this.style.textDecoration='none';"><%=rs.getString("userID")%></a></td>
 					<td class="tdName"><%=rs.getString("username")%></td>
@@ -117,7 +111,6 @@
 				con.close();
 				%>
 			</tbody>
-
 		</table>
 		<br>
 		<div>
@@ -164,14 +157,26 @@
 			if (con != null)
 			  con.close();
 			%>
-			<%=pageListView%>
-		</div>
-		<br>
-		<div class="bottom_menu">
-			<a href="/Admin/Member/member.jsp?page=1">목록으로</a>&nbsp;&nbsp; <a
-				href="/index.jsp">홈으로</a>&nbsp;&nbsp;
 		</div>
 	</div>
+	<br>
+	<div class="search">
+		<select id="searchType" name="searchType">
+			<option value="userID">회원아이디</option>
+			<option value="username">회원명</option>
+			<option value="telno">전화번호</option>
+			<option value="username_telno">이름+번호</option>
+
+		</select> <input type="text" id="keyword" name="keyword" />
+		<button type="button" class="searchBtn" onclick="search()">검색</button>
+
+		<br>
+		<div class="pageList">
+			<%=pageListView%>
+		</div>
+	</div>
+	<br>
+	<br>
 
 	<%@include file="/footer.jsp"%>
 </body>

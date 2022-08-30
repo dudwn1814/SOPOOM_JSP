@@ -7,7 +7,7 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
 <%
-	String userid = (String)session.getAttribute("userid");
+	String userid = (String)session.getAttribute("userID");
 
 	request.setCharacterEncoding("utf-8");
 
@@ -16,11 +16,14 @@
 	String address = request.getParameter("address");
 	String detailAddress = request.getParameter("detailAddress");
 	String extraAddress = request.getParameter("extraAddress");
+
 	String telno = request.getParameter("telno");
 	String totalPrice = request.getParameter("totalPrice");
+	int intTPricd = Integer.parseInt(totalPrice);
 
 	String[] pID = request.getParameterValues("p_id");
 	String[] count = request.getParameterValues("count");
+
 
 
 
@@ -41,13 +44,13 @@
 		for (int i = 0; i < count.length; i++) {
 		dummy2 += count[i] + "&nbsp";
 		}
-		System.out.println("PRODUCT ID 입니다: " + Arrays.toString(pID));
-		System.out.println("count 입니다: " + Arrays.toString(count));
-		
+		//System.out.println("PRODUCT ID 입니다: " + Arrays.toString(pID));
+		//System.out.println("count 입니다: " + Arrays.toString(count));
+
 	//db연결
-	String url = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
+	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
 	String user = "root";
-	String pwd = "0000";
+	String pwd = "1234";
 
 	Connection con = null;
 	Statement stmt1 = null;
@@ -83,7 +86,7 @@
 		pstmt1 = con.prepareStatement("INSERT INTO `order`(orderID, userID, totalPrice) VALUES(?, ?, ?)");
 		pstmt1.setString(1, orderCode);
 		pstmt1.setString(2, userid);
-		pstmt1.setInt(3, Integer.parseInt(totalPrice));
+		pstmt1.setInt(3, intTPricd);
 		pstmt1.execute();
 
 
@@ -120,7 +123,7 @@
 		pstmt2.execute();
 
 		session.setAttribute("orderCode", orderCode);
-		response.sendRedirect("purchase_fin.jsp");
+		response.sendRedirect("ShopC/cart_clear.jsp");
 
 		con.close();
 		stmt1.close();

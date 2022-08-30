@@ -14,7 +14,7 @@ else if(session_id.equals("admin")){
 	innerMenu = "<li class='menuItem' align='center'><a href=/index.jsp>[HOME]</a></li>"
 	           + "<li class='menuItem' align='center'><a href=/Admin/Product/productReg.jsp>상품등록</a></li>"
 	           + "<li class='menuItem' align='center'><a href=/Admin/Inventory/inventory.jsp?page=1>재고관리</a></li>"
-	           + "<li class='menuItem' align='center'><a href=href=/Admin/Member/member.jsp?page=1>회원관리</a></li>"
+	           + "<li class='menuItem' align='center'><a href=/Admin/Member/member.jsp?page=1>회원관리</a></li>"
 	           + "<li class='menuItem' align='center'><a href=/Admin/Shipping/shipping.jsp?page=1>배송관리</a></li>";
 	           
    	innerUser = "<li class='userItem' align='center'><a href=/logout.jsp><span class='material-symbols-outlined'>logout</span></a></li>"
