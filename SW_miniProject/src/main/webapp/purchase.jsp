@@ -533,6 +533,8 @@ input:focus{
 		</div>		
 	</div>
 	</div>
+		
+		</div>
 		<input type="hidden" name="totalPrice" value="<%=total%>" />
 		<div class="row" id="btn_row">
 		<input type="button" id="btn_purchase" class="button" value="<%=df.format(inttotal)%>원 결제하기">
