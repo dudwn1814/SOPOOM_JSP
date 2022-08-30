@@ -31,6 +31,12 @@ else {
 %>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css");
+
+*{
+	font-family: Pretendard;
+}
+
  header{
  	width : 100%;
     min-width : 700px;
@@ -99,6 +105,7 @@ else {
  .userItem a{
  	font-weight : 600;
  	color : #919191;
+ 	margin : 0px 6px;
  }
  
  .userItem a:hover{

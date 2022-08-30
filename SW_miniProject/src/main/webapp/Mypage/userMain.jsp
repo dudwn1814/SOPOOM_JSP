@@ -14,21 +14,6 @@
 </head>
 <body>
 	<script>
-
-	<%String userid = (String)session.getAttribute("userID");
-String username = "";
-String password = "";
-String postcode = "";
-String address = "";
-String detailAddress = "";
-String extraAddress = "";
-String telno = "";
-String email = "";
-
-if (userid == null) {%>
-		alert("로그인이 필요한 서비스입니다.");
-		location.href = "./login.jsp";s
-	<%}%>
 		function pwConfig() {
 			btn = document.getElementById('password').value;
 			console.log(btn);
@@ -42,8 +27,25 @@ if (userid == null) {%>
 			}
 
 		}
-		
-	</script>
+</script>	
+	
+	
+<%
+String userid = (String)session.getAttribute("userID");
+String username = "";
+String password = "";
+String postcode = "";
+String address = "";
+String detailAddress = "";
+String extraAddress = "";
+String telno = "";
+String email = "";
+
+if (userid == null) {%>
+		alert("로그인이 필요한 서비스입니다.");
+		location.href = "./login.jsp";s
+	<%}%>
+
 	<%@include file="/top.jsp"%>
 	<% 
 	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
@@ -144,7 +146,7 @@ if (userid == null) {%>
 							<input type="password" name="password" id="password" class="field" placeholder="비밀번호를 입력하세요." value="">
 						</div>
 						<div class="row">
-							<input type="submit" class="field user-info-modify-btn" href="myOrder.jsp" value="비밀번호 확인">
+							<input type="submit" class="field user-info-modify-btn" onclick="pwConfig()" value="비밀번호 확인">
 						</div>
 					</div>
 			</div>

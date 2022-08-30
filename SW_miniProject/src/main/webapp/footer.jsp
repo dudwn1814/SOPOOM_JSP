@@ -2,7 +2,11 @@
 <style>
 	#footer{
 	text-align : center;
+	width : auto;
 	min-width : 700px;
+	}
+	#footer p{
+ 	color : #919191;
 	}
 </style>
 <footer>
