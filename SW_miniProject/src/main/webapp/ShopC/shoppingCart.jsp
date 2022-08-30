@@ -102,6 +102,7 @@ DecimalFormat df = new DecimalFormat("###,###");
 
                     <td class="tdId img">
                         <image src="/upload/<%= productList.get(i).getP_fileName() %>" width="100px" />	
+                        <input type="hidden" name="fileName" id="fileName" value="<%= productList.get(i).getP_fileName() %>" width="100px" />	
                     </td>
 
                     <td class="tdId Pname">
@@ -120,7 +121,7 @@ DecimalFormat df = new DecimalFormat("###,###");
                     <!-- test중 -->
                     <td class="tdId P-one-price">
                         <input id="vis_price<%=i %>" class="price" name="vis_price" value="" readonly="readonly"> 
-                        <input type="hidden" id="price<%=i%>" class="price" name="price" value="<%=productList.get(i).getp_price()%> " readonly="readonly">
+                        <input type="hidden" id="price<%=i%>" class="price" name="price" value="<%=productList.get(i).getp_price()%>" readonly="readonly">
                     </td>
                     <td class="tdId  P-price">
                      	<input id="vis_total<%=i %>" class="total" name="vis_total" value="" readonly="readonly">
@@ -150,9 +151,9 @@ DecimalFormat df = new DecimalFormat("###,###");
             <div class="btn-container">
 
             </div>
+		</form>
         </div>
           
-	</form>
 	<%
    }
    %>

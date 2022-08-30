@@ -1,6 +1,16 @@
-<%@page import="java.sql.*"%>
-<%@page import="java.text.DecimalFormat"%>
+<%@page import="java.util.Arrays"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@page import="java.sql.*"%>
+
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.util.List"%>
+
+<%@ page import="dao.CartDAO"%>
+<%@ page import="dao.ProductDAO"%>
+<%@ page import="dto.CartDTO"%>
+<%@ page import="dto.ProductDTO"%>
+<%@page import="java.text.DecimalFormat"%>
 <!DOCTYPE html>
 <html>
 
@@ -73,14 +83,16 @@
 
 	//shopping.jsp 에서 받아온 값들
 	String[] pName = request.getParameterValues("pname"); //제품이름
-	String[] pPrice = request.getParameterValues("price"); //제품 개수에 따른 가격
+	String[] pPrice = request.getParameterValues("price"); //제품 낱개 가격
 	String[] count = request.getParameterValues("countInput");//제품 수량
 	String[] pPriceTotal = request.getParameterValues("total");// 1개 가격 x 수량 = 제품 총 주문 가격
 	String[] pID = request.getParameterValues("p_id"); //product id
-
-//	String total = request.getParameter("selectedTotal");// 최종 결제 금액
+	String[] fileName = request.getParameterValues("fileName"); //img name
 	
-	String total = "10000";
+
+
+	String total = request.getParameter("selectedTotal");// 최종 결제 금액
+
 
 	//getParameterValues NULL보정 부분	
 	String dummy1 = "";
@@ -88,6 +100,7 @@
 	String dummy3 = "";
 	String dummy4 = "";
 	String dummy5 = "";
+	String dummy6 = "";
 
 	if (pName == null) {
 	pName = new String[0];
@@ -97,39 +110,48 @@
 	}
 
 	if (pPrice == null) {
-	pPrice = new String[0];
+		pPrice = new String[0];
 	}
 	for (int i = 0; i < pName.length; i++) {
-	dummy2 += pPrice[i] + "&nbsp";
+		dummy2 += pPrice[i] + "&nbsp";
 	}
+	
 	if (count == null) {
-	count = new String[0];
+		count = new String[0];
 	}
 	for (int i = 0; i < pName.length; i++) {
-	dummy3 += count[i] + "&nbsp";
+		dummy3 += count[i] + "&nbsp";
 	}
 
 	if (pPriceTotal == null) {
-	pPriceTotal = new String[0];
+		pPriceTotal = new String[0];
 	}
 	for (int i = 0; i < pName.length; i++) {
-	dummy4 += pPriceTotal[i] + "&nbsp";
+		dummy4 += pPriceTotal[i] + "&nbsp";
 	}
 
 	if (pID == null) {
 		pID = new String[0];
 	}
 	for (int i = 0; i < pName.length; i++) {
-	dummy5 += pID[i] + "&nbsp";
+		dummy5 += pID[i] + "&nbsp";
 	}
+	
+	if (fileName == null) {
+		fileName = new String[0];
+	}
+	for (int i = 0; i < pName.length; i++) {
+		dummy6 += fileName[i] + "&nbsp";
+	}
+	
 
 	//Stirng -> int
-	int[] intpPrinc = new int[pPrice.length];
+	int[] intPPrice = new int[pPrice.length];
 	int[] intpPriceTotal = new int[pPriceTotal.length];
 	int inttotal = Integer.parseInt(total);
 
 	for (int i=0; i<pName.length; i++){
-		intpPrinc[i] = Integer.parseInt(pPrice[i]);
+		intPPrice[i] = Integer.parseInt(pPrice[i]);
 		intpPriceTotal[i] = Integer.parseInt(pPriceTotal[i]);
 	}
 
@@ -137,7 +159,7 @@
 	session.setAttribute("strTotal", df.format(inttotal));
 	
 	%>
-
+	
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -450,25 +472,27 @@ input:focus{
 	<div class="detailForm">
 			<div class="row">
 			<label class="title"><h3>주문 상품</h3></label> 
+			<% for (int i=0; i < pName.length; i++) {	%>
 			<!-- 반복문 사용 시 여기부터 / 서영 반복문 추가 -->
 			<div class="orderComponentCard">
-				<img src="/img/sample.png" alt="productImg" width="90" height="120">
+				<img src="/upload/<%=fileName[i] %>" alt="productImg" width="90" height="120">
 				<div class="productInfo">
-				<div class="divPname">주문 제품명</div>
-				<input type="hidden" name="p_id" value="">
-				<div class="priceInfo">count 개 / 개별 price*count 원 </div>
+				<div class="divPname"><%=pName[i]%></div>
+				<input type="hidden" name="p_id" value="<%=pID[i]%>">
+				<div class="priceInfo"><%=count[i]%> 개 / <%= pPriceTotal[i] %> 원 </div>
 				</div>
 			</div>
+			<%}%>
 			<!-- 여기까지 -->
 			<!-- 여기부터는 목록 여러개 확인용 -->
-			<div class="orderComponentCard">
+			<!-- <div class="orderComponentCard">
 				<img src="/img/sample.png" alt="productImg" width="90" height="120">
 				<div class="productInfo">
 				<div class="divPname">주문 제품명</div>
 				<input type="hidden" name="p_id" value="">
 				<div class="divPriceCount">count 개 / 개별 price*count 원 </div>
 				</div>
-			</div>
+			</div> -->
 			<!--  -->
 			
 			<hr>
