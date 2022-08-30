@@ -65,7 +65,7 @@
 		rs = stmt.executeQuery(query);
 		while(rs.next()) {
 	%>
-	<hr>
+
 	<div class="content" align="center">
 		<div class="product_view" align="center">
 			<h2><%=rs.getString("p_name")%></h2>
