@@ -1,6 +1,18 @@
 @charset "utf-8";
 /* CSS Document */
 
+.blind {
+	visibility: hidden;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 1px;
+	height: 1px;
+	font-size: 0;
+	line-height: 0
+}
+
 .whole {
 	width: 100%;
 	max-width: 960px;
@@ -20,7 +32,6 @@
 	opacity: 1;
 }
 
-
 hr {
 	width: 100%;
 	max-width: 960px;
@@ -29,309 +40,371 @@ hr {
 	margin-bottom: 30px;
 }
 
-.point_color_green{
-    color: #1ec800;
+.point_color_green {
+	color: #1ec800;
 }
-.state_button{
-    display: block;
-    text-align: center;
-    border:1px solid #ddd;
-    background-color: #fff;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+
+.state_button {
+	display: block;
+	text-align: center;
+	border: 1px solid #ddd;
+	background-color: #fff;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
 }
-.state_button.function{
-    width: 100%;
-    height: 29px;
-    color: #424242;
-    font-size: 13px;
-    line-height: 27px;
-    text-decoration: none;
+
+.state_button.function {
+	width: 100%;
+	height: 29px;
+	color: #424242;
+	font-size: 13px;
+	line-height: 27px;
+	text-decoration: none;
 }
-.state_button.qna{
-    width: 55px;
-    height: 20px;
-    margin:0 auto;
-    color: #a5a5a5;
-    font-size: 12px;
-    line-height: 18px;
-    text-decoration: none;
+
+.state_button.qna {
+	width: 55px;
+	height: 20px;
+	margin: 0 auto;
+	color: #a5a5a5;
+	font-size: 12px;
+	line-height: 18px;
+	text-decoration: none;
 }
+
 .state_button.function.type_green {
-    border: 1px solid #1dbd00;
-    background-color: #1fc800;
-    color: #fff;
+	border: 1px solid #1dbd00;
+	background-color: #1fc800;
+	color: #fff;
 }
-.goods_pay_section + .goods_pay_section,
-.goods_group + .goods_group{
-    border-top:1px solid #dadddf;
+
+.goods_pay_section+.goods_pay_section, .goods_group+.goods_group {
+	border-top: 1px solid #dadddf;
 }
-.goods_pay_section + .goods_pay_section.add_onum{
-    border-top-color: #eee;
+
+.goods_pay_section+.goods_pay_section.add_onum {
+	border-top-color: #eee;
 }
-.goods_pay_item{
-    display: table;
-    width: 100%;
-    min-height: 161px;
-    padding:23px 0 24px;
-    table-layout: fixed;
+
+.goods_pay_item {
+	display: table;
+	width: 100%;
+	min-height: 161px;
+	padding: 23px 0 24px;
+	table-layout: fixed;
 }
-.goods_pay_item + .goods_pay_item{
-    border-top: 1px solid #eee;
+
+.goods_pay_item+.goods_pay_item {
+	border-top: 1px solid #eee;
 }
-.goods_pay_item > div {
-    display: table-cell;
-    vertical-align: middle;
+
+.goods_pay_item>div {
+	display: table-cell;
+	vertical-align: middle;
 }
-.goods_pay_item .goods_item{
-    position: relative;
-    padding-left: 129px;
+
+.goods_pay_item .goods_item {
+	position: relative;
+	padding-left: 129px;
 }
-.goods_pay_item .goods_item .goods_thumb{
-    overflow: hidden;
-    position: absolute;
-    left: 9px;
-    top: 50%;
-    width: 90px;
-    height: 90px;
-    margin-top: -45px;
-    text-align: center;
+
+.goods_pay_item .goods_item .goods_thumb {
+	overflow: hidden;
+	position: absolute;
+	left: 9px;
+	top: 50%;
+	width: 90px;
+	height: 90px;
+	margin-top: -45px;
+	text-align: center;
 }
-.goods_pay_item .goods_item .goods_thumb img{
-    vertical-align: top;
+
+.goods_pay_item .goods_item .goods_thumb img {
+	vertical-align: top;
 }
-.goods_pay_item .goods_item .goods_info{
-    font-size: 13px;
+
+.goods_pay_item .goods_item .goods_info {
+	font-size: 13px;
 }
-.goods_pay_item .goods_item .goods_info .goods{
-    display: block;
-    text-decoration: none;
+
+.goods_pay_item .goods_item .goods_info .goods {
+	display: block;
+	text-decoration: none;
 }
-.goods_pay_item .goods_item .goods_info .goods .name{
-    max-width: 100%;
-    overflow: hidden;
-    color: #000;
-    font-size: 16px;
-    white-space: nowrap;
-    -ms-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-    text-decoration: none;
+
+.goods_pay_item .goods_item .goods_info .goods .name {
+	max-width: 100%;
+	overflow: hidden;
+	color: #000;
+	font-size: 16px;
+	white-space: nowrap;
+	-ms-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	text-decoration: none;
 }
+
 .icon_badge_refund {
-    display: inline-block;
-    width: 66px;
-    height: 17px;
-    margin: 1px 0 0 4px;
-    background: url(../../../../img/service/front/order/icon_badge_refund.png) no-repeat;
-    background-size: 66px 17px;
-    vertical-align: top;
+	display: inline-block;
+	width: 66px;
+	height: 17px;
+	margin: 1px 0 0 4px;
+	background:
+		url(../../../../img/service/front/order/icon_badge_refund.png)
+		no-repeat;
+	background-size: 66px 17px;
+	vertical-align: top;
 }
-.goods_pay_item .goods_item .goods_info .goods .name b,
-.goods_pay_item .goods_item .goods_info .goods .name strong {
-    font-weight: normal;
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    text-decoration: none;
-    vertical-align: top;
+
+.goods_pay_item .goods_item .goods_info .goods .name b, .goods_pay_item .goods_item .goods_info .goods .name strong
+	{
+	font-weight: normal;
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-decoration: none;
+	vertical-align: top;
 }
+
 .goods_pay_item .goods_item .goods_info .goods .name .total_quantity {
-    float: right;
-    vertical-align: top;
-    display: inline-block;
+	float: right;
+	vertical-align: top;
+	display: inline-block;
 }
-.goods_pay_item .goods_item .goods_info .goods .info{
-    margin:8px 0px 12px;
+
+.goods_pay_item .goods_item .goods_info .goods .info {
+	margin: 8px 0px 12px;
 }
-.goods_pay_item .goods_item .goods_info .goods .info li{
-    display: inline-block;
-    color: #000;
-    font-size: 14px;
-    line-height: 18px;
+
+.goods_pay_item .goods_item .goods_info .goods .info li {
+	display: inline-block;
+	color: #000;
+	font-size: 14px;
+	line-height: 18px;
 }
-.goods_pay_item .goods_item .goods_info .goods .info li.date{
-    color: #a5a5a5 !important;
-    font-family: Helvetica, '나눔고딕', NanumGothic, '맑은고딕', MalgunGothic, '돋움', Dotum, sans-serif;
+
+.goods_pay_item .goods_item .goods_info .goods .info li.date {
+	color: #a5a5a5 !important;
+	font-family: Helvetica, '나눔고딕', NanumGothic, '맑은고딕', MalgunGothic, '돋움',
+		Dotum, sans-serif;
 }
-.goods_pay_item .goods_item .goods_info .goods .info li + li{
-    margin:0 0 0 8px !important;
-    padding-left: 11px;
+
+.goods_pay_item .goods_item .goods_info .goods .info li+li {
+	margin: 0 0 0 8px !important;
+	padding-left: 11px;
 }
-.goods_pay_item .goods_item .goods_info .goods .info li + li:before{
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 1px;
-    height: 17px;
-    margin-top: -9px;
-    background-color: #f2f3f4;
-    content: '';
+
+.goods_pay_item .goods_item .goods_info .goods .info li+li:before {
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 1px;
+	height: 17px;
+	margin-top: -9px;
+	background-color: #f2f3f4;
+	content: '';
 }
-.goods_pay_item .goods_item .goods_info .state{
-    color: #a5a5a5;
-    text-decoration: none;
+
+.goods_pay_item .goods_item .goods_info .state {
+	color: #a5a5a5;
+	text-decoration: none;
 }
-.goods_pay_item .goods_item .goods_info a.state{
-    text-decoration: underline;
+
+.goods_pay_item .goods_item .goods_info a.state {
+	text-decoration: underline;
 }
+
 .goods_pay_item .goods_item .goods_info .state a {
-    color: #00cc0c;
-    text-decoration: underline;
+	color: #00cc0c;
+	text-decoration: underline;
 }
+
 .goods_pay_item .goods_item .goods_info .state.value_color_green {
-    color: #1ec800;
+	color: #1ec800;
 }
-.goods_pay_item .goods_item .goods_info .state.value_color_red{
-    color: #ff5252;
+
+.goods_pay_item .goods_item .goods_info .state.value_color_red {
+	color: #ff5252;
 }
-.goods_pay_item .goods_item .goods_info .guide{
-    margin-top: 10px;
-    padding-top: 10px;
-    color: #646465;
-    line-height: 18px;
-    border-top:1px solid #f4f6f7;
+
+.goods_pay_item .goods_item .goods_info .guide {
+	margin-top: 10px;
+	padding-top: 10px;
+	color: #646465;
+	line-height: 18px;
+	border-top: 1px solid #f4f6f7;
 }
-.goods_pay_item .goods_item .goods_info .guide .link{
-    text-decoration: underline;
+
+.goods_pay_item .goods_item .goods_info .guide .link {
+	text-decoration: underline;
 }
-.goods_pay_item .goods_item .goods_info .guide.notify{
-    position: relative;
-    padding-left: 6px;
+
+.goods_pay_item .goods_item .goods_info .guide.notify {
+	position: relative;
+	padding-left: 6px;
 }
-.goods_pay_item .goods_item .goods_info .guide.notify:before{
-    position: absolute;
-    left:2px;
-    top: 13px;
-    width: 3px;
-    height: 12px;
-    background: url("../../../../img/service/front/order/sp_order_ico.png") no-repeat -40px 0;
-    content: '';
+
+.goods_pay_item .goods_item .goods_info .guide.notify:before {
+	position: absolute;
+	left: 2px;
+	top: 13px;
+	width: 3px;
+	height: 12px;
+	background: url("../../../../img/service/front/order/sp_order_ico.png")
+		no-repeat -40px 0;
+	content: '';
 }
-.goods_pay_item .seller_item{
-    width: 150px;
+
+.goods_pay_item .seller_item {
+	width: 150px;
 }
-.goods_pay_item .seller_item .inner{
-    padding:0 29px;
-    color: #000;
-    text-align: center;
+
+.goods_pay_item .seller_item .inner {
+	padding: 0 29px;
+	color: #000;
+	text-align: center;
 }
-.goods_pay_item .seller_item .inner > * {
-    display: block;
+
+.goods_pay_item .seller_item .inner>* {
+	display: block;
 }
+
 .goods_pay_item .seller_item .inner .type {
-    font-size: 10px;
-    font-weight: bold;
-    line-height: 15px;
-    color: #09aa5c;
+	font-size: 10px;
+	font-weight: bold;
+	line-height: 15px;
+	color: #09aa5c;
 }
-.goods_pay_item .seller_item .inner .seller{
-    overflow: hidden;
-    max-width: 100%;
-    white-space: nowrap;
-    -ms-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-    margin-bottom: 5px;
+
+.goods_pay_item .seller_item .inner .seller {
+	overflow: hidden;
+	max-width: 100%;
+	white-space: nowrap;
+	-ms-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	margin-bottom: 5px;
 }
-.goods_pay_item .seller_item .inner .tel{
-    margin-bottom:5px;
-    color: #a5a5a5;
-    font-size: 11px;
-    font-family: Helvetica, '나눔고딕', NanumGothic, '맑은고딕', MalgunGothic, '돋움', Dotum, sans-serif;
+
+.goods_pay_item .seller_item .inner .tel {
+	margin-bottom: 5px;
+	color: #a5a5a5;
+	font-size: 11px;
+	font-family: Helvetica, '나눔고딕', NanumGothic, '맑은고딕', MalgunGothic, '돋움',
+		Dotum, sans-serif;
 }
-.goods_pay_item .button_item{
-    width: 110px;
+
+.goods_pay_item .button_item {
+	width: 110px;
 }
-.goods_pay_item .button_item .state_button + .state_button{
-    margin-top: 4px;
+
+.goods_pay_item .button_item .state_button+.state_button {
+	margin-top: 4px;
 }
-.goods_pay_item.payorder .goods_thumb{
-    border:1px solid #e5e5e5;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+
+.goods_pay_item.payorder .goods_thumb {
+	border: 1px solid #e5e5e5;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
-.goods_pay_item.payorder .goods_thumb img{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin: -30px 0 0 -30px;
+
+.goods_pay_item.payorder .goods_thumb img {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -30px 0 0 -30px;
 }
+
 .goods_pay_section .none_inner {
-    padding-bottom: 150px;
-    border: 1px solid #dadddf;
-    border-left: none;
-    border-right: none;
-    text-align: center;
+	padding-bottom: 150px;
+	border: 1px solid #dadddf;
+	border-left: none;
+	border-right: none;
+	text-align: center;
 }
+
 .goods_pay_section .none_inner p {
-    margin-top: 150px;
-    margin-bottom: 10px;
-    padding-top: 133px;
-    background: url(../../../../img/service/front/order/2014_img/sp_ico.gif) no-repeat 50% -40px;
-    font-size: 16px;
-    color: #000
+	margin-top: 150px;
+	margin-bottom: 10px;
+	padding-top: 133px;
+	background: url(../../../../img/service/front/order/2014_img/sp_ico.gif)
+		no-repeat 50% -40px;
+	font-size: 16px;
+	color: #000
 }
+
 .goods_pay_section .none_inner p strong {
-    font-weight: normal;
+	font-weight: normal;
 }
+
 .goods_pay_section .none_inner span {
-    font-size: 12px;
-    color: #a5a5a5
+	font-size: 12px;
+	color: #a5a5a5
 }
-.banner_area + .goods_pay_section .none_inner{
-    border-top: none;
+
+.banner_area+.goods_pay_section .none_inner {
+	border-top: none;
 }
-.viewmore_btn_section{
-    display: block;
-    width: 100%;
-    border:1px solid #dadddf;
-    background-color: #fff;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+
+.viewmore_btn_section {
+	display: block;
+	width: 100%;
+	border: 1px solid #dadddf;
+	background-color: #fff;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
-.viewmore_btn_section .button_viewmore{
-    display: block;
-    width: 100%;
-    padding:18px 0;
-    color: #000;
-    font-size: 13px;
-    border:none 0;
-    text-align: center;
+
+.viewmore_btn_section .button_viewmore {
+	display: block;
+	width: 100%;
+	padding: 18px 0;
+	color: #000;
+	font-size: 13px;
+	border: none 0;
+	text-align: center;
 }
-.viewmore_btn_section .button_viewmore span{
-    position: relative;
-    display: inline-block;
-    padding-left: 22px;
-    line-height: 15px;
+
+.viewmore_btn_section .button_viewmore span {
+	position: relative;
+	display: inline-block;
+	padding-left: 22px;
+	line-height: 15px;
 }
-.viewmore_btn_section .button_viewmore span:before{
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 15px;
-    height: 15px;
-    margin-top: -8px;
-    background: url(../../../../img/service/front/order/2014_img/sp_ico.gif) no-repeat -40px 0;
-    content: '';
+
+.viewmore_btn_section .button_viewmore span:before {
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 15px;
+	height: 15px;
+	margin-top: -8px;
+	background: url(../../../../img/service/front/order/2014_img/sp_ico.gif)
+		no-repeat -40px 0;
+	content: '';
 }
-.viewmore_btn_section .button_viewmore b{
-    font-weight: normal;
+
+.viewmore_btn_section .button_viewmore b {
+	font-weight: normal;
 }
-.viewmore_btn_section .button_viewmore a{
-    text-decoration: underline;
+
+.viewmore_btn_section .button_viewmore a {
+	text-decoration: underline;
 }
+
 .ico_pointplus {
-    display: inline-block;
-    vertical-align: top;
-    background: url(../../../../img/service/front/order/spr_pointplus_txt.png?20200615) no-repeat;
-    background-position: 0 -30px;
-    width: 45px;
-    height: 15px;
-    margin: 1px 0 0 2px;
+	display: inline-block;
+	vertical-align: top;
+	background:
+		url(../../../../img/service/front/order/spr_pointplus_txt.png?20200615)
+		no-repeat;
+	background-position: 0 -30px;
+	width: 45px;
+	height: 15px;
+	margin: 1px 0 0 2px;
 }
