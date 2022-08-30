@@ -123,7 +123,7 @@ DecimalFormat df = new DecimalFormat("###,###");
                         <input type="hidden" id="price<%=i%>" class="price" name="price" value="<%=productList.get(i).getp_price()%> " readonly="readonly">
                     </td>
                     <td class="tdId  P-price">
-                     	<input id="vis_total<%=i %>" class="vis_total" name="vis_total" value="" readonly="readonly">
+                     	<input id="vis_total<%=i %>" class="total" name="vis_total" value="" readonly="readonly">
                         <input type="hidden" id="total<%=i%>" class="total" value="<%= productList.get(i).getp_price() * qtyList.get(i)%>" name="total" readonly="readonly">
                     </td>
                     </tr>
