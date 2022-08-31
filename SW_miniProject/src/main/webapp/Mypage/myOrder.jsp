@@ -24,7 +24,7 @@ String pwd = "1234";
 
 String userID = request.getParameter("userID");
 
-String query = "select p.p_fileName, s.shipID, p.p_name, o.totalPrice, TO_CHAR(o.orderDate, 'YYYY.MM.DD') as orderDate, s.`status` from product p, `order` o, ordereditem i, shipping s "
+String query = "select p.p_fileName, s.shipID, p.p_name, o.totalPrice, TO_CHAR(o.orderDate, 'YYYY.MM.DD') as orderDate, s.`status`, o.userID from product p, `order` o, ordereditem i, shipping s "
 				+"where s.orderID = o.orderID AND o.orderID = i.orderID AND i.pID = p.p_id AND o.userID = '" + userID + "'";
 %>
 
@@ -32,7 +32,7 @@ String query = "select p.p_fileName, s.shipID, p.p_name, o.totalPrice, TO_CHAR(o
 function orderCancle(shipID) { 
 	console.log(shipID);
 	if(confirm("정말로 취소하시겠습니까?") == true) {
-		location.href='/modify_myOrder.jsp?ship_id='+shipID+'&statusSelect=주문취소';
+		location.href='modify_myOrder.jsp?ship_id='+shipID+'&statusSelect=주문취소';
 	}
 }
 </script>
@@ -87,7 +87,7 @@ function orderCancle(shipID) {
 					<span class="seller">사이트이름</span>
 					<span class="tel">021234567</span>
 					<%
-					if(rs.getString("status").equals("주문완료")) {%>
+					if(rs.getString("status").equals("주문 완료")) {%>
 						<button onclick="orderCancle('<%=rs.getString("shipID")%>')" style="cursor:pointer" class="state_button qna">주문취소</button>
 					<%} 
 					else if (rs.getString("status").equals("주문취소")){%>

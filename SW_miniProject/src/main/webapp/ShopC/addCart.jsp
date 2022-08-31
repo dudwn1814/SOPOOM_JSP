@@ -54,7 +54,7 @@
       
       Statement stmt = con.createStatement();
    
-      String countsql = "SELECT COUNT(*) as cartNum FROM cart WHERE p_id = '" + id + "'";
+      String countsql = "SELECT COUNT(*) as cartNum FROM cart WHERE p_id = '" + id + "' AND userID = '" + userid + "'";
    
       rs = stmt.executeQuery(countsql);
       

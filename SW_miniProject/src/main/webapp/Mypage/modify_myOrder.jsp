@@ -33,6 +33,7 @@
 	
 	String pID = null;
 	String orderID = null;
+	String userid = null;
 	int p_unitsInStock = 0;
 	int p_count = 0;
 
@@ -43,14 +44,16 @@
 	  con = DriverManager.getConnection(uri, uid, upw);
 	  
 	  //1. ship_id를 통해 orderedItem table에서 pID(상품번호) 가져오기
-	  String query_pID = "SELECT o.pID, o.orderID FROM shipping s, ordereditem o WHERE s.orderID = o.orderID and s.shipID = '" + ship_id + "'";
+	  String query_pID = "SELECT o.pID, o.orderID,d.userID FROM shipping s, ordereditem o, `order` d  WHERE s.orderID = o.orderID and d.orderID = o.orderID and s.shipID = '" + ship_id + "'";
 	  
 	  stmt_pID = con.createStatement();
 	  rs_pID = stmt_pID.executeQuery(query_pID);
+	  
 
 	  while (rs_pID.next()) {
 	    pID = rs_pID.getString("pID");
 	    orderID = rs_pID.getString("orderID");
+	    userid = rs_pID.getString("userID");
 	  }
 	  
 	  //2. product table에서 재고값 가져오기
@@ -114,7 +117,7 @@
 	  if (rs_p_count != null) {
 	    rs_p_count.close();
 	  }
-	  response.sendRedirect("/myOrder.jsp?userID=agadsg");
+	  response.sendRedirect("myOrder.jsp?userID="+userid);
 	} catch (Exception e) {
 	  e.printStackTrace();
 	}
