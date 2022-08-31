@@ -125,7 +125,7 @@ String email = "";
 					</div>
 
 					<div class="row">
-						<button class="field shipping-conf-btn" onclick="location.href='../myOrder.jsp'">배송 정보</button>
+						<button class="field shipping-conf-btn" onclick="location.href='myOrder.jsp'">배송 정보</button>
 					</div>
 
 				</div>

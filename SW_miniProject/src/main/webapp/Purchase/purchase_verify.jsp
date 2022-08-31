@@ -124,7 +124,7 @@
 		pstmt2.execute();
 
 		session.setAttribute("orderCode", orderCode);
-		response.sendRedirect("shttp://localhost:8080/purchase_fin.jsp");
+		response.sendRedirect("purchase_fin.jsp");
 
 		con.close();
 		stmt1.close();

@@ -147,10 +147,10 @@ h3{
 	</div>
 	<div align="center">
 	<br>
-	<input type="button" class="button" id="btn_home" value="HOME" onClick="location.href='index.jsp'">
+	<input type="button" class="button" id="btn_home" value="HOME" onClick="location.href='Landing/index.jsp'">
 	<br>
 	</div>
 	</div>
-	<%@include file="footer.jsp"%>
+	<%@include file="/footer.jsp"%>
 </body>
 </html>

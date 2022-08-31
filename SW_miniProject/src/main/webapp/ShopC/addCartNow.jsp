@@ -53,7 +53,7 @@ for (CartDTO cart : cartList) {
 	%>
 	<script>
 		alertNoUserId();
-		location.href='/login.jsp';
+		location.href='/Login/login.jsp';
 	</script>
 
 	<% } 

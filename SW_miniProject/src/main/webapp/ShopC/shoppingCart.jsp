@@ -80,7 +80,7 @@ for (CartDTO cart : cartList) {
 	<%
    } else {
    %>
-	<form id="cartForm" class="cartTable" method="post" action="/purchase.jsp">
+	<form id="cartForm" class="cartTable" method="post" action="/Purchase/purchase.jsp">
 		<table class="cart-table-container">
                 <tr>
                     <th input type="checkbox" id="allCheck" name="allcheck" checked class="checkabox-container" style="text-align: left" > </th>

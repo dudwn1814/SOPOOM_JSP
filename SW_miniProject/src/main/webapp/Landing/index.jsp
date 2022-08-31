@@ -6,11 +6,11 @@
 <html>
 <meta charset="UTF-8">
 <head>
-<link rel="stylesheet" href="css/index_style.css">
+<link rel="stylesheet" href="/css/index_style.css">
 <title>소품샵프로젝트</title>
 </head>
 <body>
-	<%@include file="top.jsp"%>
+	<%@include file="/top.jsp"%>
 <div class="body">
 	<div class="content" align="center">
 		<%
@@ -37,7 +37,7 @@
 			while (rs.next()) {
 		%>
 				<div class ="section">
-					<a href="./product.jsp?id=<%=rs.getString("p_id")%>">
+					<a href="product.jsp?id=<%=rs.getString("p_id")%>">
 						<img src="/upload/<%=rs.getString("p_fileName")%>"><br><br>
 						<b><span id="productName"><%=rs.getString("p_name")%></span></b><br><br>
 						<span id="productDescription"><%=rs.getString("p_description")%></span><br><br>
@@ -55,6 +55,6 @@
 		%>
 	</div>
 </div>
-<%@include file="footer.jsp"%>
+<%@include file="/footer.jsp"%>
 </body>
 </html>

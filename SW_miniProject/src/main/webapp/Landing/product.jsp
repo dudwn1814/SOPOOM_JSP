@@ -10,7 +10,7 @@
 
 <title>상품 상세 정보</title>
 
-<link rel="stylesheet" href="css/product_style.css">
+<link rel="stylesheet" href="/css/product_style.css">
 
 <script type="text/javascript">
 
@@ -54,7 +54,7 @@
 	// System.out.println(p_unitPrice);
 	%>
 
-	<jsp:include page="top.jsp" />
+	<jsp:include page="/top.jsp" />
 	<%
 		try {
 		// DataSource ds = (DataSource) this.getServletContext().getAttribute("dataSource");
@@ -98,9 +98,9 @@
 			</div>
 			<div>
 				<form name="addForm" class="btns" action="./ShopC/addCart.jsp?id=<%=id%>" method="post">
-					<a href="./ShopC/addCartNow.jsp?id=<%=id%>" class="btn_order" onclick="purchaseNow()">상품주문</a>
-					<a href="./ShopC/addCart.jsp?id=<%=id%>" class="btn_bucket"onclick="addToCart()">장바구니</a>
-					<a href="./index.jsp">상품 목록</a>
+					<a href="/ShopC/addCartNow.jsp?id=<%=id%>" class="btn_order" onclick="purchaseNow()">상품주문</a>
+					<a href="/ShopC/addCart.jsp?id=<%=id%>" class="btn_bucket"onclick="addToCart()">장바구니</a>
+					<a href="/index.jsp">상품 목록</a>
 				</form>
 			</div>
 		</div>
@@ -120,6 +120,6 @@
 		e.printStackTrace();
 		}
 		%>
-	<jsp:include page="footer.jsp" />
+	<jsp:include page="/footer.jsp" />
 </body>
 </html>
