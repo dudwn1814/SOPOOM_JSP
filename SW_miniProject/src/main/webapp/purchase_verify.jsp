@@ -44,8 +44,9 @@
 		for (int i = 0; i < count.length; i++) {
 		dummy2 += count[i] + "&nbsp";
 		}
-		//System.out.println("PRODUCT ID 입니다: " + Arrays.toString(pID));
-		//System.out.println("count 입니다: " + Arrays.toString(count));
+	System.out.println("PRODUCT ID 입니다: " + Arrays.toString(pID));
+	System.out.println("count 입니다: " + Arrays.toString(count));
+	System.out.println("intTPricd 입니다: " + intTPricd);
 
 	//db연결
 	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
@@ -123,7 +124,7 @@
 		pstmt2.execute();
 
 		session.setAttribute("orderCode", orderCode);
-		response.sendRedirect("ShopC/cart_clear.jsp");
+		response.sendRedirect("shttp://localhost:8080/purchase_fin.jsp");
 
 		con.close();
 		stmt1.close();
