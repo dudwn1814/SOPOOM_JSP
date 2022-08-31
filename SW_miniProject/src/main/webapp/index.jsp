@@ -9,16 +9,16 @@
 <body>
 <script type="text/javascript">
 
-window.onload = function () {
+/* window.onload = function () {
 
 setTimeout(function() {
-	location.href="/Landing/index.jsp";	}, 3000);
+	location.href="/Landing/index.jsp";	}, 5000);
 	
-}
+} */
 
 </script>
 
-로딩페이지 test
+<img alt="" src="/img/sopoom.gif" width="100%" height="900px" style="margin: auto;">
 
 </body>
 </html>
