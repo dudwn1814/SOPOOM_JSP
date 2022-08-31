@@ -21,6 +21,13 @@ INSERT INTO product VALUES('P1235', 'LG PC gram', 1500000, '3.3-inch,IPS LED dis
 INSERT INTO product VALUES('P1236', 'Galaxy Tab S', 900000, '3.3-inch, 212.8*125.6*6.6mm,  Super AMOLED display, Octa-Core processor', 'Tablet', 'Samsung', 1000, 'new', 'P1236.png');
 
 
+INSERT INTO product VALUES('P0000', 'luckyBags', 5000, 'Bags of Luck', 'goods', 'sw', 1000, 'new', 'P0000.png');
+INSERT INTO product VALUES('P0001', 'deco', 900000, 'Table Decorations', 'goods', 'sw', 1000, 'new', 'P0001.png');
+INSERT INTO product VALUES('P0002', 'miniTable', 300000, 'Muti Use Table', 'goods', 'sw', 1000, 'new', 'P0002.png');
+INSERT INTO product VALUES('P0003', 'shellDeco', 20000, 'Shell shaped necklace keeper', 'goods', 'sw', 1000, 'new', 'P0003.png');
+INSERT INTO product VALUES('P0004', 'MoodyLamp', 800000, 'Lamp: 2 options(blue, orange)', 'goods', 'sw', 1000, 'new', 'P0004.png');
+
+
 -- 회원 테이블
 CREATE TABLE user(
    userID VARCHAR(50) NOT NULL PRIMARY KEY,
