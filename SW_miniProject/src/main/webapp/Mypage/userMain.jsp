@@ -11,12 +11,12 @@
 <title>유저 정보 - 메인 페이지</title>
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css" />
 <link rel="stylesheet" href="userMain.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 	<script>
 		function pwConfig() {
-			btn = document.getElementById('password').value;
-			console.log(btn);
+			var btn = document.getElementById('password').value;
 
 			if (btn == "") {
 				alert("패스워드를 입력하세요.");
@@ -27,10 +27,16 @@
 			}
 
 		}
-</script>	
-	
-	
-<%
+
+		function press() {
+			if (event.keyCode == 13) {
+				pwConfig();
+			} //13은 엔터
+		}
+	</script>
+
+
+	<%
 String userid = (String)session.getAttribute("userID");
 String username = "";
 String password = "";
@@ -41,10 +47,12 @@ String extraAddress = "";
 String telno = "";
 String email = "";
 
-if (userid == null) {%>
-		alert("로그인이 필요한 서비스입니다.");
-		location.href = "./login.jsp";s
-	<%}%>
+	if (userid == null) {
+	%>
+	alert("로그인이 필요한 서비스입니다."); location.href = "./login.jsp";
+	<%
+	}
+	%>
 
 	<%@include file="/top.jsp"%>
 	<% 
@@ -96,37 +104,34 @@ if (userid == null) {%>
 					<div class="heade-title-container">
 						<span class="mainTitle">회원 정보</span>
 					</div>
-					<div class="logout-btn">
-						<span href="./logout.jsp">logout</span>
-					</div>
 				</div>
 
-				<form name=userbasic id=userbasic>
-					<div class="left-container">
-						<div class="row">
-							<label class="title">로그인 아이디</label>
-							<input type="text" class="field" readonly="readonly" value="<%=userid%>">
-						</div>
-						<div class="row">
-							<label class="title">회원 이메일</label>
-							<input type="text" class="field" readonly="readonly" value="<%=email%>">
-						</div>
-						<div class="row">
-							<label class="title">비밀번호</label>
-							<input type="text" class="field" readonly="readonly" value="********">
-						</div>
-						<div class="row">
-							<label class="title">휴대폰 번호</label>
-							<input type="text" class="field" readonly="readonly" value="<%=telno%>">
-						</div>
-						
-						<div class="row">
-							<input type="submit" class="field shipping-conf-btn" onclick="shippingConfig()" value="배송 정보">
-						</div>
-						
+				<div class="left-container">
+					<div class="row">
+						<label class="title">로그인 아이디</label>
+						<input type="text" class="field" readonly="readonly" value="<%=userid%>">
+					</div>
+					<div class="row">
+						<label class="title">회원 이메일</label>
+						<input type="text" class="field" readonly="readonly" value="<%=email%>">
+					</div>
+					<div class="row">
+						<label class="title">비밀번호</label>
+						<input type="text" class="field" readonly="readonly" value="********">
+					</div>
+					<div class="row">
+						<label class="title">휴대폰 번호</label>
+						<input type="text" class="field" readonly="readonly" value="<%=telno%>">
 					</div>
 
+					<div class="row">
+						<button class="field shipping-conf-btn" onclick="location.href='../myOrder.jsp'">배송 정보</button>
+					</div>
 
+				</div>
+
+
+				<form name=userbasic id=userbasic>
 					<div class="right-container">
 						<div class="row">
 							<label class="title">이름</label>
@@ -143,15 +148,15 @@ if (userid == null) {%>
 							<input type="text" class="field" readonly="readonly" value="<%=extraAddress%>">
 						</div>
 						<div class="row" id="pw-check">
-							<input type="password" name="password" id="password" class="field" placeholder="비밀번호를 입력하세요." value="">
+							<input type="password" name="password" id="password" class="field" placeholder="비밀번호를 입력하세요." value="" onkeydown="press()">
 						</div>
 						<div class="row">
-							<input type="submit" class="field user-info-modify-btn" onclick="pwConfig()" value="비밀번호 확인">
+							<input type="submit" id="pwconfigBtn" class="field user-info-modify-btn" onclick="pwConfig()" value="비밀번호 확인">
 						</div>
 					</div>
+			</form>	
 			</div>
 		</div>
-		</form>
 	</div>
 
 

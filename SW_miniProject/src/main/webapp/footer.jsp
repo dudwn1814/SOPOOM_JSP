@@ -4,6 +4,12 @@
 	text-align : center;
 	width : auto;
 	min-width : 700px;
+	clear: left;
+	top: 20px;
+	left: 0px;
+	bottom: 0px;
+	margin: auto;
+	padding: 20px;
 	}
 	#footer p{
  	color : #919191;

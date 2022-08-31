@@ -6,6 +6,9 @@
 
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
+<%@ page import="java.lang.Integer"%>
+
+<%@page import="java.text.DecimalFormat"%>
 
 <%@ page import="dao.CartDAO"%>
 <%@ page import="dao.ProductDAO"%>
@@ -34,6 +37,9 @@ for (CartDTO cart : cartList) {
    productList.add(product);
    qtyList.add(cart.getQuantitiy());
 	}
+
+DecimalFormat df = new DecimalFormat("###,###");
+
 	 if (userid == null) { %>
 	<script>
 		alert("로그인이 필요한 서비스입니다.");
@@ -88,6 +94,7 @@ for (CartDTO cart : cartList) {
             for (; i < productList.size(); i++) {
             %>
                 <tbody>
+                <tr>
                     <td class="tdId checkabox-container">
                         <input type="checkbox" name="checkP<%=i%>" value="<%=cartList.get(i).getp_id()%>" class="check" checked>
                    		<input type="hidden" name="p_id" value="<%=productList.get(i).getp_id()%>">
@@ -95,6 +102,7 @@ for (CartDTO cart : cartList) {
 
                     <td class="tdId img">
                         <image src="/upload/<%= productList.get(i).getP_fileName() %>" width="100px" />	
+                        <input type="hidden" name="fileName" id="fileName" value="<%= productList.get(i).getP_fileName() %>" width="100px" />	
                     </td>
 
                     <td class="tdId Pname">
@@ -110,15 +118,21 @@ for (CartDTO cart : cartList) {
                             <img src="./img/-btn.png" width="30px"> </button></div>
                         </div>
                     </td>
+                    <!-- test중 -->
                     <td class="tdId P-one-price">
-                        <input id="price<%=i%>" class="price" name="price" value="<%=productList.get(i).getp_price()%>" readonly="readonly">
+                        <input id="vis_price<%=i %>" class="price" name="vis_price" value="" readonly="readonly"> 
+                        <input type="hidden" id="price<%=i%>" class="price" name="price" value="<%=productList.get(i).getp_price()%>" readonly="readonly">
                     </td>
                     <td class="tdId  P-price">
-                        <input id="total<%=i%>" class="total" value="<%=(productList.get(i).getp_price() * qtyList.get(i))%>" name="total" readonly="readonly">
+                     	<input id="vis_total<%=i %>" class="total" name="vis_total" value="" readonly="readonly">
+                        <input type="hidden" id="total<%=i%>" class="total" value="<%= productList.get(i).getp_price() * qtyList.get(i)%>" name="total" readonly="readonly">
                     </td>
+                    </tr>
+                   
                 </tbody>
+                <%} %>
             </table>
-          <%} %>
+          
           
           <div class="title-container">
                 <div>
@@ -127,8 +141,9 @@ for (CartDTO cart : cartList) {
                 </div>
 
                 <div class="title"> 결제예정금액 :
-                    <input class="title-price" id="selectedTotal" name="selectedTotal" readonly="readonly"
-                        value="0원"><br>
+                	<div> </div>
+                    <input type="hidden" class="title-price" id="selectedTotal" name="selectedTotal" readonly="readonly" value="">
+                    <input class="title-price" id="vis_selectedTotal" name="vis_selectedTotal" readonly="readonly" value=""> 원<br>
                     <input type="submit" id="submitAllBin" class="submit-btn" value="주문하기">
                 </div>
             </div>
@@ -136,66 +151,9 @@ for (CartDTO cart : cartList) {
             <div class="btn-container">
 
             </div>
+		</form>
         </div>
           
-		<%-- <div class="cartlist">
-			<table border="1">
-				<tr>
-					<th><input type="checkbox" id="allCheck" name="allcheck" checked></th>
-					<th>상품명</th>
-					<th>수량</th>
-					<th>개당 가격</th>
-					<th>전체 가격</th>
-				</tr>
-				<%
-            /* 장바구니에 담긴 제품 수에 따라 장바구니 칸 수 증가 */
-            int i = 0;
-            for (; i < productList.size(); i++) {
-            %>
-				<tr>
-					<td>
-						<input type="checkbox" name="checkP<%=i%>" value="<%=cartList.get(i).getp_id() %>" class="check" checked>
-						<input type="hidden" name="p_id" value="<%=productList.get(i).getp_id()%>">
-					</td>
-					<td>
-						<input type="text" id="name<%=i%>" class="name" name="pname" value="<%=productList.get(i).getp_name()%>" readonly="readonly">
-					</td>
-					<td id="quantity<%=i%>" class="quantity">
-						<span class="count-box">
-							<button type="button" name="countBtn" class="upBtn">🔼</button> <input type="text" class="countInput" id="quantity" <%=i%> name="countInput" value="<%=qtyList.get(i)%>" readonly="readonly" style="width: 20px; border: none;">
-							<button type="button" name="countBtn" class="downBtn">🔽</button>
-						</span>
-					</td>
-					<td>
-						<input id="price<%=i%>" class="price" name="price" value="<%=productList.get(i).getp_price()%>" readonly="readonly">
-					</td>
-					<td>
-						<input id="total<%=i%>" class="total" value="<%=(productList.get(i).getp_price() * qtyList.get(i))%>" name="total" readonly="readonly">
-					</td>
-				</tr>
-				<%
-            }
-            %>
-				<tr>
-					<td colspan="4">결제예정금액</td>
-					<td>
-						<input id="selectedTotal" name="selectedTotal" readonly="readonly" value="0">
-					</td>
-				</tr>
-			</table>
-
-			<br>
-			<div class="removeBtn">
-				<button type="button" id="removeSelectBtn" class="textAndBtn">선택상품 삭제</button>
-				<button type="button" id="removeAllBtn">장바구니 비우기</button>
-			</div>
-
-			<br>
-			<div class="basket_btn">
-				<input type="submit" id="submitAllBin" class="submitAllBtn" value="주문하기">
-			</div>
-		</div> --%>
-	</form>
 	<%
    }
    %>
@@ -204,15 +162,37 @@ for (CartDTO cart : cartList) {
 	<%@include file="/footer.jsp"%>
 
 	<script>
+	function commaInsurt(I) {
+	str = String(I);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');	
+	}
 
    $("document").ready(function(){
-     //selectedTotal
+		
+	   //시작하자마자 제품 가격 띄워주는 부분
+	   
+	   <%for (int i=0;i<productList.size(); i++){%>
+	   var vis_price_location = document.getElementById("vis_price<%=i %>");
+	   var hidden_price = document.getElementById("price<%=i%>").value;
+	  	$("#vis_price<%=i%>").val(commaInsurt(hidden_price));
+
+	   
+	   //시작하자마자 제품 가격 x 수량 띄워주는 부분 
+	   var vis_total_location = document.getElementById("vis_total<%=i %>");
+	   var hidden_total = document.getElementById("total<%=i%>").value;
+	   $("#vis_total<%=i %>").val(commaInsurt(hidden_total));
+	   
+	   <%}%>
+	   
+	   //시작하자마자 전체 가격 띄워주는 부분
       var total= 0;
       <%
         for(int j=0;j<productList.size();j++){%>
          total += parseInt(document.getElementById("total<%=j%>").value);
         <%}%>
+        
         $("#selectedTotal").val(total);
+        $("#vis_selectedTotal").val(commaInsurt(total));
 
       //수량 증가-감소 버튼
       $(document).on('click','button[name="countBtn"]',function(e){
@@ -224,21 +204,35 @@ for (CartDTO cart : cartList) {
          let count = parseInt(countInput.val());
          let price = row.find('input[name=price]').val();
          let totalInput = row.find('input[name=total]');
+         
+         let vis_totalLocation = row.find('input[name=vis_total]');
 
 
          //upBtn 일 경우
          if($(this).hasClass("upBtn")){
             count++
-            console.log(count);
 
          //downBtn 일 경우
          } else{
             count--;
             if (count < 1) return;
          }
+         
+         //변경 수량 적용
          countInput.val(count);
-         totalInput.val(count * price);
+         
+         //변경 수량*가격 변수
+         let totalinput_mul = count * price;
+         console.log(totalinput_mul);
+         
+         //전체 가격 수정
+         totalInput.val(totalinput_mul);
+         
+         //제품 수량 X 가격 수정
+         vis_totalLocation.val(commaInsurt(totalinput_mul));
+         
          var total = Number(0);
+         
          <% for(int j=0; j<productList.size(); j++){ %>
             var checkItem = $("input[name=checkP<%=j%>]");
             if(checkItem.prop("checked")){
@@ -246,7 +240,11 @@ for (CartDTO cart : cartList) {
             }
 
          <%}%>
-         $('#selectedTotal').val(total); //#아이디 선택자
+         
+         
+         $('#selectedTotal').val(total);
+         $('#vis_selectedTotal').val(commaInsurt(total)+"");
+
 
 
       });

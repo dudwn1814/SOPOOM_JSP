@@ -65,7 +65,7 @@
 		rs = stmt.executeQuery(query);
 		while(rs.next()) {
 	%>
-	<hr>
+
 	<div class="content" align="center">
 		<div class="product_view" align="center">
 			<h2><%=rs.getString("p_name")%></h2>
@@ -94,7 +94,7 @@
 				</tbody>
 				</table>
 			<div class="img">
-				<img src="/img/<%=rs.getString("p_fileName")%>" alt="" />
+				<img src="/upload/<%=rs.getString("p_fileName")%>" alt="" />
 			</div>
 			<div>
 				<form name="addForm" class="btns" action="./ShopC/addCart.jsp?id=<%=id%>" method="post">
