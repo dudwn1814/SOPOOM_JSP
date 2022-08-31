@@ -4,21 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>SOPOOM</title>
 </head>
 <body>
 <script type="text/javascript">
 
-window.onload = function () {
 
-setTimeout(function() {
-	location.href="/Landing/index.jsp";	}, 5000);
-	
-}
 
 </script>
 
-<img alt="" src="/img/sopoom.gif" width="100%" height="900px" style="margin: auto;">
-
+<div style="text-align : center;">
+	<img alt="" src="/img/loading.gif" width=60%; style="display: block; margin: auto; margin-top: 200px;">
+</div>
 </body>
 </html>

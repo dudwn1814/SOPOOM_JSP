@@ -77,14 +77,14 @@ function orderCancle(shipID) {
 						</ul>
 					</a> <span class="state _statusName "><%=rs.getString("status")%></span>
 					<p class="guide notify">
-						<b>결제 및 상세 내역 확인 및 취소요청은 <a href="/index.jsp">사이트이름</a>에서 확인하실 수 있습니다.
+						<b>결제 및 상세 내역 확인 및 취소요청은 <a href="/index.jsp">SOPOOM</a>에서 확인하실 수 있습니다.
 						</b><br>(거래완료는 포인트 적립 완료로 확인 가능 / 세금납부는 취소요청 불가함)
 					</p>
 				</div>
 			</div>
 			<div class="seller_item">
 				<div class="inner">
-					<span class="seller">사이트이름</span>
+					<span class="seller">SOPOOM</span>
 					<span class="tel">021234567</span>
 					<%
 					if(rs.getString("status").equals("주문 완료")) {%>
