@@ -1,200 +1,172 @@
-<%@page import="java.sql.*"%>
-<%@page import="java.text.DecimalFormat"%>
+<%@page import="java.util.Arrays"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@page import="java.sql.*"%>
+
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.util.List"%>
+
+<%@ page import="dao.CartDAO"%>
+<%@ page import="dao.ProductDAO"%>
+<%@ page import="dto.CartDTO"%>
+<%@ page import="dto.ProductDTO"%>
+<%@page import="java.text.DecimalFormat"%>
 <!DOCTYPE html>
 <html>
 
 <%
-   //user 정보 받아오기
-   
-   
+	//user 정보 받아오기
 
-   String userid = (String)session.getAttribute("userID");
-   String userName = "";
-   String userTelno = "";
-   String userMail = "";
-   String postCode = "";
-   String address = "";
-   String detailAddress = "";
-   String extraAddress = "";
-   
-   if(userid == null){
-      %>
-      <script>
-      alert("로그인이 필요한 서비스입니다.");
-      location.href = "/Login/login.jsp";
-      </script>
-      <%}
+	String userid = (String)session.getAttribute("userID");
+
+	String userName = "";
+	String userTelno = "";
+	String userMail = "";
+	String postCode = "";
+	String address = "";
+	String detailAddress = "";
+	String extraAddress = "";
+	
+	if(userid == null){
+		%>
+		<script>
+		alert("로그인이 필요한 서비스입니다.");
+		location.href = "login.jsp";
+		</script>
+		<%}
 
 
-   String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
+	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
 
-   String user = "root";
-   String pwd = "1234";
-   
-   Connection con = null;
-   Statement stmt = null;
-   ResultSet rs = null;
-   
-   try{
-      
-      Class.forName("org.mariadb.jdbc.Driver");
-      con = DriverManager.getConnection(url, user, pwd);
-      
-      //존재하는 아이디인지 확인
-      String query = "select * from user where userID='"+userid+"'";
-      
-      stmt = con.createStatement();
-      
-      rs = stmt.executeQuery(query);
-      
-      while(rs.next()){
-         userName = rs.getString("username");
-         userTelno = rs.getString("telno");
-         userMail = rs.getString("email");
-         postCode = rs.getString("postcode");
-         address = rs.getString("address");
-         detailAddress = rs.getString("detailAddress");
-         extraAddress = rs.getString("extraAddress");
-      }      
-   } catch(Exception e){
-      e.printStackTrace();
-   } finally{
-      stmt.close();
-      rs.close();
-      con.close();
-   }
-   
-   
-   
-   //상품정보 받아오기
-   request.setCharacterEncoding("UTF-8");
+	String user = "root";
+	String pwd = "1234";
+	
+	Connection con = null;
+	Statement stmt = null;
+	ResultSet rs = null;
+	
+	try{
+		
+		Class.forName("org.mariadb.jdbc.Driver");
+		con = DriverManager.getConnection(url, user, pwd);
+		
+		//존재하는 아이디인지 확인
+		String query = "select * from user where userID='"+userid+"'";
+		
+		stmt = con.createStatement();
+		
+		rs = stmt.executeQuery(query);
+		
+		while(rs.next()){
+			userName = rs.getString("username");
+			userTelno = rs.getString("telno");
+			userMail = rs.getString("email");
+			postCode = rs.getString("postcode");
+			address = rs.getString("address");
+			detailAddress = rs.getString("detailAddress");
+			extraAddress = rs.getString("extraAddress");
+		}		
+	} catch(Exception e){
+		e.printStackTrace();
+	} finally{
+		stmt.close();
+		rs.close();
+		con.close();
+	}
+	
+	
+	
+	//상품정보 받아오기
+	request.setCharacterEncoding("UTF-8");
 
-   DecimalFormat df = new DecimalFormat("###,###");
+	DecimalFormat df = new DecimalFormat("###,###");
 
-   //shopping.jsp 에서 받아온 값들
-   String[] pName = request.getParameterValues("pname"); //제품이름
-   String[] pPrice = request.getParameterValues("price"); //제품 개수에 따른 가격
-   String[] count = request.getParameterValues("countInput");//제품 수량
-   String[] pPriceTotal = request.getParameterValues("total");// 1개 가격 x 수량 = 제품 총 주문 가격
-   String[] pID = request.getParameterValues("p_id"); //product id
+	//shopping.jsp 에서 받아온 값들
+	String pName = request.getParameter("pname"); //제품이름
+	String pPrice = request.getParameter("price"); //제품 낱개 가격
+	String count = request.getParameter("countInput");//제품 수량
+	String pPriceTotal = request.getParameter("total");// 1개 가격 x 수량 = 제품 총 주문 가격
+	String pID = request.getParameter("p_id"); //product id
+	String fileName = request.getParameter("fileName"); //img name
+	
 
-   String total = request.getParameter("selectedTotal");// 최종 결제 금액
 
-   //getParameterValues NULL보정 부분   
-   String dummy1 = "";
-   String dummy2 = "";
-   String dummy3 = "";
-   String dummy4 = "";
-   String dummy5 = "";
+	String total = request.getParameter("selectedTotal");// 최종 결제 금액
 
-   if (pName == null) {
-   pName = new String[0];
-   }
-   for (int i = 0; i < pName.length; i++) {
-   dummy1 += pName[i] + "&nbsp";
-   }
 
-   if (pPrice == null) {
-   pPrice = new String[0];
-   }
-   for (int i = 0; i < pName.length; i++) {
-   dummy2 += pPrice[i] + "&nbsp";
-   }
-   if (count == null) {
-   count = new String[0];
-   }
-   for (int i = 0; i < pName.length; i++) {
-   dummy3 += count[i] + "&nbsp";
-   }
+	//Stirng -> int
+	int intPPrice = new Integer.parseInt(pPrice);
+	int intcount = new Integer.parseInt(count);
+	int intpPriceTotal = new Integer.parseInt(pPriceTotal);
+	int inttotal = new Integer.parseInt(total);
 
-   if (pPriceTotal == null) {
-   pPriceTotal = new String[0];
-   }
-   for (int i = 0; i < pName.length; i++) {
-   dummy4 += pPriceTotal[i] + "&nbsp";
-   }
+/* 		intcount = Integer.parseInt(count);
+		intPPrice = Integer.parseInt(pPrice);
+		intpPriceTotal = Integer.parseInt(pPriceTotal); */
 
-   if (pID == null) {
-      pID = new String[0];
-   }
-   for (int i = 0; i < pName.length; i++) {
-   dummy5 += pID[i] + "&nbsp";
-   }
-
-   //String -> int
-   int[] intpPrinc = new int[pPrice.length];
-   int[] intpPriceTotal = new int[pPriceTotal.length];
-   int inttotal = Integer.parseInt(total);
-
-   for (int i=0; i<pName.length; i++){
-      intpPrinc[i] = Integer.parseInt(pPrice[i]);
-      intpPriceTotal[i] = Integer.parseInt(pPriceTotal[i]);
-   }
-
-   request.setAttribute("totalPrice", inttotal);
-   session.setAttribute("strTotal", df.format(inttotal));
-   
-   %>
-
+	request.setAttribute("totalPrice", inttotal);
+	session.setAttribute("strTotal", df.format(inttotal));
+	
+	%>
+	
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-   $(document).ready(function(){
-      
-      $("input[name='delivery']").change(function(){
-         if($("input[name='delivery']:checked").val() == "default"){
-            $("#name").val('<%=userName%>');
-            $("#postcode").val('<%=postCode%>');
-            $("#address").val('<%=address%>');
-            $("#detailAddress").val('<%=detailAddress%>');
-            $("#extraAddress").val('<%=extraAddress%>');
-            $("#telno").val('<%=userTelno%>');
-            
-         } else if($("input[name='delivery']:checked").val() == "new"){
-            $("#name").val('');
-            $("#postcode").val('');
-            $("#address").val('');
-            $("#detailAddress").val('');
-            $("#extraAddress").val('');
-            $("#telno").val('');
-         }
-         
-      });      
-      
-      $("#telno").keypress(function(){
-         if ((event.keyCode < 48) || (event.keyCode > 57))   event.returnValue = false;
-      });
-      
-      
-      $("#telno").keyup(function(){
-         $(this).val( $(this).val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") );
-      });
-      
-      
-      $("#btn_purchase").click(function(){
-         
-         //이름
-         if($("#name").val() == '') { $("#msg_name").css('display', 'block'); $("#name").focus(); return false; }
-         else{   $("#msg_name").css('display', 'none');}
-         
-         
-         //주소
-         if($("#detailAddress").val() == ''){ $("#msg_address").css('display', 'block'); $("#detailAddress").focus(); return false; }
-         else{   $("#msg_address").css('display', 'none');}
-         
-         //전화번호
-          if($("#telno").val() == '') { $("#msg_telno").css('display', 'block'); $("#telno").focus(); return false;}
-          else{   $("#msg_telno").css('display', 'none');}
-          
-          $("#postcode").attr("disabled", false);
-          $("#address").attr("disabled", false);
-          $("#extraAddress").attr("disabled", false);
-         $("#purchaseForm").attr("action","purchase_verify.jsp").submit();   
-      });
-   });
-   
+	$(document).ready(function(){
+		
+		$("input[name='delivery']").change(function(){
+			if($("input[name='delivery']:checked").val() == "default"){
+				$("#name").val('<%=userName%>');
+				$("#postcode").val('<%=postCode%>');
+				$("#address").val('<%=address%>');
+				$("#detailAddress").val('<%=detailAddress%>');
+				$("#extraAddress").val('<%=extraAddress%>');
+				$("#telno").val('<%=userTelno%>');
+				
+			} else if($("input[name='delivery']:checked").val() == "new"){
+				$("#name").val('');
+				$("#postcode").val('');
+				$("#address").val('');
+				$("#detailAddress").val('');
+				$("#extraAddress").val('');
+				$("#telno").val('');
+			}
+			
+		});		
+		
+		$("#telno").keypress(function(){
+			if ((event.keyCode < 48) || (event.keyCode > 57))	event.returnValue = false;
+		});
+		
+		
+		$("#telno").keyup(function(){
+			$(this).val( $(this).val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-") );
+		});
+		
+		
+		$("#btn_purchase").click(function(){
+			
+			//이름
+			if($("#name").val() == '') { $("#msg_name").css('display', 'block'); $("#name").focus(); return false; }
+			else{	$("#msg_name").css('display', 'none');}
+			
+			
+			//주소
+			if($("#detailAddress").val() == ''){ $("#msg_address").css('display', 'block'); $("#detailAddress").focus(); return false; }
+			else{	$("#msg_address").css('display', 'none');}
+			
+			//전화번호
+		 	if($("#telno").val() == '') { $("#msg_telno").css('display', 'block'); $("#telno").focus(); return false;}
+		 	else{	$("#msg_telno").css('display', 'none');}
+		 	
+		 	$("#postcode").attr("disabled", false);
+		 	$("#address").attr("disabled", false);
+		 	$("#extraAddress").attr("disabled", false);
+			$("#purchaseForm").attr("action","purchase_verify.jsp").submit();	
+		});
+	});
+	
 </script>
 
 <script>
@@ -248,62 +220,190 @@ function execDaumPostcode() {
 </script>
 
 <style>
-#productTbl{
-   border: 1px solid black;
-   margin : auto;
-   width:100%;
-   min-width : 700px;
-   padding : 10px;
-}
-.infoTbl{
-   border: 1px solid black;
-   margin : auto;
-   width:100%;
-   min-width : 700px;
-   padding : 10px;
-
-}
-
-.infoTbl td{
-   text-align : left;
-}
-
-.tblLabel{
-   font-weight : bold;
-   width : 100px;
-}
-
 form{
-   margin:auto;
-   width : 70%;
-   min-width : 700px;
+	margin:auto;
+	width : 70%;
+	min-width : 764px;
 }
+
+#innerForm{
+	margin : auto;
+	width : 764px;
+	height : fit-content;
+}
+
+#innerForm2{
+	background-color : rgba(0, 0, 0, 0.04);
+}
+
+.title h3{
+	margin: 24px 0px;
+}
+
+.orderComponentCard{
+	display : flex;
+	margin-bottom : 24px;
+}
+
+
 .detailForm{
-   width : 100%;
-   margin : auto;
+	min-width : 700px;
+	background-color : #FFFFFF;
+	padding : 24px 16px;
+	margin-bottom : 16px;
 }
 
-.td{
-   width : 120px;
-   margin : auto;
+.productInfo{
+	margin : 3px 16px;
 }
 
-.tdPname{
-   text-align : left;
+.divPname{
+	margin-bottom : 2px;
 }
 
+.priceInfo{
+	margin-top : 8px;
+}
+
+hr{
+	background-color : #ececec;
+	height : 1px;
+	border : 0;
+	margin-bottom : 24px;
+}
+
+.totalPriceRow{
+	display : flex;
+}
+
+.totalPrice{
+	text-align : right;
+	flex : 1;
+}
+
+.divPname{
+	font-size:16px;
+	font-weight:normal;
+	margin-bottom:2px;
+	line-height : 150%;
+}
+
+.divPriceCount{
+	font-weight:normal;
+	margin-top:8px;
+	line-height : 150%;
+}
+
+.label{
+	font-size : 16px;
+	font-weight : normal;
+	line-height : 150%;
+}
+
+.totalPrice{
+	font-size : 20px;
+	font-weight : bold;
+	color : #4053ff;
+
+}
+
+.cardRow{
+	margin : 0px 5px;
+	font-size : 14px;
+	line-height : 17px;
+	margin-bottom : 20px;
+}
+
+.rowTitle{
+	display : block;
+	margin-bottom : 12px;
+	line-height : 17px;
+	letter-spacing : -0.1em;
+}
+
+.field{
+	font-size : 14px;
+	line-height:23px;
+	width : 50%;
+	border : 1px solid #BFBFBF;
+	padding : 10px 15px;
+	box-sizing : border-box;
+	margin-bottom : 6px;
+}
+
+#orderPersonInfo .cardRow .field{
+	border : none;
+}
+
+.radio_btn{
+	margin-bottom : 24px;
+	font-size : 14px;
+}
+
+
+ #btn_address{
+	font-size : 14px;
+	margin-left : 8px;
+	margin-bottom : 18px;
+	padding : 10px 7px;
+	line-height: 23px;
+	display:inline;
+	border : 1px solid  #313131;
+	background-color :  #313131;
+	color : #FFFFFF;
+	cursor : pointer;
+	transition-duration: 0.4s;
+}
+
+input:focus{
+    outline: none;
+}
+
+
+.button{
+	padding: 5px;
+	margin : auto;
+	cursor : pointer;
+	border-radius : 50px;
+	width : 100%;
+	max-width : 240px;
+	min-width : 160px;
+	height : 54px ! important;
+	min-height : 54px;
+	font-size : 14px !important;
+	font-weight : 700;
+}
+
+#btn_purchase{
+	color: #FFFFFF !important;
+    background-color: #313131 !important;
+    border-color: #313131 !important;
+    border-width : 1px;
+    transition-duration: 0.4s;
+}
+
+#btn_address:hover, #btn_purchase:hover{
+ 	opacity : 0.7;
+}
+
+#btn_row{
+	margin-top : 36px;
+	margin-bottom : 5em;
+	text-align : center;
+}
+<!-- -->
 
 #msg_address, #msg_telno, #msg_name{
-   font-size:12px;
-   display : none;
-   color: red;
+	font-size:12px;
+	display : none;
+	color: red;
 }
 
 
 
 #strTotal{
-   font-size : 2em;
-   font-weight : bold;
+	font-size : 2em;
+	font-weight : bold;
 }
 </style>
 
@@ -314,90 +414,94 @@ form{
 <body>
 
 
-   <%@include file="/top.jsp"%>
-   <form name="purchaseForm" id="purchaseForm" method="post">
-   
-   <div id="productChk" class="detailForm">
-         <h3>상품 확인</h3>
-         <%
-         //이전 페이지에서 값 받아오는 방식으로 작성.
-         //상품 항목이 늘어날때마다 동적으로 변화.
-         int i = 0;
-         for (; i < pName.length; i++) {
-         %>
-         <table id="productTbl">
-            <tr>
-               <th class="td"></th>
-               <th>상품명</th>
-               <th class="td">판매가</th>
-               <th class="td">수량</th>
-               <th class="td">합계</th>
-            </tr>
-            <tr>
-               <td><img src="/img/sample.png" alt="productImg" width="90" height="120"></td>
-               <td class="tdPname"><%=pName[i]%>
-                  <input type="hidden" name="p_id" value="<%=pID[i]%>"></td>
-               <td><%=df.format(intpPrinc[i]) %></td> 
-               <td ><%=count[i]%>
-                  <input type="hidden" name = "count" value="<%=count[i]%>"></td>
-               <td><%=df.format(intpPriceTotal[i]) %></td>
-            </tr>
-         </table>
-      </div>
-      <%}%>
-   
-   <div>
-   <h3 class="label">주문 정보</h3>
-   <table class="infoTbl">
-   <tr><td class="tblLabel">주문자</td><td><%= userName %></td></tr>
-   <tr><td class="tblLabel">전화번호</td><td><%= userTelno %></td></tr>
-   <tr><td class="tblLabel">이메일</td><td><%= userMail %></td></tr>
-   </table>
-   </div>
-   
-   <div>
-   <h3 class="label">배송지 입력</h3>
-   <table class="infoTbl">
-   <tr>
-   <td colspan='2'><input type="radio" name="delivery" value="default" checked="checked">기존 정보와 동일&nbsp;&nbsp;
-   <input type="radio" name="delivery" value="new">새로운 배송지</td>
-   </tr>
-   <tr id="deliveryForm">
-      <td class="field">이름</td>
-         <td><input type="text" id="name" name="name" maxlength="50" value="<%=userName %>">
-         <div id="msg_name" class="msg">이름을 입력해주세요.</div>
-         </td></tr>
-      <tr>
-         <td class="field">주소</td>
-         <td>
-         <input type="text" id="postcode" name="postcode" placeholder="우편번호" value="<%=postCode %>" disabled>
-         <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-         <input type="text" id="address" name="address" placeholder="주소" value="<%=address %>" disabled><br>
-         <input type="text" id="detailAddress" name="detailAddress" value="<%=detailAddress %>" placeholder="상세주소">
-         <input type="text" id="extraAddress" name="extraAddress" value="<%=extraAddress %>" disabled>
-         <div id="msg_address" class="msg">주소지를 입력해주세요.</div></td>
-      </tr>
-         <tr><td class="field">전화번호</td>
-         <td>
-            <input type="text" id="telno" name="telno" maxlength="13" value="<%=userTelno %>" />
-            
-            <div id="msg_telno" class="msg">전화번호를 입력해주세요.</div>
-         </td>
-         </tr>
-   </table>
-   </div>
-   
-      <div>
-         <h3 class="label">최종 결제 금액</h3>
-         <span id="strTotal"><%=df.format(inttotal)%></span> 원
-         <input type="hidden" name="totalPrice" value="<%=inttotal%>"/>
-      </div>
-      <br>
-   
-   <div align="center">
-      <input type="button" id="btn_purchase" class="btn_purchase" value="결제하기">
-   </div>
-   
-   </form>
-   <%@include file="/footer.jsp"%>
+	<%@include file="/top.jsp"%>
+	<form name="purchaseForm" id="purchaseForm" method="post">
+	<div id="innerForm">
+	<div id="innerForm2">
+	<div class="detailForm">
+			<div class="row">
+			<label class="title"><h3>주문 상품</h3></label> 
+			<div class="orderComponentCard">
+				<img src="/upload/<%=fileName%>" alt="productImg" width="90" height="120">
+				<div class="productInfo">
+				<div class="divPname"><%=pName%></div>
+				<input type="hidden" name="p_id" value="<%=pID%>">
+				<div class="priceInfo"> <%=count%> 개 /  <%= df.format(intcount*intPPrice) %> 원 </div>
+				<input type="hidden" name="count" value="<%=count%>">
+				</div>
+			</div>
+						
+			<hr>
+			<div class="totalPriceRow">
+			<span class="label">상품 합계</span>
+			<div class="totalPrice">상품전체금액 <%= df.format(inttotal)%> 원</div>
+			</div>
+		</div>		
+	</div>
+	
+	<div class="detailForm">
+			<div class="row">
+			<label class="title"><h3>주문자</h3></label>
+			<div class="orderInfoCard" id="orderPersonInfo">
+					<div class="cardRow">
+					<label class="rowTitle">이름</label>
+					<input type="text" class="field" value="<%= userName %>" disabled>
+					</div>
+					<div class="cardRow">
+					<label class="rowTitle">전화번호</label>
+					<input type="text" class="field" value="<%= userTelno %>" disabled>
+					</div>
+					<div class="cardRow">
+					<label class="rowTitle">이메일</label>
+					<input type="text" class="field" value="<%= userMail %>" disabled>
+					</div>
+			</div>
+		</div>		
+	</div>
+	
+	
+	<div class="detailForm">
+		<div class="row">
+		<label class="title"><h3>배송지</h3></label>
+		<div class="orderInfoCard">
+		<div class="radio_btn">
+				<input type="radio" name="delivery" value="default" checked="checked">기존 배송지&nbsp;&nbsp;
+				<input type="radio" name="delivery" value="new">새로운 배송지</td>
+		</div>
+				<div class="cardRow">
+				<label class="rowTitle">이름</label>
+				<input type="text" class="field" id="name" name="name" maxlength="50" value="<%=userName %>" autoComplete="off">
+				<div id="msg_name" class="msg">이름을 입력해주세요.</div>
+				</div>
+				<div class="cardRow">
+				<label class="rowTitle">우편번호</label>
+				<input type="text" class="field" id="postcode" name="postcode" placeholder="우편번호" value="<%=postCode %>" disabled>
+				<input type="button" id="btn_address" onclick="execDaumPostcode()" value="우편번호 찾기">
+				</div>
+				<div class="cardRow">
+				<label class="rowTitle">주소</label>
+				<input type="text" class="field" id="address" name="address" placeholder="기본주소" value="<%=address %>" disabled><br>
+				<input type="text" class="field" id="detailAddress" name="detailAddress" value="<%=detailAddress %>" placeholder="상세주소" autoComplete="off">
+				<input type="hidden" class="field" id="extraAddress" name="extraAddress" value="<%=extraAddress %>" disabled>
+				<div id="msg_address" class="msg">주소지를 입력해주세요.</div>
+				</div>
+				<div class="cardRow">
+				<label class="rowTitle">전화번호</label>
+				<input type="text" class="field" id="telno" name="telno" maxlength="13" value="<%=userTelno %>"  autoComplete="off"  />
+				<div id="msg_telno" class="msg">전화번호를 입력해주세요.</div>
+		</div>
+		</div>		
+	</div>
+	</div>
+		
+		</div>
+		<input type="hidden" name="totalPrice" value="<%=total%>" />
+		<div class="row" id="btn_row">
+		<input type="button" id="btn_purchase" class="button" value="<%=df.format(inttotal)%>원 결제하기">
+		<input type="hidden" name = "totalPrice"  value="<%=inttotal%>">
+		
+		</div>
+	</div>
+	</form>
+	<%@include file="/footer.jsp"%>
 </body>

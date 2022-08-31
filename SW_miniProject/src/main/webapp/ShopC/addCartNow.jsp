@@ -1,17 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
    
-<%@page import="java.sql.*"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="com.mysql.jdbc.PreparedStatement"%>
 
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
+<%@ page import="java.lang.Integer"%>
+
+<%@page import="java.text.DecimalFormat"%>
 
 <%@ page import="dao.CartDAO"%>
 <%@ page import="dao.ProductDAO"%>
 <%@ page import="dto.CartDTO"%>
 <%@ page import="dto.ProductDTO"%>
 
-   
+<!DOCTYPE html>
+<html>
+
 <%
 String userid = (String)session.getAttribute("userID");
 
@@ -24,12 +33,10 @@ for (CartDTO cart : cartList) {
    ProductDTO product = ProductDAO.getDAO().selectProduct(p_id);
    productList.add(product);
    qtyList.add(cart.getQuantitiy());
+	}
 
-}
 %>
 
-<!DOCTYPE html>
-<html>
 <head>
 <meta charset="UTF-8">
 <title>주문 페이지로 이동중입니다.</title>
@@ -107,7 +114,7 @@ for (CartDTO cart : cartList) {
          e.printStackTrace();
       }
       
-      response.sendRedirect("/Purchase/purchase.jsp");
+      response.sendRedirect("/Purchase/purchase_now.jsp");
    } else { %>
    <script>
          alertDuplicateProduct();
@@ -121,20 +128,78 @@ for (CartDTO cart : cartList) {
    %>
 </body>
 
-<script>
+	<script>
+	function commaInsurt(I) {
+	str = String(I);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');	
+	}
 
    $("document").ready(function(){
-     //selectedTotal
+		
+	   //시작하자마자 제품 가격 띄워주는 부분
+	   
+	   <%for (int i=0;i<productList.size(); i++){%>
+	   var vis_price_location = document.getElementById("vis_price<%=i %>");
+	   var hidden_price = document.getElementById("price<%=i%>").value;
+	  	$("#vis_price<%=i%>").val(commaInsurt(hidden_price));
+
+	   
+	   //시작하자마자 제품 가격 x 수량 띄워주는 부분 
+	   var vis_total_location = document.getElementById("vis_total<%=i %>");
+	   var hidden_total = document.getElementById("total<%=i%>").value;
+	   $("#vis_total<%=i %>").val(commaInsurt(hidden_total));
+	   
+	   <%}%>
+	   
+	   //시작하자마자 전체 가격 띄워주는 부분
       var total= 0;
       <%
         for(int j=0;j<productList.size();j++){%>
          total += parseInt(document.getElementById("total<%=j%>").value);
         <%}%>
+        
         $("#selectedTotal").val(total);
+        $("#vis_selectedTotal").val(commaInsurt(total));
 
+      //수량 증가-감소 버튼
+      $(document).on('click','button[name="countBtn"]',function(e){
+         e.stopPropagation();
+         e.preventDefault(); //버블 방지
+         let countBox = $(this).closest('.count-box'); //가장 가까운 (위에서 아래로) 체크박스
+         let row = countBox.closest('tr');//가장 가까운 (위에서 아래로) tr(row)
+         let countInput = countBox.find('input[name=countInput]');//가장 가까운 체크박스를 찾은 곳에서 name이 countInput인 값을 찾아라
+         let count = parseInt(countInput.val());
+         let price = row.find('input[name=price]').val();
+         let totalInput = row.find('input[name=total]');
+         
+         let vis_totalLocation = row.find('input[name=vis_total]');
+
+
+         //upBtn 일 경우
+         if($(this).hasClass("upBtn")){
+            count++
+
+         //downBtn 일 경우
+         } else{
+            count--;
+            if (count < 1) return;
+         }
+         
+         //변경 수량 적용
          countInput.val(count);
-         totalInput.val(count * price);
+         
+         //변경 수량*가격 변수
+         let totalinput_mul = count * price;
+         console.log(totalinput_mul);
+         
+         //전체 가격 수정
+         totalInput.val(totalinput_mul);
+         
+         //제품 수량 X 가격 수정
+         vis_totalLocation.val(commaInsurt(totalinput_mul));
+         
          var total = Number(0);
+         
          <% for(int j=0; j<productList.size(); j++){ %>
             var checkItem = $("input[name=checkP<%=j%>]");
             if(checkItem.prop("checked")){
@@ -142,7 +207,11 @@ for (CartDTO cart : cartList) {
             }
 
          <%}%>
-         $('#selectedTotal').val(total); //#아이디 선택자
+         
+         
+         $('#selectedTotal').val(total);
+         $('#vis_selectedTotal').val(commaInsurt(total)+"");
+
 
 
       });
@@ -190,5 +259,37 @@ for (CartDTO cart : cartList) {
             $('#selectedTotal').val(totalPrice); //바뀐 금액으로 결제 예정 금액 변경
          });
       <%}%>
+
+
+
+         //개별 선택 삭제
+          $("#removeSelectBtn").click(function(e) {
+         	  e.stopPropagation();
+              e.preventDefault();
+
+			  let checkp_id = [] ;
+			  <%for(int i=0; i<productList.size(); i++){%>
+            	if ($('input[name=checkP<%=i%>]').is(':checked')) {
+            		checkp_id[<%=i%>]= document.getElementsByName('checkP<%=i%>')[0].value;
+            		}
+
+			  	<%}%>
+
+               if(window.confirm("선택 상품을 삭제하시겠습니까?")) {
+                  location.href="cart_delete.jsp?p_id="+checkp_id;
+               }
+
+		});
+
+
+         //전체 삭제
+          $("#removeAllBtn").click(function() {
+               if(window.confirm("장바구니를 비우시겠습니까?")) {
+                  location.href="cart_clear.jsp";
+               }
+         });
+
+      });
+
 </script>
 </html>
