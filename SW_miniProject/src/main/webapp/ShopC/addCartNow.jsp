@@ -53,7 +53,7 @@ for (CartDTO cart : cartList) {
    %>
    <script>
       alertNoUserId();
-      location.href='/login.jsp';
+      location.href='/Login/login.jsp';
    </script>
 
    <% } 
@@ -107,7 +107,7 @@ for (CartDTO cart : cartList) {
          e.printStackTrace();
       }
       
-      response.sendRedirect("/purchase.jsp");
+      response.sendRedirect("/Purchase/purchase.jsp");
    } else { %>
    <script>
          alertDuplicateProduct();
