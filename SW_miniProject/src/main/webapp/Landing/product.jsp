@@ -104,7 +104,6 @@
          </div>
          <div>
             <form name="addForm" id="addForm" class="btns"  method="post" action="/ShopC/addCart.jsp?id=<%=id%>" >
-               <a href="/ShopC/addCartNow.jsp?id=<%=id%>" class="btn_order" onclick="purchaseNow()">상품주문</a>
                <a href="/Purchase/purchase_now.jsp?id=<%=id%>" class="btn_order" onclick="purchaseNow2()">상품주문</a>
                <INPUT type="hidden" ID="productID" NAME="Submit" VALUE='<%=rs.getString("p_id")%>'>
                <a href="/ShopC/addCart.jsp?id=<%=id%>" class="btn_bucket"onclick="addToCart()">장바구니</a>
