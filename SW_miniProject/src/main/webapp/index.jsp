@@ -9,12 +9,12 @@
 <body>
 <script type="text/javascript">
 
-/* window.onload = function () {
+window.onload = function () {
 
 setTimeout(function() {
 	location.href="/Landing/index.jsp";	}, 5000);
 	
-} */
+}
 
 </script>
 
