@@ -37,7 +37,8 @@
          while (rs.next()) {
       %>
             <div class ="section">
-               <a href="product.jsp?id=<%=rs.getString("p_id")%>">
+               <a href="product.jsp?id=<%=rs.getString("p_id")%>" onMouseover='this.style.textDecoration="underline"'
+						onmouseout="this.style.textDecoration='none';">
                   <img src="/upload/<%=rs.getString("p_fileName")%>"><br><br>
                   <b><span id="productName"><%=rs.getString("p_name")%></span></b><br><br>
                   <span id="productDescription"><%=rs.getString("p_description")%></span><br><br>
