@@ -75,7 +75,7 @@ function execDaumPostcode() {
 
 </head>
 <body>
-
+	<%@include file="/top.jsp"%>
 	<%
 	String url = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
 	String uid = "root";

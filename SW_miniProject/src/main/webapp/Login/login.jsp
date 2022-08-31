@@ -129,7 +129,7 @@ input:focus{
 <title>JSP미니 프로젝트</title>
 </head>
 <body>
-	<%@include file="top.jsp"%>
+	<%@include file="/top.jsp"%>
 	<% //로그인 된 상태에서 로그인 창으로 넘어가기 방지
 	if (session_id != null)	response.sendRedirect("index.jsp");
 	%>
@@ -155,6 +155,6 @@ input:focus{
 		</div>
 		</div>
 		</form>
-	<%@include file="footer.jsp"%>
+	<%@include file="/footer.jsp"%>
 </body>
 </html>

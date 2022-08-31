@@ -38,15 +38,8 @@ for (CartDTO cart : cartList) {
    qtyList.add(cart.getQuantitiy());
 	}
 
-DecimalFormat df = new DecimalFormat("###,###");
+%>
 
-	 if (userid == null) { %>
-	<script>
-		alert("로그인이 필요한 서비스입니다.");
-		location.href = "./login.jsp";
-	</script>
-	<%}%>
-	
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -59,7 +52,16 @@ DecimalFormat df = new DecimalFormat("###,###");
 
 </head>
 <body>
-	<%@include file="/top.jsp"%>
+<%@include file="/top.jsp"%>
+<%DecimalFormat df = new DecimalFormat("###,###");
+
+	 if (userid == null) { %>
+	<script>
+		alert("로그인이 필요한 서비스입니다.");
+		location.href = "/login.jsp";
+	</script>
+	<%}%>
+	
 	<div class="mypage">
 		<div class="mypage">
             <div class="head-title">
@@ -78,7 +80,7 @@ DecimalFormat df = new DecimalFormat("###,###");
 	<%
    } else {
    %>
-	<form id="cartForm" class="cartTable" method="post" action="/purchase.jsp">
+	<form id="cartForm" class="cartTable" method="post" action="/Purchase/purchase.jsp">
 		<table class="cart-table-container">
                 <tr>
                     <th input type="checkbox" id="allCheck" name="allcheck" checked class="checkabox-container" style="text-align: left" > </th>

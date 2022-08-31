@@ -140,7 +140,7 @@ input:focus{
 <title>JSP미니 프로젝트</title>
 </head>
 <body>
-	<%@include file="top.jsp"%>
+	<%@include file="/top.jsp"%>
 	<form name="findPWForm" id="findPWForm" method="post"> 
 	<div id="innerForm">
 	<h3>비밀번호 찾기</h3>
@@ -170,6 +170,6 @@ input:focus{
 	</div>
 	</div>
 	</form>
-	<%@include file="footer.jsp"%>
+	<%@include file="/footer.jsp"%>
 </body>
 </html>

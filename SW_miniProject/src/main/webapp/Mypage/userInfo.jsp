@@ -231,7 +231,8 @@ function execDaumPostcode() {
 						<span class="mainTitle">회원 정보</span>
 					</div>
 					<div class="logout-btn">
-						<span onclick="resignCheck('<%=userid%>')">회원탈퇴</span>
+						<span onMouseover='this.style.textDecoration="underline"'
+						onmouseout="this.style.textDecoration='none';" onclick="resignCheck('<%=userid%>')">회원탈퇴</span>
 					</div>
 				</div>
 

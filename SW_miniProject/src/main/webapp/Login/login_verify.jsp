@@ -58,7 +58,7 @@ try{
 		rs1.close();
 		rs2.close();
 		con.close();	
-		response.sendRedirect("index.jsp");	
+		response.sendRedirect("/Landing/index.jsp");	
 	} else if(id_count == 0){
 		
 		stmt1.close();

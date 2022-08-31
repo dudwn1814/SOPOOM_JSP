@@ -24,7 +24,7 @@ String pwd = "0000";
 
 String userID = request.getParameter("userID");
 
-String query = "select p.p_fileName, s.shipID, p.p_name, o.totalPrice, TO_CHAR(o.orderDate, 'YYYY.MM.DD') as orderDate, s.`status` from product p, `order` o, ordereditem i, shipping s "
+String query = "select p.p_fileName, s.shipID, p.p_name, o.totalPrice, TO_CHAR(o.orderDate, 'YYYY.MM.DD') as orderDate, s.`status`, o.userID from product p, `order` o, ordereditem i, shipping s "
 				+"where s.orderID = o.orderID AND o.orderID = i.orderID AND i.pID = p.p_id AND o.userID = '" + userID + "'";
 %>
 
@@ -32,7 +32,7 @@ String query = "select p.p_fileName, s.shipID, p.p_name, o.totalPrice, TO_CHAR(o
 function orderCancle(shipID) { 
 	console.log(shipID);
 	if(confirm("정말로 취소하시겠습니까?") == true) {
-		location.href='/modify_myOrder.jsp?ship_id='+shipID+'&statusSelect=주문취소';
+		location.href='modify_myOrder.jsp?ship_id='+shipID+'&statusSelect=주문취소';
 	}
 }
 </script>
@@ -77,17 +77,17 @@ function orderCancle(shipID) {
 						</ul>
 					</a> <span class="state _statusName "><%=rs.getString("status")%></span>
 					<p class="guide notify">
-						<b>결제 및 상세 내역 확인 및 취소요청은 <a href="/index.jsp">사이트이름</a>에서 확인하실 수 있습니다.
+						<b>결제 및 상세 내역 확인 및 취소요청은 <a href="/index.jsp">SOPOOM</a>에서 확인하실 수 있습니다.
 						</b><br>(거래완료는 포인트 적립 완료로 확인 가능 / 세금납부는 취소요청 불가함)
 					</p>
 				</div>
 			</div>
 			<div class="seller_item">
 				<div class="inner">
-					<span class="seller">사이트이름</span>
+					<span class="seller">SOPOOM</span>
 					<span class="tel">021234567</span>
 					<%
-					if(rs.getString("status").equals("주문완료")) {%>
+					if(rs.getString("status").equals("주문 완료")) {%>
 						<button onclick="orderCancle('<%=rs.getString("shipID")%>')" style="cursor:pointer" class="state_button qna">주문취소</button>
 					<%} 
 					else if (rs.getString("status").equals("주문취소")){%>
