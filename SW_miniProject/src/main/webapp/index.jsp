@@ -9,11 +9,10 @@
 <body>
 <script type="text/javascript">
 
-window.onload = function () {
 
-setTimeout(function() {
-	location.href="/Landing/index.jsp";	}, 4000);
-	
+window.onload = function () {
+	setTimeout(function() {
+		location.href="/Landing/index.jsp";	}, 4000);
 }
 
 </script>

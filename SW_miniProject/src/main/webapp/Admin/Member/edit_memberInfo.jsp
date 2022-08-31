@@ -77,9 +77,9 @@ function execDaumPostcode() {
 <body>
 	<%@include file="/top.jsp"%>
 	<%
-	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
+	String url = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
 	String uid = "root";
-	String pwd = "1234";
+	String pwd = "0000";
 	String query = "select * from user where userID= '" + userID + "'";
 	System.out.println("[수정 보기 쿼리] : " + query);
 
