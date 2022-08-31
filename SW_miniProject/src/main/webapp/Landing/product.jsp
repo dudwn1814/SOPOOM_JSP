@@ -12,6 +12,8 @@
 
 <link rel="stylesheet" href="/css/product_style.css">
 
+
+
 <script type="text/javascript">
 
    function purchaseNow() {
@@ -24,6 +26,10 @@
       } else {
          document.addForm.reset();
       }
+   }
+   
+   function puarchaseNow2{
+	   document.addForm.submit();
    }
 </script>
 
@@ -97,8 +103,10 @@
             <img src="/upload/<%=rs.getString("p_fileName")%>" alt="" />
          </div>
          <div>
-            <form name="addForm" class="btns" action="/ShopC/addCart.jsp?id=<%=id%>" method="post">
+            <form name="addForm" id="addForm" class="btns"  method="post" action="/ShopC/addCart.jsp?id=<%=id%>" >
                <a href="/ShopC/addCartNow.jsp?id=<%=id%>" class="btn_order" onclick="purchaseNow()">상품주문</a>
+               <a href="/Purchase/purchase_now.jsp?id=<%=id%>" class="btn_order" onclick="purchaseNow2()">상품주문</a>
+               <INPUT type="hidden" ID="productID" NAME="Submit" VALUE='<%=rs.getString("p_id")%>'>
                <a href="/ShopC/addCart.jsp?id=<%=id%>" class="btn_bucket"onclick="addToCart()">장바구니</a>
                <a href="/index.jsp">상품 목록</a>
             </form>

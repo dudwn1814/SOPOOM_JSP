@@ -6,9 +6,6 @@
 
 <%
    //user 정보 받아오기
-   
-   
-
    String userid = (String)session.getAttribute("userID");
    String userName = "";
    String userTelno = "";
@@ -17,6 +14,19 @@
    String address = "";
    String detailAddress = "";
    String extraAddress = "";
+   
+   String p_name = "";
+   int p_unitPrice = 0 ;
+   String p_fileName = "";
+   
+   
+   
+   //상품정보 받아오기
+   request.setCharacterEncoding("UTF-8");
+   //productID 받아오기
+   String productID = (String) request.getParameter("id");
+   System.out.println(productID);
+
    
    if(userid == null){
       %>
@@ -34,7 +44,9 @@
    
    Connection con = null;
    Statement stmt = null;
+   Statement stmt2 = null;
    ResultSet rs = null;
+   ResultSet rs2 = null;
    
    try{
       
@@ -46,7 +58,7 @@
       
       stmt = con.createStatement();
       
-      rs = stmt.executeQuery(query);
+      rs = stmt.executeQuery(query);   
       
       while(rs.next()){
          userName = rs.getString("username");
@@ -65,75 +77,35 @@
       con.close();
    }
    
+   try{      
+	      Class.forName("org.mariadb.jdbc.Driver");
+	      con = DriverManager.getConnection(url, user, pwd);
+	      
+	      //존재하는 아이디인지 확인
+	      String query = "select p_name, p_unitPrice, p_fileName from product where p_id='"+productID+"'";
+	      System.out.println(query);
+	      
+	      stmt = con.createStatement();
+	      
+	      rs = stmt.executeQuery(query);   
+	      
+	      while(rs.next()){
+	    	  p_name = rs.getString("p_name");
+	    	  p_unitPrice = rs.getInt("p_unitPrice");
+	    	  p_fileName = rs.getString("p_fileName");	
+	      }      
+	   } catch(Exception e){
+	      e.printStackTrace();
+	   } finally{
+	      stmt.close();
+	      rs.close();
+	      con.close();
+	   }
    
-   
-   //상품정보 받아오기
-   request.setCharacterEncoding("UTF-8");
-
    DecimalFormat df = new DecimalFormat("###,###");
-
-   //shopping.jsp 에서 받아온 값들
-   String[] pName = request.getParameterValues("pname"); //제품이름
-   String[] pPrice = request.getParameterValues("price"); //제품 개수에 따른 가격
-   String[] count = request.getParameterValues("countInput");//제품 수량
-   String[] pPriceTotal = request.getParameterValues("total");// 1개 가격 x 수량 = 제품 총 주문 가격
-   String[] pID = request.getParameterValues("p_id"); //product id
-
-   String total = request.getParameter("selectedTotal");// 최종 결제 금액
-
-   //getParameterValues NULL보정 부분   
-   String dummy1 = "";
-   String dummy2 = "";
-   String dummy3 = "";
-   String dummy4 = "";
-   String dummy5 = "";
-
-   if (pName == null) {
-   pName = new String[0];
-   }
-   for (int i = 0; i < pName.length; i++) {
-   dummy1 += pName[i] + "&nbsp";
-   }
-
-   if (pPrice == null) {
-   pPrice = new String[0];
-   }
-   for (int i = 0; i < pName.length; i++) {
-   dummy2 += pPrice[i] + "&nbsp";
-   }
-   if (count == null) {
-   count = new String[0];
-   }
-   for (int i = 0; i < pName.length; i++) {
-   dummy3 += count[i] + "&nbsp";
-   }
-
-   if (pPriceTotal == null) {
-   pPriceTotal = new String[0];
-   }
-   for (int i = 0; i < pName.length; i++) {
-   dummy4 += pPriceTotal[i] + "&nbsp";
-   }
-
-   if (pID == null) {
-      pID = new String[0];
-   }
-   for (int i = 0; i < pName.length; i++) {
-   dummy5 += pID[i] + "&nbsp";
-   }
-
-   //String -> int
-   int[] intpPrinc = new int[pPrice.length];
-   int[] intpPriceTotal = new int[pPriceTotal.length];
-   int inttotal = Integer.parseInt(total);
-
-   for (int i=0; i<pName.length; i++){
-      intpPrinc[i] = Integer.parseInt(pPrice[i]);
-      intpPriceTotal[i] = Integer.parseInt(pPriceTotal[i]);
-   }
-
-   request.setAttribute("totalPrice", inttotal);
-   session.setAttribute("strTotal", df.format(inttotal));
+  
+   request.setAttribute("totalPrice", p_unitPrice);
+   session.setAttribute("strTotal", df.format(p_unitPrice));
    
    %>
 
@@ -319,12 +291,6 @@ form{
    
    <div id="productChk" class="detailForm">
          <h3>상품 확인</h3>
-         <%
-         //이전 페이지에서 값 받아오는 방식으로 작성.
-         //상품 항목이 늘어날때마다 동적으로 변화.
-         int i = 0;
-         for (; i < pName.length; i++) {
-         %>
          <table id="productTbl">
             <tr>
                <th class="td"></th>
@@ -335,16 +301,15 @@ form{
             </tr>
             <tr>
                <td><img src="/img/sample.png" alt="productImg" width="90" height="120"></td>
-               <td class="tdPname"><%=pName[i]%>
-                  <input type="hidden" name="p_id" value="<%=pID[i]%>"></td>
-               <td><%=df.format(intpPrinc[i]) %></td> 
-               <td ><%=count[i]%>
-                  <input type="hidden" name = "count" value="<%=count[i]%>"></td>
-               <td><%=df.format(intpPriceTotal[i]) %></td>
+               <td class="tdPname"><%=p_name%>
+                  <input type="hidden" name="p_id" value="<%=productID%>"></td>
+               <td><%=df.format(p_unitPrice) %></td> 
+               <td >1
+                  <input type="hidden" name = "count" value="1"></td>
+               <td><%=df.format(p_unitPrice) %></td>
             </tr>
          </table>
       </div>
-      <%}%>
    
    <div>
    <h3 class="label">주문 정보</h3>
@@ -389,8 +354,8 @@ form{
    
       <div>
          <h3 class="label">최종 결제 금액</h3>
-         <span id="strTotal"><%=df.format(inttotal)%></span> 원
-         <input type="hidden" name="totalPrice" value="<%=inttotal%>"/>
+         <span id="strTotal"><%=df.format(p_unitPrice)%></span> 원
+         <input type="hidden" name="totalPrice" value="<%=p_unitPrice%>"/>
       </div>
       <br>
    
