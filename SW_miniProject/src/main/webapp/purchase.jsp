@@ -147,10 +147,12 @@
 
 	//Stirng -> int
 	int[] intPPrice = new int[pPrice.length];
+	int[] intcount = new int[count.length];
 	int[] intpPriceTotal = new int[pPriceTotal.length];
 	int inttotal = Integer.parseInt(total);
 
 	for (int i=0; i<pName.length; i++){
+		intcount[i] = Integer.parseInt(count[i]);
 		intPPrice[i] = Integer.parseInt(pPrice[i]);
 		intpPriceTotal[i] = Integer.parseInt(pPriceTotal[i]);
 	}
@@ -479,26 +481,15 @@ input:focus{
 				<div class="productInfo">
 				<div class="divPname"><%=pName[i]%></div>
 				<input type="hidden" name="p_id" value="<%=pID[i]%>">
-				<div class="priceInfo"><%=count[i]%> 개 / <%= pPriceTotal[i] %> 원 </div>
+				<div class="priceInfo"> <%=count[i]%> 개 /  <%= df.format(intcount[i]*intPPrice[i]) %> 원 </div>
+				<input type="hidden" name="count" value="<%=count[i]%>">
 				</div>
 			</div>
-			<%}%>
-			<!-- 여기까지 -->
-			<!-- 여기부터는 목록 여러개 확인용 -->
-			<!-- <div class="orderComponentCard">
-				<img src="/img/sample.png" alt="productImg" width="90" height="120">
-				<div class="productInfo">
-				<div class="divPname">주문 제품명</div>
-				<input type="hidden" name="p_id" value="">
-				<div class="divPriceCount">count 개 / 개별 price*count 원 </div>
-				</div>
-			</div> -->
-			<!--  -->
-			
+			<%}%>			
 			<hr>
 			<div class="totalPriceRow">
 			<span class="label">상품 합계</span>
-			<div class="totalPrice">상품전체금액 원</div>
+			<div class="totalPrice">상품전체금액 <%= df.format(inttotal)%> 원</div>
 			</div>
 		</div>		
 	</div>
@@ -562,6 +553,8 @@ input:focus{
 		<input type="hidden" name="totalPrice" value="<%=total%>" />
 		<div class="row" id="btn_row">
 		<input type="button" id="btn_purchase" class="button" value="<%=df.format(inttotal)%>원 결제하기">
+		<input type="hidden" name = "totalPrice"  value="<%=inttotal%>">
+		
 		</div>
 	</div>
 	</form>
