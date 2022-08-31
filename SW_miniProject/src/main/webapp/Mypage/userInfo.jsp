@@ -186,9 +186,9 @@ function execDaumPostcode() {
 	String email = "";
 
 	//DB에서 사용자 정보
-	String url = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
+	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
 	String uid = "root";
-	String pwd = "0000";
+	String pwd = "1234";
 	String query = "select * from user where userid ='" + userid + "'";
 
 	Connection con = null;

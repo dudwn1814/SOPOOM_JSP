@@ -63,9 +63,9 @@
 	ResultSet rs = null;
 	
 	try {
-		String uri = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
+		String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
 		String uid = "root";
-		String pwd = "0000";
+		String pwd = "1234";
 		
 		Class.forName("org.mariadb.jdbc.Driver");
 		con = DriverManager.getConnection(uri, uid, pwd);

@@ -27,9 +27,9 @@
 	ResultSet rs_p_unitsInStock = null;
 	ResultSet rs_p_count = null;
 
-	String uri = "jdbc:mariadb://127.0.0.1:3306/sw_miniProject";
+	String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
 	String uid = "root";
-	String upw = "0000";
+	String upw = "1234";
 	
 	String pID = null;
 	String orderID = null;
