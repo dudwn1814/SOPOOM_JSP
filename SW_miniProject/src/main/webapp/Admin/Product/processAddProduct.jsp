@@ -8,7 +8,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 
-	String realFolder = "C:\\upload";
+	String realFolder = request.getSession().getServletContext().getRealPath("/upload");;
 	
 	int maxSize = 5 * 1024 * 1024; //최대 업로드될 파일의 크기5Mb
 	MultipartRequest multi = new MultipartRequest(request, realFolder, maxSize,  "utf-8",
