@@ -1,5 +1,4 @@
 @charset "UTF-8";
-body {padding: 50px;}
 
 .product_view { margin:50px auto; position: relative; padding: 0 0 0 400px; width: 960px; box-sizing: border-box;}
 .product_view .img {position: absolute; left:0; top:0;}
