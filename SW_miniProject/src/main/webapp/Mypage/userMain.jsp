@@ -64,7 +64,7 @@ String email = "";
 	
 	//String lastLogindate = (String)session.getAttribute("lastlogin"); //세션 값 형변환
 	
-	String username = "select username from user where userid='"+userid+"'";
+	String query = "select username from user where userid='"+userid+"'";
 
 	Connection con = null;
 	Statement stmt = null;
@@ -75,7 +75,7 @@ String email = "";
 		Class.forName("org.mariadb.jdbc.Driver");
 		con = DriverManager.getConnection(url, uid, pwd);
 		stmt = con.createStatement();
-		rs = stmt.executeQuery(username); // 쿼리문 실행 코드
+		rs = stmt.executeQuery(query); // 쿼리문 실행 코드
 
 		while (rs.next()) { //행이 있는지 없는지 bool값 반환
 			username = rs.getString("username");

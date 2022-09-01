@@ -4,8 +4,18 @@ String session_id = (String) session.getAttribute("userID");
 String innerMenu, innerUser, innerCategory;
 
 if (session_id == null){
-	innerMenu = "<li class='menuItem' align='center'><a href=/Landing/index.jsp>[HOME]</a></li>";
-	innerCategory = "<li class='menuItem' align='center'><a href=/Landing/index.jsp>[FRAME]</a></li>";
+	innerMenu = "<li class='menuItem' align='center'><a href=/Landing/index.jsp>[HOME]</a></li>"
+	+"<li class='menuItem dropdown-btn'><a href='#'>[Category]</a>"
+    +"<div class='dropdown-container'>"
+        +"<ul class='dropdown-class' style='margin-left: 0px;'>"
+            +"<li class='menuItem dropdown'><a class='dropdown-text' href='#'>[FRAME]</a></li>"
+            +"<li class='menuItem dropdown'><a class='dropdown-text' href='#'>[OBJECT]</a></li>"
+            +"<li class='menuItem dropdown'><a class='dropdown-text' href='#'>[HOMEWARE]</a></li>"
+            +"<li class='menuItem dropdown'><a class='dropdown-text' href='#'>[TEXTILE]</a></li>"
+        +"</ul>"
+    +"</div>"
+    +"</li>";
+
 	innerUser = "<li class='userItem' align='center'><a href=/Login/login.jsp><span class='material-symbols-outlined'>login</span></a></li>"
           + "<li class='userItem' align='center'><a href=/Login/join.jsp><span class='material-symbols-outlined'>person_add_alt</span></a></li>"
             + "<li class='userItem' align='center'><a href=/Login/login.jsp><span class='material-symbols-outlined'>shopping_cart</span></a></li>";
@@ -119,6 +129,65 @@ else {
   'GRAD' 0,
   'opsz' 48
 }
+
+.dropdown:not(ul) {
+        float : unset;
+		margin: 10px;
+        list-style : none;
+        margin-block-start: 0em;
+        margin-block-end: 0em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        padding-inline-start: 0px;
+     }
+
+    .dropdown:not(header) {
+        padding: 0%;
+		text-align: left;
+		padding-bottom: 3px;
+     }
+
+    .dropdown-container:not(ul) {
+
+        z-index: 1000;
+        text-align: center !important;
+		border: 2px solid #919191 !important ;
+		width: auto;
+    	height: auto;
+    	z-index: 2000;
+    	margin-left: 0px;
+    	/* visibility: hidden; */
+    	/* opacity: 0; */
+    	-webkit-transition: opacity 0.4s,visibility 0.4s;
+    	-moz-transition: opacity 0.4s,visibility 0.4s;
+    	-ms-transition: opacity 0.4s,visibility 0.4s;
+    	-o-transition: opacity 0.4s,visibility 0.4s;
+    	transition: opacity 0.4s,visibility 0.4s;
+;
+    }
+
+     .dropdown-text:not(a){
+        margin-left : 0px;
+		text-align: right;
+     }
+
+	 .dropdown-text:not(.menuItem){
+        margin-left : 0px;
+     }
+
+
+	 .dropdown-btn:not(.menuItem){
+        margin-left : 0px;
+     }
+	.dropdown-class{
+	position: relative;
+    width: auto;
+    height: auto;
+    border: 1px solid rgb(242,242,242);
+    background-color: rgb(255,255,255);
+    z-index: 1000;
+    padding: 0.9em;
+	}
 
 </style>
 <header>
