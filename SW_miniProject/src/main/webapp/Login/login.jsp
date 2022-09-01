@@ -112,6 +112,15 @@ input:focus{
  	background-color: #313131 !important;
 }
 
+.findPW{
+    font-size: 13px;
+    line-height: 17px;
+    text-align : right;
+    margin: 20px 6px 30px;
+    color: #666666;
+    cursor:pointer;
+}
+	
 
 </style>
 
@@ -120,7 +129,7 @@ input:focus{
 <title>JSP미니 프로젝트</title>
 </head>
 <body>
-	<%@include file="top.jsp"%>
+	<%@include file="/top.jsp"%>
 	<% //로그인 된 상태에서 로그인 창으로 넘어가기 방지
 	if (session_id != null)	response.sendRedirect("index.jsp");
 	%>
@@ -135,6 +144,7 @@ input:focus{
 			<label class= "title">비밀번호</label>
 			<input type="password" class="field" id="userPW" name="userPW">
 		</div>
+		<div class="findPW" onClick="location.href='findPW.jsp'"> 비밀번호 찾기</div>
 		<div class="btn_box">
 		<div class="btn_row">
 			<INPUT TYPE="SUBMIT" class="button" id="btn_login" NAME="Submit" VALUE="로그인하기">
@@ -145,6 +155,6 @@ input:focus{
 		</div>
 		</div>
 		</form>
-	<%@include file="footer.jsp"%>
+	<%@include file="/footer.jsp"%>
 </body>
 </html>

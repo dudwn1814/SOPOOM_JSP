@@ -4,12 +4,11 @@
 <%@ page import="com.oreilly.servlet.multipart.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="java.sql.*"%>
-<%@ include file="../../DB/dbconn.jsp" %>
 
 <%
 	request.setCharacterEncoding("UTF-8");
 
-	String realFolder = "C:\\upload";
+	String realFolder = request.getSession().getServletContext().getRealPath("./upload");
 	
 	int maxSize = 5 * 1024 * 1024; //최대 업로드될 파일의 크기5Mb
 	MultipartRequest multi = new MultipartRequest(request, realFolder, maxSize,  "utf-8",
@@ -57,10 +56,26 @@
 	p_price = p_price.replace(",", "");
 	
 	System.out.println("check2 ===" + storedFileName);
-
+	
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	
+	try {
+		String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
+		String uid = "root";
+		String pwd = "1234";
+		
+		Class.forName("org.mariadb.jdbc.Driver");
+		con = DriverManager.getConnection(uri, uid, pwd);
+	} catch (SQLException ex) {
+		out.println("데이터베이스 연결이 실패되었습니다.<br>");
+		out.println("SQLException: " + ex.getMessage());
+	}
 
 	String sql = "insert into product values(?,?,?,?,?,?,?,?,?)";
-	pstmt = conn.prepareStatement(sql);
+	pstmt = con.prepareStatement(sql);
 	pstmt.setString(1, p_id);
 	pstmt.setString(2, p_name);
 	pstmt.setInt(3, Integer.parseInt(p_price));
@@ -75,8 +90,8 @@
 	
 	if (pstmt != null)
  		pstmt.close();
- 	if (conn != null)
-		conn.close();
+ 	if (con != null)
+		con.close();
  	
  	File file = new File(realFolder + "\\" + changedFileName);
 	if(file.exists()) file.renameTo(new File(realFolder + "\\" + storedFileName));

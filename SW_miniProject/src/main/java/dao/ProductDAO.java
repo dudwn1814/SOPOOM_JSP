@@ -50,12 +50,12 @@ public class ProductDAO {
 				product.setp_name(rs.getString("p_name"));
 				product.setp_price(rs.getInt("p_unitPrice"));
 				product.setp_amount(rs.getInt("p_unitsInStock"));
+				product.setP_fileName(rs.getString("p_fileName"));
 				//product.setExplanatino(rs.getString("Explanation"));
 			}
 
 			pstmt.close();
 			con.close();
-
 
 		} catch (Exception e) {
 			System.out.println("product 테이블 insert 오류 => " + e.getMessage());

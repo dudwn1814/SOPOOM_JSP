@@ -119,3 +119,23 @@ float:left;
   background-color: #313131 !important;
   border-color: #313131 !important;
 }
+
+#btn_address{
+   float: right;
+   padding : 5px;
+   margin: auto;
+   cursor: pointer;
+   width: 30%;
+   max-width: 100px;
+   height: 30px ! important;
+   font-size: 12px !important;
+   font-weight: 700;
+   padding: 5px;
+   margin-bottom: 10px;
+}
+
+#postcodeTitle{
+	width:200px;
+	vertical-align:sub;
+	display: inline;;
+}

@@ -110,7 +110,7 @@
 		 	$("#extraAddress").attr("disabled", false);
 
 			$("#registerForm").attr("action","join_verify.jsp").submit();
-			
+
 		});
 	});
 </script>
@@ -304,7 +304,7 @@ input:focus{
 <title>JSP미니 프로젝트</title>
 </head>
 <body>
-	<%@include file="top.jsp"%>
+	<%@include file="/top.jsp"%>
 	<form name="registerForm" id="registerForm" method="post">
 	<div id="innerForm">
 	<h3>회원가입</h3>
@@ -355,6 +355,6 @@ input:focus{
 	</div>
 	</div>
 	</form>
-	<%@include file="footer.jsp"%>
+	<%@include file="/footer.jsp"%>
 </body>
 </html>

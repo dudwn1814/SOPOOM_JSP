@@ -65,7 +65,7 @@ function search(){
 
 	<table class="InfoTable" id="InfoTable">
 		<tr>
-			<th>배송 아이디</th>
+			<th>배송번호</th>
 			<th>주문번호</th>
 			<th>주문자 ID</th>
 			<th>주문자 이름</th>
@@ -121,7 +121,7 @@ try {
 				<option value="배송전">배송전</option>
 				<option value="배송중">배송중</option>
 				<option value="배송완료">배송완료</option>
-				<option value="배송취소">배송취소</option>
+				<option value="주문취소">주문취소</option>
 			</select>
 		</form>
 	</td>
@@ -191,9 +191,10 @@ try {
     	</select>
     	
    		<input type="text" id="keyword" name="keyword" />
- 		<button type="button" onclick="search()">검색</button>
-<br>
+ 		<button type="button" class="searchBtn" onclick="search()">검색</button>
+<br><div class="pageList">
 <%=pageListView %>
+</div>
 
 </div>
 

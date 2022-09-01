@@ -3,6 +3,12 @@
 <!DOCTYPE html>
 <html>
 <style>
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css");
+
+*{
+	font-family: Pretendard;
+}
+
 .msg{
 	text-align:center;
 	font-size:14px;

@@ -5,8 +5,7 @@
 <head>
 <meta charset="utf-8">
 <title>게시물 등록</title>
-<link href="https://fonts.googleapis.com/css?family=Inter&display=swap"
-	rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="product.css">
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
@@ -153,8 +152,13 @@
 			</div>
 
 			<div class="row">
-				<label class="title">분류</label> <input type="text"
-					class="p_category" id="p_category" name="category">
+				<label class="title">분류</label> 
+			<select class="p_category" id="p_category" name="category">
+				<option value="FRAME">FRAME</option>
+				<option value="HOMEWARE">HOMEWARE</option>
+				<option value="OBJECT">OBJECT</option>
+				<option value="TEXTILE">TEXTILE</option>
+			</select>
 			</div>
 
 			<div class="row">

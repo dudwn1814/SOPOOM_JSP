@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+.body >.content {
+	width: 1200px;
+	min-width : 1200px;
+	height: auto;
+	margin:auto;
+	overflow: visible;
+}
+
+.content > .section {
+	float: left;
+	width : 300px;
+	margin: 15px;
+	padding: 20px;
+}
+
+.section img {
+	width: 280px;
+	height: 280px;
+	padding:10px;
+}
+
+.section a {
+	text-decoration-line: none;
+	 color: inherit;
+}
+
+#productName {
+	font-size:24px;
+}
+
+/* #productDescription {
+	margin:20 20 20 20px;
+} */
+
+#productPrice {
+	font-size:24px;
+}
+
+/* #content > .section {
+	width: 245px; height: 400px; float: left;
+	margin-right: 5px; 
+	text-align: center;
+	line-height: 400px;
+	border: 1px solid #CCCCCC;
+	box-sizing: border-box;
+	color: #282828;
+	font-size: 1.1em;
+} */

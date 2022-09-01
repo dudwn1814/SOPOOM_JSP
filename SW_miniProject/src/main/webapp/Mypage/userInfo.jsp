@@ -68,7 +68,7 @@ $(document).ready(function(){
 			return false;
 		}
 		else{	$("#msg_pwchk").css('display', 'none');}
-		$("#pwchange").attr("action","join_verify.jsp").submit();
+		$("#pwchange").attr("action","change_pw.jsp").submit();
 	})
 	
 	
@@ -91,6 +91,12 @@ $(document).ready(function(){
 
 })
 })
+
+function resignCheck(userid) {
+	if(confirm("정말로 탈퇴하시겠습니까?") == true) {
+		location.href = 'resign_membership.jsp?userID='+userid;
+	}
+}
 
 
 </script>
@@ -225,7 +231,8 @@ function execDaumPostcode() {
 						<span class="mainTitle">회원 정보</span>
 					</div>
 					<div class="logout-btn">
-						<span href="./logout.jsp">logout</span>
+						<span onMouseover='this.style.textDecoration="underline"'
+						onmouseout="this.style.textDecoration='none';" onclick="resignCheck('<%=userid%>')">회원탈퇴</span>
 					</div>
 				</div>
 
@@ -266,9 +273,10 @@ function execDaumPostcode() {
 							<!-- 나중에 번호인증하는 api 받아와서 적용하면 더 좋을거같아요. -->
 						</div>
 						<div class="row">
-							<label class="title">우편 번호</label>
-							<input type="text" name="postcode" id="postcode" class="field" readonly="readonly" value="<%=postcode%>">
+							<label class="title" id="postcodeTitle">우편 번호</label>
 							<input type="button" id="btn_address" onclick="execDaumPostcode()" value="우편번호 찾기">
+							<input type="text" name="postcode" id="postcode" class="field" readonly="readonly" value="<%=postcode%>">
+							
 						</div>
 						<div class="row">
 							<label class="title">주소</label>

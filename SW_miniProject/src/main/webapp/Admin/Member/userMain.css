@@ -38,6 +38,11 @@ h3 {
 	display: block;
 	margin-bottom: 10px !important;
 }
+#postcodeTitle{
+	width:200px;
+	vertical-align:sub;
+	display: inline;;
+}
 
 #pw-check {
 	margin-bottom: 5px;
@@ -168,4 +173,19 @@ h3 {
 	display: inline;
 	margin-top: 20px;
 	margin-bottom: 50px;
+}
+
+#btn_address{
+	display: inline-block; 
+	float: right;
+	padding : 5px;
+	margin: auto;
+	cursor: pointer;
+	width: 30%;
+	max-width: 100px;
+	height: 30px ! important;
+	font-size: 12px !important;
+	font-weight: 700;
+	padding: 5px;
+	margin-bottom: 10px;
 }

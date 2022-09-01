@@ -4,33 +4,39 @@ String session_id = (String) session.getAttribute("userID");
 String innerMenu, innerUser;
 
 if (session_id == null){
-	innerMenu = "<li class='menuItem' align='center'><a href=/index.jsp>[HOME]</a></li>";
-	innerUser = "<li class='userItem' align='center'><a href=/login.jsp><span class='material-symbols-outlined'>login</span></a></li>"
-          + "<li class='userItem' align='center'><a href=/join.jsp><span class='material-symbols-outlined'>person_add_alt</span></a></li>"
-            + "<li class='userItem' align='center'><a href=/login.jsp><span class='material-symbols-outlined'>shopping_cart</span></a></li>";
+	innerMenu = "<li class='menuItem' align='center'><a href=/Landing/index.jsp>[HOME]</a></li>";
+	innerUser = "<li class='userItem' align='center'><a href=/Login/login.jsp><span class='material-symbols-outlined'>login</span></a></li>"
+          + "<li class='userItem' align='center'><a href=/Login/join.jsp><span class='material-symbols-outlined'>person_add_alt</span></a></li>"
+            + "<li class='userItem' align='center'><a href=/Login/login.jsp><span class='material-symbols-outlined'>shopping_cart</span></a></li>";
 
 }
 else if(session_id.equals("admin")){
-	innerMenu = "<li class='menuItem' align='center'><a href=/index.jsp>[HOME]</a></li>"
+	innerMenu = "<li class='menuItem' align='center'><a href=/Landing/index.jsp>[HOME]</a></li>"
 	           + "<li class='menuItem' align='center'><a href=/Admin/Product/productReg.jsp>상품등록</a></li>"
 	           + "<li class='menuItem' align='center'><a href=/Admin/Inventory/inventory.jsp?page=1>재고관리</a></li>"
 	           + "<li class='menuItem' align='center'><a href=/Admin/Member/member.jsp?page=1>회원관리</a></li>"
 	           + "<li class='menuItem' align='center'><a href=/Admin/Shipping/shipping.jsp?page=1>배송관리</a></li>";
 	           
-   	innerUser = "<li class='userItem' align='center'><a href=/logout.jsp><span class='material-symbols-outlined'>logout</span></a></li>"
+   	innerUser = "<li class='userItem' align='center'><a href=/Login/logout.jsp><span class='material-symbols-outlined'>logout</span></a></li>"
 	          + "<li class='userItem' align='center'><a href=/Mypage/userMain.jsp><span class='material-symbols-outlined'>person</span></a></li>"
 	          + "<li class='userItem' align='center'><a href=/ShopC/shoppingCart.jsp><span class='material-symbols-outlined'>shopping_cart</span></a></li>";
 
 }
 else {
-	innerMenu = "<li class='menuItem' align='center'><a href=/index.jsp>[HOME]</a></li>";
-   innerUser =  "<li class='userItem' align='center'><a href=/logout.jsp><span class='material-symbols-outlined'>logout</span></a></li>"
+	innerMenu = "<li class='menuItem' align='center'><a href=/Landing/index.jsp>[HOME]</a></li>";
+   innerUser =  "<li class='userItem' align='center'><a href=/Login/logout.jsp><span class='material-symbols-outlined'>logout</span></a></li>"
           + "<li class='userItem' align='center'><a href=/Mypage/userMain.jsp><span class='material-symbols-outlined'>person</span></a></li>"
           + "<li class='userItem' align='center'><a href=/ShopC/shoppingCart.jsp><span class='material-symbols-outlined'>shopping_cart</span></a></li>";
 }
 %>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css");
+
+*{
+	font-family: Pretendard;
+}
+
  header{
  	width : 100%;
     min-width : 700px;
@@ -99,6 +105,7 @@ else {
  .userItem a{
  	font-weight : 600;
  	color : #919191;
+ 	margin : 0px 6px;
  }
  
  .userItem a:hover{
@@ -116,7 +123,7 @@ else {
 </style>
 <header>
 <div class="left">
-<a href="/index.jsp">
+<a href="/Landing/index.jsp">
 <img class="logo" src="/img/logo.png" alt="logo" width="100">
 </a>
 </div>

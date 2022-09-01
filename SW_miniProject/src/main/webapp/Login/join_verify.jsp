@@ -47,7 +47,7 @@
 		<script>
 		alert("회원가입이 완료되었습니다.");
 		<% session.invalidate();%>
-		location.href = "index.jsp";
+		location.href = "/Landing/index.jsp";
 		</script>
 		<%		
 	}catch(Exception e){
