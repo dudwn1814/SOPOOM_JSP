@@ -156,14 +156,6 @@ String email = "";
 		</div>
 	</div>
 
-
-	<form name = userbasic id= userbasic >
-		로그인 아이디 :<%=userid %> <br>
-		회원 이름: <%=username %><br>
-		회원 정보 확인/수정: <input type="password" id="password" name="password" class="password"  placeholder="비밀번호를 입력하세요.">
-		<button id="button" id="password" onclick="pwConfig()">비밀번호 확인</button>
-	</form>
-	<form action=""></form>
 	<%@include file="/footer.jsp"%>
 </body>
 </html>
