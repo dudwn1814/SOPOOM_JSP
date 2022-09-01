@@ -3,12 +3,12 @@ USE inventory;
 
 -- 재고 테이블  
 CREATE TABLE IF NOT EXISTS product(
-	p_id VARCHAR(10) NOT NULL,
-	p_name VARCHAR(20),
+	p_id VARCHAR(50) NOT NULL,
+	p_name VARCHAR(50),
 	p_unitPrice  INTEGER,
 	p_description TEXT,
-   	p_category VARCHAR(20),
-	p_manufacturer VARCHAR(20),
+   	p_category VARCHAR(50),
+	p_manufacturer VARCHAR(50),
 	p_unitsInStock INTEGER,
 	p_condition VARCHAR(20),
 	p_fileName  VARCHAR(200),
@@ -61,7 +61,7 @@ CREATE TABLE orderedItem (
    pID VARCHAR(10) NOT NULL,
    count INT(100) NOT NULL DEFAULT 1,
    CONSTRAINT orderID_nn FOREIGN KEY (orderID) REFERENCES `order`(orderID) ON UPDATE CASCADE ON DELETE CASCADE,
-   CONSTRAINT pID_nn FOREIGN KEY (pID) REFERENCES product(p_id) ON UPDATE NO ACTION ON DELETE NO ACTION
+   CONSTRAINT pID_nn FOREIGN KEY (pID) REFERENCES product(p_id) ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
 
