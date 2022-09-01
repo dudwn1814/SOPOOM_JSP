@@ -46,8 +46,7 @@ hr {
     font-family: Pretendard;
     font-weight: 600;
     letter-spacing: -0.05em;
-    word-wrap: break-word;
-    word-break: break-word;
+    white-space:nowrap;
 }
 
 #productPrice {
