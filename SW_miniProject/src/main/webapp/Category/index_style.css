@@ -1,15 +1,13 @@
 @charset "UTF-8";
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css");
 
-.mySlides {
-	display:none;
-	height: 657px;
+.mySlides{
+	width:1588px; 
+	display:block;
 }
 
-.w3-content slideContent{
-	width: 1887px !important;
-	height: 657px;
-	margin: auto;
+hr {
+	width: 1588px;
 }
 
 .products {
