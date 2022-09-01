@@ -14,14 +14,14 @@
 
 .products {
 	width: 960px;
-	margin: auto;
+	height: auto;
 }
 
 .section {
 	width: 280px;
-	margin: 0;
-    float: left;
-    margin-bottom:10px;
+	margin: auto;
+	margin-left:40px !important;
+	float: left;
 }
 
 .section img {
