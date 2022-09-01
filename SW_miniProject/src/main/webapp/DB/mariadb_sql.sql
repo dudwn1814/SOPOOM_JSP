@@ -98,4 +98,8 @@ INSERT INTO `user` (`userID`, `password`, `username`, `postcode`, `address`, `de
 INSERT INTO `user` (`userID`, `password`, `username`, `postcode`, `address`, `detailAddress`, `extraAddress`, `telno`, `email`) VALUES ('star', 'star123!', '문별', '04766', '서울 성동구 서울숲길 25', '808호', ' (성수동1가, 현대아파트)', '010-3812-7261', 'star@kccl.go.kr');
 INSERT INTO `user` (`userID`, `password`, `username`, `postcode`, `address`, `detailAddress`, `extraAddress`, `telno`, `email`) VALUES ('zero', 'zero123!', '최영', '21999', '인천 연수구 갯벌로 169', '401동', ' (송도동)', '010-9718-1254', 'zero0@naver.com');
 
-
+-- 8. 제품 카테고리별 Veiw 생성 코드
+CREATE VIEW FRAME AS SELECT * FROM product WHERE p_category = 'FRAME';
+CREATE VIEW HOMEWARE AS SELECT * FROM product WHERE p_category = 'HOMEWARE';
+CREATE VIEW OBJECT AS SELECT * FROM product WHERE p_category = 'OBJECT';
+CREATE VIEW TEXTILE AS SELECT * FROM product WHERE p_category = 'TEXTILE';

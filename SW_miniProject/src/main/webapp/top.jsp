@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 String session_id = (String) session.getAttribute("userID");
-String innerMenu, innerUser;
+String innerMenu, innerUser, innerCategory;
 
 if (session_id == null){
 	innerMenu = "<li class='menuItem' align='center'><a href=/Landing/index.jsp>[HOME]</a></li>";
+	innerCategory = "<li class='menuItem' align='center'><a href=/Landing/index.jsp>[FRAME]</a></li>";
 	innerUser = "<li class='userItem' align='center'><a href=/Login/login.jsp><span class='material-symbols-outlined'>login</span></a></li>"
           + "<li class='userItem' align='center'><a href=/Login/join.jsp><span class='material-symbols-outlined'>person_add_alt</span></a></li>"
             + "<li class='userItem' align='center'><a href=/Login/login.jsp><span class='material-symbols-outlined'>shopping_cart</span></a></li>";
@@ -16,7 +17,7 @@ else if(session_id.equals("admin")){
 	           + "<li class='menuItem' align='center'><a href=/Admin/Inventory/inventory.jsp?page=1>재고관리</a></li>"
 	           + "<li class='menuItem' align='center'><a href=/Admin/Member/member.jsp?page=1>회원관리</a></li>"
 	           + "<li class='menuItem' align='center'><a href=/Admin/Shipping/shipping.jsp?page=1>배송관리</a></li>";
-	           
+
    	innerUser = "<li class='userItem' align='center'><a href=/Login/logout.jsp><span class='material-symbols-outlined'>logout</span></a></li>"
 	          + "<li class='userItem' align='center'><a href=/Mypage/userMain.jsp><span class='material-symbols-outlined'>person</span></a></li>"
 	          + "<li class='userItem' align='center'><a href=/ShopC/shoppingCart.jsp><span class='material-symbols-outlined'>shopping_cart</span></a></li>";
@@ -50,68 +51,67 @@ else {
  li a:visited { text-decoration: none; }
  li a:focus { text-decoration: none; }
 
- 
+
 .center, .right, .left{
   	display : flex;
  }
- 
+
  ul{
  	list-style : none;
- 	display : inline-block;
  	margin-left : 25px;
  }
- 
+
  ul li{
  	float : left;
  }
- 
+
  .menu, .user{
  	vertical-align : middle;
  	align-items : center;
- 	
+
  }
- 
+
  .user{
  	text-align : right;
  }
- 
+
  .left, .center, .right{
  	flex : 1;
  }
- 
+
  .right{
  	text-align : right;
  	margin-right : auto;
  	min-width : fit-content;
  }
- 
+
  .menuItem, .userItem{
  	margin-left : 10px;
  	cursor:pointer
  }
- 
+
  .menuItem a{
  	margin-left : 20px;
  	font-size : 16px;
  	font-weight : 600;
  	color : #919191;
  }
- 
+
  .menuItem a:hover{
  	color : #313131;
  }
- 
- 
+
+
  .userItem a{
  	font-weight : 600;
  	color : #919191;
  	margin : 0px 6px;
  }
- 
+
  .userItem a:hover{
  	color : #313131;
  }
- 
+
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 1,
@@ -119,7 +119,7 @@ else {
   'GRAD' 0,
   'opsz' 48
 }
- 
+
 </style>
 <header>
 <div class="left">
