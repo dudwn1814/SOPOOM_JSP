@@ -5,7 +5,7 @@ String innerMenu, innerUser, innerCategory;
 
 if (session_id == null){
 	innerMenu = "<li class='menuItem' align='center'><a href=/Landing/index.jsp>[HOME]</a></li>"
-	+"<li class='menuItem dropdown-btn'><a href='#'>[Category]</a>"
+	+"<li class='menuItem dropdown-btn' style = 'text-align: center' margin-left='0'><a style ='margin-left: 0' href='#'>[Category]</a>"
     +"<div class='dropdown-container'>"
         +"<ul class='dropdown-class' style='margin-left: 0px;'>"
             +"<li class='menuItem dropdown'><a class='dropdown-text' href='#'>[FRAME]</a></li>"
@@ -154,16 +154,15 @@ else {
 		border: 2px solid #919191 !important ;
 		width: auto;
     	height: auto;
-    	z-index: 2000;
+    	z-index: 1000;
     	margin-left: 0px;
-    	/* visibility: hidden; */
-    	/* opacity: 0; */
+    	display: none;
     	-webkit-transition: opacity 0.4s,visibility 0.4s;
     	-moz-transition: opacity 0.4s,visibility 0.4s;
     	-ms-transition: opacity 0.4s,visibility 0.4s;
     	-o-transition: opacity 0.4s,visibility 0.4s;
     	transition: opacity 0.4s,visibility 0.4s;
-;
+		position: fixed;
     }
 
      .dropdown-text:not(a){
@@ -179,6 +178,7 @@ else {
 	 .dropdown-btn:not(.menuItem){
         margin-left : 0px;
      }
+
 	.dropdown-class{
 	position: relative;
     width: auto;
