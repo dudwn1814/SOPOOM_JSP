@@ -5,7 +5,7 @@ String innerMenu, innerUser, innerCategory;
 
 if (session_id == null){
 	innerMenu = "<li class='menuItem' align='center'><a href=/Landing/index.jsp>[HOME]</a></li>"
-	+"<li class='menuItem dropdown-btn' style = 'text-align: center' margin-left='0'><a style ='margin-left: 0' href='#'>[Category]</a>"
+	+"<li class='menuItem dropdown-btn' style = 'text-align: center' margin-left='0'><a style ='margin-left: 20px' href='#'>[Category]</a>"
     +"<div class='dropdown-container'>"
         +"<ul class='dropdown-class' style='margin-left: 0px;'>"
             +"<li class='menuItem dropdown'><a class='dropdown-text' href='#'>[FRAME]</a></li>"
@@ -151,18 +151,20 @@ else {
 
         z-index: 1000;
         text-align: center !important;
-		border: 2px solid #919191 !important ;
+		border: 1px solid #919191 !important ;
 		width: auto;
     	height: auto;
     	z-index: 1000;
     	margin-left: 0px;
-    	display: none;
+    	/* display: none; */
     	-webkit-transition: opacity 0.4s,visibility 0.4s;
     	-moz-transition: opacity 0.4s,visibility 0.4s;
     	-ms-transition: opacity 0.4s,visibility 0.4s;
     	-o-transition: opacity 0.4s,visibility 0.4s;
     	transition: opacity 0.4s,visibility 0.4s;
 		position: fixed;
+		margin-top: 10px;
+
     }
 
      .dropdown-text:not(a){
@@ -183,7 +185,6 @@ else {
 	position: relative;
     width: auto;
     height: auto;
-    border: 1px solid rgb(242,242,242);
     background-color: rgb(255,255,255);
     z-index: 1000;
     padding: 0.9em;
