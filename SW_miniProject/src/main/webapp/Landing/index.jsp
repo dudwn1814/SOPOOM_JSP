@@ -47,7 +47,7 @@
 			  while (rs.next()) {
 			%>
 			<div class="section">
-				<a href="product.jsp?id=<%=rs.getString("p_id")%>"> 
+				<a href="/Category/product.jsp?id=<%=rs.getString("p_id")%>"> 
 					<img src="/upload/<%=rs.getString("p_fileName")%>"><br> 
 					<b><span id="productName"><%=rs.getString("p_name")%></span></b><br><br> 
 					<b><span id="productPrice"><%=df.format(rs.getInt("p_unitPrice"))%>원</span></b>
