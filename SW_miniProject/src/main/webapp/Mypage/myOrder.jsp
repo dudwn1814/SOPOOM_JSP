@@ -75,7 +75,7 @@ function orderCancle(shipID) {
 							<li class="date"><span class="blind">상품구매날짜</span>
 								<%=rs.getString("orderDate")%></li>
 						</ul>
-					</a> <span class="state _statusName "><%=rs.getString("status")%></span>
+					</a> <span class="state _statusName ">&nbsp;<%=rs.getString("status")%></span>
 					<p class="guide notify">
 						<b>결제 및 상세 내역 확인 및 취소요청은 <a href="/index.jsp">SOPOOM</a>에서 확인하실 수 있습니다.
 						</b><br>(거래완료는 포인트 적립 완료로 확인 가능 / 세금납부는 취소요청 불가함)

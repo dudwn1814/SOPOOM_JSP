@@ -6,6 +6,10 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.List"%>
+
+<%@page import="dao.CartDAO"%>
+<%@page import="dto.CartDTO"%>
+
 <%
 	String userid = (String)session.getAttribute("userID");
 
@@ -23,9 +27,6 @@
 
 	String[] pID = request.getParameterValues("p_id");
 	String[] count = request.getParameterValues("count");
-
-
-
 
 	//getParameterValues NULL보정 부분
 	String dummy1 = "";
@@ -122,6 +123,10 @@
 		pstmt2.setString(7, extraAddress);
 		pstmt2.setString(8, telno);
 		pstmt2.execute();
+		
+		//카트 초기화 부분
+		List<CartDTO> cart=CartDAO.getDAO().selectAllCartList(userid);
+		CartDAO.getDAO().clearCart(userid);
 
 		session.setAttribute("orderCode", orderCode);
 		response.sendRedirect("purchase_fin.jsp");
