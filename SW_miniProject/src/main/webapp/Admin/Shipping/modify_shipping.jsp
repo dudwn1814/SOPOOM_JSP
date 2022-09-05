@@ -14,6 +14,8 @@
 
 	String ship_id = request.getParameter("ship_id");
 	String status = request.getParameter("statusSelect");
+	
+	System.out.println("statusSelect --- " + status);
 
 	Connection con = null;
 	
@@ -75,7 +77,7 @@
 	  
 		
 	  //4. 상태가 결제완료이면 product table 재고 변경
-		if(status.equals("결제완료")){
+		if(status != null && status.equals("결제완료")){
 		  int changedStock =  p_unitsInStock - p_count;
 		  String query_amount = "update product set p_unitsInStock = '" + changedStock + "' where p_id = '" + pID + "'";
 		  
