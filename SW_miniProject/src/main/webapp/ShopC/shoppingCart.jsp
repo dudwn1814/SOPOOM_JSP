@@ -115,12 +115,12 @@ for (CartDTO cart : cartList) {
                         <div class="count-box">
                             <div class="btn"> <button type="button" name="countBtn" class="upBtn">
                             <img src="./img/+btn.png" width="30px"></button> </div>
-                            <div class="btn"><input class="countInput" type="text" class="countInput" id="quantity" <%=i%> name="countInput" value="<%=qtyList.get(i)%>" readonly="readonly"></div>
+                            <div class="btn"><input class="countInput" type="text" class="countInput" id="quantity" <%=i%> name="countInput" value="<%=qtyList.get(i)%>" 
+                            	readonly="readonly" style="margin-top: 7px"></div>
                             <div class="btn"><button type="button" name="countBtn" class="downBtn">
                             <img src="./img/-btn.png" width="30px"> </button></div>
                         </div>
                     </td>
-                    <!-- test중 -->
                     <td class="tdId P-one-price">
                         <input id="vis_price<%=i %>" class="price" name="vis_price" value="" readonly="readonly"> 
                         <input type="hidden" id="price<%=i%>" class="price" name="price" value="<%=productList.get(i).getp_price()%>" readonly="readonly">

@@ -132,7 +132,7 @@ button{
 	background-color: white;
 }
 
-.check-remove-btn, .all-remove-btn,.submit-btn{
+.check-remove-btn, .all-remove-btn{
     color: #FFFFFF;
     background-color: #b1b1b1;
     border-style: none;
@@ -142,7 +142,11 @@ button{
 	font-size : 12px;
 }
 
-.submit-btn .shipping-conf-btn{
+.submit-btn {
+	color: #FFFFFF;
+    border-style: none;
+    border-radius : 50px;
+    transition-duration: 0.4s;
     background-color: #313131;
     padding: 1% 2%;
     font-size : 18px;
