@@ -15,7 +15,7 @@ body {
 	margin: 50px auto;
 	position: relative;
 	padding: 0 0 0 400px;
-	width: 960px;
+	width: 1200px;
 	box-sizing: border-box;
 }
 
@@ -38,22 +38,24 @@ body {
 	line-height: 25px;
 }
 
+.product_view table {
+	padding: 20px;
+	width: 800px;
+}
 .product_view table th, .product_view table td {
 	padding: 14px 0;
 	text-align: left;
+	/* border: 1px solid black; */
 }
 
 .product_view table th {
 	font-weight: bold;
+	width: 200px;
 }
-
-#description {
- 	white-space:pre;
- }
  
 .product_view table td.price {
 	font-size: 14px;
-	color: blue;
+	color: rgb(0,0,0);
 }
 
 .product_view table td.price b {
@@ -77,7 +79,8 @@ body {
 }
 
 .product_view .btns>a.btn_order {
-	background: #666;
+	color: #FFFFFF !important;
+    background-color: #313131 !important;
 }
 
 .product_view .btns>a.btn_bucket {

@@ -1,7 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.sql.*"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
 
 <html>
 
@@ -10,16 +10,9 @@
 
 <title>상품 상세 정보</title>
 
-<link rel="stylesheet" href="/css/product_style.css">
-
-
+<link rel="stylesheet" href="product_style.css">
 
 <script type="text/javascript">
-
-   function purchaseNow() {
-         document.addForm.submit();
-   }
-   
    function addToCart() {
       if (confirm("상품을 장바구니에 추가하시겠습니까?")) {
          document.addForm.submit();
@@ -28,7 +21,7 @@
       }
    }
    
-   function puarchaseNow2{
+   function purchaseNow{
 	   document.addForm.submit();
    }
 </script>
@@ -36,83 +29,99 @@
 </head>
 
 <body>
-   <%
-   request.setCharacterEncoding("utf-8");
-   DecimalFormat df = new DecimalFormat("###,###");
-   String id = (String) request.getParameter("id");
-   //게시물 내용 보기
-   String query = "select * from product where p_id = '" + id + "'";
+
+
+	<%
+   request.setCharacterEncoding("utf-8"); // 한글로
+   DecimalFormat df = new DecimalFormat("###,###"); // 가격 ###,###원 형식으로
+   String id = (String) request.getParameter("id"); // index.jsp에서 product id값 가져오기
+	
+	// product id로 DB에서 정보 가져오는 쿼리문
+   String query = "select * from product where p_id = '" + id + "'"; 
    
-   // System.out.println("[상품 보기 ] : " + query);
-   Connection con = null;
-   Statement stmt = null;
-   ResultSet rs = null;
-   String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
-   String uid = "root";
-   String pwd = "1234";
-   
-    String p_name = "";
-   int p_unitPrice = 0;
+   // 변수 초기화
+   String p_name = "";
    String p_description = "";
    String p_category = "";
    String p_manufacturer = "";
    String p_fileName = "";
-   // System.out.println(p_unitPrice);
+   int p_unitPrice = 0;
+   
+   String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
+   String uid = "root";
+   String pwd = "1234";
+   
+   Connection con = null;
+   Statement stmt = null;
+   ResultSet rs = null;
    %>
 
-   <jsp:include page="/top.jsp" />
-   <%
+	<jsp:include page="/top.jsp" />
+	<% 
+   		// DB 연결
       try {
-      // DataSource ds = (DataSource) this.getServletContext().getAttribute("dataSource");
-      // con = ds.getConnection();
       Class.forName("org.mariadb.jdbc.Driver");
       con = DriverManager.getConnection(url, uid, pwd);
       stmt = con.createStatement();
       rs = stmt.executeQuery(query);
+      
+      String description = "";
+      
       while(rs.next()) {
+    	  description = rs.getString("p_description");
+    	  description = description.replace("\r\n", "<br>");
+    	  
    %>
-
-   <div class="content" align="center">
-      <div class="product_view" align="center">
-         <h2><%=rs.getString("p_name")%></h2>
-         <table>
-            <colgroup>
-               <col style="width: 180px;">
-               <col>
-            </colgroup>
-            <tbody>
-               <tr>
-                  <th>상품 코드</th>
-                  <td><%=rs.getString("p_id")%></td>
-               </tr>
-               <tr>
-                  <th>제조사/공급사</th>
-                  <td><%=rs.getString("p_manufacturer")%></td>
-               </tr>
-               <tr>
-                  <th>설명</th>
-                  <td><%=rs.getString("p_description")%></td>
-               </tr>
-               <tr>
-                  <th>판매가</th>
-                  <td class="price"><b><%=df.format(rs.getInt("p_unitPrice"))%></b>원</td>
-               </tr>
-            </tbody>
-            </table>
-         <div class="img">
-            <img src="/upload/<%=rs.getString("p_fileName")%>" alt="" />
-         </div>
-         <div>
-            <form name="addForm" id="addForm" class="btns"  method="post" action="/ShopC/addCart.jsp?id=<%=id%>" >
-               <a href="/Purchase/purchase_now.jsp?id=<%=id%>" class="btn_order" onclick="purchaseNow2()">상품주문</a>
-               <INPUT type="hidden" ID="productID" NAME="Submit" VALUE='<%=rs.getString("p_id")%>'>
-               <a href="/ShopC/addCart.jsp?id=<%=id%>" class="btn_bucket"onclick="addToCart()">장바구니</a>
-               <a href="/index.jsp">상품 목록</a>
-            </form>
-         </div>
-      </div>
-   </div>
-   <%
+	<!-- 상품 보여주기 -->
+	<div class="content" align="center">
+		<div class="product_view" align="center">
+			<h2><%=rs.getString("p_name")%></h2>
+			<table>
+				<colgroup>
+					<col style="width: 180px;">
+					<col>
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>상품 코드</th>
+						<td><%=rs.getString("p_id")%></td>
+					</tr>
+					<tr>
+						<th>제조사/공급사</th>
+						<td><%=rs.getString("p_manufacturer")%></td>
+					</tr>
+					<tr>
+						<th>설명</th>					 	
+						<td><pre><%=description %></pre></td>
+					</tr>
+					<tr>
+						<th>배송비</th>					 	
+						<td>2,000원<br>제주, 도서 산간 지역 3,000원</td>
+					</tr>
+					<tr>
+						<th>판매가</th>
+						<td class="price"><b><%=df.format(rs.getInt("p_unitPrice"))%></b>원</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="img">
+				<img src="/upload/<%=rs.getString("p_fileName")%>" alt="" />
+			</div>
+			<div>
+			<!-- 상품주문 / 장바구니 페이지로 product id 옮기기 -->
+				<form name="addForm" id="addForm" class="btns" method="post"
+					action="/ShopC/addCart.jsp?id=<%=id%>">
+					<a href="/Purchase/purchase_now.jsp?id=<%=id%>" class="btn_order"
+						onclick="purchaseNow()">상품주문</a> <INPUT type="hidden"
+						ID="productID" NAME="Submit" VALUE='<%=rs.getString("p_id")%>'>
+					<a href="/ShopC/addCart.jsp?id=<%=id%>" class="btn_bucket"
+						onclick="addToCart()">장바구니</a>
+				</form>
+			</div>
+		</div>
+	</div>
+	<%
+	// 쿼리문, DB 연결 종료
       }
       if (stmt != null) {
       stmt.close();
@@ -127,6 +136,6 @@
       e.printStackTrace();
       }
       %>
-   <jsp:include page="/footer.jsp" />
+	<jsp:include page="/footer.jsp" />
 </body>
 </html>

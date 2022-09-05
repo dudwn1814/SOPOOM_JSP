@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 
 <head>
-<link rel="stylesheet" href="/css/index_style.css">
+<link rel="stylesheet" href="index_style.css">
 <title>SOPOOM</title>
 </head>
 
