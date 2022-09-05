@@ -152,8 +152,13 @@
 			</div>
 
 			<div class="row">
-				<label class="title">분류</label> <input type="text"
-					class="p_category" id="p_category" name="category">
+				<label class="title">분류</label> 
+			<select class="p_category" id="p_category" name="category">
+				<option value="FRAME">FRAME</option>
+				<option value="HOMEWARE">HOMEWARE</option>
+				<option value="OBJECT">OBJECT</option>
+				<option value="TEXTILE">TEXTILE</option>
+			</select>
 			</div>
 
 			<div class="row">

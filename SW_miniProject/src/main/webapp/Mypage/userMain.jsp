@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="java.sql.*"%>
 
 
@@ -9,6 +10,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>유저 정보 - 메인 페이지</title>
+
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css" />
 <link rel="stylesheet" href="userMain.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -55,35 +57,36 @@ String email = "";
 	%>
 
 	<%@include file="/top.jsp"%>
-	<%
+	<% 
 	String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
 	String uid = "root";
 	String pwd = "1234";
-
+	
 	//String lastLogindate = (String)session.getAttribute("lastlogin"); //세션 값 형변환
-
-	String sql = "select * from user where userid='" + userid + "'";
+	
+	String query = "select * from user where userid ='" + userid + "'";
 
 	Connection con = null;
 	Statement stmt = null;
 	ResultSet rs = null;
-
+	
 	try {
 
 		Class.forName("org.mariadb.jdbc.Driver");
 		con = DriverManager.getConnection(url, uid, pwd);
 		stmt = con.createStatement();
-		rs = stmt.executeQuery(sql); // 쿼리문 실행 코드
+		rs = stmt.executeQuery(query); // 쿼리문 실행 코드
 
-		while (rs.next()) { //행이 있는지 없는지 bool값 반환
+		while (rs.next()) {
 			username = rs.getString("username");
 			password = rs.getString("password");
+			telno = rs.getString("telno");
 			postcode = rs.getString("postcode");
 			address = rs.getString("address");
 			detailAddress = rs.getString("detailAddress");
 			extraAddress = rs.getString("extraAddress");
-			telno = rs.getString("telno");
 			email = rs.getString("email");
+
 		}
 		stmt.close();
 		con.close();
@@ -92,7 +95,9 @@ String email = "";
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
+	
 	%>
+	
 
 	<!-- 회원 정보 네비게이션 바 -->
 	<div id="display-canvas">
@@ -125,7 +130,7 @@ String email = "";
 					</div>
 
 					<div class="row">
-						<button class="field shipping-conf-btn" onclick="location.href='myOrder.jsp'">배송 정보</button>
+						<button class="field shipping-conf-btn" onclick="location.href='myOrder.jsp?userID=<%=userid%>'">배송 정보</button>
 					</div>
 
 				</div>
@@ -158,8 +163,6 @@ String email = "";
 			</div>
 		</div>
 	</div>
-
-
 
 	<%@include file="/footer.jsp"%>
 </body>

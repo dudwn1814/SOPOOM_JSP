@@ -29,6 +29,8 @@
 </head>
 
 <body>
+
+
 	<%
    request.setCharacterEncoding("utf-8"); // 한글로
    DecimalFormat df = new DecimalFormat("###,###"); // 가격 ###,###원 형식으로
@@ -64,6 +66,7 @@
       rs = stmt.executeQuery(query);
       
       while(rs.next()) {
+    	  
    %>
 	<!-- 상품 보여주기 -->
 	<div class="content" align="center">
@@ -84,8 +87,12 @@
 						<td><%=rs.getString("p_manufacturer")%></td>
 					</tr>
 					<tr>
-						<th>설명</th>
-						<td><%=rs.getString("p_description")%></td>
+						<th>설명</th>					 	
+						<td id="description"><%=rs.getString("p_description").replaceAll("(\r\n|\r|\n|\n\r)","<br>")%></td>
+					</tr>
+					<tr>
+						<th>배송비</th>					 	
+						<td>2,000원<br>제주, 도서 산간 지역 3,000원</td>
 					</tr>
 					<tr>
 						<th>판매가</th>
@@ -104,7 +111,7 @@
 						onclick="purchaseNow()">상품주문</a> <INPUT type="hidden"
 						ID="productID" NAME="Submit" VALUE='<%=rs.getString("p_id")%>'>
 					<a href="/ShopC/addCart.jsp?id=<%=id%>" class="btn_bucket"
-						onclick="addToCart()">장바구니</a> <a href="/index.jsp">상품 목록</a>
+						onclick="addToCart()">장바구니</a>
 				</form>
 			</div>
 		</div>

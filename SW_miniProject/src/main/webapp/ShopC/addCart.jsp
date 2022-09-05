@@ -37,24 +37,25 @@
 
    System.out.println("id = " + id);
 
-   //카트갯수 조회
-   int cartNum = 0;
-   
-   Connection con = null;
-   PreparedStatement pstmt = null;
-   ResultSet rs = null;
-   try{
-      
-      String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
-      String uid = "root";
-      String pwd = "1234";
+
+	//카트갯수 조회
+	int cartNum = 0;
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	try{
+		
+		String url = "jdbc:mariadb://127.0.0.1:3306/inventory";
+		String uid = "root";
+		String pwd = "1234";
 
       Class.forName("org.mariadb.jdbc.Driver");
       con = DriverManager.getConnection(url, uid, pwd);
       
       Statement stmt = con.createStatement();
    
-      String countsql = "SELECT COUNT(*) as cartNum FROM cart WHERE p_id = '" + id + "'";
+      String countsql = "SELECT COUNT(*) as cartNum FROM cart WHERE p_id = '" + id + "' AND userID = '" + userid + "'";
    
       rs = stmt.executeQuery(countsql);
       

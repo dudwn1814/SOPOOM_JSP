@@ -14,58 +14,89 @@
 
 <body>
 	<%@include file="/top.jsp"%>
-	// 메뉴
+
 	<div class="body">
 		<div class="content" align="center">
-			<% 
-      	// DB 연결
-         Connection con = null;   
-         PreparedStatement pstmt = null;
-         ResultSet rs = null;
-         
-         try {
-            String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
-            String uid = "root";
-            String pwd = "1234";
 
-            Class.forName("org.mariadb.jdbc.Driver");
-            con = DriverManager.getConnection(uri, uid, pwd);
-            
-         } catch (SQLException ex) {
-            out.println("데이터베이스 연결이 실패되었습니다.<br>");
-            out.println("SQLException: " + ex.getMessage());
-         }
-         
-         // 가격 ###,###원 형식으로
-         DecimalFormat df = new DecimalFormat("###,###");
-         
-         // 쿼리 작성, 실행
-         String sql = "select * from product";
-         pstmt = con.prepareStatement(sql);
-         rs = pstmt.executeQuery();
-         while (rs.next()) {
-      %>
-			<!-- 상품 띄우기 -->
-			<div class="section">
-				<a href="product.jsp?id=<%=rs.getString("p_id")%>"> <img
-					src="/upload/<%=rs.getString("p_fileName")%>"><br>
-				<br> <b><span id="productName"><%=rs.getString("p_name")%></span></b><br>
-				<br> <span id="productDescription"><%=rs.getString("p_description")%></span><br>
-				<br> <b><span id="productPrice"><%=df.format(rs.getInt("p_unitPrice"))%>원</span></b>
-				</a>
-			</div>
 			<%
-         }
-         // 쿼리 실행 종료, DB 연결 종료
-         if (rs != null)
-         rs.close();
-         if (pstmt != null)
-         pstmt.close();
-         if (con != null)
-         con.close();
-      %>
+			// DB 연결
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+
+			try {
+				String uri = "jdbc:mariadb://127.0.0.1:3306/inventory";
+				String uid = "root";
+				String pwd = "1234";
+
+				Class.forName("org.mariadb.jdbc.Driver");
+				con = DriverManager.getConnection(uri, uid, pwd);
+
+				DecimalFormat df = new DecimalFormat("###,###");
+				String sql = "select p_id, p_fileName, p_name, p_unitPrice from product";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+			%>
+
+			<div class="w3-content slideContent">
+				<img class="mySlides"
+					src="/upload/4a5dc924376440bfa6a3dc8736b54360.jpg"
+					style="width: 100%"> <img class="mySlides"
+					src="/upload/6b3897dcd942434ba912770a09880022.jpg"
+					style="width: 100%"> <img class="mySlides"
+					src="/upload/94b38e539477423cb8f3080f814956d3.jpg"
+					style="width: 100%">
+			</div>
+
+			<div class="products">
+
+				<div class="section">
+					<a href="/Category/product.jsp?id=<%=rs.getString("p_id")%>"> <img
+						src="/upload/<%=rs.getString("p_fileName")%>"><br> <b><span
+							id="productName"><%=rs.getString("p_name")%></span></b><br> <br>
+						<b><span id="productPrice"><%=df.format(rs.getInt("p_unitPrice"))%>원</span></b>
+					</a>
+				</div>
+				<%
+				}
+				if (rs != null)
+				rs.close();
+				if (pstmt != null)
+				pstmt.close();
+				if (con != null)
+				con.close();
+				} catch (SQLException e) {
+				out.println("데이터베이스 연결이 실패되었습니다.<br>");
+				out.println("SQLException: " + e.getMessage());
+				}
+				%>
+			</div>
 		</div>
 	</div>
+
 	<%@include file="/footer.jsp"%>
+
+	<script>
+		var myIndex = 0;
+		carousel();
+
+		function carousel() {
+			var i;
+			var x = document.getElementsByClassName("mySlides");
+			for (i = 0; i < x.length; i++) {
+				x[i].setAttribute("style", "display:none");
+			}
+			myIndex++;
+			if (myIndex > x.length) {
+				myIndex = 1
+			}
+			x[myIndex - 1].setAttribute("style", "display:block");
+			setTimeout(carousel, 2000); // Change image every 2 seconds
+		}
+	</script>
+
 </body>
+
 </html>

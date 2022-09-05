@@ -18,7 +18,8 @@
 
 	Connection con = null;
 	Statement stmt = null;
-
+	
+	
 	String query = "delete from user where userID = '" + userID + "'";
 
 	try {
@@ -38,7 +39,7 @@
 	<script>
 			alert("<%=userID%>의 탈퇴처리가 완료 되었습니다.");
 			<% session.invalidate(); %>
-			document.location.href = '../index.jsp';
+			document.location.href = '/Landing/index.jsp';
 	</script>
 
 	<%
