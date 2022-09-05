@@ -126,7 +126,7 @@ input:focus{
 
 <head>
 <meta charset="UTF-8">
-<title>JSP미니 프로젝트</title>
+<title>로그인</title>
 </head>
 <body>
 	<%@include file="/top.jsp"%>
