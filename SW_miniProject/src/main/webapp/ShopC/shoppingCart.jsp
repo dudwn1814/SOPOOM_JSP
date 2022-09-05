@@ -83,7 +83,7 @@ for (CartDTO cart : cartList) {
 	<form id="cartForm" class="cartTable" method="post" action="/Purchase/purchase.jsp">
 		<table class="cart-table-container">
                 <tr>
-                    <th input type="checkbox" id="allCheck" name="allcheck" checked class="checkabox-container" style="text-align: left" > </th>
+                    <th><input type="checkbox" id="allCheck" name="allcheck" checked class="checkabox-container" style="text-align: left" > </th>
                     <th style="text-align: left">상품 정보</th>
                     <th style="text-align: left"></th>
                     <th>수량</th>
@@ -267,8 +267,13 @@ for (CartDTO cart : cartList) {
                totalPrice = 0;
             <%}%>
             }
+            
             console.log("totalPrice : " + totalPrice);
+            console.log("vis_selectedTotal : " + commaInsurt(totalPrice));
+            
+            $('#vis_selectedTotal').val(commaInsurt(totalPrice));
             $('#selectedTotal').val(totalPrice); //바뀐 금액으로 결제 예정 금액 변경
+            
          });
 
 
@@ -291,6 +296,8 @@ for (CartDTO cart : cartList) {
             //totalPrice.empty();
             //totalPrice.html(p_totalPrice);
             console.log("changed totalPrice : " + totalPrice + "\n");
+            
+            $('#vis_selectedTotal').val(commaInsurt(totalPrice));
             $('#selectedTotal').val(totalPrice); //바뀐 금액으로 결제 예정 금액 변경
          });
       <%}%>
