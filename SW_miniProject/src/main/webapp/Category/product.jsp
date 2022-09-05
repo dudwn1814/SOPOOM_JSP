@@ -107,7 +107,6 @@
                <a href="/Purchase/purchase_now.jsp?id=<%=id%>" class="btn_order" onclick="purchaseNow2()">상품주문</a>
                <INPUT type="hidden" ID="productID" NAME="Submit" VALUE='<%=rs.getString("p_id")%>'>
                <a href="/ShopC/addCart.jsp?id=<%=id%>" class="btn_bucket"onclick="addToCart()">장바구니</a>
-               <a href="/index.jsp">상품 목록</a>
             </form>
          </div>
       </div>

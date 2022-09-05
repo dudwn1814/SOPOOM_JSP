@@ -1,10 +1,21 @@
 @charset "UTF-8";
 
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+	font-family: 'Pretendard-Regular';
+}
+
 .product_view {
 	margin: 50px auto;
 	position: relative;
 	padding: 0 0 0 400px;
-	width: 960px;
+	width: 1200px;
 	box-sizing: border-box;
 }
 
@@ -27,18 +38,24 @@
 	line-height: 25px;
 }
 
+.product_view table {
+	padding: 20px;
+	width: 800px;
+}
 .product_view table th, .product_view table td {
 	padding: 14px 0;
 	text-align: left;
+	/* border: 1px solid black; */
 }
 
 .product_view table th {
 	font-weight: bold;
+	width: 200px;
 }
 
 .product_view table td.price {
 	font-size: 14px;
-	color: blue;
+	color: rgb(0,0,0);
 }
 
 .product_view table td.price b {
@@ -53,18 +70,20 @@
 .product_view .btns>a {
 	display: inline-block;
 	width: 140px;
-	height: 40px;
-	font-size: 16px;
-	color: white;
-	border-radius: 3px;
-	line-height: 42px;
+	height: 50px;
+	font-size: 18px;
+	color: black;
+	border-radius: 50px;
+	line-height: 50px;
 	text-decoration-line: none;
 }
 
 .product_view .btns>a.btn_order {
-	background: #666;
+	color: #FFFFFF !important;
+    background-color: #313131 !important;
 }
 
 .product_view .btns>a.btn_bucket {
-	background: #0a56a9;
+	border: 1px solid black;
+	background: rgb(255, 255, 255);
 }

@@ -132,6 +132,9 @@ button{
 	background-color: white;
 }
 
+button:hover {
+    cursor: pointer;
+}
 .check-remove-btn, .all-remove-btn{
     color: #FFFFFF;
     background-color: #b1b1b1;
@@ -143,11 +146,15 @@ button{
 }
 
 .submit-btn {
-	color: #FFFFFF;
+    color: #FFFFFF;
     border-style: none;
-    border-radius : 50px;
+    border-radius: 50px;
     transition-duration: 0.4s;
     background-color: #313131;
     padding: 1% 2%;
-    font-size : 18px;
+    font-size: 18px;
+}
+
+.submit-btn:hover {
+    cursor: pointer;
 }
