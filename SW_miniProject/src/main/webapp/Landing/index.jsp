@@ -18,9 +18,9 @@
 		<div class="content" align="center">
 		
 			<div class="w3-content slideContent">
-			  <img class="mySlides" src="/upload/4a5dc924376440bfa6a3dc8736b54360.jpg" style="width:100%">
-			  <img class="mySlides" src="/upload/6b3897dcd942434ba912770a09880022.jpg" style="width:100%">
-			  <img class="mySlides"src="/upload/94b38e539477423cb8f3080f814956d3.jpg" style="width:100%">
+			  <img class="mySlides" src="/img/Frame 51.png">
+			  <img class="mySlides" src="/img/Frame 52.png">
+			  <img class="mySlides"src="/img/Frame 53.png">
 			</div>
 			
 			<div class="products">
