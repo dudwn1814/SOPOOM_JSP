@@ -84,8 +84,8 @@ for (CartDTO cart : cartList) {
 		<table class="cart-table-container">
                 <tr>
                     <th><input type="checkbox" id="allCheck" name="allcheck" checked class="checkabox-container" style="text-align: left" > </th>
-                    <th style="text-align: left">상품 정보</th>
-                    <th style="text-align: left"></th>
+                    <!-- <th style="text-align: left"></th> -->
+                    <th style="text-align: center;" colspan="2">상품 정보</th>
                     <th>수량</th>
                     <th>개별 가격</th>
                     <th>전체 가격</th>
@@ -102,13 +102,16 @@ for (CartDTO cart : cartList) {
                    		<input type="hidden" name="p_id" value="<%=productList.get(i).getp_id()%>">
                     </td>
 
-                    <td class="tdId img">
-                        <image src="/upload/<%= productList.get(i).getP_fileName() %>" width="100px" />	
+                    <td class="tdId img"  style="cursor: pointer;">
+                   		<a href="/product.jsp?id=<%=cartList.get(i).getp_id()%>">
+                        <image src="/upload/<%= productList.get(i).getP_fileName() %>" width="100px" />	</a>
                         <input type="hidden" name="fileName" id="fileName" value="<%= productList.get(i).getP_fileName() %>" width="100px" />	
                     </td>
 
-                    <td class="tdId Pname">
-                        <input type="text" id="name<%=i%>" class="name" name="pname" value="<%=productList.get(i).getp_name()%>" readonly="readonly">
+                    <td class="tdId Pname" >
+                        <a class="name" name="pname" value="<%=productList.get(i).getp_name()%>" 
+                        readonly="readonly" href="/product.jsp?id=<%=cartList.get(i).getp_id()%>"> <%=productList.get(i).getp_name()%> </a>
+                        <input type="hidden" id="name<%=i%>" class="name" name="pname" value="<%=productList.get(i).getp_name()%>" >
                     </td>
 
                     <td class="tdId quantity" id="quantity<%=i%>" class="quantity">

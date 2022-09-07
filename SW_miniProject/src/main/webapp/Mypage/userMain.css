@@ -3,13 +3,13 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css");
 
 * {
-  box-sizing: border-box;
+  box-sizing: border-box
   border-width: 0;
   border-style: solid;
 }
 
 body {
-  width: 100%;
+  /* width: 100%; */
   min-width: 964px;
   font-family: 'Pretendard';
   word-wrap: break-word;

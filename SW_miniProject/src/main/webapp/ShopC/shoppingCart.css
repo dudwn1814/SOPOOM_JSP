@@ -1,7 +1,7 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css");
 
 * {
-  box-sizing: border-box;
+ box-sizing: content-box;
   border-width: 0;
   border-style: solid;
 }
@@ -54,7 +54,7 @@ table {
   }
 
 .tdId {
-	width: 10%;
+	width: auto;
 }
 
 .btn {
@@ -65,9 +65,9 @@ table {
 
 
 .countInput {
-     width: 15px;
+    width: 15px;
     border: none;
-    
+    text-align:center;
 }
 
 .cart-table-container {
@@ -157,4 +157,10 @@ button:hover {
 
 .submit-btn:hover {
     cursor: pointer;
+}
+
+.name {
+	cursor: pointer;
+	text-decoration: none;
+	color: #313131;
 }
