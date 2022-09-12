@@ -23,7 +23,7 @@ String pwd = "1234";
 
 String userID = request.getParameter("userID");
 
-String query = "select p.p_fileName, p.p_name, p.p_unitPrice from product p, dibs d where d.p_id = p.p_id AND d.userID = '" + userID + "'";
+String query = "select p.p_fileName, p.p_name, p.p_unitPrice, p.p_id from product p, dibs d where d.p_id = p.p_id AND d.userID = '" + userID + "'";
 %>
 
 <script>
@@ -57,7 +57,7 @@ function orderCancle(shipID) {
 		<li class="goods_pay_item payorder">
 			<div class="goods_item">
 			 	<!-- 상품 상세 페이지로 이동 -->
-				<a href="#" class="goods_thumb"> <img src="/upload/<%=rs.getString("p_fileName")%>" width="60" height="60" alt="상품사진">
+				<a href="/Category/product.jsp?id=<%=rs.getString("p_id")%>" class="goods_thumb"> <img src="/upload/<%=rs.getString("p_fileName")%>" width="60" height="60" alt="상품사진">
 				</a>
 				<div class="goods_info">
 					<a class="goods"

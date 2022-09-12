@@ -3,7 +3,7 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard.css");
 
 * {
-  box-sizing: border-box
+  box-sizing: border-box;
   border-width: 0;
   border-style: solid;
 }
@@ -72,7 +72,7 @@ h3 {
   margin-bottom: 10px;
 }
 
-/* 2열 배열 */
+/* 2�뿴 諛곗뿴 */
 .container {
 max-width: 900px;
 min-width: 900px;

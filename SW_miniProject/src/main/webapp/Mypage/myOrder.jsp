@@ -24,7 +24,7 @@ String pwd = "1234";
 
 String userID = request.getParameter("userID");
 
-String query = "select p.p_fileName, s.shipID, p.p_name, o.totalPrice, TO_CHAR(o.orderDate, 'YYYY.MM.DD') as orderDate, s.`status`, o.userID from product p, `order` o, ordereditem i, shipping s "
+String query = "select p.p_id, p.p_fileName, s.shipID, p.p_name, o.totalPrice, DATE_FORMAT(o.orderDate, '%Y.%m.%d') as orderDate, s.`status`, o.userID from product p, `order` o, ordereditem i, shipping s "
 				+"where s.orderID = o.orderID AND o.orderID = i.orderID AND i.pID = p.p_id AND o.userID = '" + userID + "'";
 %>
 
@@ -59,7 +59,7 @@ function orderCancle(shipID) {
 		<li class="goods_pay_item payorder">
 			<div class="goods_item">
 			 	<!-- 상품 상세 페이지로 이동 -->
-				<a href="#"
+				<a href="/Category/product.jsp?id=<%=rs.getString("p_id")%>"
 					class="goods_thumb"> <img
 					src="/upload/<%=rs.getString("p_fileName")%>"
 					width="60" height="60" alt="상품사진">

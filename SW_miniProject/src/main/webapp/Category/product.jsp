@@ -29,11 +29,13 @@
    }
    
    function addToDibs() {
+	    document.getElementById("emptyHeart").src = "/img/afterDibs.png";
 		document.addForm.submit();
 	}
    
-   function alertToDibs() {
-		alert("이미 목록에 있는 상품입니다.");
+   function deleteToDibs() {
+	   document.getElementById("fullHeart").src = "/img/beforeDibs.png";
+	   document.addForm.submit();
 	}
    
    function puarchaseNow2 {
@@ -136,15 +138,15 @@
 		%>
 		<form name="dibsForm" id="dibsForm" class="btns" method="post"
 			action="/ShopC/addDibs.jsp?id=<%=id%>">
-			<a href="/ShopC/addDibs.jsp?id=<%=id%>" onclick="addToDibs()"><img
+			<a href="/ShopC/addDibs.jsp?id=<%=id%>" onclick="addToDibs()"><img id="emptyHeart"
 				src="/img/beforeDibs.png" /></a>
 		</form>
 		<%
 		} else {
 		%>
 		<form name="dibsForm" id="dibsForm" class="btns" method="post"
-			action="/ShopC/addDibs.jsp?id=<%=id%>">
-			<a href="#" onclick="alertToDibs()"><img src="/img/afterDibs.png" /></a>
+			action="/ShopC/deleteDibs.jsp?id=<%=id%>">
+			<a href="/ShopC/deleteDibs.jsp?id=<%=id%>" onclick="deleteToDibs()"><img id="fullHeart" src="/img/afterDibs.png" /></a>
 		</form>
 		<%
 		}
