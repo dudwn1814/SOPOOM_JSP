@@ -1,0 +1,264 @@
+/* inventory.jsp */
+body {
+	font-family: Inter;
+}
+
+h1 {
+	width: 100%;
+	max-width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: Inter;
+	font-weight: Regular;
+	font-size: 40px;
+	opacity: 1;
+}
+
+hr {
+	width: 100%;
+	max-width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 52px;
+}
+
+button{
+	background-color: white !important;
+}
+
+.tdId {
+	width: 25%;
+	text-align: left !important;
+}
+
+.tdName {
+	width: 25%;
+	text-align: center;
+}
+
+.tdPrice{
+	width: 25%;
+	text-align: right;
+}
+
+.tdStock {
+	width: 25%;
+	text-align: right;
+}
+
+a {
+	color: black;
+}
+
+#hypertext {
+	text-decoration-line: none;
+	cursor: hand;
+}
+
+.InventoryInfoTable {
+	border-collapse: collapse;
+	width: 100%;
+	max-width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+	vertical-align: middle;
+	padding: 60px 16px 70px;
+		word-break: keep-all;
+}
+
+.InventoryInfoTable th {
+	color: black;
+	font-size: 15px;
+	padding: 15px;
+	border-bottom: 1px solid rgba(0, 0, 0, 1);
+}
+
+.InventoryInfoTable td {
+	font-size: 15px;
+	padding: 15px;
+	border-bottom: 1px solid rgba(0, 0, 0, 1);
+}
+
+.InventoryInfoTable caption {
+	caption-side: top;
+}
+
+
+/* inventoryInfo td */
+.infoTitle {
+	margin-left: 313px;
+	position: relative;
+	font-family: Inter;
+	font-weight: Regular;
+	font-size: 40px;
+	opacity: 1;
+}
+
+.infoHr {
+	width: 100%;
+	max-width: 1440px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 52px;
+}
+
+.search{
+	padding-top:20px;
+	width:fit-content;
+	margin: auto;
+}
+
+.pageList {
+	padding-top:20px;
+	width:fit-content;
+	margin: auto;
+}
+
+.bottom_menu {
+	text-align: center;
+	margin-top: 50px;
+}
+
+.bottm_menu>a {
+	border-radius: 50px !important;
+}
+
+.bottom_menu>a:link, .bottom_menu>a:visited {
+	background-color: black;
+	color: white;
+	padding: 15px 25px;
+	text-align: center;
+	display: inline-block;
+	text-decoration: none;
+	border-radius: 50px;
+}
+
+.bottom_menu>a:hover, .bottom_menu>a:active {
+	text-decoration: none;
+}
+
+/* edit inventory */
+.editTitle {
+	text-align :center;
+   margin : 30px 5px;
+
+}
+
+#ModifyForm {
+	width: 100%;
+	max-width: 450px;
+}
+
+
+h3 {
+	text-align: left;
+	margin: 30px 5px;
+}
+
+.title {
+	display: block;
+	margin-bottom: 12px;
+	line-height: 17px;
+	letter-spacing: -0.1em;
+}
+
+.p_id, .p_name, .p_price, .p_amount_value {
+	text-align:center;
+	font-size: 14px;
+	line-height: 23px;
+	width: 100%;
+	border: 1px solid #BFBFBF;
+	padding: 10px 15px;
+	box-sizing: border-box;
+}
+
+.p_image {
+	text-align:center;
+	font-size: 14px;
+	line-height: 400px;
+	width: 100%;
+	border: 1px solid #BFBFBF;
+	padding: 10px 15px;
+	box-sizing: border-box;
+}
+
+input:focus {
+	outline: none;
+}
+
+.row {
+	margin: 0px 5px;
+	font-size: 14px;
+	line-height: 17px;
+	margin-bottom: 20px;
+}
+
+.button{
+	padding: 5px;
+	margin: auto;
+	cursor: pointer;
+	border-radius: 50px;
+	width: 30%;
+	max-width: 240px;
+	min-width: 160px;
+	height: 40px ! important;
+	min-height: 40px;
+	margin-top : 30px;
+	font-size: 14px !important;
+	font-weight: 700;
+}
+
+#btn_modify{
+	color: #FFFFFF !important;
+    background-color: #313131 !important;
+    border-color: #313131 !important;
+    border-width : 1px;
+    transition-duration: 0.4s;
+    	margin-top: 15px;
+}
+
+#btn_delete{
+	color: #313131 !important;
+    background-color: #FFFFFF !important;
+    border-color: #313131 !important;
+    border-width : 1px;
+    transition-duration: 0.4s;
+    	margin-top: 15px;
+}
+
+#btn_modify:hover{
+ 	opacity : 0.7;
+}
+
+#btn_delete:hover{
+ 	color: #FFFFFF !important;
+ 	background-color: #313131 !important;
+}
+
+
+#btn_list {
+	margin-right: 10px;
+	width : 30%;
+	height: 40px;
+	background-color: #313131 !important;
+	color: white;
+	border-radius: 50px;
+	text-align: center;
+	cursor: pointer;
+	transition: 0.4s;
+	display: inline;
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+
+.pageA {
+	text-decoration: none;
+} 
+
+.searchBtn{
+	cursor: pointer;
+	width: 40px;
+	height: 25px ! important;
+	font-size: 12px !important;
+	font-weight: 700;
+}

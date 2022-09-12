@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>inventory</name>
+	<name>SW_miniProject_ADMIN</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -30,7 +30,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1661511141156</id>
+			<id>1661511141160</id>
 			<name></name>
 			<type>30</type>
 			<matcher>

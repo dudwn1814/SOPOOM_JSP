@@ -1,0 +1,103 @@
+body {
+	font-family: Inter;
+}
+
+.shipTitle {
+	width: 100%;
+	max-width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: Inter;
+	font-weight: Regular;
+	font-size: 40px;
+	opacity: 1;
+}
+
+hr {
+	width: 100%;
+	max-width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 52px;
+}
+
+.InfoTable {
+	border-collapse: collapse;
+	width: 100%;
+	max-width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+	vertical-align: middle;
+	padding: 60px 16px 70px;
+	word-break: keep-all;
+}
+
+.InfoTable th {
+	color: black;
+	text-align: center;
+	font-size: 15px;
+	padding: 15px;
+	border-bottom: 1px solid rgba(0, 0, 0, 1);
+}
+
+.InfoTable td {
+	text-align: center;
+	font-size: 15px;
+	padding: 15px;
+	border-bottom: 1px solid rgba(0, 0, 0, 1);
+}
+
+#statusBtn {
+	background-color: #313131;
+	color: white;
+	border: 1px solid rgba(0, 0, 0, 1);
+	font-weight: 700;
+	cursor: pointer;
+	border: 1px solid rgba(0, 0, 0, 1);
+}
+
+.search {
+	width: fit-content;
+	margin: auto;
+}
+
+.pageList {
+	padding-top: 20px;
+	width: fit-content;
+	margin: auto;
+}
+
+.bottom_menu {
+	text-align: center;
+	margin-top: 50px;
+}
+
+.bottm_menu>a {
+	border-radius: 50px !important;
+}
+
+.bottom_menu>a:link, .bottom_menu>a:visited {
+	background-color: black;
+	color: white;
+	padding: 15px 25px;
+	text-align: center;
+	display: inline-block;
+	text-decoration: none;
+	border-radius: 50px;
+}
+
+.bottom_menu>a:hover, .bottom_menu>a:active {
+	text-decoration: none;
+}
+
+.pageA {
+	text-decoration: none;
+}
+
+.searchBtn {
+	cursor: pointer;
+	width: 40px;
+	height: 25px ! important;
+	font-size: 12px !important;
+	font-weight: 700;
+}
