@@ -131,6 +131,7 @@ String email = "";
 
 					<div class="row">
 						<button class="field shipping-conf-btn" onclick="location.href='myOrder.jsp?userID=<%=userid%>'">배송 정보</button>
+						<button class="field shipping-conf-btn" onclick="location.href='/ShopC/dibsList.jsp?userID=<%=userid%>'">찜목록</button>
 					</div>
 
 				</div>

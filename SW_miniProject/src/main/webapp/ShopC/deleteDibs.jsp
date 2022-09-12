@@ -59,7 +59,7 @@
 	         e.printStackTrace();
 	      }
       
-      response.sendRedirect("dibsList.jsp?userID="+userid);
+      response.sendRedirect("/Category/product.jsp?id="+id);
    }
    %>
 </body>

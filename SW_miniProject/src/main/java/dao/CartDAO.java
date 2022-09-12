@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +39,9 @@ public class CartDAO {
 		int rows = 0;
 
 		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+			con = DriverManager.getConnection(url, user, pwd);
+
 			String sql = "insert into CART(userid, productid, Quantity) VALUES(?,?,?)";
 
 			pstmt = con.prepareStatement(sql);
@@ -204,7 +206,5 @@ public class CartDAO {
 	}
 
 }
-
-
 
 

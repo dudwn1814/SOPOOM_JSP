@@ -16,7 +16,7 @@
 
 <script type="text/javascript">
 
-   function purchaseNow() {
+   function purchaseNow2() {
          document.addForm.submit();
    }
    
@@ -28,19 +28,24 @@
       }
    }
    
-   function addToDibs() {
+   function addToDibs(uid) {
+	    console.log("check");
 	    document.getElementById("emptyHeart").src = "/img/afterDibs.png";
-		document.addForm.submit();
+	    //작동되게 수정
+	    if (confirm("찜목록으로 이동하시겠습니까?")) {
+	    	document.dibsAddForm.submit();
+	    } else {
+	    document.dibsAddForm.submit(); 
+	    }
 	}
    
+   //새로고침 안해도 바로 반영되게 수정!
    function deleteToDibs() {
+	   console.log("uncheck");
 	   document.getElementById("fullHeart").src = "/img/beforeDibs.png";
-	   document.addForm.submit();
+	   document.dibsDeleteForm.submit();
 	}
-   
-   function puarchaseNow2 {
-	   document.addForm.submit();
-   }
+
 </script>
 
 </head>
@@ -90,7 +95,29 @@
 
 	<div class="content" align="center">
 		<div class="product_view" align="center">
-			<h2><%=rs.getString("p_name")%></h2>
+			<h2 style="display:inline-block"><%=rs.getString("p_name")%></h2>
+			<div style="display:inline-block">
+			<%
+				if (rs_dibs.next()) {
+				  if(rs_dibs.getInt("count_dibs") == 0) {
+					%>
+					<form style="display:inline-block; margin-left:20px;" name="dibsAddForm" id="dibsAddForm" class="btns" method="post"
+						action="/ShopC/addDibs.jsp?id=<%=id%>">
+						<img style="display:inline-block; margin-bottom:-15px;" id="emptyHeart" src="/img/beforeDibs.png" onclick="addToDibs('<%=id%>')"/>
+					</form>
+					<%
+					} else {
+					%>
+					<form style="display:inline-block; margin-left:20px;" name="dibsDeleteForm" id="dibsDeleteForm" class="btns" method="post"
+						action="/ShopC/deleteDibs.jsp?id=<%=id%>">
+						<img style="display:inline-block; margin-bottom:-15px;" id="fullHeart" src="/img/afterDibs.png"  onclick="deleteToDibs()"/>
+					</form>
+					<%
+					}
+				} 
+				%>
+			</div>
+			<hr>
 			<table>
 				<colgroup>
 					<col style="width: 180px;">
@@ -132,25 +159,7 @@
 	</div>
 	<%
 	}
-
-	if (rs_dibs.next()) {
-	  if(rs_dibs.getInt("count_dibs") == 0) {
-		%>
-		<form name="dibsForm" id="dibsForm" class="btns" method="post"
-			action="/ShopC/addDibs.jsp?id=<%=id%>">
-			<a href="/ShopC/addDibs.jsp?id=<%=id%>" onclick="addToDibs()"><img id="emptyHeart"
-				src="/img/beforeDibs.png" /></a>
-		</form>
-		<%
-		} else {
-		%>
-		<form name="dibsForm" id="dibsForm" class="btns" method="post"
-			action="/ShopC/deleteDibs.jsp?id=<%=id%>">
-			<a href="/ShopC/deleteDibs.jsp?id=<%=id%>" onclick="deleteToDibs()"><img id="fullHeart" src="/img/afterDibs.png" /></a>
-		</form>
-		<%
-		}
-	}
+	
 	if (stmt != null) {
 	  stmt.close();
 	}

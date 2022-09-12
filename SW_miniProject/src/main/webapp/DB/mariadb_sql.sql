@@ -83,6 +83,14 @@ CREATE TABLE cart (
 	CONSTRAINT FK_userID FOREIGN KEY (userID) REFERENCES `user` (userID) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+-- 찜 목록 테이블
+CREATE TABLE dibs (
+	userID VARCHAR(50) NOT NULL,
+	p_id VARCHAR(50) NOT NULL,
+	CONSTRAINT `FK_dibs_p_idID` FOREIGN KEY (`p_id`) REFERENCES `inventory`.`product` (`p_id`) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT `FK_dibs_userID` FOREIGN KEY (`userID`) REFERENCES `inventory`.`user` (`userID`) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
 INSERT INTO `user` (`userID`, `password`, `username`, `postcode`, `address`, `detailAddress`, `extraAddress`, `telno`, `email`) VALUES ('almond123', 'almond123!', '이몬드', '04536', '서울 중구 명동길 48', '101동 1301호', ' (명동2가)', '010-9844-2101', 'alomond@naver.com');
 INSERT INTO `user` (`userID`, `password`, `username`, `postcode`, `address`, `detailAddress`, `extraAddress`, `telno`, `email`) VALUES ('choco', 'choco123!', '박초코', '13607', '경기 성남시 분당구 내정로 54', '205동 1205호', ' (정자동, 한솔마을주공6단지아파트)', '010-6941-2352', 'choco@gmail.com');
 INSERT INTO `user` (`userID`, `password`, `username`, `postcode`, `address`, `detailAddress`, `extraAddress`, `telno`, `email`) VALUES ('dudwn1814', 'dksdud18145!', '안영주', '12120', '경기 남양주시 퇴계원읍 퇴계원로119번길 6-2', '201호', ' (월드아파트)', '010-2466-1018', 'dudwn1814@gmail.com');
