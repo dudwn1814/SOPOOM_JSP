@@ -29,14 +29,20 @@
    }
    
    function addToDibs(uid) {
-	    console.log("check");
-	    document.getElementById("emptyHeart").src = "/img/afterDibs.png";
-	    //작동되게 수정
-	    if (confirm("찜목록으로 이동하시겠습니까?")) {
-	    	document.dibsAddForm.submit();
-	    } else {
-	    document.dibsAddForm.submit(); 
-	    }
+	   if(uid != "null") {
+		    console.log("check");
+		    document.getElementById("emptyHeart").src = "/img/afterDibs.png";
+		    //작동되게 수정
+		    if (confirm("찜목록으로 이동하시겠습니까?")) {
+		    	document.dibsAddForm.submit();
+		    } else {
+		    document.dibsAddForm.submit(); 
+		    }
+	   }
+	   else {
+		   alert("로그인이 필요한 서비스입니다."); 
+		   location.href = "/Login/login.jsp";
+	   }
 	}
    
    //새로고침 안해도 바로 반영되게 수정!
@@ -55,10 +61,12 @@
 	request.setCharacterEncoding("utf-8");
 	DecimalFormat df = new DecimalFormat("###,###");
 	String id = (String) request.getParameter("id");
+	String userid = (String)session.getAttribute("userID");
+	
 	//게시물 내용 보기
 	String query = "select * from product where p_id = '" + id + "'";
 
-	String query_dibs = "select count(*) as count_dibs from dibs where p_id = '" + id + "'";
+	String query_dibs = "select count(*) as count_dibs from dibs where p_id = '" + id + "' and userID = '" + userid + "'";
 
 	// System.out.println("[상품 보기 ] : " + query);
 	Connection con = null;
@@ -103,7 +111,7 @@
 					%>
 					<form style="display:inline-block; margin-left:20px;" name="dibsAddForm" id="dibsAddForm" class="btns" method="post"
 						action="/ShopC/addDibs.jsp?id=<%=id%>">
-						<img style="display:inline-block; margin-bottom:-15px;" id="emptyHeart" src="/img/beforeDibs.png" onclick="addToDibs('<%=id%>')"/>
+						<img style="display:inline-block; margin-bottom:-15px;" id="emptyHeart" src="/img/beforeDibs.png" onclick="addToDibs('<%=userid%>')"/>
 					</form>
 					<%
 					} else {

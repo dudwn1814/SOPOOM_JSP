@@ -168,7 +168,7 @@ function execDaumPostcode() {
 
 	if (userid == null) {
 	%>
-	alert("로그인이 필요한 서비스입니다."); location.href = "./login.jsp";s
+	alert("로그인이 필요한 서비스입니다."); location.href = "./login.jsp";
 	<%
 	}
 
