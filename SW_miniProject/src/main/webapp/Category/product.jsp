@@ -28,16 +28,12 @@
       }
    }
    
-   function addToDibs(uid) {
+   async function addToDibs(uid) {
 	   if(uid != "null") {
-		    console.log("check");
+		    //찜목록에 저장
+		    await showConfirm();
+		    // document.dibsAddForm.submit();
 		    document.getElementById("emptyHeart").src = "/img/afterDibs.png";
-		    //작동되게 수정
-		    if (confirm("찜목록으로 이동하시겠습니까?")) {
-		    	document.dibsAddForm.submit();
-		    } else {
-		    document.dibsAddForm.submit(); 
-		    }
 	   }
 	   else {
 		   alert("로그인이 필요한 서비스입니다."); 
@@ -51,7 +47,17 @@
 	   document.getElementById("fullHeart").src = "/img/beforeDibs.png";
 	   document.dibsDeleteForm.submit();
 	}
-
+   
+   function sleep(delay) {
+	    var start = new Date().getTime();
+	    while (new Date().getTime() < start + delay);
+	}
+   
+   function showConfirm(){
+	   document.dibsAddForm.submit();
+   }
+   
+   
 </script>
 
 </head>
