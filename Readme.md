@@ -7,9 +7,9 @@
 1. [프로젝트 기간](#🗓period)
 2. [프로젝트 정보](#ℹ️info)
 3. [프로젝트 요약](#✏️summury)
-   1. [개발 환경](#1-개발-환경)
-   2. [Header](#2-header--user-role-에-따른-접근-페이지-변화)
-   3. [Database Schema](#3-database-schema-db-table의-관계)
+   * [개발 환경](#1-개발-환경)
+   * [Header](#2-header--user-role-에-따른-접근-페이지-변화)
+   *  [Database Schema](#3-database-schema-db-table의-관계)
 4. [프로젝트 상세 내용](#contants)
 5. [개발자](#-개발자)
 
@@ -29,11 +29,11 @@
 ### **1. 개발 환경**
 <center> <img src = "Readme_img/4.png" width="800"> </center>
 
-    - 개발 언어: Java 11<br>
-    - 동적 웹 구현: JSP (JavaServer Pages)<br>
-    - DB: MariaDB, Mybatis<br>
-    - Web Server: Apache tomcat 9<br>
-    - IDA : Eclips<br>
+    - 개발 언어: Java 11
+    - 동적 웹 구현: JSP (JavaServer Pages)
+    - DB: MariaDB, Mybatis
+    - Web Server: Apache tomcat 9
+    - IDA : Eclips
     - 협업 / 디자인 툴 : Figma
 
 
