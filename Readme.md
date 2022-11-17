@@ -14,7 +14,7 @@
 
 ## ✏️**Summury**
 
-### **개발 환경**
+### **1. 개발 환경**
 <center> <img src = "Readme_img/4.png" width="800"> </center>
 
     - 개발 언어: Java 11<br>
@@ -25,7 +25,7 @@
     - 협업 / 디자인 툴 : Figma
 
 
-### **Header** : User Role 에 따른 접근 페이지 변화
+### **2. Header** : User Role 에 따른 접근 페이지 변화
 <center> <img src = "Readme_img/5.png" width="800"> </center>
 
     - Role 에 상관 없는 접근 페이지 : 랜딩, 로그인, 상품 정보 페이지
@@ -33,7 +33,7 @@
     - 회원 기능: 상품 주문, 쇼핑카트, 결제, 마이페이지 주문정보 확인
     - 비회원 기능: 회원가입
 
-### **Database Schema**: Table 설명
+### **3. Database Schema**: Table 설명
 <center> <img src = "Readme_img/6.png" width="800"> </center>
 
 #### **1. User**
@@ -193,31 +193,32 @@
 
 ### 💻 **개발자**
 **안영주**
-> 전체적인 관리자 기능, 배송 정보, 찜하기, 렌딩 페이지
-
 <a href="https://github.com/dudwn1814" >
 <img src="https://img.shields.io/badge/github-dudwn1814-lightgrey?style=for-the-badge&logo=Github&logoColor=white"  height="20"/></a>
+> 전체적인 관리자 기능, 배송 정보, 찜하기, 렌딩 페이지
+<br>
 
 **한예규**
-> 주문/결제, 로그인-로그아웃, 비밀번호 찾기, 헤더-풋터
-
 <a href="https://github.com/yegyu-han" >
 <img src="https://img.shields.io/badge/github-yegyu_han-lightgrey?style=for-the-badge&logo=Github&logoColor=white"  height="20"/></a>
+> 주문/결제, 로그인-로그아웃, 비밀번호 찾기, 헤더-풋터
+<br>
 
 **황서영**
-> 장바구니, 마이페이지, 카테고리, 드롭다운 메뉴
-
 <a href="https://github.com/Seo0H" >
 <img src="https://img.shields.io/badge/github-Seo-lightgrey?style=for-the-badge&logo=Github&logoColor=white"  height="20"/></a>
+> 장바구니, 마이페이지, 카테고리, 드롭다운 메뉴
+<br>
+
 
 **이하영**
-> 전체적인 관리자 기능
-
 <a href="https://github.com/glorialeezero" >
 <img src="https://img.shields.io/badge/github-glorialeezero-lightgrey?style=for-the-badge&logo=Github&logoColor=white"  height="20"/></a>
+> 전체적인 관리자 기능
+<br>
 
 **진민서**
-> 렌딩 페이지, 제품 상세 페이지
-
 <a href="https://github.com/jin0719" >
 <img src="https://img.shields.io/badge/github-jin0719-lightgrey?style=for-the-badge&logo=Github&logoColor=white"  height="20"/></a>
+> 렌딩 페이지, 제품 상세 페이지
+<br>
