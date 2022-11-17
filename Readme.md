@@ -13,7 +13,7 @@
 4. [프로젝트 상세 내용](#contants)
 5. [개발자](#-개발자)
 
----
+<hr style="height: 1px;">
 
 ## 🗓**Period**
 > 2022/08/09 - 2022/08/30
@@ -34,15 +34,15 @@
     - DB: MariaDB, JDBC
     - Web Server: Apache tomcat 9
     - IDE : Eclipse
+    - DVCS: Git, Git-hub
     - 협업 / 디자인 툴 : Figma
-
 
 ### **2. Header** : User Role 에 따른 접근 페이지 변화
 <center> <img src = "Readme_img/5.png" width="800"> </center>
 
     - Role 에 상관 없는 접근 페이지 : 랜딩, 로그인, 상품 정보 페이지
     - 관리자 기능: 상품 등록, 재고관리, 회원관리, 배송관리
-    - 회원 기능: 상품 주문, 쇼핑카트, 결제, 마이페이지 주문정보 확인
+    - 회원 기능: 상품 주문, 쇼핑카트, 결제, 마이페이지, 회원 정보 변경 및 탈퇴, 찜하기, 주문정보 확인
     - 비회원 기능: 회원가입
 
 ### **3. Database Schema**: DB Table의 관계
@@ -61,26 +61,17 @@
 
 #### **3. Cart** : 유저가 카트에 담은 물건 정보를 저장하는 테이블
 > FK) user table - userID, cart table - p_ID
->
-
 
 #### **4. Order** : 주문한 유저 아이디와 총 주문 가격, 주문 날짜가 저장되는 테이블
 > PK) orderID
->
-
-
 
 #### **5. Ordereditem** : 유저가 주문한 제품내역이 저장되는 테이블
 >FK) order table - orderID, product table - p_id
 
-
-
-#### **6. Shipping** :
+#### **6. Shipping** : 배송 내역
 > PK) shipID FK)order table- orderID
->
 
-
-## **Contants**
+## **Contents**
 
 ### **공통 기능**
 
@@ -115,8 +106,6 @@
 
 </div>
 </details>
-
----
 
 ### **회원 기능**
 <details>
@@ -157,8 +146,6 @@
 </div>
 </details>
 
----
-
 ### **관리자 기능**
 <details>
 <summary style="Font-Weight:800">상품 등록</summary>
@@ -173,7 +160,6 @@
 <div markdown="1">
 <center> <img src = "Readme_img/32.png" width="800"> </center>
 <center> <img src = "Readme_img/33.png" width="800"> </center>
-
 </div>
 </details>
 
@@ -193,34 +179,17 @@
 </div>
 </details>
 
----
-
-## **발전 방향**
+## **📚발전 방향**
 1. 상세페이지 아래에 상품 리뷰란 추가
 2. 카트에 담은 이후 취소하면 찜하기 항목에 추가 유도
 3. 매출 분석 기능 추가
-
----
 
 ## 💻 **개발자**
 **안영주**
 <a href="https://github.com/dudwn1814" >
 <img src="https://img.shields.io/badge/github-dudwn1814-lightgrey?style=for-the-badge&logo=Github&logoColor=white"  height="20"/></a>
-> 전체적인 관리자 기능, 배송 정보, 찜하기, 렌딩 페이지
+> 전체적인 관리자 기능, 배송 정보, 찜하기, 렌딩 페이지, DB설계
 <br>
-
-**한예규**
-<a href="https://github.com/yegyu-han" >
-<img src="https://img.shields.io/badge/github-yegyu_han-lightgrey?style=for-the-badge&logo=Github&logoColor=white"  height="20"/></a>
-> 주문/결제, 로그인-로그아웃, 비밀번호 찾기, 헤더-풋터
-<br>
-
-**황서영**
-<a href="https://github.com/Seo0H" >
-<img src="https://img.shields.io/badge/github-Seo-lightgrey?style=for-the-badge&logo=Github&logoColor=white"  height="20"/></a>
-> 장바구니, 마이페이지, 카테고리, 드롭다운 메뉴
-<br>
-
 
 **이하영**
 <a href="https://github.com/glorialeezero" >
@@ -232,4 +201,16 @@
 <a href="https://github.com/jin0719" >
 <img src="https://img.shields.io/badge/github-jin0719-lightgrey?style=for-the-badge&logo=Github&logoColor=white"  height="20"/></a>
 > 렌딩 페이지, 제품 상세 페이지
+<br>
+
+**한예규**
+<a href="https://github.com/yegyu-han" >
+<img src="https://img.shields.io/badge/github-yegyu_han-lightgrey?style=for-the-badge&logo=Github&logoColor=white"  height="20"/></a>
+> 주문/결제, 회원가입, 로그인-로그아웃, 비밀번호 찾기, 헤더-풋터, DB설계
+<br>
+
+**황서영**
+<a href="https://github.com/Seo0H" >
+<img src="https://img.shields.io/badge/github-Seo-lightgrey?style=for-the-badge&logo=Github&logoColor=white"  height="20"/></a>
+> 장바구니, 마이페이지, 회원정보 수정 탈퇴, 카테고리, 드롭다운 메뉴, DB설계, 디자인 시스템 제작
 <br>
