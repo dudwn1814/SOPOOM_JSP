@@ -3,19 +3,17 @@
 <center> <img src = "Readme_img/1.png" width="800"> </center>
 <br>
 
-## **Period**
+## 🗓**Period**
 > 2022/08/09 - 2022/08/30
 <br>
 
----
-
-## **Info.**
+## ℹ️**Info.**
 - 5인 팀 프로젝트
 - 회원가입, 장바구니, 찜하기, 탈퇴하기, 관리자 페이지 등의 기능이 있는 쇼핑몰 제작.
 <br>
 
----
-## **Summury**
+## ✏️**Summury**
+
 ### 개발 환경
 <center> <img src = "Readme_img/4.png" width="800"> </center>
 
@@ -26,8 +24,6 @@
 - IDA : Eclips
 - 협업 / 디자인 툴 : Figma
 <br>
-
----
 
 ### **Header** : User Role 에 따른 접근 페이지 변화
 
@@ -41,44 +37,50 @@
 ### **Database Schema**: Table 설명
 <center> <img src = "Readme_img/6.png" width="800"> </center>
 
-**Table**<br>
-User, Product, Cart, Order, Ordereditem, Shipping <br>
-각 페이지에 필요한 기능을 User Flow Map 을 이용해 분석후 필요한 DB를 설계하였다.
-
-User
+#### **1. User**
 > PK) userid
-> >기본적인 유저 정보/주소 정보 저장 테이블
+기본적인 유저 정보/주소 정보 저장 테이블
 
-Product:
+
+#### **2. Product**
 > PK) p_id(제품id)
->> 제품 정보와 관련된 img file의 경로를 저장하는 테이블
+>
+제품 정보와 관련된 img file의 경로를 저장하는 테이블
 
-Cart:
+
+#### **3. Cart**
 > FK) user table - userID, cart table - p_ID
->> 유저가 카트에 담은 물건 정보를 저장하는 테이블
-Order
+>
+유저가 카트에 담은 물건 정보를 저장하는 테이블
+
+#### **4. Order**
 > PK) orderID
->> 주문한 유저 아이디와 총 주문 가격, 주문 날짜가 저장되는 테이블
+>
+주문한 유저 아이디와 총 주문 가격, 주문 날짜가 저장되는 테이블
 
-Ordereditem
+
+#### **5. Ordereditem**
 >FK) order table - orderID, product table - p_id
->> 유저가 주문한 제품내역이 저장되는 테이블
 
-Shipping
+유저가 주문한 제품내역이 저장되는 테이블
+
+
+#### **6. Shipping**
 > PK) shipID FK)order table- orderID
->> 주문한 유저의 기본적인 정보와 결제 완료 내역이 저장되는 테이블
+>
+주문한 유저의 기본적인 정보와 결제 완료 내역이 저장되는 테이블
 
 
----
 ## **Contants**
+<br>
 
 ### **공통 기능**
+
 <details>
 <summary style="Font-Weight:800">로딩-랜딩 페이지</summary>
 <div markdown="1">
 <center> <img src = "Readme_img/7.png" width="800"> </center>
 <center> <img src = "Readme_img/8.png" width="800"> </center>
-
 </div>
 </details>
 <br>
@@ -89,7 +91,6 @@ Shipping
 </div>
 </details>
 <br>
-
 
 <details>
 <summary style="Font-Weight:800">제품 상세 페이지</summary>
@@ -191,7 +192,8 @@ Shipping
 </details>
 <br>
 
-<center> <img src = "Readme_img/37.png" width="800"> </center>
-<center> <img src = "Readme_img/39.png" width="800"> </center>
-
 ---
+## **이후 발전 방향**
+1. 상세페이지 아래에 상품 리뷰란 추가
+2. 카트에 담은 이후 취소하면 찜하기 항목에 추가 유도
+3. 매출 분석 기능 추가
