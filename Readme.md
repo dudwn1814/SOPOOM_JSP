@@ -31,9 +31,9 @@
 
     - 개발 언어: Java 11
     - 동적 웹 구현: JSP (JavaServer Pages)
-    - DB: MariaDB, Mybatis
+    - DB: MariaDB
     - Web Server: Apache tomcat 9
-    - IDA : Eclips
+    - IDE : Eclipse
     - 협업 / 디자인 툴 : Figma
 
 
