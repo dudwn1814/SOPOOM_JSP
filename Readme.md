@@ -3,6 +3,18 @@
 <center> <img src = "Readme_img/1.png" width="800"> </center>
 <br>
 
+## **Index**
+1. [프로젝트 기간](#🗓period)
+2. [프로젝트 정보](#ℹ️info)
+3. [프로젝트 요약](#✏️summury)
+   1. [개발 환경](#1-개발-환경)
+   2. [Header](#2-header--user-role-에-따른-접근-페이지-변화)
+   3. [Database Schema](#3-database-schema-db-table의-관계)
+4. [프로젝트 상세 내용](#contants)
+5. [개발자](#-개발자)
+
+---
+
 ## 🗓**Period**
 > 2022/08/09 - 2022/08/30
 <br>
@@ -33,41 +45,40 @@
     - 회원 기능: 상품 주문, 쇼핑카트, 결제, 마이페이지 주문정보 확인
     - 비회원 기능: 회원가입
 
-### **3. Database Schema**: Table 설명
+### **3. Database Schema**: DB Table의 관계
 <center> <img src = "Readme_img/6.png" width="800"> </center>
 
-#### **1. User**
+#### **1. User** : 기본적인 유저 정보/주소 정보 저장 테이블
 > PK) userid
-기본적인 유저 정보/주소 정보 저장 테이블
 
 
-#### **2. Product**
+
+#### **2. Product**: 제품 정보와 관련된 img file의 경로를 저장하는 테이블
 > PK) p_id(제품id)
 >
-제품 정보와 관련된 img file의 경로를 저장하는 테이블
 
 
-#### **3. Cart**
+
+#### **3. Cart** : 유저가 카트에 담은 물건 정보를 저장하는 테이블
 > FK) user table - userID, cart table - p_ID
 >
-유저가 카트에 담은 물건 정보를 저장하는 테이블
 
-#### **4. Order**
+
+#### **4. Order** : 주문한 유저 아이디와 총 주문 가격, 주문 날짜가 저장되는 테이블
 > PK) orderID
 >
-주문한 유저 아이디와 총 주문 가격, 주문 날짜가 저장되는 테이블
 
 
-#### **5. Ordereditem**
+
+#### **5. Ordereditem** : 유저가 주문한 제품내역이 저장되는 테이블
 >FK) order table - orderID, product table - p_id
 
-유저가 주문한 제품내역이 저장되는 테이블
 
 
-#### **6. Shipping**
+#### **6. Shipping** :
 > PK) shipID FK)order table- orderID
 >
-주문한 유저의 기본적인 정보와 결제 완료 내역이 저장되는 테이블
+
 
 ## **Contants**
 
@@ -184,14 +195,14 @@
 
 ---
 
-### **이후 발전 방향**
+## **발전 방향**
 1. 상세페이지 아래에 상품 리뷰란 추가
 2. 카트에 담은 이후 취소하면 찜하기 항목에 추가 유도
 3. 매출 분석 기능 추가
 
 ---
 
-### 💻 **개발자**
+## 💻 **개발자**
 **안영주**
 <a href="https://github.com/dudwn1814" >
 <img src="https://img.shields.io/badge/github-dudwn1814-lightgrey?style=for-the-badge&logo=Github&logoColor=white"  height="20"/></a>
