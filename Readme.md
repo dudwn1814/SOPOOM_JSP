@@ -1,4 +1,4 @@
-# **Sopoom 쇼핑몰 사이트 제작 프로젝트**
+# **Sopoom: 쇼핑몰 사이트 제작 프로젝트**
 
 <center> <img src = "Readme_img/1.png" width="800"> </center>
 <br>
@@ -17,12 +17,12 @@
 ### 개발 환경
 <center> <img src = "Readme_img/4.png" width="800"> </center>
 
-- 개발 언어: Java 11
-- 동적 웹 구현: JSP (JavaServer Pages)
-- DB: MariaDB, Mybatis
-- Web Server: Apache tomcat 9
-- IDA : Eclips
-- 협업 / 디자인 툴 : Figma
+✔️ 개발 언어: Java 11<br>
+✔️ 동적 웹 구현: JSP (JavaServer Pages)<br>
+✔️ DB: MariaDB, Mybatis<br>
+✔️ Web Server: Apache tomcat 9<br>
+✔️ IDA : Eclips<br>
+✔️ 협업 / 디자인 툴 : Figma
 <br>
 
 ### **Header** : User Role 에 따른 접근 페이지 변화
