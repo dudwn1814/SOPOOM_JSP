@@ -17,21 +17,21 @@
 ### **개발 환경**
 <center> <img src = "Readme_img/4.png" width="800"> </center>
 
-- 개발 언어: Java 11<br>
-- 동적 웹 구현: JSP (JavaServer Pages)<br>
-- DB: MariaDB, Mybatis<br>
-- Web Server: Apache tomcat 9<br>
-- IDA : Eclips<br>
-- 협업 / 디자인 툴 : Figma
-##
+    - 개발 언어: Java 11<br>
+    - 동적 웹 구현: JSP (JavaServer Pages)<br>
+    - DB: MariaDB, Mybatis<br>
+    - Web Server: Apache tomcat 9<br>
+    - IDA : Eclips<br>
+    - 협업 / 디자인 툴 : Figma
+
 
 ### **Header** : User Role 에 따른 접근 페이지 변화
 <center> <img src = "Readme_img/5.png" width="800"> </center>
 
-- Role 에 상관 없는 접근 페이지 : 랜딩, 로그인, 상품 정보 페이지
-- 관리자 기능: 상품 등록, 재고관리, 회원관리, 배송관리
-- 회원 기능: 상품 주문, 쇼핑카트, 결제, 마이페이지 주문정보 확인
-- 비회원 기능: 회원가입
+    - Role 에 상관 없는 접근 페이지 : 랜딩, 로그인, 상품 정보 페이지
+    - 관리자 기능: 상품 등록, 재고관리, 회원관리, 배송관리
+    - 회원 기능: 상품 주문, 쇼핑카트, 결제, 마이페이지 주문정보 확인
+    - 비회원 기능: 회원가입
 
 ### **Database Schema**: Table 설명
 <center> <img src = "Readme_img/6.png" width="800"> </center>
@@ -193,3 +193,20 @@
 1. 상세페이지 아래에 상품 리뷰란 추가
 2. 카트에 담은 이후 취소하면 찜하기 항목에 추가 유도
 3. 매출 분석 기능 추가
+
+---
+
+### **개발자**
+> 안영주:
+> <a href="https://github.com/dudwn1814" >
+<img src="https://img.shields.io/badge/github-dudwn1814-lightgrey?style=for-the-badge&logo=Github&logoColor=white"  height="20"/></a>
+
+> 한예규
+
+> 황서영:
+<a href="https://github.com/Seo0H" >
+<img src="https://img.shields.io/badge/github-Seo-lightgrey?style=for-the-badge&logo=Github&logoColor=white"  height="20"/></a>
+
+> 이하영
+>
+> 진민서
