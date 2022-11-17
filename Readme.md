@@ -14,7 +14,7 @@
 
 ## ✏️**Summury**
 
-### 개발 환경
+### **개발 환경**
 <center> <img src = "Readme_img/4.png" width="800"> </center>
 
 - 개발 언어: Java 11<br>
@@ -23,10 +23,9 @@
 - Web Server: Apache tomcat 9<br>
 - IDA : Eclips<br>
 - 협업 / 디자인 툴 : Figma
-<br>
+##
 
 ### **Header** : User Role 에 따른 접근 페이지 변화
-
 <center> <img src = "Readme_img/5.png" width="800"> </center>
 
 - Role 에 상관 없는 접근 페이지 : 랜딩, 로그인, 상품 정보 페이지
@@ -69,7 +68,6 @@
 > PK) shipID FK)order table- orderID
 >
 주문한 유저의 기본적인 정보와 결제 완료 내역이 저장되는 테이블
-
 
 ## **Contants**
 
@@ -191,7 +189,7 @@
 
 ---
 
-## **이후 발전 방향**
+### **이후 발전 방향**
 1. 상세페이지 아래에 상품 리뷰란 추가
 2. 카트에 담은 이후 취소하면 찜하기 항목에 추가 유도
 3. 매출 분석 기능 추가
