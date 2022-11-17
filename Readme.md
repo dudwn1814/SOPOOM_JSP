@@ -17,12 +17,12 @@
 ### 개발 환경
 <center> <img src = "Readme_img/4.png" width="800"> </center>
 
-✔️ 개발 언어: Java 11<br>
-✔️ 동적 웹 구현: JSP (JavaServer Pages)<br>
-✔️ DB: MariaDB, Mybatis<br>
-✔️ Web Server: Apache tomcat 9<br>
-✔️ IDA : Eclips<br>
-✔️ 협업 / 디자인 툴 : Figma
+- 개발 언어: Java 11<br>
+- 동적 웹 구현: JSP (JavaServer Pages)<br>
+- DB: MariaDB, Mybatis<br>
+- Web Server: Apache tomcat 9<br>
+- IDA : Eclips<br>
+- 협업 / 디자인 툴 : Figma
 <br>
 
 ### **Header** : User Role 에 따른 접근 페이지 변화
@@ -72,7 +72,6 @@
 
 
 ## **Contants**
-<br>
 
 ### **공통 기능**
 
@@ -112,7 +111,8 @@
 
 </div>
 </details>
-<br>
+
+---
 
 ### **회원 기능**
 <details>
@@ -125,10 +125,9 @@
 <center> <img src = "Readme_img/20.png" width="800"> </center>
 <center> <img src = "Readme_img/21.png" width="800"> </center>
 <center> <img src = "Readme_img/22.png" width="800"> </center>
-
 </div>
 </details>
-<br>
+
 <details>
 <summary style="Font-Weight:800">주문/결제</summary>
 <div markdown="1">
@@ -136,7 +135,7 @@
 <center> <img src = "Readme_img/24.png" width="800"> </center>
 </div>
 </details>
-<br>
+
 <details>
 <summary style="Font-Weight:800">마이페이지</summary>
 <div markdown="1">
@@ -145,16 +144,16 @@
 <center> <img src = "Readme_img/27.png" width="800"> </center>
 </div>
 </details>
-<br>
+
 <details>
 <summary style="Font-Weight:800">배송 정보</summary>
 <div markdown="1">
 <center> <img src = "Readme_img/28.png" width="800"> </center>
 <center> <img src = "Readme_img/29.png" width="800"> </center>
-
 </div>
 </details>
-<br>
+
+---
 
 ### **관리자 기능**
 <details>
@@ -162,10 +161,9 @@
 <div markdown="1">
 <center> <img src = "Readme_img/30.png" width="800"> </center>
 <center> <img src = "Readme_img/31.png" width="800"> </center>
-
 </div>
 </details>
-<br>
+
 <details>
 <summary style="Font-Weight:800">재고 관리</summary>
 <div markdown="1">
@@ -174,7 +172,7 @@
 
 </div>
 </details>
-<br>
+
 <details>
 <summary style="Font-Weight:800">회원 관리</summary>
 <div markdown="1">
@@ -183,16 +181,16 @@
 
 </div>
 </details>
-<br>
+
 <details>
 <summary style="Font-Weight:800">배송 관리</summary>
 <div markdown="1">
 <center> <img src = "Readme_img/36.png" width="800"> </center>
 </div>
 </details>
-<br>
 
 ---
+
 ## **이후 발전 방향**
 1. 상세페이지 아래에 상품 리뷰란 추가
 2. 카트에 담은 이후 취소하면 찜하기 항목에 추가 유도
