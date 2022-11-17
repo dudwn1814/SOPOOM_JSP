@@ -80,23 +80,18 @@
 <center> <img src = "Readme_img/8.png" width="800"> </center>
 </div>
 </details>
-<br>
 <details>
 <summary style="Font-Weight:800">카테고리 드롭다운 메뉴</summary>
 <div markdown="1">
 <center> <img src = "Readme_img/9.png" width="800"> </center>
 </div>
 </details>
-<br>
-
 <details>
 <summary style="Font-Weight:800">제품 상세 페이지</summary>
 <div markdown="1">
 <center> <img src = "Readme_img/10.png" width="800"> </center>
-
 </div>
 </details>
-<br>
 <details>
 <summary style="Font-Weight:800">로그인 / 회원가입</summary>
 <div markdown="1">
@@ -196,17 +191,33 @@
 
 ---
 
-### **개발자**
-> 안영주:
-> <a href="https://github.com/dudwn1814" >
+### 💻 **개발자**
+**안영주**
+> 전체적인 관리자 기능, 배송 정보, 찜하기, 렌딩 페이지
+
+<a href="https://github.com/dudwn1814" >
 <img src="https://img.shields.io/badge/github-dudwn1814-lightgrey?style=for-the-badge&logo=Github&logoColor=white"  height="20"/></a>
 
-> 한예규
+**한예규**
+> 주문/결제, 로그인-로그아웃, 비밀번호 찾기, 헤더-풋터
 
-> 황서영:
+<a href="https://github.com/yegyu-han" >
+<img src="https://img.shields.io/badge/github-yegyu_han-lightgrey?style=for-the-badge&logo=Github&logoColor=white"  height="20"/></a>
+
+**황서영**
+> 장바구니, 마이페이지, 카테고리, 드롭다운 메뉴
+
 <a href="https://github.com/Seo0H" >
 <img src="https://img.shields.io/badge/github-Seo-lightgrey?style=for-the-badge&logo=Github&logoColor=white"  height="20"/></a>
 
-> 이하영
->
-> 진민서
+**이하영**
+> 전체적인 관리자 기능
+
+<a href="https://github.com/glorialeezero" >
+<img src="https://img.shields.io/badge/github-glorialeezero-lightgrey?style=for-the-badge&logo=Github&logoColor=white"  height="20"/></a>
+
+**진민서**
+> 렌딩 페이지, 제품 상세 페이지
+
+<a href="https://github.com/jin0719" >
+<img src="https://img.shields.io/badge/github-jin0719-lightgrey?style=for-the-badge&logo=Github&logoColor=white"  height="20"/></a>
